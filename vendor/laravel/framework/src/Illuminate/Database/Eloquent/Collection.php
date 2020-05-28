@@ -2,13 +2,13 @@
 
 namespace Illuminate\Database\Eloquent;
 
-use LogicException;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
-use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Contracts\Queue\QueueableCollection;
+use Illuminate\Contracts\Queue\QueueableEntity;
+use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection as BaseCollection;
+use Illuminate\Support\Str;
+use LogicException;
 
 class Collection extends BaseCollection implements QueueableCollection
 {
@@ -17,7 +17,7 @@ class Collection extends BaseCollection implements QueueableCollection
      *
      * @param  mixed  $key
      * @param  mixed  $default
-     * @return \Illuminate\Database\Eloquent\Model|static
+     * @return \Illuminate\Database\Eloquent\Model|static|null
      */
     public function find($key, $default = null)
     {
@@ -64,6 +64,38 @@ class Collection extends BaseCollection implements QueueableCollection
     }
 
     /**
+     * Load a set of relationship counts onto the collection.
+     *
+     * @param  array|string  $relations
+     * @return $this
+     */
+    public function loadCount($relations)
+    {
+        if ($this->isEmpty()) {
+            return $this;
+        }
+
+        $models = $this->first()->newModelQuery()
+            ->whereKey($this->modelKeys())
+            ->select($this->first()->getKeyName())
+            ->withCount(...func_get_args())
+            ->get();
+
+        $attributes = Arr::except(
+            array_keys($models->first()->getAttributes()),
+            $models->first()->getKeyName()
+        );
+
+        $models->each(function ($model) use ($attributes) {
+            $this->find($model->getKey())->forceFill(
+                Arr::only($model->getAttributes(), $attributes)
+            )->syncOriginalAttributes($attributes);
+        });
+
+        return $this;
+    }
+
+    /**
      * Load a set of relationships onto the collection if they are not already eager loaded.
      *
      * @param  array|string  $relations
@@ -86,10 +118,14 @@ class Collection extends BaseCollection implements QueueableCollection
                 $segments[count($segments) - 1] .= ':'.explode(':', $key)[1];
             }
 
-            $path = array_combine($segments, $segments);
+            $path = [];
+
+            foreach ($segments as $segment) {
+                $path[] = [$segment => $segment];
+            }
 
             if (is_callable($value)) {
-                $path[end($segments)] = $value;
+                $path[count($segments) - 1][end($segments)] = $value;
             }
 
             $this->loadMissingRelation($this, $path);
@@ -105,9 +141,9 @@ class Collection extends BaseCollection implements QueueableCollection
      * @param  array  $path
      * @return void
      */
-    protected function loadMissingRelation(Collection $models, array $path)
+    protected function loadMissingRelation(self $models, array $path)
     {
-        $relation = array_splice($path, 0, 1);
+        $relation = array_shift($path);
 
         $name = explode(':', key($relation))[0];
 
@@ -146,26 +182,9 @@ class Collection extends BaseCollection implements QueueableCollection
             ->groupBy(function ($model) {
                 return get_class($model);
             })
-            ->filter(function ($models, $className) use ($relations) {
-                return Arr::has($relations, $className);
-            })
             ->each(function ($models, $className) use ($relations) {
-                $className::with($relations[$className])
-                    ->eagerLoadRelations($models->all());
+                static::make($models)->load($relations[$className] ?? []);
             });
-
-        return $this;
-    }
-
-    /**
-     * Add an item to the collection.
-     *
-     * @param  mixed  $item
-     * @return $this
-     */
-    public function add($item)
-    {
-        $this->items[] = $item;
 
         return $this;
     }
@@ -296,6 +315,10 @@ class Collection extends BaseCollection implements QueueableCollection
     {
         $intersect = new static;
 
+        if (empty($items)) {
+            return $intersect;
+        }
+
         $dictionary = $this->getDictionary($items);
 
         foreach ($this->items as $item) {
@@ -401,7 +424,7 @@ class Collection extends BaseCollection implements QueueableCollection
     /**
      * Get an array with the values of a given key.
      *
-     * @param  string  $value
+     * @param  string|array  $value
      * @param  string|null  $key
      * @return \Illuminate\Support\Collection
      */
@@ -466,7 +489,7 @@ class Collection extends BaseCollection implements QueueableCollection
      * Pad collection to the specified length with a value.
      *
      * @param  int  $size
-     * @param  mixed $value
+     * @param  mixed  $value
      * @return \Illuminate\Support\Collection
      */
     public function pad($size, $value)
@@ -475,9 +498,23 @@ class Collection extends BaseCollection implements QueueableCollection
     }
 
     /**
+     * Get the comparison function to detect duplicates.
+     *
+     * @param  bool  $strict
+     * @return \Closure
+     */
+    protected function duplicateComparator($strict)
+    {
+        return function ($a, $b) {
+            return $a->is($b);
+        };
+    }
+
+    /**
      * Get the type of the entities being queued.
      *
      * @return string|null
+     *
      * @throws \LogicException
      */
     public function getQueueableClass()
@@ -508,7 +545,7 @@ class Collection extends BaseCollection implements QueueableCollection
             return [];
         }
 
-        return $this->first() instanceof Pivot
+        return $this->first() instanceof QueueableEntity
                     ? $this->map->getQueueableId()->all()
                     : $this->modelKeys();
     }
@@ -520,13 +557,26 @@ class Collection extends BaseCollection implements QueueableCollection
      */
     public function getQueueableRelations()
     {
-        return $this->isNotEmpty() ? $this->first()->getQueueableRelations() : [];
+        if ($this->isEmpty()) {
+            return [];
+        }
+
+        $relations = $this->map->getQueueableRelations()->all();
+
+        if (count($relations) === 0 || $relations === [[]]) {
+            return [];
+        } elseif (count($relations) === 1) {
+            return $relations[0];
+        } else {
+            return array_intersect(...$relations);
+        }
     }
 
     /**
      * Get the connection of the entities being queued.
      *
      * @return string|null
+     *
      * @throws \LogicException
      */
     public function getQueueableConnection()

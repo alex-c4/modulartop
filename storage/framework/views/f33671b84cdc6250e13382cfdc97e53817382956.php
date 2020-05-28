@@ -603,7 +603,7 @@
     </section>
      <!-- Fin Seccion Metodologia-->
 
-     <!-- Seccion Nosotros-->
+     <!-- Seccion Nosotros
     <section class="site-section" id="modular-top">
       <div class="container">
         
@@ -633,7 +633,7 @@
     
          
 
-     <!--Seccion Noticias-->
+     <!--Seccion Noticias
     <section class="site-section" id="news-section">
       <div class="container">
         <div class="row mb-5">
@@ -649,6 +649,7 @@
               <h2 class="font-size-regular"><a href="single.html" class="text-dark">En marzo 2020 comienza feria del mueble CCCT</a></h2>
               <div class="meta mb-4">Bryan <span class="mx-2">&bullet;</span> Jan 18, 2020<span class="mx-2">&bullet;</span> <a href="">Leer</a></div>
               <!--<span class="mx-2">&bullet;</span> <a href="single.html">Leer</a></div>-->
+              <!--
             </div> 
           </div>
           <div class="col-md-6 col-lg-4 mb-4 mb-lg-4">
@@ -840,4 +841,4 @@
   <script src="js/main.js"></script>
     
   </body>
-</html>
+</html><?php /**PATH C:\xampp\htdocs\modulartop\modulartop\resources\views/welcome.blade.php ENDPATH**/ ?>
