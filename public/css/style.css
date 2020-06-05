@@ -32,8 +32,8 @@ a {
 
 .bg-pri{
   background:#810f17;
+}
 
-}    
 
 h1, h2, h3, h4, h5,
 .h1, .h2, .h3, .h4, .h5 {
@@ -49,6 +49,9 @@ h1, h2, h3, h4, h5,
 
 .bg-black {
   background: #000 !important; }
+
+.bg-brown {
+  background: rgb(26, 19, 17) !important; }
 
 .color-black-opacity-5 {
   color: rgba(0, 0, 0, 0.5); }
@@ -1826,7 +1829,7 @@ h1, h2, h3, h4, h5,
 
 .ftco-media-1 h3 {
   font-size: 20px;
-  color: #000;
+  color: #808080;
   margin-bottom: 0; }
 
 .ftco-media-1 p {
@@ -1911,3 +1914,97 @@ h1, h2, h3, h4, h5,
     @media (max-width: 991.98px) {
       .first-step:after, .second-step:after {
         display: none; } }
+
+/* Estilo contendor tableros melaminicos */
+.contenedor{
+  display: flex;
+}
+@media (max-width: 767px) {
+  .contenedor{
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .titulotm{
+    text-align: center;
+  }
+}
+.titulotm{
+  width: 400px;
+  padding: 30px;
+}
+.titulotm p{ 
+  color: #b9b9b9
+}
+.img-tm{
+  width: 180px;
+  height: 180px;
+  /* box-shadow: -6px 8px 12px 0px; */
+  -webkit-box-shadow: -9px 9px 14px 1px rgba(0,0,0,0.39);
+  -moz-box-shadow: -9px 9px 14px 1px rgba(0,0,0,0.39);
+  box-shadow: -9px 9px 14px 1px rgba(0,0,0,0.39);
+}
+.itemchildtm{
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  background-image: url('../../public/images/fondorojo/fondorojo.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: relative;
+  /* background: greenyellow; */
+}
+
+@media (max-width: 991px) {
+  .itemchildtm{
+    background-repeat: no-repeat;
+    background-position: top;
+    background-image: url('../../public/images/fondorojo/fondorojo3.png');
+
+  }
+}
+
+
+@media (max-width: 767px) {
+  .itemchildtm{
+    background-repeat: no-repeat;
+    background-position: top;
+    background-image: url('../../public/images/fondorojo/fondorojo2.png');
+
+  }
+}
+@media (max-width: 499px) {
+  .itemchildtm{
+    background-repeat: repeat-y;
+    background-attachment: fixed;
+  }
+}
+
+.hijostm{
+  width: 30%;
+  text-align: center;
+  height: 300px;
+}
+.hijostm p{
+  font-size: 0.8rem;
+}
+@media (max-width: 991px) {
+  .hijostm{
+    width: 50%;
+  }
+}
+@media (max-width: 767px) {
+  .hijostm{
+    width: 100%;
+    height: auto;
+  }
+}
+.section-title2 {
+  /*color: #37cfa2;*/
+  color: white;
+  font-size: 40px;
+  font-weight: 900; }
+  @media (max-width: 991.98px) {
+    .section-title2 {
+      font-size: 30px; } }
