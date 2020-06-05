@@ -48,17 +48,17 @@
         <div class="row align-items-center">
           
           <div class="col-6 col-xl-2">
-            
+              <!-- Original de la plantilla
             <h1 class="mb-0 site-logo m-0 p-0">
               
               <a href="index.html" class="mb-0">
-                    <img src="images/logo_blanco_web.png" alt="logo">
+                    <img src="images/modulartop_blanco.png" alt="logo">
                 </a>
 
             </h1>
-            <!-- Original de la plantilla
-            <h1 class="mb-0 site-logo m-0 p-0"><a href="index.html" class="mb-0">Warehouse</a></h1>
-            -->
+           -->
+            <h1 class="mb-0 site-logo m-0 p-0"><a href="index.html" class="mb-0" style="color:transparent" >Modularto</a></h1>
+           
           </div>
   
 
@@ -94,8 +94,10 @@
         <div class="container">
           <div class="row align-items-center justify-content-center">
             <div class="col-md-6 mt-lg-5 text-center">
-              <h1 class="text-shadow">¡Tu lo sueñas y nosotros lo fabricamos para ti!</h1>
-              <p class="mb-5 text-shadow">Cuéntanos sobre tu idea o tu proyecto y te lo hacemos realidad...</p>
+              <h1 class="text-shadow">¡Fabricamos tus sueños!</h1>
+              <p class="mb-5 text-shadow">Nos adaptamos a cualquier diseño de interior a madera que tengas en mente... 
+Muebles ideales para hoteles, cocinas, oficina, dormitorios, baños y más
+.</p>
               <p><a href="#" target="_blank" class="btn btn-primary px-5 py-3">Cuéntanos</a></p>
               
             </div>
@@ -108,8 +110,8 @@
         <div class="container">
           <div class="row align-items-center justify-content-center">
             <div class="col-md-6 mt-lg-5 text-center">
-              <h1 class="text-shadow">Tableros melaminicos de alta calidad</h1>
-              <p class="mb-5 text-shadow">Contamos con Materia Prima de alta calidad para la fabricación de mobiliarios </p>
+              <h1 class="text-shadow">Tableros melaminicos de calidad</h1>
+              <p class="mb-5 text-shadow">Garantizamos mejores acabados con texturas que ofrecen satisfacción sensorial y estilo sofisticado para la decoración. </p>
               <p><a href="#" target="_blank" class="btn btn-primary px-5 py-3">Visitanos</a></p>
               
             </div>
@@ -124,7 +126,9 @@
           <div class="row align-items-center justify-content-center">
             <div class="col-md-6 mt-lg-5 text-center">
               <h1 class="text-shadow">Maquilado con Tecnologia de Punta</h1>
-              <p class="mb-5 text-shadow">Sevicio de Seccionado, Routeado, Enchapado y Alta presion para Laminas</p>
+              <p class="mb-5 text-shadow">Si necesitas transformar la madera estás en la web correcta. 
+Convertimos su materia prima (madera) en partes, piezas y productos.
+</p>
               <p><a href="#" target="_blank" class="btn btn-primary px-5 py-3">Servicios</a></p>
               
             </div>
