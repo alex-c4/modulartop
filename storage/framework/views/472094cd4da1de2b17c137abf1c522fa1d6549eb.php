@@ -84,7 +84,7 @@
       
     </header>
 
-    @yield('content')
+    <?php echo $__env->yieldContent('content'); ?>
 
   <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/jquery-ui.js"></script>
@@ -112,4 +112,4 @@
   <!-- fin del bloque fabricacion -->  
 
   </body>
-</html>
+</html><?php /**PATH C:\xampp\htdocs\modulartop\modulartop\resources\views/layouts/layout.blade.php ENDPATH**/ ?>

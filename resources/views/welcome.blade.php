@@ -1,55 +1,7 @@
-@extends('layouts.layout');
+@extends('layouts.layout')
 
 @section('content')
-
    
-    
-<<<<<<< HEAD
-    <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
-
-      <div class="container">
-        <div class="row align-items-center">
-          
-          <div class="col-6 col-xl-2">
-              <!-- Original de la plantilla
-            <h1 class="mb-0 site-logo m-0 p-0">
-              
-              <a href="index.html" class="mb-0">
-                    <img src="images/modulartop_blanco.png" alt="logo">
-                </a>
-
-            </h1>
-           -->
-            <h1 class="mb-0 site-logo m-0 p-0"><a href="index.html" class="mb-0" style="color:transparent" >Modularto</a></h1>
-           
-          </div>
-  
-
-          <div class="col-12 col-md-10 d-none d-xl-block">
-            <nav class="site-navigation position-relative text-right" role="navigation">
-
-              <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                <li><a href="#home-section" class="nav-link">Inicio</a></li>
-                <li><a href="#properties-section" class="nav-link">Materia Prima</a></li>
-                <li><a href="#about-section" class="nav-link">Fabricacion</a></li>
-                <li><a href="#services-section" class="nav-link">Servicios</a></li>
-                <li><a href="#modular-top" class="nav-link">Modular Top</a></li>
-                <li><a href="#news-section" class="nav-link">Novedades</a></li>
-                <li><a href="#contact-section" class="nav-link">Contactanos</a></li>
-              </ul>
-            </nav>
-          </div>
-
-
-          <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3"><a href="#" class="site-menu-toggle js-menu-toggle text-white float-right"><span class="icon-menu h3"></span></a></div>
-
-        </div>
-      </div>
-      
-    </header>
-
-=======
->>>>>>> 14a8b678d9ad472b5c8fa6542064903062f96b43
     
     <div class="site-block-wrap">
     <div class="owl-carousel with-dots">
@@ -248,30 +200,57 @@ Convertimos su materia prima (madera) en partes, piezas y productos.
      <!-- Fin Seccion Metodologia-->
 
     <!-- Seccion Fabricacion-->
-    <section class="site-section" id="about-section">
+    <section class="site-section-fabricacion" id="about-section">
+    <!-- Elastislide Carousel -->
+    <ul id="carousel" class="elastislide-list">
+      <li><a href="#"><img src="images/fabricacion/Carrusel-1.jpg" alt="image01" /></a></li>
+      <li><a href="#"><img src="images/fabricacion/Carrusel-2.jpg" alt="image02" /></a></li>
+      <li><a href="#"><img src="images/fabricacion/Carrusel-3.jpg" alt="image03" /></a></li>
+      <li><a href="#"><img src="images/fabricacion/fabricacion_4.png" alt="image03" /></a></li>      
+    </ul>
+    <!-- End Elastislide Carousel -->
       <div class="container">
+      <h2 class="section-title mb-3 text-black"><br> Fabricamos Mobiliarios <br> a la medida de tus sueños</h2>
         
         <div class="row large-gutters">
-          <div class="col-lg-6 mb-5">
-
+          <div class="col-lg-4 mb-5">
+            <p>
+              La fabricación de mobiliarios más la creatividad de nuestro equipo, nos ha
+              caracterizado durante años en el mercado por ofrecer soluciones oportunas. 
+            </p>
+            <p>
+              Nos adaptamos a las exigencias de carpinteros, arquitectos, ingenieros, 
+              diseñadores de interiores y comerciantes que desean mobiliarios funcionales.
+            </p>
+            
+          </div>
+          <div class="col-lg-4 mb-5">
+            <p>
+            Ofrecemos mobiliarios de tendencia mundial para diferentes sectores comerciales, 
+            en especial, hoteles, posadas, oficinas, restaurantes y tiendas.
+            </p>
+            <p>
+              ¡Cuéntanos tu proyecto y lo fabricamos!
+             <br> <br><a href="#" class="btn btn-primary mr-2 mb-2">Cuentanos</a>
+            </p>
+            
+              <!--
               <div class="owl-carousel slide-one-item with-dots">
                   <div><img src="images/fabricacion/fabricacion_1.png" alt="Image" class="img-fluid"></div>
                   <div><img src="images/fabricacion/fabricacion_2.png" alt="Image" class="img-fluid"></div>
                   <div><img src="images/fabricacion/fabricacion_3.png" alt="Image" class="img-fluid"></div>
                   <div><img src="images/fabricacion/fabricacion_4.png" alt="Image" class="img-fluid"></div>
                 </div>
-
+                -->
           </div>
-          <div class="col-lg-6 ml-auto">
-            
-            <h2 class="section-title mb-3">Fabricamos Mobiliarios a la medida de tus sueños</h2>
+          <!--
+          <div class="col-lg-4 ml-auto">         
                 
-                <p>Est qui eos quasi ratione nostrum excepturi id recusandae fugit omnis ullam pariatur itaque nisi voluptas impedit  Quo suscipit omnis iste velit maxime.</p>
+               
                 <p>Est qui eos quasi ratione nostrum excepturi id recusandae fugit omnis ullam pariatur itaque nisi voluptas impedit  Quo suscipit omnis iste velit maxime.</p>
                 
                 <p class="lead">Cuentanos de tu proyecto y te lo hacemos realidad...</p>
 
-                <!--
                 <ul class="list-unstyled ul-check success">
                   <li>Placeat maxime animi minus</li>
                   <li>Dolore qui placeat maxime</li>
@@ -279,21 +258,22 @@ Convertimos su materia prima (madera) en partes, piezas y productos.
                   <li>Lorem ipsum dolor</li>
                   <li>Placeat molestias animi</li>
                 </ul>
-                 -->
+                
                 <p><a href="#" class="btn btn-primary mr-2 mb-2">Cuentanos</a></p>
                
           </div>
+           -->
         </div>
       </div>
     </section>
-    <!--Fin  Seccion Nosotros-->
-
+    <!--Fin  Seccion Fabricacion-->
+  
     <!--Seccion Cliente-->
-    <section class="site-section testimonial-wrap" id="testimonials-section">
+    <section class="site-section bg-black testimonial-wrap" id="testimonials-section">
       <div class="container">
         <div class="row mb-5">
           <div class="col-12 text-center">
-            <h2 class="section-title mb-3">Clientes Satisfechos<h2>
+            <h2 class="section-title mb-3 text-white">Clientes Satisfechos<h2>
           </div>
         </div>
 
@@ -346,7 +326,90 @@ Convertimos su materia prima (madera) en partes, piezas y productos.
       </div>
     </section>
      <!--Fin Seccion Cliente-->
-    
+
+    <!-- Seccion Servicios-->
+    <section class="site-section bg-light" id="services-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-12 text-center">
+            <h2 class="section-title mb-3 text-black">Servicios de alta tecnologia para el fabricante</h2>
+          </div>
+        </div>
+        <div class="row align-items-stretch">
+          <div class="col-mb-6 col-lg-6 mb-6 mb-lg-6" data-aos="fade-up">
+            <div class="unit-4 d-flex">
+              <div class="unit-4-icon mr-4"><span class="flaticon-flat"></span></div>
+              <div>
+                <h3>Corte o seccionado</h3>
+                <p>Contamos con máquinas que trabajan bajo un software que elabora cortes mecanizados precisos para tableros.</p>
+                <p><a href="#">Leer mas</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-6 mb-6 mb-lg-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="unit-4 d-flex">
+              <div class="unit-4-icon mr-4"><span class="flaticon-flat"></span></div>
+              <div>
+                <h3>Routeado</h3>
+                <p>Garantizamos maquinaria que cumplen con las exigencias del mercado actual. Cortes pantografiado, ranurado y perforado.</p>
+                <p><a href="#">Leer mas</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-6 mb-6 mb-lg-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="unit-4 d-flex">
+              <div class="unit-4-icon mr-4"><span class="flaticon-flat"></span></div>
+              <div>
+                <h3>Enchapado</h3>
+                <p>Enchapados mediante tecnología de termo-adherencia para maderas planas o curvas con acabados de primera calidad.</p>
+                <p><a href="#">Leer mas</a></p>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-md-6 col-lg-6 mb-6 mb-lg-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="unit-4 d-flex">
+              <div class="unit-4-icon mr-4"><span class="flaticon-flat"></span></div>
+              <div>
+                <h3>Prensado de láminas de alta presión (HLP)</h3>
+                <p>
+                  Aprovecha una mano de obra calificada y máquinas de última generación que optimizan el proceso del prensado.
+                </p>
+                <p><a href="#">Leer mas</a></p>
+              </div>
+            </div>
+          </div>
+
+          <!--
+          <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="400">
+            <div class="unit-4 d-flex">
+              <div class="unit-4-icon mr-4"><span class="text-primary flaticon-location"></span></div>
+              <div>
+                <h3>Maquilado</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis molestiae vitae eligendi at.</p>
+                <p><a href="#">Leer mas</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="500">
+            <div class="unit-4 d-flex">
+              <div class="unit-4-icon mr-4"><span class="text-primary flaticon-home"></span></div>
+              <div>
+                <h3>Enchapado</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis molestiae vitae eligendi at.</p>
+                <p><a href="#">Leer mas</a></p>
+              </div>
+            </div>
+          </div>
+          -->
+
+
+        </div>
+      </div>
+    </section>
+     <!--Fin  Seccion Servicio-->
+
       <!-- Seccion Metodologia-->
     <section class="py-5 bg-pri site-section how-it-works" id="howitworks-section">
       <div class="container">
@@ -385,86 +448,6 @@ Convertimos su materia prima (madera) en partes, piezas y productos.
     </section>
      <!-- Fin Seccion Metodologia-->
 
-<!-- Seccion Servicios-->
-    <section class="site-section bg-light" id="services-section">
-      <div class="container">
-        <div class="row mb-5">
-          <div class="col-12 text-center">
-            <h2 class="section-title mb-3">Servicios de alta tecnologia para el fabricante</h2>
-          </div>
-        </div>
-        <div class="row align-items-stretch">
-          <div class="col-mb-6 col-lg-6 mb-6 mb-lg-6" data-aos="fade-up">
-            <div class="unit-4 d-flex">
-              <div class="unit-4-icon mr-4"><span class="flaticon-flat"></span></div>
-              <div>
-                <h3>CORTE o seccionado</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis molestiae vitae eligendi at.</p>
-                <p><a href="#">Leer mas</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-6 mb-6 mb-lg-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="unit-4 d-flex">
-              <div class="unit-4-icon mr-4"><span class="flaticon-flat"></span></div>
-              <div>
-                <h3>Routeado</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis molestiae vitae eligendi at.</p>
-                <p><a href="#">Leer mas</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-6 mb-6 mb-lg-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="unit-4 d-flex">
-              <div class="unit-4-icon mr-4"><span class="flaticon-flat"></span></div>
-              <div>
-                <h3>Enchapado o pega canto</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis molestiae vitae eligendi at.</p>
-                <p><a href="#">Leer mas</a></p>
-              </div>
-            </div>
-          </div>
-
-
-          <div class="col-md-6 col-lg-6 mb-6 mb-lg-6" data-aos="fade-up" data-aos-delay="300">
-            <div class="unit-4 d-flex">
-              <div class="unit-4-icon mr-4"><span class="flaticon-flat"></span></div>
-              <div>
-                <h3>Prensado de laminas de alta presion (hpl)</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis molestiae vitae eligendi at.</p>
-                <p><a href="#">Leer mas</a></p>
-              </div>
-            </div>
-          </div>
-
-          <!--
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="400">
-            <div class="unit-4 d-flex">
-              <div class="unit-4-icon mr-4"><span class="text-primary flaticon-location"></span></div>
-              <div>
-                <h3>Maquilado</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis molestiae vitae eligendi at.</p>
-                <p><a href="#">Leer mas</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="500">
-            <div class="unit-4 d-flex">
-              <div class="unit-4-icon mr-4"><span class="text-primary flaticon-home"></span></div>
-              <div>
-                <h3>Enchapado</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis molestiae vitae eligendi at.</p>
-                <p><a href="#">Leer mas</a></p>
-              </div>
-            </div>
-          </div>
-          -->
-
-
-        </div>
-      </div>
-    </section>
-     <!--Fin  Seccion Servicio-->
 
 
     <!-- Seccion equipo
@@ -659,7 +642,7 @@ Convertimos su materia prima (madera) en partes, piezas y productos.
       <div class="container">
         <div class="row mb-5">
           <div class="col-12 text-center">
-            <h2 class="section-title mb-3">Contacto</h2>
+            <h2 class="section-title mb-3 text-black">Contactanos</h2>
           </div>
         </div>
         <div class="row">
