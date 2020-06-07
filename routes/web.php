@@ -18,3 +18,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// Contacts
+Route::post('contact.store', ['as' => 'contact.store', 'uses' => 'ContactController@store']);
+Route::post('contact.newsletter', ['as' => 'contact.newsletter', 'uses' => 'ContactController@newsletter']);
+Route::get('contact/tellus', ['as' => 'contact.tellus', 'uses' => 'ContactController@tellus']);
+
+
