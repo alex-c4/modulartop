@@ -18,3 +18,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::view('/modulartop', 'modulartop');
+Route::view('/novedades', 'novedades');
+Route::view('/novedades', 'novedades');
+/*#home-section*/

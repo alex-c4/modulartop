@@ -63,14 +63,14 @@
 
           <div class="col-12 col-md-10 d-none d-xl-block">
             <nav class="site-navigation position-relative text-right" role="navigation">
-
+            
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                <li><a href="#home-section" class="nav-link">Inicio</a></li>
-                <li><a href="#properties-section" class="nav-link">Materia Prima</a></li>
+                <li><a href="{{ url('/') }}" class="nav-link">Inicio</a></li>
+                <li><a href="#howitworks-section" class="nav-link">Materia Prima</a></li>
                 <li><a href="#about-section" class="nav-link">Fabricacion</a></li>
                 <li><a href="#services-section" class="nav-link">Servicios</a></li>
-                <li><a href="#modular-top" class="nav-link">Modular Top</a></li>
-                <li><a href="#news-section" class="nav-link">Novedades</a></li>
+                <li><a href="{{ url('/modulartop') }}" class="nav-link">Modular Top</a></li>
+                <li><a href="{{ url('/novedades') }}" class="nav-link">Novedades</a></li>
                 <li><a href="#contact-section" class="nav-link">Contactanos</a></li>
               </ul>
             </nav>

@@ -7,7 +7,7 @@
     <div class="owl-carousel with-dots">
 
 
-      <div class="site-blocks-cover overlay overlay-2" style="background-image: url(images/mobiliario_2.png);" data-aos="fade" id="home-section">  
+      <div class="site-blocks-cover overlay overlay-2" style="background-image: url(images/banner/fabricacion.jpg);" data-aos="fade" id="home-section">  
         <div class="container">
           <div class="row align-items-center justify-content-center">
             <div class="col-md-6 mt-lg-5 text-center">
@@ -23,7 +23,7 @@ Muebles ideales para hoteles, cocinas, oficina, dormitorios, baños y más
       </div>  
 
       
-      <div class="site-blocks-cover overlay overlay-2" style="background-image: url(images/tablero_melaminico.jpg);" data-aos="fade" id="home-section">
+      <div class="site-blocks-cover overlay overlay-2" style="background-image: url(images/banner/tableros.jpg);" data-aos="fade" id="home-section">
         <div class="container">
           <div class="row align-items-center justify-content-center">
             <div class="col-md-6 mt-lg-5 text-center">
@@ -38,7 +38,7 @@ Muebles ideales para hoteles, cocinas, oficina, dormitorios, baños y más
   
       
 
-       <div class="site-blocks-cover overlay overlay-2" style="background-image: url(images/servicios.png);" data-aos="fade" id="home-section">  
+       <div class="site-blocks-cover overlay overlay-2" style="background-image: url(images/banner/servicios.jpg);" data-aos="fade" id="home-section">  
         <div class="container">
           <div class="row align-items-center justify-content-center">
             <div class="col-md-6 mt-lg-5 text-center">
@@ -58,15 +58,15 @@ Convertimos su materia prima (madera) en partes, piezas y productos.
   <!-- Fin seccion head-->  
 
   <!-- Seccion Materia Prima-->
-  <section class="py-5 bg-brown site-section how-it-works" id="howitworks-section">
+  <section class="py-5 bg-black site-section how-it-works" id="howitworks-section">
       <div class="container">
 
       <div class="contenedor">
 
           <div class="titulotm">
             <h2 class="section-title2">Tableros Melaminicos</h2>
-            <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus minima neque tempora reiciendis.</p>
-            <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus minima neque tempora reiciendis.</p>
+            <p class="lead">Diversidad en colores y diseños que se ajustan a la necesidad de tu proyecto de construcción o decoración. </p>
+            <p class="lead">Resistencia comprobada por arquitectos y carpinteros.</p>
           </div>
           
           <div class="itemchildtm">
@@ -74,10 +74,10 @@ Convertimos su materia prima (madera) en partes, piezas y productos.
             <div class="hijostm">
               <div class="ftco-media-1">
                 <div class="ftco-media-1-inner">
-                  <a href="" class=""><img src="images/tableros/alentejo-elm-high-gloss.jpg" alt="FImageo" class="img-tm"></a>
+                  <a href="" class=""><img src="images/tableros/tablero-altobrillo.jpg" alt="FImageo" class="img-tm"></a>
                   <div class="ftco-media-details">
-                    <h3>Para interiores</h3>
-                    <p>Nacionales - Importados</p>
+                    <h3><BR>PARA ACABADOS</h3>
+                    <p>ALTO BRILLO - IMPORTADOS</p>
                     <!--<strong>$20,000,000</strong>-->
                   </div>
                 </div> 
@@ -88,10 +88,10 @@ Convertimos su materia prima (madera) en partes, piezas y productos.
             <div class="hijostm">
               <div class="ftco-media-1">
                 <div class="ftco-media-1-inner">
-                  <a href="" class=""><img src="images/tableros/grey-oak-super-mate.jpg" alt="FImageo" class="img-tm"></a>
+                  <a href="" class=""><img src="images/tableros/tablero-supermate.jpg" alt="FImageo" class="img-tm"></a>
                   <div class="ftco-media-details">
-                      <h3>Para acabados</h3>
-                      <p>Alto Brillo - Importados</p>
+                      <h3><BR>PARA ACABADOS</h3>
+                      <p>SUPER MATE - IMPORTADO</p>
                     <!--<strong>$20,000,000</strong>-->
                   </div>
                 </div> 
@@ -102,10 +102,10 @@ Convertimos su materia prima (madera) en partes, piezas y productos.
             <div class="hijostm">
               <div class="ftco-media-1">
                 <div class="ftco-media-1-inner">
-                  <a href="" class=""><img src="images/tableros/sunny-white-high-gloss.jpg" alt="FImageo" class="img-tm"></a>
+                  <a href="" class=""><img src="images/tableros/tablero-cuerpo.jpg" alt="FImageo" class="img-tm"></a>
                   <div class="ftco-media-details">
-                      <h3>Para Acabados</h3>
-                      <p>Super Mate - Importados</p>
+                      <h3><BR>PARA CUERPOS</h3>
+                      <p>IMPORTADOS Y NACIONALES</p>
                     <!--<strong>$20,000,000</strong>-->
                   </div>
                 </div> 
@@ -116,10 +116,10 @@ Convertimos su materia prima (madera) en partes, piezas y productos.
             <div class="hijostm">
               <div class="ftco-media-1">
                 <div class="ftco-media-1-inner">
-                  <a href="" class=""><img src="images/tableros/1_prime-1280.jpg" alt="FImageo" class="img-tm"></a>
+                  <a href="" class=""><img src="images/tableros/cocina-altobrillo.jpg" alt="FImageo" class="img-tm"></a>
+                  <br>
                   <div class="ftco-media-details">
-                      <h3>Cocina Tablero Oneskin.</h3>
-                      <p>Caracas - Venezuela</p>
+                  <h3><BR></h3>    
                     <!--<strong>$20,000,000</strong>-->
                   </div>
                 </div> 
@@ -130,10 +130,9 @@ Convertimos su materia prima (madera) en partes, piezas y productos.
             <div class="hijostm">
               <div class="ftco-media-1">
                 <div class="ftco-media-1-inner">
-                  <a href="" class=""><img src="images/tableros/1_cozinha_supermatte_grande.jpg" alt="FImageo" class="img-tm"></a>
+                  <a href="" class=""><img src="images/tableros/cocina-supermate.jpg" alt="FImageo" class="img-tm"></a>
                   <div class="ftco-media-details">
-                          <h3>Mobiliarios Hogar</h3>
-                          <p>LA Guaira - Venezuela</p>
+                  <h3><BR></h3>        
                     <!--<strong>$20,000,000</strong>-->
                   </div>
                 </div> 
@@ -144,10 +143,9 @@ Convertimos su materia prima (madera) en partes, piezas y productos.
             <div class="hijostm">
               <div class="ftco-media-1">
                 <div class="ftco-media-1-inner">
-                  <a href="" class=""><img src="images/tableros/brillo_doblecara.png" alt="FImageo" class="img-tm"></a>
+                  <a href="" class=""><img src="images/tableros/brillo_doblecara.jpg" alt="FImageo" class="img-tm"></a>
                   <div class="ftco-media-details">
-                          <h3>Mobiliario Oficina.</h3>
-                          <p>Caracas - Venezuela</p>
+                  <h3><BR></h3>       
                     <!--<strong>$20,000,000</strong>-->
                   </div>
                 </div> 
@@ -161,7 +159,7 @@ Convertimos su materia prima (madera) en partes, piezas y productos.
 
   
 
-    <!-- Seccion Metodologia-->
+    <!-- Apartado Distribuidores Exclusiva-->
     <section class="py-5 bg-pri site-section how-it-works" id="howitworks-section">
       <div class="container">
         <div class="row mb-5 justify-content-center">
@@ -172,16 +170,16 @@ Convertimos su materia prima (madera) en partes, piezas y productos.
         <div class="row">
           <div class="col-md-6 text-center">
             <div class="pr-5">
-              <a href="" ><img src="images/tableros/losan-logo.jpg" alt="FImageo" class="img-fluid"></a>
-              
+              <a href="" ><img src="images/aliados/losan-logo.png" alt="FImageo" class="img-fluid"></a>
+              <h3><BR></h3>
             </div>
           </div>
 
           <div class="col-md-6 text-center">
             <div class="pr-5">
               
-              <a href="" class="d-inline-block mb-4"><img src="images/tableros/logo-oneskin_transp.png" alt="FImageo" class="img-fluid"></a>
-              
+              <a href="" ><img src="images/aliados/oneskin-logo.png" alt="FImageo" class="img-fluid"></a>
+              <h3><BR></h3>
             </div>
           </div>
           <!--
@@ -203,10 +201,12 @@ Convertimos su materia prima (madera) en partes, piezas y productos.
     <section class="site-section-fabricacion" id="about-section">
     <!-- Elastislide Carousel -->
     <ul id="carousel" class="elastislide-list">
-      <li><a href="#"><img src="images/fabricacion/Carrusel-1.jpg" alt="image01" /></a></li>
-      <li><a href="#"><img src="images/fabricacion/Carrusel-2.jpg" alt="image02" /></a></li>
-      <li><a href="#"><img src="images/fabricacion/Carrusel-3.jpg" alt="image03" /></a></li>
-      <li><a href="#"><img src="images/fabricacion/fabricacion_4.png" alt="image03" /></a></li>      
+      <li><a href="#"><img src="images/fabricacion/fabricacion-cocina-1.jpg" alt="image01" /></a></li>
+      <li><a href="#"><img src="images/fabricacion/fabricacion-habitacion-1.jpg" alt="image02" /></a></li>
+      <li><a href="#"><img src="images/fabricacion/fabricacion-cocina-2.jpg" alt="image03" /></a></li>
+      <li><a href="#"><img src="images/fabricacion/fabricacion-habitacion-2.jpg" alt="image03" /></a></li>
+      <li><a href="#"><img src="images/fabricacion/fabricacion-mobiliario.jpg" alt="image03" /></a></li>
+           
     </ul>
     <!-- End Elastislide Carousel -->
       <div class="container">
@@ -338,7 +338,7 @@ Convertimos su materia prima (madera) en partes, piezas y productos.
         <div class="row align-items-stretch">
           <div class="col-mb-6 col-lg-6 mb-6 mb-lg-6" data-aos="fade-up">
             <div class="unit-4 d-flex">
-              <div class="unit-4-icon mr-4"><span class="flaticon-flat"></span></div>
+              <div class="mr-4"><img src="images/iconos/corte.png" alt="Image" class="img-fluid mr-3"></div>
               <div>
                 <h3>Corte o seccionado</h3>
                 <p>Contamos con máquinas que trabajan bajo un software que elabora cortes mecanizados precisos para tableros.</p>
@@ -348,7 +348,7 @@ Convertimos su materia prima (madera) en partes, piezas y productos.
           </div>
           <div class="col-md-6 col-lg-6 mb-6 mb-lg-6" data-aos="fade-up" data-aos-delay="100">
             <div class="unit-4 d-flex">
-              <div class="unit-4-icon mr-4"><span class="flaticon-flat"></span></div>
+              <div class="mr-4"><img src="images/iconos/routeado.png" alt="Image" class="img-fluid mr-3"></span></div>
               <div>
                 <h3>Routeado</h3>
                 <p>Garantizamos maquinaria que cumplen con las exigencias del mercado actual. Cortes pantografiado, ranurado y perforado.</p>
@@ -358,7 +358,7 @@ Convertimos su materia prima (madera) en partes, piezas y productos.
           </div>
           <div class="col-md-6 col-lg-6 mb-6 mb-lg-6" data-aos="fade-up" data-aos-delay="200">
             <div class="unit-4 d-flex">
-              <div class="unit-4-icon mr-4"><span class="flaticon-flat"></span></div>
+              <div class="mr-4"><img src="images/iconos/enchapado.png" alt="Image" class="img-fluid mr-3"></div>
               <div>
                 <h3>Enchapado</h3>
                 <p>Enchapados mediante tecnología de termo-adherencia para maderas planas o curvas con acabados de primera calidad.</p>
@@ -370,7 +370,7 @@ Convertimos su materia prima (madera) en partes, piezas y productos.
 
           <div class="col-md-6 col-lg-6 mb-6 mb-lg-6" data-aos="fade-up" data-aos-delay="300">
             <div class="unit-4 d-flex">
-              <div class="unit-4-icon mr-4"><span class="flaticon-flat"></span></div>
+              <div class="mr-4"><img src="images/iconos/prensado.png" alt="Image" class="img-fluid mr-3"></div>
               <div>
                 <h3>Prensado de láminas de alta presión (HLP)</h3>
                 <p>
@@ -610,7 +610,7 @@ Convertimos su materia prima (madera) en partes, piezas y productos.
               <a href="single.html"><img src="images/img_1.jpg" alt="Image" class="img-fluid"></a>
               <h2 class="font-size-regular"><a href="single.html" class="text-dark">En marzo 2020 comienza feria del mueble CCCT</a></h2>
               <div class="meta mb-4">Bryan <span class="mx-2">&bullet;</span> Jan 18, 2020<span class="mx-2">&bullet;</span> <a href="">Leer</a></div>
-              <!--<span class="mx-2">&bullet;</span> <a href="single.html">Leer</a></div>-->
+             <span class="mx-2">&bullet;</span> <a href="single.html">Leer</a></div>-->
               <!--
             </div> 
           </div>
@@ -725,7 +725,8 @@ Convertimos su materia prima (madera) en partes, piezas y productos.
             <div class="row">
               <div class="col-md-5">
                 <h2 class="footer-heading mb-4">Modular Top</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque facere laudantium magnam voluptatum autem. Amet aliquid nesciunt veritatis aliquam.</p>
+                <p>Somos especialistas en la fabricación de muebles y servicios con maquinarias de
+                última generación. Convierte tu proyecto en una realidad.</p>
               </div>
               <div class="col-md-3 mx-auto">
                 <h2 class="footer-heading mb-4">Sitio web</h2>
