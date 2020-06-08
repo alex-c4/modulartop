@@ -4,6 +4,7 @@
    
     
     <div class="site-block-wrap">
+<<<<<<< HEAD
     <div class="owl-carousel with-dots">
 
 
@@ -48,13 +49,51 @@ Convertimos su materia prima (madera) en partes, piezas y productos.
 </p>
               <p><a href="#" target="_blank" class="btn btn-primary px-5 py-3">Servicios</a></p>
               
-            </div>
-          </div>
-        </div>        
-      </div>  
+=======
+      <div class="owl-carousel with-dots">
 
-    </div>    
-  </div>
+        <div class="site-blocks-cover overlay overlay-2" style="background-image: url(images/mobiliario_2.png);" data-aos="fade" id="home-section">  
+          <div class="container">
+            <div class="row align-items-center justify-content-center">
+              <div class="col-md-6 mt-lg-5 text-center">
+                <h1 class="text-shadow">¡Fabricamos tus sueños!</h1>
+                <p class="mb-5 text-shadow">Nos adaptamos a cualquier diseño de interior a madera que tengas en mente... Muebles ideales para hoteles, cocinas, oficina, dormitorios, baños y más.</p>
+                <p><a href="{{ route('contact.tellus') }}#contact-section" class="btn btn-primary px-5 py-3">Cuéntanos</a></p>
+                
+              </div>
+            </div>
+          </div>        
+        </div>  
+        
+        <div class="site-blocks-cover overlay overlay-2" style="background-image: url(images/tablero_melaminico.jpg);" data-aos="fade" id="home-section">
+          <div class="container">
+            <div class="row align-items-center justify-content-center">
+              <div class="col-md-6 mt-lg-5 text-center">
+                <h1 class="text-shadow">Tableros melaminicos de calidad</h1>
+                <p class="mb-5 text-shadow">Garantizamos mejores acabados con texturas que ofrecen satisfacción sensorial y estilo sofisticado para la decoración. </p>
+                <p><a href="#" target="_blank" class="btn btn-primary px-5 py-3">Visitanos</a></p>
+                
+              </div>
+            </div>
+          </div>        
+        </div>  
+
+        <div class="site-blocks-cover overlay overlay-2" style="background-image: url(images/servicios.png);" data-aos="fade" id="home-section">  
+          <div class="container">
+            <div class="row align-items-center justify-content-center">
+              <div class="col-md-6 mt-lg-5 text-center">
+                <h1 class="text-shadow">Maquilado con Tecnologia de Punta</h1>
+                <p class="mb-5 text-shadow">Si necesitas transformar la madera estás en la web correcta. Convertimos su materia prima (madera) en partes, piezas y productos.</p>
+                <p><a href="#" target="_blank" class="btn btn-primary px-5 py-3">Servicios</a></p>
+                
+              </div>
+>>>>>>> da4bfac6962f67f8581edbe60389a2bdc2a84fea
+            </div>
+          </div>        
+        </div>  
+
+      </div>    
+    </div>
   <!-- Fin seccion head-->  
 
   <!-- Seccion Materia Prima-->
@@ -231,7 +270,7 @@ Convertimos su materia prima (madera) en partes, piezas y productos.
             </p>
             <p>
               ¡Cuéntanos tu proyecto y lo fabricamos!
-             <br> <br><a href="#" class="btn btn-primary mr-2 mb-2">Cuentanos</a>
+             <br> <br><a href="{{ route('contact.tellus') }}#contact-section" class="btn btn-primary mr-2 mb-2">Cuentanos</a>
             </p>
             
               <!--
@@ -650,18 +689,20 @@ Convertimos su materia prima (madera) en partes, piezas y productos.
 
             
 
-            <form action="#" class="p-5 bg-white">
+            <form action="{{ route('contact.store') }}" method="post" class="p-5 bg-white" id="form_send_contact_info">
+              
+              {{csrf_field()}}
               
               <h2 class="h4 text-black mb-5">Contactanos</h2> 
 
               <div class="row form-group">
                 <div class="col-md-6 mb-3 mb-md-0">
                   <label class="text-black" for="fname">Nombre</label>
-                  <input type="text" id="fname" class="form-control">
+                  <input type="text" id="fname" name="fname" class="form-control">
                 </div>
                 <div class="col-md-6">
                   <label class="text-black" for="lname">Apellido</label>
-                  <input type="text" id="lname" class="form-control">
+                  <input type="text" id="lname" name="lname" class="form-control">
                 </div>
               </div>
 
@@ -669,7 +710,7 @@ Convertimos su materia prima (madera) en partes, piezas y productos.
                 
                 <div class="col-md-12">
                   <label class="text-black" for="email">Email</label> 
-                  <input type="email" id="email" class="form-control">
+                  <input type="email" id="email" name="email" class="form-control">
                 </div>
               </div>
 
@@ -677,20 +718,31 @@ Convertimos su materia prima (madera) en partes, piezas y productos.
                 
                 <div class="col-md-12">
                   <label class="text-black" for="subject">Asunto</label> 
-                  <input type="subject" id="subject" class="form-control">
+                  <input type="subject" id="subject" name="subject" class="form-control">
                 </div>
               </div>
 
               <div class="row form-group">
                 <div class="col-md-12">
                   <label class="text-black" for="message">Mensaje</label> 
-                  <textarea name="message" id="message" cols="30" rows="7" class="form-control" placeholder="Escriba su nota aqui..."></textarea>
+                  <textarea name="message" id="message" name="message" cols="30" rows="7" class="form-control" placeholder="Escriba su nota aqui..."></textarea>
                 </div>
               </div>
 
               <div class="row form-group">
                 <div class="col-md-12">
-                  <input type="submit" value="Enviar" class="btn btn-primary btn-md text-white">
+
+                  <div class="alert alert-success" role="alert" id="alertContact">
+                    <label id="divMessage" class="text-black"></label> 
+                    
+                  </div>
+
+                </div>
+              </div>
+              
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <input type="submit" id="btnSendContactInfo" name="btnSendContactInfo" value="Enviar" class="btn btn-primary btn-md text-white">
                 </div>
               </div>
 
@@ -698,16 +750,24 @@ Convertimos su materia prima (madera) en partes, piezas y productos.
             </form>
           </div>
           <div class="col-md-5">
-            
             <div class="p-4 mb-3 bg-white">
-              <p class="mb-0 font-weight-bold">Direccion</p>
+              
+            <p class="mb-0 font-weight-bold">Direccion</p>
               <p class="mb-4">La Yaguara - Calle 11, Caracas, Venezuela</p>
+              
+              <div>
+                <button type="button" class="btn btn-light btn-sm" id="btnShowContact">Ver información</button>
+              </div>
+              <div id="msgcontact">
 
-              <p class="mb-0 font-weight-bold">Telefono</p>
-              <p class="mb-4"><a href="#">+58 2322354</a></p>
-
-              <p class="mb-0 font-weight-bold">Email</p>
-              <p class="mb-0"><a href="#">atencion@modulartop.com</a></p>
+                
+                
+                <p class="mb-0 font-weight-bold">Telefono</p>
+                <p class="mb-4"><a href="#">+58 2322354</a></p>
+                
+                <p class="mb-0 font-weight-bold">Email</p>
+                <p class="mb-0"><a href="#">atencion@modulartop.com</a></p>
+              </div>
 
             </div>
             
@@ -717,6 +777,7 @@ Convertimos su materia prima (madera) en partes, piezas y productos.
     </section>
     <!--Fin Seccion seccion Contactanos-->
 
+<<<<<<< HEAD
     <!--Seccion Footer-->    
     <footer class="site-footer">
       <div class="container">
@@ -787,7 +848,8 @@ Convertimos su materia prima (madera) en partes, piezas y productos.
     </footer>
 
   </div> <!-- .site-wrap -->
+=======
+>>>>>>> da4bfac6962f67f8581edbe60389a2bdc2a84fea
 
-  <a href="#top" class="gototop"><span class="icon-angle-double-up"></span></a> 
 
 @endsection
