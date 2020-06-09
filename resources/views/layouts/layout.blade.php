@@ -66,11 +66,8 @@
             
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                 <li><a href="{{ url('/') }}" class="nav-link">Inicio</a></li>
-<<<<<<< HEAD
                 <li><a href="#howitworks-section" class="nav-link">Materia Prima</a></li>
-=======
                 <li><a href="#properties-section" class="nav-link">Materia Prima</a></li>
->>>>>>> da4bfac6962f67f8581edbe60389a2bdc2a84fea
                 <li><a href="#about-section" class="nav-link">Fabricacion</a></li>
                 <li><a href="#services-section" class="nav-link">Servicios</a></li>
                 <li><a href="{{ url('/modulartop') }}" class="nav-link">Modular Top</a></li>

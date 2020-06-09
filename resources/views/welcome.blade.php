@@ -4,7 +4,6 @@
    
     
     <div class="site-block-wrap">
-<<<<<<< HEAD
     <div class="owl-carousel with-dots">
 
 
@@ -49,7 +48,6 @@ Convertimos su materia prima (madera) en partes, piezas y productos.
 </p>
               <p><a href="#" target="_blank" class="btn btn-primary px-5 py-3">Servicios</a></p>
               
-=======
       <div class="owl-carousel with-dots">
 
         <div class="site-blocks-cover overlay overlay-2" style="background-image: url(images/mobiliario_2.png);" data-aos="fade" id="home-section">  
@@ -87,7 +85,6 @@ Convertimos su materia prima (madera) en partes, piezas y productos.
                 <p><a href="#" target="_blank" class="btn btn-primary px-5 py-3">Servicios</a></p>
                 
               </div>
->>>>>>> da4bfac6962f67f8581edbe60389a2bdc2a84fea
             </div>
           </div>        
         </div>  
@@ -777,79 +774,9 @@ Convertimos su materia prima (madera) en partes, piezas y productos.
     </section>
     <!--Fin Seccion seccion Contactanos-->
 
-<<<<<<< HEAD
-    <!--Seccion Footer-->    
-    <footer class="site-footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-8">
-            <div class="row">
-              <div class="col-md-5">
-                <h2 class="footer-heading mb-4">Modular Top</h2>
-                <p>Somos especialistas en la fabricación de muebles y servicios con maquinarias de
-                última generación. Convierte tu proyecto en una realidad.</p>
-              </div>
-              <div class="col-md-3 mx-auto">
-                <h2 class="footer-heading mb-4">Sitio web</h2>
-                <ul class="list-unstyled">
-                  <li><a href="#">Nosotros</a></li>
-                  <li><a href="#">Servicios</a></li>
-                  <li><a href="#">Clientes</a></li>
-                  <li><a href="#">Contacto</a></li>
-                </ul>
-              </div>
-              
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="mb-4">
-              <h2 class="footer-heading mb-4">Subscribir Noticias y Novedades</h2>
-            <form action="#" method="post" class="footer-subscribe">
-              <div class="input-group mb-3">
-                <input type="text" class="form-control border-secondary text-white bg-transparent" placeholder="INgrese su Email" aria-label="Enter Email" aria-describedby="button-addon2">
-                <div class="input-group-append">
-                  <button class="btn btn-primary text-black" type="button" id="button-addon2">Enviar</button>
-                </div>
-              </div>
-            </form>  
-            </div>
-            
-            <div class="">
-              <h2 class="footer-heading mb-4">Siguenos</h2>
-                <a href="#" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
-                <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
-                <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
-                <a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
-            </div>
-
-
-          </div>
-        </div>
-        <div class="row pt-5 mt-5 text-center">
-          <div class="col-md-12">
-            <div class="border-top pt-5">
-            
-            <p class="copyright">
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            <!--
-            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
-            -->
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-
-            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved 
-            
-            </p>
-            
-            </div>
-          </div>
-          
-        </div>
-      </div>
-    </footer>
+   
 
   </div> <!-- .site-wrap -->
-=======
->>>>>>> da4bfac6962f67f8581edbe60389a2bdc2a84fea
 
 
 @endsection
