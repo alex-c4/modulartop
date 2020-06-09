@@ -4,6 +4,52 @@
    
     
     <div class="site-block-wrap">
+<<<<<<< HEAD
+    <div class="owl-carousel with-dots">
+
+
+      <div class="site-blocks-cover overlay overlay-2" style="background-image: url(images/banner/fabricacion.jpg);" data-aos="fade" id="home-section">  
+        <div class="container">
+          <div class="row align-items-center justify-content-center">
+            <div class="col-md-6 mt-lg-5 text-center">
+              <h1 class="text-shadow">¡Fabricamos tus sueños!</h1>
+              <p class="mb-5 text-shadow">Nos adaptamos a cualquier diseño de interior a madera que tengas en mente... 
+Muebles ideales para hoteles, cocinas, oficina, dormitorios, baños y más
+.</p>
+              <p><a href="#" target="_blank" class="btn btn-primary px-5 py-3">Cuéntanos</a></p>
+              
+            </div>
+          </div>
+        </div>        
+      </div>  
+
+      
+      <div class="site-blocks-cover overlay overlay-2" style="background-image: url(images/banner/tableros.jpg);" data-aos="fade" id="home-section">
+        <div class="container">
+          <div class="row align-items-center justify-content-center">
+            <div class="col-md-6 mt-lg-5 text-center">
+              <h1 class="text-shadow">Tableros melaminicos de calidad</h1>
+              <p class="mb-5 text-shadow">Garantizamos mejores acabados con texturas que ofrecen satisfacción sensorial y estilo sofisticado para la decoración. </p>
+              <p><a href="#" target="_blank" class="btn btn-primary px-5 py-3">Visitanos</a></p>
+              
+            </div>
+          </div>
+        </div>        
+      </div>  
+  
+      
+
+       <div class="site-blocks-cover overlay overlay-2" style="background-image: url(images/banner/servicios.jpg);" data-aos="fade" id="home-section">  
+        <div class="container">
+          <div class="row align-items-center justify-content-center">
+            <div class="col-md-6 mt-lg-5 text-center">
+              <h1 class="text-shadow">Maquilado con Tecnologia de Punta</h1>
+              <p class="mb-5 text-shadow">Si necesitas transformar la madera estás en la web correcta. 
+Convertimos su materia prima (madera) en partes, piezas y productos.
+</p>
+              <p><a href="#" target="_blank" class="btn btn-primary px-5 py-3">Servicios</a></p>
+              
+=======
       <div class="owl-carousel with-dots">
 
         <div class="site-blocks-cover overlay overlay-2" style="background-image: url(images/mobiliario_2.png);" data-aos="fade" id="home-section">  
@@ -41,6 +87,7 @@
                 <p><a href="#" target="_blank" class="btn btn-primary px-5 py-3">Servicios</a></p>
                 
               </div>
+>>>>>>> da4bfac6962f67f8581edbe60389a2bdc2a84fea
             </div>
           </div>        
         </div>  
@@ -50,15 +97,15 @@
   <!-- Fin seccion head-->  
 
   <!-- Seccion Materia Prima-->
-  <section class="py-5 bg-brown site-section how-it-works" id="howitworks-section">
+  <section class="py-5 bg-black site-section how-it-works" id="howitworks-section">
       <div class="container">
 
       <div class="contenedor">
 
           <div class="titulotm">
             <h2 class="section-title2">Tableros Melaminicos</h2>
-            <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus minima neque tempora reiciendis.</p>
-            <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus minima neque tempora reiciendis.</p>
+            <p class="lead">Diversidad en colores y diseños que se ajustan a la necesidad de tu proyecto de construcción o decoración. </p>
+            <p class="lead">Resistencia comprobada por arquitectos y carpinteros.</p>
           </div>
           
           <div class="itemchildtm">
@@ -66,10 +113,10 @@
             <div class="hijostm">
               <div class="ftco-media-1">
                 <div class="ftco-media-1-inner">
-                  <a href="" class=""><img src="images/tableros/alentejo-elm-high-gloss.jpg" alt="FImageo" class="img-tm"></a>
+                  <a href="" class=""><img src="images/tableros/tablero-altobrillo.jpg" alt="FImageo" class="img-tm"></a>
                   <div class="ftco-media-details">
-                    <h3>Para interiores</h3>
-                    <p>Nacionales - Importados</p>
+                    <h3><BR>PARA ACABADOS</h3>
+                    <p>ALTO BRILLO - IMPORTADOS</p>
                     <!--<strong>$20,000,000</strong>-->
                   </div>
                 </div> 
@@ -80,10 +127,10 @@
             <div class="hijostm">
               <div class="ftco-media-1">
                 <div class="ftco-media-1-inner">
-                  <a href="" class=""><img src="images/tableros/grey-oak-super-mate.jpg" alt="FImageo" class="img-tm"></a>
+                  <a href="" class=""><img src="images/tableros/tablero-supermate.jpg" alt="FImageo" class="img-tm"></a>
                   <div class="ftco-media-details">
-                      <h3>Para acabados</h3>
-                      <p>Alto Brillo - Importados</p>
+                      <h3><BR>PARA ACABADOS</h3>
+                      <p>SUPER MATE - IMPORTADO</p>
                     <!--<strong>$20,000,000</strong>-->
                   </div>
                 </div> 
@@ -94,10 +141,10 @@
             <div class="hijostm">
               <div class="ftco-media-1">
                 <div class="ftco-media-1-inner">
-                  <a href="" class=""><img src="images/tableros/sunny-white-high-gloss.jpg" alt="FImageo" class="img-tm"></a>
+                  <a href="" class=""><img src="images/tableros/tablero-cuerpo.jpg" alt="FImageo" class="img-tm"></a>
                   <div class="ftco-media-details">
-                      <h3>Para Acabados</h3>
-                      <p>Super Mate - Importados</p>
+                      <h3><BR>PARA CUERPOS</h3>
+                      <p>IMPORTADOS Y NACIONALES</p>
                     <!--<strong>$20,000,000</strong>-->
                   </div>
                 </div> 
@@ -108,10 +155,10 @@
             <div class="hijostm">
               <div class="ftco-media-1">
                 <div class="ftco-media-1-inner">
-                  <a href="" class=""><img src="images/tableros/1_prime-1280.jpg" alt="FImageo" class="img-tm"></a>
+                  <a href="" class=""><img src="images/tableros/cocina-altobrillo.jpg" alt="FImageo" class="img-tm"></a>
+                  <br>
                   <div class="ftco-media-details">
-                      <h3>Cocina Tablero Oneskin.</h3>
-                      <p>Caracas - Venezuela</p>
+                  <h3><BR></h3>    
                     <!--<strong>$20,000,000</strong>-->
                   </div>
                 </div> 
@@ -122,10 +169,9 @@
             <div class="hijostm">
               <div class="ftco-media-1">
                 <div class="ftco-media-1-inner">
-                  <a href="" class=""><img src="images/tableros/1_cozinha_supermatte_grande.jpg" alt="FImageo" class="img-tm"></a>
+                  <a href="" class=""><img src="images/tableros/cocina-supermate.jpg" alt="FImageo" class="img-tm"></a>
                   <div class="ftco-media-details">
-                          <h3>Mobiliarios Hogar</h3>
-                          <p>LA Guaira - Venezuela</p>
+                  <h3><BR></h3>        
                     <!--<strong>$20,000,000</strong>-->
                   </div>
                 </div> 
@@ -136,10 +182,9 @@
             <div class="hijostm">
               <div class="ftco-media-1">
                 <div class="ftco-media-1-inner">
-                  <a href="" class=""><img src="images/tableros/brillo_doblecara.png" alt="FImageo" class="img-tm"></a>
+                  <a href="" class=""><img src="images/tableros/brillo_doblecara.jpg" alt="FImageo" class="img-tm"></a>
                   <div class="ftco-media-details">
-                          <h3>Mobiliario Oficina.</h3>
-                          <p>Caracas - Venezuela</p>
+                  <h3><BR></h3>       
                     <!--<strong>$20,000,000</strong>-->
                   </div>
                 </div> 
@@ -153,7 +198,7 @@
 
   
 
-    <!-- Seccion Metodologia-->
+    <!-- Apartado Distribuidores Exclusiva-->
     <section class="py-5 bg-pri site-section how-it-works" id="howitworks-section">
       <div class="container">
         <div class="row mb-5 justify-content-center">
@@ -164,16 +209,16 @@
         <div class="row">
           <div class="col-md-6 text-center">
             <div class="pr-5">
-              <a href="" ><img src="images/tableros/losan-logo.jpg" alt="FImageo" class="img-fluid"></a>
-              
+              <a href="" ><img src="images/aliados/losan-logo.png" alt="FImageo" class="img-fluid"></a>
+              <h3><BR></h3>
             </div>
           </div>
 
           <div class="col-md-6 text-center">
             <div class="pr-5">
               
-              <a href="" class="d-inline-block mb-4"><img src="images/tableros/logo-oneskin_transp.png" alt="FImageo" class="img-fluid"></a>
-              
+              <a href="" ><img src="images/aliados/oneskin-logo.png" alt="FImageo" class="img-fluid"></a>
+              <h3><BR></h3>
             </div>
           </div>
           <!--
@@ -195,10 +240,12 @@
     <section class="site-section-fabricacion" id="about-section">
     <!-- Elastislide Carousel -->
     <ul id="carousel" class="elastislide-list">
-      <li><a href="#"><img src="images/fabricacion/Carrusel-1.jpg" alt="image01" /></a></li>
-      <li><a href="#"><img src="images/fabricacion/Carrusel-2.jpg" alt="image02" /></a></li>
-      <li><a href="#"><img src="images/fabricacion/Carrusel-3.jpg" alt="image03" /></a></li>
-      <li><a href="#"><img src="images/fabricacion/fabricacion_4.png" alt="image03" /></a></li>      
+      <li><a href="#"><img src="images/fabricacion/fabricacion-cocina-1.jpg" alt="image01" /></a></li>
+      <li><a href="#"><img src="images/fabricacion/fabricacion-habitacion-1.jpg" alt="image02" /></a></li>
+      <li><a href="#"><img src="images/fabricacion/fabricacion-cocina-2.jpg" alt="image03" /></a></li>
+      <li><a href="#"><img src="images/fabricacion/fabricacion-habitacion-2.jpg" alt="image03" /></a></li>
+      <li><a href="#"><img src="images/fabricacion/fabricacion-mobiliario.jpg" alt="image03" /></a></li>
+           
     </ul>
     <!-- End Elastislide Carousel -->
       <div class="container">
@@ -330,7 +377,7 @@
         <div class="row align-items-stretch">
           <div class="col-mb-6 col-lg-6 mb-6 mb-lg-6" data-aos="fade-up">
             <div class="unit-4 d-flex">
-              <div class="unit-4-icon mr-4"><span class="flaticon-flat"></span></div>
+              <div class="mr-4"><img src="images/iconos/corte.png" alt="Image" class="img-fluid mr-3"></div>
               <div>
                 <h3>Corte o seccionado</h3>
                 <p>Contamos con máquinas que trabajan bajo un software que elabora cortes mecanizados precisos para tableros.</p>
@@ -340,7 +387,7 @@
           </div>
           <div class="col-md-6 col-lg-6 mb-6 mb-lg-6" data-aos="fade-up" data-aos-delay="100">
             <div class="unit-4 d-flex">
-              <div class="unit-4-icon mr-4"><span class="flaticon-flat"></span></div>
+              <div class="mr-4"><img src="images/iconos/routeado.png" alt="Image" class="img-fluid mr-3"></span></div>
               <div>
                 <h3>Routeado</h3>
                 <p>Garantizamos maquinaria que cumplen con las exigencias del mercado actual. Cortes pantografiado, ranurado y perforado.</p>
@@ -350,7 +397,7 @@
           </div>
           <div class="col-md-6 col-lg-6 mb-6 mb-lg-6" data-aos="fade-up" data-aos-delay="200">
             <div class="unit-4 d-flex">
-              <div class="unit-4-icon mr-4"><span class="flaticon-flat"></span></div>
+              <div class="mr-4"><img src="images/iconos/enchapado.png" alt="Image" class="img-fluid mr-3"></div>
               <div>
                 <h3>Enchapado</h3>
                 <p>Enchapados mediante tecnología de termo-adherencia para maderas planas o curvas con acabados de primera calidad.</p>
@@ -362,7 +409,7 @@
 
           <div class="col-md-6 col-lg-6 mb-6 mb-lg-6" data-aos="fade-up" data-aos-delay="300">
             <div class="unit-4 d-flex">
-              <div class="unit-4-icon mr-4"><span class="flaticon-flat"></span></div>
+              <div class="mr-4"><img src="images/iconos/prensado.png" alt="Image" class="img-fluid mr-3"></div>
               <div>
                 <h3>Prensado de láminas de alta presión (HLP)</h3>
                 <p>
@@ -602,7 +649,7 @@
               <a href="single.html"><img src="images/img_1.jpg" alt="Image" class="img-fluid"></a>
               <h2 class="font-size-regular"><a href="single.html" class="text-dark">En marzo 2020 comienza feria del mueble CCCT</a></h2>
               <div class="meta mb-4">Bryan <span class="mx-2">&bullet;</span> Jan 18, 2020<span class="mx-2">&bullet;</span> <a href="">Leer</a></div>
-              <!--<span class="mx-2">&bullet;</span> <a href="single.html">Leer</a></div>-->
+             <span class="mx-2">&bullet;</span> <a href="single.html">Leer</a></div>-->
               <!--
             </div> 
           </div>
@@ -730,6 +777,79 @@
     </section>
     <!--Fin Seccion seccion Contactanos-->
 
+<<<<<<< HEAD
+    <!--Seccion Footer-->    
+    <footer class="site-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="row">
+              <div class="col-md-5">
+                <h2 class="footer-heading mb-4">Modular Top</h2>
+                <p>Somos especialistas en la fabricación de muebles y servicios con maquinarias de
+                última generación. Convierte tu proyecto en una realidad.</p>
+              </div>
+              <div class="col-md-3 mx-auto">
+                <h2 class="footer-heading mb-4">Sitio web</h2>
+                <ul class="list-unstyled">
+                  <li><a href="#">Nosotros</a></li>
+                  <li><a href="#">Servicios</a></li>
+                  <li><a href="#">Clientes</a></li>
+                  <li><a href="#">Contacto</a></li>
+                </ul>
+              </div>
+              
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="mb-4">
+              <h2 class="footer-heading mb-4">Subscribir Noticias y Novedades</h2>
+            <form action="#" method="post" class="footer-subscribe">
+              <div class="input-group mb-3">
+                <input type="text" class="form-control border-secondary text-white bg-transparent" placeholder="INgrese su Email" aria-label="Enter Email" aria-describedby="button-addon2">
+                <div class="input-group-append">
+                  <button class="btn btn-primary text-black" type="button" id="button-addon2">Enviar</button>
+                </div>
+              </div>
+            </form>  
+            </div>
+            
+            <div class="">
+              <h2 class="footer-heading mb-4">Siguenos</h2>
+                <a href="#" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
+                <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
+                <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
+                <a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
+            </div>
+
+
+          </div>
+        </div>
+        <div class="row pt-5 mt-5 text-center">
+          <div class="col-md-12">
+            <div class="border-top pt-5">
+            
+            <p class="copyright">
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            <!--
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
+            -->
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved 
+            
+            </p>
+            
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </footer>
+
+  </div> <!-- .site-wrap -->
+=======
+>>>>>>> da4bfac6962f67f8581edbe60389a2bdc2a84fea
 
 
 @endsection
