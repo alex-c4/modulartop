@@ -64,7 +64,7 @@
             <nav class="site-navigation position-relative text-right" role="navigation">
             
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                <li><a href="{{ route('welcome') }}" class="nav-link">Inicio2</a></li>
+                <li><a href="{{ route('welcome') }}" class="nav-link">Inicio</a></li>
                 <li><a href="#howitworks-section" class="nav-link">Materia Prima</a></li>
                 <li><a href="#about-section" class="nav-link {{ (Request::is('contact/tellus')) ? 'active' : ''}}">Fabricacion</a></li>
                 <li><a href="#services-section" class="nav-link">Servicios</a></li>
