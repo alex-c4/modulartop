@@ -4,7 +4,7 @@
 
 <div class="site-block-wrap">
     <div class="owl-carousel with-dots">
-    <div class="site-blocks-cover overlay overlay-2" style="background-image: url({{ asset('images/mobiliario_2.png')}});" data-aos="fade" id="home-section">  
+    <div class="site-blocks-cover overlay overlay-2" style="background-image: url({{ asset('images/banner/fabricacion.jpg')}});" data-aos="fade" id="home-section">  
         <div class="container">
             <div class="row align-items-center justify-content-center">
                 <div class="col-md-6 mt-lg-5 text-center">

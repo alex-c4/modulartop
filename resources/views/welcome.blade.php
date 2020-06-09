@@ -4,53 +4,9 @@
    
     
     <div class="site-block-wrap">
-    <div class="owl-carousel with-dots">
-
-
-      <div class="site-blocks-cover overlay overlay-2" style="background-image: url(images/banner/fabricacion.jpg);" data-aos="fade" id="home-section">  
-        <div class="container">
-          <div class="row align-items-center justify-content-center">
-            <div class="col-md-6 mt-lg-5 text-center">
-              <h1 class="text-shadow">¡Fabricamos tus sueños!</h1>
-              <p class="mb-5 text-shadow">Nos adaptamos a cualquier diseño de interior a madera que tengas en mente... 
-Muebles ideales para hoteles, cocinas, oficina, dormitorios, baños y más
-.</p>
-              <p><a href="#" target="_blank" class="btn btn-primary px-5 py-3">Cuéntanos</a></p>
-              
-            </div>
-          </div>
-        </div>        
-      </div>  
-
-      
-      <div class="site-blocks-cover overlay overlay-2" style="background-image: url(images/banner/tableros.jpg);" data-aos="fade" id="home-section">
-        <div class="container">
-          <div class="row align-items-center justify-content-center">
-            <div class="col-md-6 mt-lg-5 text-center">
-              <h1 class="text-shadow">Tableros melaminicos de calidad</h1>
-              <p class="mb-5 text-shadow">Garantizamos mejores acabados con texturas que ofrecen satisfacción sensorial y estilo sofisticado para la decoración. </p>
-              <p><a href="#" target="_blank" class="btn btn-primary px-5 py-3">Visitanos</a></p>
-              
-            </div>
-          </div>
-        </div>        
-      </div>  
-  
-      
-
-       <div class="site-blocks-cover overlay overlay-2" style="background-image: url(images/banner/servicios.jpg);" data-aos="fade" id="home-section">  
-        <div class="container">
-          <div class="row align-items-center justify-content-center">
-            <div class="col-md-6 mt-lg-5 text-center">
-              <h1 class="text-shadow">Maquilado con Tecnologia de Punta</h1>
-              <p class="mb-5 text-shadow">Si necesitas transformar la madera estás en la web correcta. 
-Convertimos su materia prima (madera) en partes, piezas y productos.
-</p>
-              <p><a href="#" target="_blank" class="btn btn-primary px-5 py-3">Servicios</a></p>
-              
       <div class="owl-carousel with-dots">
 
-        <div class="site-blocks-cover overlay overlay-2" style="background-image: url(images/mobiliario_2.png);" data-aos="fade" id="home-section">  
+        <div class="site-blocks-cover overlay overlay-2" style="background-image: url(images/banner/fabricacion.jpg);" data-aos="fade" id="home-section">  
           <div class="container">
             <div class="row align-items-center justify-content-center">
               <div class="col-md-6 mt-lg-5 text-center">
@@ -63,6 +19,42 @@ Convertimos su materia prima (madera) en partes, piezas y productos.
           </div>        
         </div>  
         
+        <div class="site-blocks-cover overlay overlay-2" style="background-image: url(images/banner/tableros.jpg);" data-aos="fade" id="home-section">
+          <div class="container">
+            <div class="row align-items-center justify-content-center">
+              <div class="col-md-6 mt-lg-5 text-center">
+                <h1 class="text-shadow">Tableros melaminicos de calidad</h1>
+                <p class="mb-5 text-shadow">Garantizamos mejores acabados con texturas que ofrecen satisfacción sensorial y estilo sofisticado para la decoración. </p>
+                <p><a href="#" target="_blank" class="btn btn-primary px-5 py-3">Visitanos</a></p>
+              </div>
+            </div>
+          </div>        
+        </div>  
+
+        <div class="site-blocks-cover overlay overlay-2" style="background-image: url(images/banner/servicios.jpg);" data-aos="fade" id="home-section">  
+          <div class="container">
+            <div class="row align-items-center justify-content-center">
+              <div class="col-md-6 mt-lg-5 text-center">
+                <h1 class="text-shadow">Maquilado con Tecnologia de Punta</h1>
+                <p class="mb-5 text-shadow">Si necesitas transformar la madera estás en la web correcta. Convertimos su materia prima (madera) en partes, piezas y productos.</p>
+                <p><a href="#" target="_blank" class="btn btn-primary px-5 py-3">Servicios</a></p>
+              </div> 
+            </div>
+          </div>
+        </div>
+
+        <div class="site-blocks-cover overlay overlay-2" style="background-image: url(images/mobiliario_2.png);" data-aos="fade" id="home-section">  
+          <div class="container">
+            <div class="row align-items-center justify-content-center">
+              <div class="col-md-6 mt-lg-5 text-center">
+                <h1 class="text-shadow">¡Fabricamos tus sueños!</h1>
+                <p class="mb-5 text-shadow">Nos adaptamos a cualquier diseño de interior a madera que tengas en mente... Muebles ideales para hoteles, cocinas, oficina, dormitorios, baños y más.</p>
+                <p><a href="{{ route('contact.tellus') }}#contact-section" class="btn btn-primary px-5 py-3">Cuéntanos</a></p>
+              </div>
+            </div>
+          </div>        
+        </div>  
+          
         <div class="site-blocks-cover overlay overlay-2" style="background-image: url(images/tablero_melaminico.jpg);" data-aos="fade" id="home-section">
           <div class="container">
             <div class="row align-items-center justify-content-center">
@@ -70,7 +62,6 @@ Convertimos su materia prima (madera) en partes, piezas y productos.
                 <h1 class="text-shadow">Tableros melaminicos de calidad</h1>
                 <p class="mb-5 text-shadow">Garantizamos mejores acabados con texturas que ofrecen satisfacción sensorial y estilo sofisticado para la decoración. </p>
                 <p><a href="#" target="_blank" class="btn btn-primary px-5 py-3">Visitanos</a></p>
-                
               </div>
             </div>
           </div>        
@@ -83,7 +74,6 @@ Convertimos su materia prima (madera) en partes, piezas y productos.
                 <h1 class="text-shadow">Maquilado con Tecnologia de Punta</h1>
                 <p class="mb-5 text-shadow">Si necesitas transformar la madera estás en la web correcta. Convertimos su materia prima (madera) en partes, piezas y productos.</p>
                 <p><a href="#" target="_blank" class="btn btn-primary px-5 py-3">Servicios</a></p>
-                
               </div>
             </div>
           </div>        
@@ -97,102 +87,104 @@ Convertimos su materia prima (madera) en partes, piezas y productos.
   <section class="py-5 bg-black site-section how-it-works" id="howitworks-section">
       <div class="container">
 
-      <div class="contenedor">
+        <div class="contenedor">
 
-          <div class="titulotm">
-            <h2 class="section-title2">Tableros Melaminicos</h2>
-            <p class="lead">Diversidad en colores y diseños que se ajustan a la necesidad de tu proyecto de construcción o decoración. </p>
-            <p class="lead">Resistencia comprobada por arquitectos y carpinteros.</p>
-          </div>
-          
-          <div class="itemchildtm">
-            <!-- cuadro 1 -->
-            <div class="hijostm">
-              <div class="ftco-media-1">
-                <div class="ftco-media-1-inner">
-                  <a href="" class=""><img src="images/tableros/tablero-altobrillo.jpg" alt="FImageo" class="img-tm"></a>
-                  <div class="ftco-media-details">
-                    <h3><BR>PARA ACABADOS</h3>
-                    <p>ALTO BRILLO - IMPORTADOS</p>
-                    <!--<strong>$20,000,000</strong>-->
-                  </div>
-                </div> 
-              </div>
+            <div class="titulotm">
+              <h2 class="section-title2">Tableros Melaminicos</h2>
+              <p class="lead">Diversidad en colores y diseños que se ajustan a la necesidad de tu proyecto de construcción o decoración. </p>
+              <p class="lead">Resistencia comprobada por arquitectos y carpinteros.</p>
             </div>
             
-            <!-- cuadro 2 -->
-            <div class="hijostm">
-              <div class="ftco-media-1">
-                <div class="ftco-media-1-inner">
-                  <a href="" class=""><img src="images/tableros/tablero-supermate.jpg" alt="FImageo" class="img-tm"></a>
-                  <div class="ftco-media-details">
+            <div class="itemchildtm">
+              <!-- cuadro 1 -->
+              <div class="hijostm">
+                <div class="ftco-media-1">
+                  <div class="ftco-media-1-inner">
+                    <a href="" class=""><img src="images/tableros/tablero-altobrillo.jpg" alt="FImageo" class="img-tm"></a>
+                    <div class="ftco-media-details">
                       <h3><BR>PARA ACABADOS</h3>
-                      <p>SUPER MATE - IMPORTADO</p>
-                    <!--<strong>$20,000,000</strong>-->
-                  </div>
-                </div> 
+                      <p>ALTO BRILLO - IMPORTADOS</p>
+                      <!--<strong>$20,000,000</strong>-->
+                    </div>
+                  </div> 
+                </div>
               </div>
-            </div>
-            
-            <!-- cuadro 3 -->
-            <div class="hijostm">
-              <div class="ftco-media-1">
-                <div class="ftco-media-1-inner">
-                  <a href="" class=""><img src="images/tableros/tablero-cuerpo.jpg" alt="FImageo" class="img-tm"></a>
-                  <div class="ftco-media-details">
-                      <h3><BR>PARA CUERPOS</h3>
-                      <p>IMPORTADOS Y NACIONALES</p>
-                    <!--<strong>$20,000,000</strong>-->
-                  </div>
-                </div> 
+              
+              <!-- cuadro 2 -->
+              <div class="hijostm">
+                <div class="ftco-media-1">
+                  <div class="ftco-media-1-inner">
+                    <a href="" class=""><img src="images/tableros/tablero-supermate.jpg" alt="FImageo" class="img-tm"></a>
+                    <div class="ftco-media-details">
+                        <h3><BR>PARA ACABADOS</h3>
+                        <p>SUPER MATE - IMPORTADO</p>
+                      <!--<strong>$20,000,000</strong>-->
+                    </div>
+                  </div> 
+                </div>
               </div>
-            </div>
-            
-            <!-- cuadro 4 -->
-            <div class="hijostm">
-              <div class="ftco-media-1">
-                <div class="ftco-media-1-inner">
-                  <a href="" class=""><img src="images/tableros/cocina-altobrillo.jpg" alt="FImageo" class="img-tm"></a>
-                  <br>
-                  <div class="ftco-media-details">
-                  <h3><BR></h3>    
-                    <!--<strong>$20,000,000</strong>-->
-                  </div>
-                </div> 
+              
+              <!-- cuadro 3 -->
+              <div class="hijostm">
+                <div class="ftco-media-1">
+                  <div class="ftco-media-1-inner">
+                    <a href="" class=""><img src="images/tableros/tablero-cuerpo.jpg" alt="FImageo" class="img-tm"></a>
+                    <div class="ftco-media-details">
+                        <h3><BR>PARA CUERPOS</h3>
+                        <p>IMPORTADOS Y NACIONALES</p>
+                      <!--<strong>$20,000,000</strong>-->
+                    </div>
+                  </div> 
+                </div>
               </div>
-            </div>
-            
-            <!-- cuadro 5 -->
-            <div class="hijostm">
-              <div class="ftco-media-1">
-                <div class="ftco-media-1-inner">
-                  <a href="" class=""><img src="images/tableros/cocina-supermate.jpg" alt="FImageo" class="img-tm"></a>
-                  <div class="ftco-media-details">
-                  <h3><BR></h3>        
-                    <!--<strong>$20,000,000</strong>-->
-                  </div>
-                </div> 
+              
+              <!-- cuadro 4 -->
+              <div class="hijostm">
+                <div class="ftco-media-1">
+                  <div class="ftco-media-1-inner">
+                    <a href="" class=""><img src="images/tableros/cocina-altobrillo.jpg" alt="FImageo" class="img-tm"></a>
+                    <br>
+                    <div class="ftco-media-details">
+                    <h3><BR></h3>    
+                      <!--<strong>$20,000,000</strong>-->
+                    </div>
+                  </div> 
+                </div>
               </div>
-            </div>
-            
-            <!-- cuadro 6 -->
-            <div class="hijostm">
-              <div class="ftco-media-1">
-                <div class="ftco-media-1-inner">
-                  <a href="" class=""><img src="images/tableros/brillo_doblecara.jpg" alt="FImageo" class="img-tm"></a>
-                  <div class="ftco-media-details">
-                  <h3><BR></h3>       
-                    <!--<strong>$20,000,000</strong>-->
-                  </div>
-                </div> 
+              
+              <!-- cuadro 5 -->
+              <div class="hijostm">
+                <div class="ftco-media-1">
+                  <div class="ftco-media-1-inner">
+                    <a href="" class=""><img src="images/tableros/cocina-supermate.jpg" alt="FImageo" class="img-tm"></a>
+                    <div class="ftco-media-details">
+                    <h3><BR></h3>        
+                      <!--<strong>$20,000,000</strong>-->
+                    </div>
+                  </div> 
+                </div>
               </div>
+              
+              <!-- cuadro 6 -->
+              <div class="hijostm">
+                <div class="ftco-media-1">
+                  <div class="ftco-media-1-inner">
+                    <a href="" class=""><img src="images/tableros/brillo_doblecara.jpg" alt="FImageo" class="img-tm"></a>
+                    <div class="ftco-media-details">
+                    <h3><BR></h3>       
+                      <!--<strong>$20,000,000</strong>-->
+                    </div>
+                  </div> 
+                </div>
+              </div>
+
             </div>
 
           </div>
         </div>
-      </div>
-  </div>
 
+      </div>
+  </section>
   
 
     <!-- Apartado Distribuidores Exclusiva-->
@@ -235,18 +227,18 @@ Convertimos su materia prima (madera) en partes, piezas y productos.
 
     <!-- Seccion Fabricacion-->
     <section class="site-section-fabricacion" id="about-section">
-    <!-- Elastislide Carousel -->
-    <ul id="carousel" class="elastislide-list">
-      <li><a href="#"><img src="images/fabricacion/fabricacion-cocina-1.jpg" alt="image01" /></a></li>
-      <li><a href="#"><img src="images/fabricacion/fabricacion-habitacion-1.jpg" alt="image02" /></a></li>
-      <li><a href="#"><img src="images/fabricacion/fabricacion-cocina-2.jpg" alt="image03" /></a></li>
-      <li><a href="#"><img src="images/fabricacion/fabricacion-habitacion-2.jpg" alt="image03" /></a></li>
-      <li><a href="#"><img src="images/fabricacion/fabricacion-mobiliario.jpg" alt="image03" /></a></li>
-           
-    </ul>
-    <!-- End Elastislide Carousel -->
+      <!-- Elastislide Carousel -->
+      <ul id="carousel" class="elastislide-list">
+        <li><a href="#"><img src="images/fabricacion/fabricacion-cocina-1.jpg" alt="image01" /></a></li>
+        <li><a href="#"><img src="images/fabricacion/fabricacion-habitacion-1.jpg" alt="image02" /></a></li>
+        <li><a href="#"><img src="images/fabricacion/fabricacion-cocina-2.jpg" alt="image03" /></a></li>
+        <li><a href="#"><img src="images/fabricacion/fabricacion-habitacion-2.jpg" alt="image03" /></a></li>
+        <li><a href="#"><img src="images/fabricacion/fabricacion-mobiliario.jpg" alt="image03" /></a></li>
+            
+      </ul>
+      <!-- End Elastislide Carousel -->
       <div class="container">
-      <h2 class="section-title mb-3 text-black"><br> Fabricamos Mobiliarios <br> a la medida de tus sueños</h2>
+        <h2 class="section-title mb-3 text-black"><br> Fabricamos Mobiliarios <br> a la medida de tus sueños</h2>
         
         <div class="row large-gutters">
           <div class="col-lg-4 mb-5">
@@ -258,8 +250,8 @@ Convertimos su materia prima (madera) en partes, piezas y productos.
               Nos adaptamos a las exigencias de carpinteros, arquitectos, ingenieros, 
               diseñadores de interiores y comerciantes que desean mobiliarios funcionales.
             </p>
-            
           </div>
+            
           <div class="col-lg-4 mb-5">
             <p>
             Ofrecemos mobiliarios de tendencia mundial para diferentes sectores comerciales, 
@@ -327,36 +319,37 @@ Convertimos su materia prima (madera) en partes, piezas y productos.
                     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque, mollitia. Possimus mollitia nobis libero quidem aut tempore dolore iure maiores, perferendis, provident numquam illum nisi amet necessitatibus. A, provident aperiam!</p>
                   </div>
                 </div>
-              </div>
-              <div class="col-md-4 mb-4">
-                  <div class="ftco-testimonial-1">
-                      <div class="ftco-testimonial-vcard d-flex align-items-center mb-4">
-                        <img src="images/person_2.jpg" alt="Image" class="img-fluid mr-3">
-                        <div>
-                          <h3>Julio Cortez</h3>
-                          <span>Cliente</span>
-                        </div>
-                      </div>
-                      <div>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque, mollitia. Possimus mollitia nobis libero quidem aut tempore dolore iure maiores, perferendis, provident numquam illum nisi amet necessitatibus. A, provident aperiam!</p>
-                      </div>
-                    </div>
-              </div> 
+            </div>
 
-              <div class="col-md-4 mb-4">
-                  <div class="ftco-testimonial-1">
-                    <div class="ftco-testimonial-vcard d-flex align-items-center mb-4">
-                      <img src="images/person_3.jpg" alt="Image" class="img-fluid mr-3">
-                      <div>
-                        <h3>Jose Cardenas</h3>
-                        <span>Cliente</span>
-                      </div>
-                    </div>
+            <div class="col-md-4 mb-4">
+                <div class="ftco-testimonial-1">
+                  <div class="ftco-testimonial-vcard d-flex align-items-center mb-4">
+                    <img src="images/person_2.jpg" alt="Image" class="img-fluid mr-3">
                     <div>
-                      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque, mollitia. Possimus mollitia nobis libero quidem aut tempore dolore iure maiores, perferendis, provident numquam illum nisi amet necessitatibus. A, provident aperiam!</p>
+                      <h3>Julio Cortez</h3>
+                      <span>Cliente</span>
                     </div>
                   </div>
+                  <div>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque, mollitia. Possimus mollitia nobis libero quidem aut tempore dolore iure maiores, perferendis, provident numquam illum nisi amet necessitatibus. A, provident aperiam!</p>
+                  </div>
                 </div>
+            </div> 
+
+            <div class="col-md-4 mb-4">
+              <div class="ftco-testimonial-1">
+                <div class="ftco-testimonial-vcard d-flex align-items-center mb-4">
+                  <img src="images/person_3.jpg" alt="Image" class="img-fluid mr-3">
+                  <div>
+                    <h3>Jose Cardenas</h3>
+                    <span>Cliente</span>
+                  </div>
+                </div>
+                <div>
+                  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque, mollitia. Possimus mollitia nobis libero quidem aut tempore dolore iure maiores, perferendis, provident numquam illum nisi amet necessitatibus. A, provident aperiam!</p>
+                </div>
+              </div>
+            </div>
                 
         </div>
       </div>
@@ -483,8 +476,6 @@ Convertimos su materia prima (madera) en partes, piezas y productos.
       </div>  
     </section>
      <!-- Fin Seccion Metodologia-->
-
-
 
     <!-- Seccion equipo
     <section class="site-section" id="agents-section">
@@ -629,8 +620,6 @@ Convertimos su materia prima (madera) en partes, piezas y productos.
     -->
     <!--Fin  Seccion Nosotros-->
     
-         
-
      <!--Seccion Noticias
     <section class="site-section" id="news-section">
       <div class="container">
@@ -671,7 +660,6 @@ Convertimos su materia prima (madera) en partes, piezas y productos.
     </section>
     -->
     <!--Fin Seccion Noticias-->
-   
 
     <!--Seccion contactanos-->
     <section class="site-section bg-light bg-image" id="contact-section">
@@ -683,8 +671,6 @@ Convertimos su materia prima (madera) en partes, piezas y productos.
         </div>
         <div class="row">
           <div class="col-md-7 mb-5">
-
-            
 
             <form action="{{ route('contact.store') }}" method="post" class="p-5 bg-white" id="form_send_contact_info">
               
@@ -745,38 +731,35 @@ Convertimos su materia prima (madera) en partes, piezas y productos.
 
   
             </form>
+
           </div>
+
           <div class="col-md-5">
             <div class="p-4 mb-3 bg-white">
               
-            <p class="mb-0 font-weight-bold">Direccion</p>
+              <p class="mb-0 font-weight-bold">Direccion</p>
               <p class="mb-4">La Yaguara - Calle 11, Caracas, Venezuela</p>
               
               <div>
                 <button type="button" class="btn btn-light btn-sm" id="btnShowContact">Ver información</button>
               </div>
               <div id="msgcontact">
-
-                
                 
                 <p class="mb-0 font-weight-bold">Telefono</p>
                 <p class="mb-4"><a href="#">+58 2322354</a></p>
                 
                 <p class="mb-0 font-weight-bold">Email</p>
                 <p class="mb-0"><a href="#">atencion@modulartop.com</a></p>
+
               </div>
 
             </div>
-            
           </div>
+
         </div>
       </div>
     </section>
     <!--Fin Seccion seccion Contactanos-->
-
-   
-
-  </div> <!-- .site-wrap -->
 
 
 @endsection
