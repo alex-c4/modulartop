@@ -65,9 +65,9 @@
             <nav class="site-navigation position-relative text-right" role="navigation">
 
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                <li><a href="{{ url('/') }}" class="nav-link">Inicio</a></li>
+                <li><a href="{{ url('/') }}" class="nav-link {{ (Request::is('/') ? 'active' : '') }}">Inicio</a></li>
                 <li><a href="#properties-section" class="nav-link">Materia Prima</a></li>
-                <li><a href="#about-section" class="nav-link">Fabricacion</a></li>
+                <li><a href="#about-section" class="nav-link {{ (Request::is('contact/tellus')) ? 'active' : ''}}">Fabricacion</a></li>
                 <li><a href="#services-section" class="nav-link">Servicios</a></li>
                 <li><a href="#modular-top" class="nav-link">Modular Top</a></li>
                 <li><a href="#news-section" class="nav-link">Novedades</a></li>
@@ -102,7 +102,7 @@
   <script src="{{ asset('js/main.js')}}"></script>
 
   <!--Bloque incorporado para carrusel fabricacion-->
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
   <script type="text/javascript" src="{{ asset('js/jquerypp.custom.js')}}"></script>
   <script type="text/javascript" src="{{ asset('js/jquery.elastislide.js')}}"></script>
   <script type="text/javascript">
