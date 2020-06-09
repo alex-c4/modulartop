@@ -71,11 +71,8 @@
                 <li><a href="#about-section" class="nav-link {{ (Request::is('contact/tellus')) ? 'active' : ''}}">Fabricacion</a></li>
 =======
                 <li><a href="{{ url('/') }}" class="nav-link">Inicio</a></li>
-<<<<<<< HEAD
                 <li><a href="#howitworks-section" class="nav-link">Materia Prima</a></li>
-=======
                 <li><a href="#properties-section" class="nav-link">Materia Prima</a></li>
->>>>>>> da4bfac6962f67f8581edbe60389a2bdc2a84fea
                 <li><a href="#about-section" class="nav-link">Fabricacion</a></li>
 >>>>>>> ff963d09d1c966c30e9bbf934f13161021baff5b
                 <li><a href="#services-section" class="nav-link">Servicios</a></li>
