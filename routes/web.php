@@ -21,7 +21,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::view('/modulartop', 'modulartop');
 Route::view('/novedades', 'novedades');
-Route::view('/novedades', 'novedades');
+Route::view('/post', 'post');
+Route::view('/servicios', 'servicios/servicios');
 /*#home-section*/
 // Contacts
 Route::post('contact.store', ['as' => 'contact.store', 'uses' => 'ContactController@store']);

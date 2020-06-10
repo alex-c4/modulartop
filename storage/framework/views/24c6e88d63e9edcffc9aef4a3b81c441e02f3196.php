@@ -1,0 +1,112 @@
+<?php $__env->startSection('content'); ?>
+
+<div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(images/banner/servicios.jpg);" data-aos="fade">
+      <div class="container">
+        <div class="row align-items-center justify-content-center">
+          <div class="col-md-8 mx-auto mt-lg-5 text-center">
+            <h1>Nuestros servicios</h1>
+            <p class="mb-8"><strong class="text-white">Somos los mejores aliados de fabricantes, carpinterías, mueblerías y arquitectos por contar con una maquinaria tecnológica CNC que maximiza la productividad.</strong></p>
+            
+          </div>
+        </div>
+      </div>
+
+      <a href="#blog" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a>
+    </div>  
+
+
+ <!--Seccion sericios-->
+ <section class="section element-animate" id="cortes">
+      <div class="container">
+        <div class="row align-items-center mb-5">
+          <div class="col-lg-7 order-md-2">
+            <div class="scaling-image"><div class="frame"><img src="images/servicios/industrial_hero_1.jpg" alt="" class="img-fluid"></div></div>
+          </div>
+          <div class="col-md-5 pr-md-5 mb-5">
+            <div class="block-41">
+              <h2 class="block-41-heading mb-5"><br>Aprovecha cortes de madera precisos que ahorran material </h2>
+              <div class="block-41-text">
+                <p>Optimizamos los cortes mediante un software para el mayor rendimiento de los tableros o piezas de madera. </p>
+                <p>¡Corte su pieza a la medida!</p>
+                <p><a href="<?php echo e(url('/')); ?>#contact-section" class="btn btn-primary btn-sm">Contactanos</a></p>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>      
+    </section>
+
+    <section class="section element-animate bg-light" id="enchapado">
+      <div class="container">
+        <div class="row align-items-center mb-5">
+          <div class="col-lg-7 order-md-1">
+            <div class="scaling-image"><div class="frame"><img src="images/servicios/industrial_hero_2.jpg" alt="" class="img-fluid"></div></div>
+          </div>
+          <div class="col-md-5 pl-md-5 mb-5 order-md-2">
+            <div class="block-41">
+              <h2 class="block-41-heading mb-5"><br>Enchapadoras rectas y curvas automáticas de encolado termoadherido.</h2>
+              <div class="block-41-text">
+                <p> Somos especialistas en servicios de cortes y enchapados. Podrás tener tu 
+                    pieza lista en poco tiempo para que armes el mueble con confianza y calidad.</p>
+                    <p><a href="<?php echo e(url('/')); ?>#contact-section" class="btn btn-primary btn-sm">Contactanos</a></p>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <section class="section element-animate" id="routeado">
+      <div class="container">
+        <div class="row align-items-center mb-5">
+          <div class="col-lg-7 order-md-2">
+            <div class="scaling-image"><div class="frame"><img src="images/servicios/industrial_hero_1.jpg" alt="" class="img-fluid"></div></div>
+          </div>
+          <div class="col-md-5 pr-md-5 mb-5">
+            <div class="block-41">
+              <h2 class="block-41-heading mb-5"><br>Personaliza tu madera y mejora la presentación </h2>
+              <div class="block-41-text">
+                <p>Acabados perfectos con un centro numérico computarizado (CNC) que 
+                realiza Pantografiado, Fresado, Ranurado y Perforado.  
+                </p>
+                <p>Usamos herramientas y técnicas innovadoras que recomienda la industria de la madera. </p>
+                <p><a href="<?php echo e(url('/')); ?>#contact-section" class="btn btn-primary btn-sm">Contactanos</a></p>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>      
+    </section>
+
+    <section class="section element-animate bg-light" id="prensado">
+      <div class="container">
+        <div class="row align-items-center mb-5">
+          <div class="col-lg-7 order-md-1">
+            <div class="scaling-image"><div class="frame"><img src="images/servicios/industrial_hero_2.jpg" alt="" class="img-fluid"></div></div>
+          </div>
+          <div class="col-md-5 pl-md-5 mb-5 order-md-2">
+            <div class="block-41">
+              <h2 class="block-41-heading mb-5"><br>Prensado de láminas de alta presión (HLP) como opción a tu proyecto.</h2>
+              <div class="block-41-text">
+                <p> Experimenta un servicio con mano de obra calificada. Resultados que
+                cumplen con la expectativa de cada cliente. 
+                </p>
+                <p>Tecnológicamente estamos un paso adelante de la competencia.</p>
+
+                <p><a href="<?php echo e(url('/')); ?>#contact-section" class="btn btn-primary btn-sm">Contactanos</a></p>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+    <!--Fin Seccion seccion servicios-->
+
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\modulartop\modulartop\resources\views/servicios/servicios.blade.php ENDPATH**/ ?>

@@ -25,7 +25,7 @@
               <div class="col-md-6 mt-lg-5 text-center">
                 <h1 class="text-shadow">Tableros melaminicos de calidad</h1>
                 <p class="mb-5 text-shadow">Garantizamos mejores acabados con texturas que ofrecen satisfacción sensorial y estilo sofisticado para la decoración. </p>
-                <p><a href="#" target="_blank" class="btn btn-primary px-5 py-3">Visitanos</a></p>
+                <p><a href="#howitworks-section" class="btn btn-primary px-5 py-3">Visitanos</a></p>
               </div>
             </div>
           </div>        
@@ -35,50 +35,17 @@
           <div class="container">
             <div class="row align-items-center justify-content-center">
               <div class="col-md-6 mt-lg-5 text-center">
-                <h1 class="text-shadow">Maquilado con Tecnologia de Punta</h1>
-                <p class="mb-5 text-shadow">Si necesitas transformar la madera estás en la web correcta. Convertimos su materia prima (madera) en partes, piezas y productos.</p>
-                <p><a href="#" target="_blank" class="btn btn-primary px-5 py-3">Servicios</a></p>
+                <h1 class="text-shadow">Corte de tableros, pegado de canto y mecanizado de tableros</h1>
+                <p class="mb-5 text-shadow">Si necesitas transformar la madera estás en la web correcta. 
+                    Convertimos su materia prima (la madera) en partes, piezas y productos de calidad. 
+        </p>
+                <p><a href="{{ url('/servicios') }}" class="btn btn-primary px-5 py-3">Servicios</a></p>
               </div> 
             </div>
           </div>
         </div>
 
-        <div class="site-blocks-cover overlay overlay-2" style="background-image: url(images/mobiliario_2.png);" data-aos="fade" id="home-section">  
-          <div class="container">
-            <div class="row align-items-center justify-content-center">
-              <div class="col-md-6 mt-lg-5 text-center">
-                <h1 class="text-shadow">¡Fabricamos tus sueños!</h1>
-                <p class="mb-5 text-shadow">Nos adaptamos a cualquier diseño de interior a madera que tengas en mente... Muebles ideales para hoteles, cocinas, oficina, dormitorios, baños y más.</p>
-                <p><a href="{{ route('contact.tellus') }}#contact-section" class="btn btn-primary px-5 py-3">Cuéntanos</a></p>
-              </div>
-            </div>
-          </div>        
-        </div>  
-          
-        <div class="site-blocks-cover overlay overlay-2" style="background-image: url(images/tablero_melaminico.jpg);" data-aos="fade" id="home-section">
-          <div class="container">
-            <div class="row align-items-center justify-content-center">
-              <div class="col-md-6 mt-lg-5 text-center">
-                <h1 class="text-shadow">Tableros melaminicos de calidad</h1>
-                <p class="mb-5 text-shadow">Garantizamos mejores acabados con texturas que ofrecen satisfacción sensorial y estilo sofisticado para la decoración. </p>
-                <p><a href="#" target="_blank" class="btn btn-primary px-5 py-3">Visitanos</a></p>
-              </div>
-            </div>
-          </div>        
-        </div>  
-
-        <div class="site-blocks-cover overlay overlay-2" style="background-image: url(images/servicios.png);" data-aos="fade" id="home-section">  
-          <div class="container">
-            <div class="row align-items-center justify-content-center">
-              <div class="col-md-6 mt-lg-5 text-center">
-                <h1 class="text-shadow">Maquilado con Tecnologia de Punta</h1>
-                <p class="mb-5 text-shadow">Si necesitas transformar la madera estás en la web correcta. Convertimos su materia prima (madera) en partes, piezas y productos.</p>
-                <p><a href="#" target="_blank" class="btn btn-primary px-5 py-3">Servicios</a></p>
-              </div>
-            </div>
-          </div>        
-        </div>  
-
+        
       </div>    
     </div>
   <!-- Fin seccion head-->  
@@ -198,7 +165,7 @@
         <div class="row">
           <div class="col-md-6 text-center">
             <div class="pr-5">
-              <a href="" ><img src="images/aliados/losan-logo.png" alt="FImageo" class="img-fluid"></a>
+              <a href="http://www.losan.es" target="_blank"><img src="images/aliados/losan-logo.png" alt="FImageo" class="img-fluid"></a>
               <h3><BR></h3>
             </div>
           </div>
@@ -206,7 +173,7 @@
           <div class="col-md-6 text-center">
             <div class="pr-5">
               
-              <a href="" ><img src="images/aliados/oneskin-logo.png" alt="FImageo" class="img-fluid"></a>
+              <a href="http://www.oneskin.pt" target="_blank"><img src="images/aliados/oneskin-logo.png" alt="FImageo" class="img-fluid"></a>
               <h3><BR></h3>
             </div>
           </div>
@@ -371,7 +338,7 @@
               <div>
                 <h3>Corte o seccionado</h3>
                 <p>Contamos con máquinas que trabajan bajo un software que elabora cortes mecanizados precisos para tableros.</p>
-                <p><a href="#">Leer mas</a></p>
+                <p><a href="{{ url('/servicios') }}#corte">Leer mas</a></p>
               </div>
             </div>
           </div>
@@ -379,9 +346,10 @@
             <div class="unit-4 d-flex">
               <div class="mr-4"><img src="images/iconos/routeado.png" alt="Image" class="img-fluid mr-3"></span></div>
               <div>
-                <h3>Routeado</h3>
-                <p>Garantizamos maquinaria que cumplen con las exigencias del mercado actual. Cortes pantografiado, ranurado y perforado.</p>
-                <p><a href="#">Leer mas</a></p>
+                <h3>Ruteado por mecanizado</h3>
+                <p>Maquinaria que cumplen con las exigencias del mercado actual. 
+                Cortes, pantografiado, fresado, ranurado y perforado.</p>
+                <p><a href="{{ url('/servicios') }}#routeado">Leer mas</a></p>
               </div>
             </div>
           </div>
@@ -390,8 +358,9 @@
               <div class="mr-4"><img src="images/iconos/enchapado.png" alt="Image" class="img-fluid mr-3"></div>
               <div>
                 <h3>Enchapado</h3>
-                <p>Enchapados mediante tecnología de termo-adherencia para maderas planas o curvas con acabados de primera calidad.</p>
-                <p><a href="#">Leer mas</a></p>
+                <p>Enchapadoras rectas y curvas automáticas de encolado termoadherido.  
+                Aprovecha una infraestructura con tecnología CNC.</p>
+                <p><a href="{{ url('/servicios') }}#enchapado">Leer mas</a></p>
               </div>
             </div>
           </div>
@@ -403,9 +372,10 @@
               <div>
                 <h3>Prensado de láminas de alta presión (HLP)</h3>
                 <p>
-                  Aprovecha una mano de obra calificada y máquinas de última generación que optimizan el proceso del prensado.
+                  Aprovecha una mano de obra calificada y máquinas de última generación 
+                  que optimizan el proceso del prensado.
                 </p>
-                <p><a href="#">Leer mas</a></p>
+                <p><a href="{{ url('/servicios') }}#prensado">Leer mas</a></p>
               </div>
             </div>
           </div>
@@ -741,10 +711,14 @@
               <p class="mb-4">La Yaguara - Calle 11, Caracas, Venezuela</p>
               
               <div>
-                <button type="button" class="btn btn-light btn-sm" id="btnShowContact">Ver información</button>
+                <button type="button" class="btn btn-primary btn-sm" id="btnShowContact">Ver mas información de contacto</button>
+                
               </div>
               <div id="msgcontact">
                 
+              <p class="mb-0 font-weight-bold">Direccion</p>
+              <p class="mb-4">La Yaguara - Calle 11, Caracas, Venezuela</p>
+
                 <p class="mb-0 font-weight-bold">Telefono</p>
                 <p class="mb-4"><a href="#">+58 2322354</a></p>
                 

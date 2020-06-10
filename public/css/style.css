@@ -2105,7 +2105,8 @@ img {
 }
 
 .side-bar .recent-post .single-recent-post .recent-pic {
-	float: left;
+  padding-top: 25px;
+  float: left;
 	margin-right: 20px;
 }
 
@@ -2139,8 +2140,10 @@ img {
 }
 
 .side-bar .tags-item h4 {
-	font-size: 24px;
-	color: #242424;
+  padding: 25px;
+  font-size: 18px;
+  /*color: #242424;*/
+  color: gray;
 	letter-spacing: 0.2px;
 	margin-bottom: 24px;
 }
@@ -2176,7 +2179,8 @@ img {
 }
 
 .blog-post .single-blog-post .blog-text h4 {
-	color: #2d220f;
+  /*color: #2d220f;*/
+  color: #8b171a;
 	letter-spacing: 0.2px;
 	margin-bottom: 13px;
 }
@@ -2213,7 +2217,7 @@ img {
 	font-weight: 400;
 	margin-left: 26px;
 }
-
+/*
 .blog-post .single-blog-post p {
 	font-size: 14px;
 	color: #242424;
@@ -2221,6 +2225,7 @@ img {
 	font-family: "Open Sans", sans-serif;
 	font-weight: 300;
 }
+*/
 /*
 .blog-post .single-blog-post a {
 	display: inline-block;

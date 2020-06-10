@@ -65,9 +65,9 @@
             
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                 <li><a href="{{ route('welcome') }}" class="nav-link">Inicio</a></li>
-                <li><a href="#howitworks-section" class="nav-link">Materia Prima</a></li>
-                <li><a href="#about-section" class="nav-link {{ (Request::is('contact/tellus')) ? 'active' : ''}}">Fabricacion</a></li>
-                <li><a href="#services-section" class="nav-link">Servicios</a></li>
+                <li><a href="{{ route('welcome')}}#howitworks-section" class="nav-link">Materia Prima</a></li>
+                <li><a href="{{ route('welcome')}}#about-section" class="nav-link {{ (Request::is('contact/tellus')) ? 'active' : ''}}">Fabricacion</a></li>
+                <li><a href="{{ route('welcome')}}#services-section" class="nav-link">Servicios</a></li>
                 <li><a href="{{ url('/modulartop') }}" class="nav-link">Modular Top</a></li>
                 <li><a href="{{ url('/novedades') }}" class="nav-link">Novedades</a></li>
                 <li><a href="#contact-section" class="nav-link">Contactanos</a></li>
@@ -96,17 +96,7 @@
   <script src="{{ asset('js/jquery.sticky.js')}}"></script>
   
   <script src="{{ asset('js/main.js')}}"></script>
-
-  <!--Bloque incorporado para carrusel fabricacion-->
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-  <script type="text/javascript" src="{{ asset('js/jquerypp.custom.js')}}"></script>
-  <script type="text/javascript" src="{{ asset('js/jquery.elastislide.js')}}"></script>
-  <script type="text/javascript">
-
-    $( '#carousel' ).elastislide();
-
-  </script>
-
+  
   @yield('content')
 
   <!--Seccion Footer-->    
@@ -117,24 +107,28 @@
           <div class="row">
             <div class="col-md-5">
               <h2 class="footer-heading mb-4">Modular Top</h2>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque facere laudantium magnam voluptatum autem. Amet aliquid nesciunt veritatis aliquam.</p>
+              <p>Somos especialistas en la fabricación de muebles y servicios con maquinarias de  
+              última generación. Convierte tu proyecto en una realidad.</p>
             </div>
             <div class="col-md-3 mx-auto">
               <h2 class="footer-heading mb-4">Sitio web</h2>
               <ul class="list-unstyled">
-                <li><a href="#">Nosotros</a></li>
-                <li><a href="#">Servicios</a></li>
-                <li><a href="#">Clientes</a></li>
-                <li><a href="#">Contacto</a></li>
+                <li><a href="#top">INICIO</a></li>
+                <li><a href="#howitworks-section">MATERIA PRIMA</a></li>
+                <li><a href="#about-section">FABRICACION</a></li>
+                <li><a href="#services-section">SERVICIOS</a></li>
+                <li><a href="{{ url('/modulartop') }}">MODULAR TOP</a></li>
+                <li><a href="{{ url('/novedades') }}">NOVEDADES</a></li>
+                <li><a href="#contact-section">CONTACTANOS</a></li>
               </ul>
             </div>
             
           </div>
         </div>
-
+      
         <div class="col-md-4">
           <div class="mb-4">
-            <h2 class="footer-heading mb-4">Subscribir Noticias y Novedades</h2>
+            <h2 class="footer-heading mb-4">Subscribirme a Novedades</h2>
             <form action="{{ route('contact.newsletter') }}" method="post" class="footer-subscribe" id="form_send_newsletter">
               {{csrf_field()}}
 
@@ -195,3 +189,13 @@
 </html>
 
 <script src="{{ asset('js/welcome.js') }}"></script>
+ <!--Bloque incorporado para carrusel fabricacion -->
+ <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquerypp.custom.js"></script>
+		<script type="text/javascript" src="js/jquery.elastislide.js"></script>
+		<script type="text/javascript">
+			
+			$( '#carousel' ).elastislide();
+			
+		</script>
+  <!-- fin del bloque fabricacion -->  
