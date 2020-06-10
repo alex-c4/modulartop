@@ -70,7 +70,7 @@
                 <li><a href="{{ route('welcome')}}#services-section" class="nav-link">Servicios</a></li>
                 <li><a href="{{ url('/modulartop') }}" class="nav-link">Modular Top</a></li>
                 <li><a href="{{ url('/novedades') }}" class="nav-link">Novedades</a></li>
-                <li><a href="#contact-section" class="nav-link">Contactanos</a></li>
+                <li><a href="{{ route('contact.tellus') }}#contact-section" class="nav-link">Contactanos</a></li>
               </ul>
             </nav>
           </div>
