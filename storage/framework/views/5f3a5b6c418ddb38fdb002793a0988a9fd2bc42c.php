@@ -66,7 +66,7 @@
                                     bibendum eget sapien ac, ultrices rhoncus ipsum. Donec nec sapien in urna fermentum
                                     ornare. Morbi vel ultrices leo. Sed eu turpis eu arcu vehicula fringilla ut vitae
                                     orci. ...</p>
-                                <p><a href="<?php echo e(url('/post')); ?>#post1" class="btn btn-primary btn-sm">Leer Mas</a></p>
+                                <p><a href="<?php echo e(url('/post')); ?>#post1" class="btn btn-primary btn-sm">Leer más</a></p>
                                 <!--<a href="#">Continue Reading <i class="lnr lnr-arrow-right"></i></a>-->
                                
 
@@ -90,7 +90,7 @@
                                     bibendum eget sapien ac, ultrices rhoncus ipsum. Donec nec sapien in urna fermentum
                                     ornare. Morbi vel ultrices leo. Sed eu turpis eu arcu vehicula fringilla ut vitae
                                     orci. ...</p>
-                                    <a href="">Continuar Leyendo</a>
+                                    <p><a href="<?php echo e(url('/post')); ?>#post1" class="btn btn-primary btn-sm">Leer más</a></p>
                             </div>
                         </div>
                         <div class="single-blog-post">
@@ -111,7 +111,7 @@
                                     bibendum eget sapien ac, ultrices rhoncus ipsum. Donec nec sapien in urna fermentum
                                     ornare. Morbi vel ultrices leo. Sed eu turpis eu arcu vehicula fringilla ut vitae
                                     orci. ...</p>
-                                    <a href="">Continuar Leyendo</a>
+                                    <p><a href="<?php echo e(url('/post')); ?>#post1" class="btn btn-primary btn-sm">Leer más</a></p>
                             </div>
                         </div>
                         <!--

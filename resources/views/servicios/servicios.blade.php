@@ -30,7 +30,7 @@
               <div class="block-41-text">
                 <p>Optimizamos los cortes mediante un software para el mayor rendimiento de los tableros o piezas de madera. </p>
                 <p>¡Corte su pieza a la medida!</p>
-                <p><a href="{{ url('/') }}#contact-section" class="btn btn-primary btn-sm">Contactanos</a></p>
+                <p><a href="{{ url('/') }}#contact-section" class="btn btn-primary btn-sm">Contáctanos</a></p>
               </div>
             </div>
           </div>
@@ -51,7 +51,7 @@
               <div class="block-41-text">
                 <p> Somos especialistas en servicios de cortes y enchapados. Podrás tener tu 
                     pieza lista en poco tiempo para que armes el mueble con confianza y calidad.</p>
-                    <p><a href="{{ url('/') }}#contact-section" class="btn btn-primary btn-sm">Contactanos</a></p>
+                    <p><a href="{{ url('/') }}#contact-section" class="btn btn-primary btn-sm">Contáctanos</a></p>
               </div>
             </div>
           </div>
@@ -74,7 +74,7 @@
                 realiza Pantografiado, Fresado, Ranurado y Perforado.  
                 </p>
                 <p>Usamos herramientas y técnicas innovadoras que recomienda la industria de la madera. </p>
-                <p><a href="{{ url('/') }}#contact-section" class="btn btn-primary btn-sm">Contactanos</a></p>
+                <p><a href="{{ url('/') }}#contact-section" class="btn btn-primary btn-sm">Contáctanos</a></p>
               </div>
             </div>
           </div>
@@ -98,7 +98,7 @@
                 </p>
                 <p>Tecnológicamente estamos un paso adelante de la competencia.</p>
 
-                <p><a href="{{ url('/') }}#contact-section" class="btn btn-primary btn-sm">Contactanos</a></p>
+                <p><a href="{{ url('/') }}#contact-section" class="btn btn-primary btn-sm">Contáctanos</a></p>
               </div>
             </div>
           </div>

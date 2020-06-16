@@ -280,7 +280,8 @@ h1, h2, h3, h4, h5,
   .ul-check.white li:before {
     color: #fff; }
   .ul-check.success li:before {
-    color: #8bc34a; }
+    /*color: #8bc34a; }*/
+    color: #8b171a; }
   .ul-check.primary li:before {
     color: #37cfa2; }
 
@@ -1450,6 +1451,15 @@ h1, h2, h3, h4, h5,
     .section-title {
       font-size: 30px; } }
 
+.section-title-modulartop {
+  /*color: #37cfa2;*/
+  color: gray;
+  font-size: 25px;
+  font-weight: 900; }
+  @media (max-width: 991.98px) {
+    .section-title {
+      font-size: 30px; } }
+
 .position-relative {
   position: relative; }
 
@@ -1967,7 +1977,7 @@ h1, h2, h3, h4, h5,
   width: 100%;
   flex-wrap: wrap;
   justify-content: space-around;
-  background-image: url('../images/fondorojo/fondorojo.png');
+  background-image: url('../../public/images/fondorojo/fondorojo.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -1979,7 +1989,7 @@ h1, h2, h3, h4, h5,
   .itemchildtm{
     background-repeat: no-repeat;
     background-position: top;
-    background-image: url('../images/fondorojo/fondorojo3.png');
+    background-image: url('../../public/images/fondorojo/fondorojo3.png');
 
   }
 }
@@ -1989,7 +1999,7 @@ h1, h2, h3, h4, h5,
   .itemchildtm{
     background-repeat: no-repeat;
     background-position: top;
-    background-image: url('../images/fondorojo/fondorojo2.png');
+    background-image: url('../../public/images/fondorojo/fondorojo2.png');
 
   }
 }
@@ -2105,8 +2115,7 @@ img {
 }
 
 .side-bar .recent-post .single-recent-post .recent-pic {
-  padding-top: 25px;
-  float: left;
+	float: left;
 	margin-right: 20px;
 }
 
@@ -2140,10 +2149,8 @@ img {
 }
 
 .side-bar .tags-item h4 {
-  padding: 25px;
-  font-size: 18px;
-  /*color: #242424;*/
-  color: gray;
+	font-size: 24px;
+	color: #242424;
 	letter-spacing: 0.2px;
 	margin-bottom: 24px;
 }
@@ -2179,8 +2186,7 @@ img {
 }
 
 .blog-post .single-blog-post .blog-text h4 {
-  /*color: #2d220f;*/
-  color: #8b171a;
+	color: #2d220f;
 	letter-spacing: 0.2px;
 	margin-bottom: 13px;
 }
@@ -2217,7 +2223,7 @@ img {
 	font-weight: 400;
 	margin-left: 26px;
 }
-/*
+
 .blog-post .single-blog-post p {
 	font-size: 14px;
 	color: #242424;
@@ -2225,7 +2231,6 @@ img {
 	font-family: "Open Sans", sans-serif;
 	font-weight: 300;
 }
-*/
 /*
 .blog-post .single-blog-post a {
 	display: inline-block;

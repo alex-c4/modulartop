@@ -33,7 +33,7 @@
           <div class="container">
             <div class="row align-items-center justify-content-center">
               <div class="col-md-6 mt-lg-5 text-center">
-                <h1 class="text-shadow">Corte de tableros, pegado de canto y mecanizado de tableros</h1>
+                <h1 class="text-shadow">Corte, pegado de canto y mecanizado de tableros</h1>
                 <p class="mb-5 text-shadow">Si necesitas transformar la madera estás en la web correcta. 
                     Convertimos su materia prima (la madera) en partes, piezas y productos de calidad. 
         </p>
@@ -194,11 +194,11 @@
     <section class="site-section-fabricacion" id="about-section">
       <!-- Elastislide Carousel -->
       <ul id="carousel" class="elastislide-list">
-        <li><a href="#"><img src="images/fabricacion/fabricacion-cocina-1.jpg" alt="image01" /></a></li>
-        <li><a href="#"><img src="images/fabricacion/fabricacion-habitacion-1.jpg" alt="image02" /></a></li>
-        <li><a href="#"><img src="images/fabricacion/fabricacion-cocina-2.jpg" alt="image03" /></a></li>
-        <li><a href="#"><img src="images/fabricacion/fabricacion-habitacion-2.jpg" alt="image03" /></a></li>
-        <li><a href="#"><img src="images/fabricacion/fabricacion-mobiliario.jpg" alt="image03" /></a></li>
+        <li><a href="<?php echo e(url('/fabricacion')); ?>"><img src="images/fabricacion/fabricacion-cocina-1.jpg" alt="image01" /></a></li>
+        <li><a href="<?php echo e(url('/fabricacion')); ?>"><img src="images/fabricacion/fabricacion-habitacion-1.jpg" alt="image02" /></a></li>
+        <li><a href="<?php echo e(url('/fabricacion')); ?>"><img src="images/fabricacion/fabricacion-cocina-2.jpg" alt="image03" /></a></li>
+        <li><a href="<?php echo e(url('/fabricacion')); ?>"><img src="images/fabricacion/fabricacion-habitacion-2.jpg" alt="image03" /></a></li>
+        <li><a href="<?php echo e(url('/fabricacion')); ?>"><img src="images/fabricacion/fabricacion-mobiliario.jpg" alt="image03" /></a></li>
             
       </ul>
       <!-- End Elastislide Carousel -->
@@ -220,11 +220,12 @@
           <div class="col-lg-4 mb-5">
             <p>
             Ofrecemos mobiliarios de tendencia mundial para diferentes sectores comerciales, 
-            en especial, hoteles, posadas, oficinas, restaurantes y tiendas.
+            en especial, hoteles, posadas, oficinas, restaurantes y tiendas...
+            <a href="<?php echo e(url('/fabricacion')); ?>">Leer más</a>
             </p>
             <p>
               ¡Cuéntanos tu proyecto y lo fabricamos!
-             <br> <br><a href="<?php echo e(route('contact.tellus')); ?>#contact-section" class="btn btn-primary mr-2 mb-2">Cuentanos</a>
+             <br> <br><a href="<?php echo e(route('contact.tellus')); ?>#contact-section" class="btn btn-primary mr-2 mb-2">Cuéntanos</a>
             </p>
             
               <!--
@@ -326,7 +327,7 @@
       <div class="container">
         <div class="row mb-5">
           <div class="col-12 text-center">
-            <h2 class="section-title mb-3 text-black">Servicios de alta tecnologia para el fabricante</h2>
+            <h2 class="section-title mb-3 text-black">Servicios de alta tecnología para el fabricante</h2>
           </div>
         </div>
         <div class="row align-items-stretch">
@@ -335,19 +336,20 @@
               <div class="mr-4"><img src="images/iconos/corte.png" alt="Image" class="img-fluid mr-3"></div>
               <div>
                 <h3>Corte o seccionado</h3>
-                <p>Contamos con máquinas que trabajan bajo un software que elabora cortes mecanizados precisos para tableros.</p>
-                <p><a href="<?php echo e(url('/servicios')); ?>#corte">Leer mas</a></p>
+                <p>Contamos con máquinas que trabajan bajo un software que elabora cortes 
+                  mecanizados precisos para tableros.</p>
+                <p><a href="<?php echo e(url('/servicios')); ?>#corte">Leer más</a></p>
               </div>
             </div>
           </div>
           <div class="col-md-6 col-lg-6 mb-6 mb-lg-6" data-aos="fade-up" data-aos-delay="100">
             <div class="unit-4 d-flex">
-              <div class="mr-4"><img src="images/iconos/routeado.png" alt="Image" class="img-fluid mr-3"></span></div>
+              <div class="mr-4"><img src="images/iconos/ruteado.png" alt="Image" class="img-fluid mr-3"></span></div>
               <div>
                 <h3>Ruteado por mecanizado</h3>
                 <p>Maquinaria que cumplen con las exigencias del mercado actual. 
                 Cortes, pantografiado, fresado, ranurado y perforado.</p>
-                <p><a href="<?php echo e(url('/servicios')); ?>#routeado">Leer mas</a></p>
+                <p><a href="<?php echo e(url('/servicios')); ?>#routeado">Leer más</a></p>
               </div>
             </div>
           </div>
@@ -358,7 +360,7 @@
                 <h3>Enchapado</h3>
                 <p>Enchapadoras rectas y curvas automáticas de encolado termoadherido.  
                 Aprovecha una infraestructura con tecnología CNC.</p>
-                <p><a href="<?php echo e(url('/servicios')); ?>#enchapado">Leer mas</a></p>
+                <p><a href="<?php echo e(url('/servicios')); ?>#enchapado">Leer más</a></p>
               </div>
             </div>
           </div>
@@ -373,7 +375,7 @@
                   Aprovecha una mano de obra calificada y máquinas de última generación 
                   que optimizan el proceso del prensado.
                 </p>
-                <p><a href="<?php echo e(url('/servicios')); ?>#prensado">Leer mas</a></p>
+                <p><a href="<?php echo e(url('/servicios')); ?>#prensado">Leer más</a></p>
               </div>
             </div>
           </div>
@@ -418,7 +420,7 @@
         <div class="row">
           <div class="col-md-6 text-center">
             <div class="pr-5">
-              <a href="" ><img src="images/logo-dbgroup_2.png" alt="FImageo" class="img-fluid"></a>
+              <a href="https://dbgroupvenezuela.com/" target="_blank"><img src="images/aliados/dbgroup-logo.png" alt="FImageo" class="img-fluid"></a>
               
             </div>
           </div>
@@ -426,7 +428,7 @@
           <div class="col-md-6 text-center">
             <div class="pr-5">
               
-              <a href="" class="d-inline-block mb-4"><img src="images/logo-tuherraje.png" alt="FImageo" class="img-fluid"></a>
+              <a href="https://tuherraje.com.ve" target="_blank"><img src="images/aliados/tuherraje-logo.png" alt="FImageo" class="img-fluid"></a>
               
             </div>
           </div>
@@ -634,7 +636,7 @@
       <div class="container">
         <div class="row mb-5">
           <div class="col-12 text-center">
-            <h2 class="section-title mb-3 text-black">Contactanos</h2>
+            <h2 class="section-title mb-3 text-black">Contáctanos</h2>
           </div>
         </div>
         <div class="row">
@@ -645,7 +647,7 @@
               <?php echo e(csrf_field()); ?>
 
               
-              <h2 class="h4 text-black mb-5">Contactanos</h2> 
+              <h2 class="h4 text-black mb-5">Contáctanos</h2> 
 
               <div class="row form-group">
                 <div class="col-md-6 mb-3 mb-md-0">
@@ -706,19 +708,16 @@
           <div class="col-md-5">
             <div class="p-4 mb-3 bg-white">
               
-              <p class="mb-0 font-weight-bold">Direccion</p>
+              <p class="mb-0 font-weight-bold">Dirección</p>
               <p class="mb-4">La Yaguara - Calle 11, Caracas, Venezuela</p>
               
               <div>
-                <button type="button" class="btn btn-primary btn-sm" id="btnShowContact">Ver mas información de contacto</button>
+                <button type="button" class="btn btn-primary btn-sm" id="btnShowContact">Ver teléfono</button>
                 
               </div>
               <div id="msgcontact">
-                
-              <p class="mb-0 font-weight-bold">Direccion</p>
-              <p class="mb-4">La Yaguara - Calle 11, Caracas, Venezuela</p>
-
-                <p class="mb-0 font-weight-bold">Telefono</p>
+             
+                <p class="mb-0 font-weight-bold">Teléfono</p>
                 <p class="mb-4"><a href="#">+58 2322354</a></p>
                 
                 <p class="mb-0 font-weight-bold">Email</p>

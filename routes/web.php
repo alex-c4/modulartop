@@ -23,7 +23,8 @@ Route::view('/modulartop', 'modulartop');
 Route::view('/novedades', 'novedades');
 Route::view('/post', 'post');
 Route::view('/servicios', 'servicios/servicios');
-/*#home-section*/
+Route::view('/fabricacion', 'fabricacion/fabricacion');
+
 // Contacts
 Route::post('contact.store', ['as' => 'contact.store', 'uses' => 'ContactController@store']);
 Route::post('contact.newsletter', ['as' => 'contact.newsletter', 'uses' => 'ContactController@newsletter']);

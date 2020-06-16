@@ -70,7 +70,7 @@
                 <li><a href="{{ route('welcome')}}#services-section" class="nav-link">Servicios</a></li>
                 <li><a href="{{ url('/modulartop') }}" class="nav-link">Modular Top</a></li>
                 <li><a href="{{ url('/novedades') }}" class="nav-link">Novedades</a></li>
-                <li><a href="#contact-section" class="nav-link">Contactanos</a></li>
+                <li><a href="{{ route('welcome')}}#contact-section" class="nav-link">Contactanos</a></li>
               </ul>
             </nav>
           </div>
@@ -113,13 +113,13 @@
             <div class="col-md-3 mx-auto">
               <h2 class="footer-heading mb-4">Sitio web</h2>
               <ul class="list-unstyled">
-                <li><a href="#top">INICIO</a></li>
-                <li><a href="#howitworks-section">MATERIA PRIMA</a></li>
-                <li><a href="#about-section">FABRICACION</a></li>
-                <li><a href="#services-section">SERVICIOS</a></li>
+                <li><a href="{{ route('welcome') }}">INICIO</a></li>
+                <li><a href="{{ route('welcome')}}#howitworks-section">MATERIA PRIMA</a></li>
+                <li><a href="{{ route('welcome')}}#about-section">FABRICACION</a></li>
+                <li><a href="{{ route('welcome')}}#services-section">SERVICIOS</a></li>
                 <li><a href="{{ url('/modulartop') }}">MODULAR TOP</a></li>
                 <li><a href="{{ url('/novedades') }}">NOVEDADES</a></li>
-                <li><a href="#contact-section">CONTACTANOS</a></li>
+                <li><a href="{{ route('welcome')}}#contact-section">CONTACTANOS</a></li>
               </ul>
             </div>
             
@@ -135,7 +135,7 @@
               <div class="input-group mb-3">
                 <input id="emailnews" name="emailnews" type="text" class="form-control border-secondary text-white bg-transparent" placeholder="Ingrese su Email" aria-label="Enter Email" aria-describedby="button-addon2">
                 <div class="input-group-append">
-                  <button class="btn btn-primary text-black" type="submit" id="button-addon2">Enviar</button>
+                  <button class="btn btn-primary" type="submit" id="button-addon2">Enviar</button>
                 </div>
               </div>
 
