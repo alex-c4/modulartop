@@ -346,7 +346,7 @@
           </div>
           <div class="col-md-6 col-lg-6 mb-6 mb-lg-6" data-aos="fade-up" data-aos-delay="100">
             <div class="unit-4 d-flex">
-              <div class="mr-4"><img src="images/iconos/ruteado.png" alt="Image" class="img-fluid mr-3"></span></div>
+              <div class="mr-4"><img src="{{ asset('images/iconos/Ruteado.png') }}" alt="Image" class="img-fluid mr-3"></span></div>
               <div>
                 <h3>Ruteado por mecanizado</h3>
                 <p>Maquinaria que cumplen con las exigencias del mercado actual. 

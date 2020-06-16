@@ -1977,7 +1977,7 @@ h1, h2, h3, h4, h5,
   width: 100%;
   flex-wrap: wrap;
   justify-content: space-around;
-  background-image: url('../../public/images/fondorojo/fondorojo.png');
+  background-image: url('../images/fondorojo/fondorojo.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -1989,7 +1989,7 @@ h1, h2, h3, h4, h5,
   .itemchildtm{
     background-repeat: no-repeat;
     background-position: top;
-    background-image: url('../../public/images/fondorojo/fondorojo3.png');
+    background-image: url('../images/fondorojo/fondorojo/fondorojo3.png');
 
   }
 }
@@ -1999,7 +1999,7 @@ h1, h2, h3, h4, h5,
   .itemchildtm{
     background-repeat: no-repeat;
     background-position: top;
-    background-image: url('../../public/images/fondorojo/fondorojo2.png');
+    background-image: url('../images/fondorojo/fondorojo2.png');
 
   }
 }
