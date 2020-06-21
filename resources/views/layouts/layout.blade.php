@@ -71,6 +71,13 @@
                 <li><a href="{{ url('/modulartop') }}" class="nav-link">Modular Top</a></li>
                 <li><a href="{{ url('/novedades') }}" class="nav-link">Novedades</a></li>
                 <li><a href="{{ route('welcome')}}#contact-section" class="nav-link">Contactanos</a></li>
+                @if(Auth::check())
+                  <li><a href="{{ route('logout')}}" class="nav-link">Salir</a></li>
+                  <li><a href="{{ route('home')}}" class="nav-link"><span class="icon-home"></span></a></li>
+                @else
+                  <li><a href="{{ route('login')}}" class="nav-link"><span class="icon-user"></span></a></li>
+                @endif
+
               </ul>
             </nav>
           </div>
@@ -129,7 +136,7 @@
         <div class="col-md-4">
           <div class="mb-4">
             <h2 class="footer-heading mb-4">Subscribirme a Novedades</h2>
-            <form action="{{ route('contact.newsletter') }}" method="post" class="footer-subscribe" id="form_send_newsletter">
+            <form action="{{ route('contact.contact') }}" method="post" class="footer-subscribe" id="form_send_contact">
               {{csrf_field()}}
 
               <div class="input-group mb-3">

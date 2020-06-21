@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Contact;
+use Mail;
 
 class ContactController extends Controller
 {
@@ -37,18 +38,13 @@ class ContactController extends Controller
     public function store(Request $request)
     {
         try {
+            // proceso llamdao desde formulario de contacto
 
             $name = request()->fname;
             $lastName = request()->lname;
             $email = request()->email;
             $subject = request()->subject;
             $messageContact = request()->message;
-
-            // $result = array(
-            //     "success" => true,
-            //     "message" => $name . "/ " .$lastName. "/ " .$email. "/ " .$subject. "/ " .$messageContact
-            // );
-            // return $result;
 
             Contact::create([
                 'nameContact' => $name,
@@ -57,6 +53,23 @@ class ContactController extends Controller
                 'subject' => $subject,
                 'message' => $messageContact
             ]);
+
+            $data = array(
+                'email' => $email,
+                'name' => $name,
+                'lastName' => $lastName,
+                'subject' => $subject,
+                'messageContact' => $messageContact
+
+            );
+            $req = array(
+                "correo" => env('EMAIL_ADMIN')
+            );
+            
+            Mail::send('emails.contactuser', $data, function($message) use($req){
+                $message->from($req["correo"], 'Web Modular Top');
+                $message->to($req["correo"])->subject('Nuevo Contacto');
+            });
 
             $result = array(
                 "success" => true,
@@ -76,7 +89,8 @@ class ContactController extends Controller
         return $result;
     }
 
-    public function newsletter(Request $request){
+    public function contact(Request $request){
+        // proceso llamdao desde suscripcion a novedades
 
         $email = request()->emailnews;
 
@@ -84,6 +98,19 @@ class ContactController extends Controller
             Contact::create([
             'emailContact' => $email
             ]);
+
+            //envio de correo al administrador de Modular Top
+            $data = array(
+                'email' => $email
+            );
+            $req = array(
+                "correo" => env('EMAIL_ADMIN')
+            );
+            
+            Mail::send('emails.suscriptionnews', $data, function($message) use($req){
+                $message->from($req["correo"], 'Web Modular Top');
+                $message->to($req["correo"])->subject('Subcripción a novedades');
+            });
                 
             $result = array(
                 "success" => true,
@@ -93,7 +120,7 @@ class ContactController extends Controller
         } catch (\Throwable $th) {
             $result = array(
                 "success" => false,
-                "message" => "Hubo un error en la operación, por favor intente de nuevo. Muchas gracias!"
+                "message" => "Hubo un error en la operación, por favor intente de nuevo. Muchas gracias!->".$th
             );
         }
 

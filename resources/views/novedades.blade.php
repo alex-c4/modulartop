@@ -50,72 +50,30 @@
                 <div class="col-lg-8 order-1 order-lg-2">
                     <div class="blog-post">
 
-                        <div class="single-blog-post">
-                            <div class="blog-pic">
-                                <img src="images/blog/blog-1.jpg" alt="">
-                            </div>
-                            <div class="blog-text">
-                                <h4>En marzo 2020 comienza feria del mueble CCCT.</h4>
-                                <div class="blog-widget">
-                                <div class="mx-2">
-                                        <img src="images/clock.png" alt="">
-                                        <span>February 17, 2018</span><span class="mx-2">&bullet;
-                                        </span><i class="lnr lnr-user"></i> Bryan Becerra
-                                    </div>
-                                                                       
-                                </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero mauris,
-                                    bibendum eget sapien ac, ultrices rhoncus ipsum. Donec nec sapien in urna fermentum
-                                    ornare. Morbi vel ultrices leo. Sed eu turpis eu arcu vehicula fringilla ut vitae
-                                    orci. ...</p>
-                                <p><a href="{{ url('/post') }}#post1" class="btn btn-primary btn-sm">Leer más</a></p>
-                                <!--<a href="#">Continue Reading <i class="lnr lnr-arrow-right"></i></a>-->
-                               
+                    @foreach($newsletters as $newsletter)
 
-                            </div>
-                        </div>
                         <div class="single-blog-post">
                             <div class="blog-pic">
-                                <img src="images/blog/blog-2.jpg" alt="">
+                                <img src="{{ asset('images/newsletters/'.$newsletter->name_img) }}" alt="">
                             </div>
                             <div class="blog-text">
-                                <h4>Llegaron los ultimos modelos de mobiliareio para el hogar.</h4>
+                                <h4>{{ $newsletter->title }}</h4>
                                 <div class="blog-widget">
                                     <div class="blog-info">
                                     <img src="images/clock.png" alt="">
-                                        <span>February 17, 2018</span><span class="mx-2">&bullet;
-                                        </span><i class="lnr lnr-user"></i> Bryan Becerra
+                                        <span>{{ explode(' ', $newsletter->created_at)[0] }}</span><span class="mx-2">&bullet;
+                                        </span><i class="lnr lnr-user"></i> {{ $newsletter->username }}
                                     </div>
                                    
                                 </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero mauris,
-                                    bibendum eget sapien ac, ultrices rhoncus ipsum. Donec nec sapien in urna fermentum
-                                    ornare. Morbi vel ultrices leo. Sed eu turpis eu arcu vehicula fringilla ut vitae
-                                    orci. ...</p>
-                                    <p><a href="{{ url('/post') }}#post1" class="btn btn-primary btn-sm">Leer más</a></p>
+                                <p>{{ substr($newsletter->content, 0, 230) }} ...</p>
+                                    <p><a href="{{ route('show', $newsletter->id) }}" class="btn btn-primary btn-sm">Leer más</a></p>
                             </div>
                         </div>
-                        <div class="single-blog-post">
-                            <div class="blog-pic">
-                                <img src="images/blog/blog-3.jpg" alt="">
-                            </div>
-                            <div class="blog-text">
-                                <h4>Vive la expericna de los modulares para oficnas</h4>
-                                <div class="blog-widget">
-                                    <div class="blog-info">
-                                    <img src="images/clock.png" alt="">
-                                        <span>February 17, 2018</span><span class="mx-2">&bullet;
-                                        </span><i class="lnr lnr-user"></i> Bryan Becerra
-                                    </div>
-                                    
-                                </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero mauris,
-                                    bibendum eget sapien ac, ultrices rhoncus ipsum. Donec nec sapien in urna fermentum
-                                    ornare. Morbi vel ultrices leo. Sed eu turpis eu arcu vehicula fringilla ut vitae
-                                    orci. ...</p>
-                                    <p><a href="{{ url('/post') }}#post1" class="btn btn-primary btn-sm">Leer más</a></p>
-                            </div>
-                        </div>
+
+                    @endforeach
+
+
                         <!--
                         <div class="blog-pagination">
                             <a class="active" href="#">1</a>

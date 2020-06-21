@@ -1,7 +1,25 @@
-@extends('layouts.app')
+@extends('layouts.layout')
 
 @section('content')
+
+<div class="site-blocks-cover inner-page-cover overlay" style="background-image: url({{ asset('images/banner/fabricacion.jpg') }});" data-aos="fade">
+    <div class="container">
+    <div class="row align-items-center justify-content-center">
+        <div class="col-md-5 mx-auto mt-lg-5 text-center">
+        <h1>Bienvenido</h1>
+        <p class="mb-5"><strong class="text-white">reset clave.</strong></p>
+        
+        </div>
+    </div>
+    </div>
+
+    <!-- <a href="#blog" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a> -->
+</div> 
+
+<section class="blog-section spad" id="blog">
+
 <div class="container">
+<br>
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -62,4 +80,6 @@
         </div>
     </div>
 </div>
+
+</section>
 @endsection
