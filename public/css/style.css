@@ -1,6 +1,16 @@
 /* Base */
-
-
+/*
+@font-face {
+  font-family: 'Montserrat-Black';
+     src: url('fonts/fuentes/Montserrat-Black.eot');
+     src: url('fonts/Montserrat-Black.eot?#iefix') format('embedded-opentype'),
+          url('fonts/Montserrat-Black.woff') format('woff'),
+          url('fonts/Montserrat-Black.ttf') format('truetype'),
+          url('fonts/Montserrat-Black.svg#adlerRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+*/
 html {
   overflow-x: hidden; }
 
@@ -43,7 +53,7 @@ a {
 h1, h2, h3, h4, h5,
 .h1, .h2, .h3, .h4, .h5 {
   /*font-family: "Oswald", sans-serif;*/
-  font-family: "Monserrat", sans-serif;
+  font-family: "Montserrat", sans-serif;;
   font-weight: 390 !important;
   /*font-weight: bold;*/
   text-transform: uppercase; }
@@ -103,7 +113,9 @@ h1, h2, h3, h4, h5,
     border-color: #37cfa2;*/
     background: #8B171A;
     border-color: #8B171A;
-    color: #fff; }
+    color: #fff; 
+    border-radius: 50px;    
+    box-shadow: 0 5px 5px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.16);}
     .btn.btn-primary:hover {
       background: #343a40;
       color: #fff;
@@ -2271,3 +2283,17 @@ img {
 	background: #ae9548;
 	color: #ffffff;
 }
+
+.google-maps {
+  position: relative;
+  padding-bottom: 75%; /* This is the aspect ratio*/
+  height: 0;
+  overflow: hidden;
+  }
+  .google-maps iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  }

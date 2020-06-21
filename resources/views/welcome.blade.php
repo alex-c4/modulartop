@@ -425,6 +425,7 @@
               <a href="https://dbgroupvenezuela.com/" target="_blank"><img src="images/aliados/dbgroup-logo.png" alt="FImageo" class="img-fluid"></a>
               
             </div>
+            <br>
           </div>
 
           <div class="col-md-6 text-center">
@@ -708,10 +709,18 @@
 
           <div class="col-md-5">
             <div class="p-4 mb-3 bg-white">
+              <div class="google-maps">
               
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1062.5492037967952!2d-66.96455!3d10.480269!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x15082a0df2de7130!2sMODULAR%20TOP%2C%20C.A.!5e1!3m2!1ses!2ses!4v1592443811908!5m2!1ses!2ses" width="400" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                
+                
+              </div>
               <p class="mb-0 font-weight-bold">Dirección</p>
               <p class="mb-4">La Yaguara - Calle 11, Caracas, Venezuela</p>
-              
+
+              <p class="mb-0 font-weight-bold">Email</p>
+                <p class="mb-0"><a href="#">atencion@modulartop.com</a></p>
+                <br>
               <div>
                 <button type="button" class="btn btn-primary btn-sm" id="btnShowContact">Ver teléfono</button>
                 
@@ -719,13 +728,16 @@
               <div id="msgcontact">
              
                 <p class="mb-0 font-weight-bold">Teléfono</p>
-                <p class="mb-4"><a href="#">+58 2322354</a></p>
+                <p class="mb-4"><a href="#">+58 (0212)-2322354 </a></p>
                 
-                <p class="mb-0 font-weight-bold">Email</p>
-                <p class="mb-0"><a href="#">atencion@modulartop.com</a></p>
-
+                <a href="https://api.whatsapp.com/send?phone=+58 04168089578">
+                <img src="images/boton-watsapp.webp" alt="Contacto via whatsapp" class="img-fluid"></a>
+                
               </div>
+              <br>
+              
 
+              
             </div>
           </div>
 
