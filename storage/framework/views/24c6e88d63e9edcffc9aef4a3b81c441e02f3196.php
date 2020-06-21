@@ -20,7 +20,7 @@
       <div class="container">
         <div class="row align-items-center mb-5">
           <div class="col-lg-7 order-md-2">
-            <div class="scaling-image"><div class="frame"><img src="images/servicios/industrial_hero_1.jpg" alt="" class="img-fluid"></div></div>
+            <div class="scaling-image"><div class="frame"><br><img src="images/servicios/corte.jpg" alt="" class="img-fluid"></div></div>
           </div>
           <div class="col-md-5 pr-md-5 mb-5">
             <div class="block-41">
@@ -41,7 +41,7 @@
       <div class="container">
         <div class="row align-items-center mb-5">
           <div class="col-lg-7 order-md-1">
-            <div class="scaling-image"><div class="frame"><img src="images/servicios/industrial_hero_2.jpg" alt="" class="img-fluid"></div></div>
+            <div class="scaling-image"><div class="frame"><img src="images/servicios/enchapado.jpg" alt="" class="img-fluid"></div></div>
           </div>
           <div class="col-md-5 pl-md-5 mb-5 order-md-2">
             <div class="block-41">
@@ -62,7 +62,7 @@
       <div class="container">
         <div class="row align-items-center mb-5">
           <div class="col-lg-7 order-md-2">
-            <div class="scaling-image"><div class="frame"><img src="images/servicios/industrial_hero_1.jpg" alt="" class="img-fluid"></div></div>
+            <div class="scaling-image" ><div class="frame"><img src="images/servicios/ruteado.jpg" alt="" class="img-fluid"></div></div>
           </div>
           <div class="col-md-5 pr-md-5 mb-5">
             <div class="block-41">
@@ -85,7 +85,7 @@
       <div class="container">
         <div class="row align-items-center mb-5">
           <div class="col-lg-7 order-md-1">
-            <div class="scaling-image"><div class="frame"><img src="images/servicios/industrial_hero_2.jpg" alt="" class="img-fluid"></div></div>
+            <div class="scaling-image"><div class="frame"><img src="images/servicios/prensa.jpg" alt="" class="img-fluid"></div></div>
           </div>
           <div class="col-md-5 pl-md-5 mb-5 order-md-2">
             <div class="block-41">
