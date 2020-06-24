@@ -72,6 +72,13 @@
                 <li><a href="<?php echo e(url('/modulartop')); ?>" class="nav-link">Modular Top</a></li>
                 <li><a href="<?php echo e(url('/novedades')); ?>" class="nav-link">Novedades</a></li>
                 <li><a href="<?php echo e(route('welcome')); ?>#contact-section" class="nav-link">Contactanos</a></li>
+                <?php if(Auth::check()): ?>
+                  <li><a href="<?php echo e(route('logout')); ?>" class="nav-link">Salir</a></li>
+                  <li><a href="<?php echo e(route('home')); ?>" class="nav-link"><span class="icon-home"></span></a></li>
+                <?php else: ?>
+                  <li><a href="<?php echo e(route('login')); ?>" class="nav-link"><span class="icon-user"></span></a></li>
+                <?php endif; ?>
+
               </ul>
             </nav>
           </div>
@@ -130,7 +137,7 @@
         <div class="col-md-4">
           <div class="mb-4">
             <h2 class="footer-heading mb-4">Subscribirme a Novedades</h2>
-            <form action="<?php echo e(route('contact.newsletter')); ?>" method="post" class="footer-subscribe" id="form_send_newsletter">
+            <form action="<?php echo e(route('contact.contact')); ?>" method="post" class="footer-subscribe" id="form_send_contact">
               <?php echo e(csrf_field()); ?>
 
 

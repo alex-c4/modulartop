@@ -112,7 +112,7 @@ var enableButton = function(){
 }
 
 // Newsletter
-$('#form_send_contact').submit(function(){
+$('#form_send_newsletter').submit(function(){
     var _route = $(this).attr('action');
     var _token = $("#token").val();
     var _data = $(this).serialize();
