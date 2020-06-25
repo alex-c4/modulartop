@@ -5,7 +5,7 @@
         <div class="row align-items-center justify-content-center">
           <div class="col-md-8 mx-auto mt-lg-5 text-center">
             <h1>Nuestros servicios</h1>
-            <p class="mb-8"><strong class="text-white">Somos los mejores aliados de fabricantes, carpinterías, mueblerías y arquitectos por contar con una maquinaria tecnológica CNC que maximiza la productividad.</strong></p>
+            <p class="mb-8"><strong class="text-white">Somos los mejores aliados de fabricantes, carpinterías, mueblerías y arquitectos por contar con maquinaria tecnológica CNC que maximiza la productividad.</strong></p>
             
           </div>
         </div>
@@ -24,7 +24,7 @@
           </div>
           <div class="col-md-5 pr-md-5 mb-5">
             <div class="block-41">
-              <h2 class="block-41-heading mb-5"><br>Aprovecha cortes de madera precisos que ahorran material </h2>
+              <h2 class="block-41-heading mb-5"><br>SECCIONADO PRECISO DE TABLEROS PARA AHORRO DE MATERIAL</h2>
               <div class="block-41-text">
                 <p>Optimizamos los cortes mediante un software para el mayor rendimiento de los tableros o piezas de madera. </p>
                 <p>¡Corte su pieza a la medida!</p>
@@ -37,19 +37,21 @@
       </div>      
     </section>
 
-    <section class="section element-animate bg-light" id="enchapado">
+    <section class="section element-animate bg-light" id="routeado">
       <div class="container">
         <div class="row align-items-center mb-5">
           <div class="col-lg-7 order-md-1">
-            <div class="scaling-image"><div class="frame"><img src="images/servicios/enchapado.jpg" alt="" class="img-fluid"></div></div>
+            <div class="scaling-image"><div class="frame"><img src="images/servicios/ruteado.jpg" alt="" class="img-fluid"></div></div>
           </div>
           <div class="col-md-5 pl-md-5 mb-5 order-md-2">
             <div class="block-41">
-              <h2 class="block-41-heading mb-5"><br>Enchapadoras rectas y curvas automáticas de encolado termoadherido.</h2>
+              <h2 class="block-41-heading mb-5"><br>MECANIZADOS DE LOS TABLEROS PARA OPTIMIZAR LA CALIDAD DEL PRODUCTO FINAL</h2>
               <div class="block-41-text">
-                <p> Somos especialistas en servicios de cortes y enchapados. Podrás tener tu 
-                    pieza lista en poco tiempo para que armes el mueble con confianza y calidad.</p>
-                    <p><a href="<?php echo e(url('/')); ?>#contact-section" class="btn btn-primary btn-sm">Contáctanos</a></p>
+              <p>Acabados perfectos con un centro numérico computarizado (CNC) que 
+                realiza Pantografiado, Fresado, Ranurado y Perforado.  
+                </p>
+                <p>Usamos herramientas y técnicas innovadoras que recomienda la industria de la madera. </p>
+                <p><a href="<?php echo e(url('/')); ?>#contact-section" class="btn btn-primary btn-sm">Contáctanos</a></p>
               </div>
             </div>
           </div>
@@ -58,20 +60,19 @@
       </div>
     </section>
 
-    <section class="section element-animate" id="routeado">
+    <section class="section element-animate" id="enchapado">
       <div class="container">
         <div class="row align-items-center mb-5">
           <div class="col-lg-7 order-md-2">
-            <div class="scaling-image" ><div class="frame"><img src="images/servicios/ruteado.jpg" alt="" class="img-fluid"></div></div>
+            <div class="scaling-image" ><div class="frame"><img src="images/servicios/enchapado.jpg" alt="" class="img-fluid"></div></div>
           </div>
           <div class="col-md-5 pr-md-5 mb-5">
             <div class="block-41">
-              <h2 class="block-41-heading mb-5"><br>Personaliza tu madera y mejora la presentación </h2>
+              <h2 class="block-41-heading mb-5"><br>PEGADORA DE TAPA CANTO TERMOADHERIDO PARA MEJOR RECISTENCIA EN EL ACABADO DE LOS BORDES. </h2>
               <div class="block-41-text">
-                <p>Acabados perfectos con un centro numérico computarizado (CNC) que 
-                realiza Pantografiado, Fresado, Ranurado y Perforado.  
-                </p>
-                <p>Usamos herramientas y técnicas innovadoras que recomienda la industria de la madera. </p>
+                <p>Pegado de tapa cantos ABS en piezas rectas y curvas, mediante la adhesion con pega 
+                granulada que se funde a alta temperatura, dejando una pieza completamente impermeable
+                y resistente a la humedad por sus cantos.</p>
                 <p><a href="<?php echo e(url('/')); ?>#contact-section" class="btn btn-primary btn-sm">Contáctanos</a></p>
               </div>
             </div>

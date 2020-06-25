@@ -43,7 +43,7 @@
                 <p align="justify">La diversidad es un detalle que nos distingue.</p>
                 <p align="justify">También somos el brazo fuerte de carpinterías y fabricantes, ya que prestamos  
                 maquinarias sofisticadas con Softwares de Centro Numérico Computarizado (CNC). </p>
-                <p align="justify">Los cuales facilitan los procesos de corte de tableros, pegado de canto y 
+                <p align="justify">Los cuales facilitan los procesos de corte de tableros, pegado de tapa canto y 
                 mecanizado de tableros, minimizando los costes de producción con una entrega               
                 rápida del producto.  </p>               
           </div>  
@@ -83,7 +83,7 @@
           <p>Nuestro control riguroso de calidad, logra mantenernos a la vanguardia del mercado.</p>
                   
           <h2 class="section-title-modulartop mb-3"><br>Alianzas Comerciales</h2>
-          <p>En Modular top mantenemos siempre un espíritu de trabajo en equipo, colaborativo 
+          <p>En Modular Top mantenemos siempre un espíritu de trabajo en equipo, colaborativo 
           e integrado.</p>  
           <p>Por esta razón, nos sentimos orgullosos de nuestra alianza comercial, conformada 
           por destacadas empresas venezolanas e internacionales, ofreciendo variedad de 

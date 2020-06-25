@@ -33,11 +33,10 @@
               <h3>No podrás resistirte a nuestros diseños en tendencia.</h3>
               <p>Muebles exclusivos, elegantes, minimalistas, cómodos y multifuncionales
               para cualquier ocasión o espacio. </p>
-              <p>Encuentra el que mejor se adapte a tu estilo.</p>
+              
               <p class="lead">MUEBLES QUE INSPIRAN</p>
               
-              <P>Descubre nuevas colecciones de muebles a los mejores precios. Convierte  
-              tu espacio en un ambiente agradable para compartir.</p>
+              <P>Convierte tu espacio en un ambiente agradable para compartir.</p>
               
               <p class="lead">40 AÑOS OFRECIENDO CALIDAD</p>
               <P> Si te encuentras en el sector de hoteles, oficinas y tiendas comerciales, te   
