@@ -243,13 +243,8 @@ jQuery(document).ready(function($) {
 	
 	$("body").on("click", ".main-menu li a[href^='#'], .smoothscroll[href^='#'], .site-mobile-menu .site-nav-wrap li a", function(e) {
     	var navToggler = $('.site-menu-toggle');
-      	e.preventDefault();
 
       	var hash = this.hash;
-
-		$('html, body').animate({
-			'scrollTop': $(hash).offset().top
-		}, 600, 'easeInOutExpo');
 		
 		if(hash != ""){
 			try{
