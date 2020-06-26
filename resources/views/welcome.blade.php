@@ -11,7 +11,8 @@
             <div class="row align-items-center justify-content-center">
               <div class="col-md-6 mt-lg-5 text-center">
                 <h1 class="text-shadow">¡Fabricamos tus sueños!</h1>
-                <p class="mb-5 text-shadow">Nos adaptamos a cualquier diseño de interior a madera que tengas en mente... Muebles ideales para hoteles, cocinas, oficina, dormitorios, baños y más.</p>
+                <p class="mb-5 text-shadow">Hacemos realidad el mobiliario que tienes en mente. 
+                Muebles ideales para hoteles, cocinas, oficina, dormitorios, baños y más.</p>
                 <p><a href="{{ route('contact.tellus') }}#contact-section" class="btn btn-primary px-5 py-3">Cuéntanos</a></p>
                 
               </div>
@@ -24,7 +25,8 @@
             <div class="row align-items-center justify-content-center">
               <div class="col-md-6 mt-lg-5 text-center">
                 <h1 class="text-shadow">Tableros melaminicos de calidad</h1>
-                <p class="mb-5 text-shadow">Garantizamos mejores acabados con texturas que ofrecen satisfacción sensorial y estilo sofisticado para la decoración. </p>
+                <p class="mb-5 text-shadow">Garantizamos excelentes acabados en cuanto a innovación, textura y  
+                colores, dando soluciones en la fabricación de muebles y diseños arquitectónicos. </p>
                 <p><a href="#howitworks-section" class="btn btn-primary px-5 py-3">Visitanos</a></p>
               </div>
             </div>
@@ -35,10 +37,11 @@
           <div class="container">
             <div class="row align-items-center justify-content-center">
               <div class="col-md-6 mt-lg-5 text-center">
-                <h1 class="text-shadow">Corte, pegado de canto y mecanizado de tableros</h1>
-                <p class="mb-5 text-shadow">Si necesitas transformar la madera estás en la web correcta. 
-                    Convertimos su materia prima (la madera) en partes, piezas y productos de calidad. 
-        </p>
+                <h1 class="text-shadow">CORTE, MECANIZADO DE TABLEROS Y PEGADO DE TAPACANTO</h1>
+                  <p class="mb-5 text-shadow">Si necesitas transformar tu materia prima, estás en la Web correcta. 
+                  Modificamos tus tableros de madera en partes y piezas, convirtiendo tus proyectos en 
+                   productos  que sueñas. 
+                  </p>
                 <p><a href="{{ url('/servicios') }}" class="btn btn-primary px-5 py-3">Servicios</a></p>
               </div> 
             </div>
@@ -57,9 +60,9 @@
         <div class="contenedor">
 
             <div class="titulotm">
-              <h2 class="section-title2">Tableros Melaminicos</h2>
+              <h2 class="section-title2">TABLEROS MELAMINICOS Y SUS TAPACANTOS</h2>
               <p class="lead">Diversidad en colores y diseños que se ajustan a la necesidad de tu proyecto de construcción o decoración. </p>
-              <p class="lead">Resistencia comprobada por arquitectos y carpinteros.</p>
+              <!-- <p class="lead">Resistencia comprobada por arquitectos y carpinteros.</p> -->
             </div>
             
             <div class="itemchildtm">
@@ -69,8 +72,8 @@
                   <div class="ftco-media-1-inner">
                     <a href="" class=""><img src="images/tableros/tablero-altobrillo.jpg" alt="FImageo" class="img-tm"></a>
                     <div class="ftco-media-details">
-                      <h3><BR>PARA ACABADOS</h3>
-                      <p>ALTO BRILLO - IMPORTADOS</p>
+                      <h3><BR>ACABADOS PREMIUM</h3>
+                      <p>MDF EN ALTO BRILLO - IMPORTADO</p>
                       <!--<strong>$20,000,000</strong>-->
                     </div>
                   </div> 
@@ -83,8 +86,8 @@
                   <div class="ftco-media-1-inner">
                     <a href="" class=""><img src="images/tableros/tablero-supermate.jpg" alt="FImageo" class="img-tm"></a>
                     <div class="ftco-media-details">
-                        <h3><BR>PARA ACABADOS</h3>
-                        <p>SUPER MATE - IMPORTADO</p>
+                        <h3><BR>ACABADOS PREMIUM</h3>
+                        <p>MDF EN SUPER MATE - IMPORTADO</p>
                       <!--<strong>$20,000,000</strong>-->
                     </div>
                   </div> 
@@ -97,8 +100,8 @@
                   <div class="ftco-media-1-inner">
                     <a href="" class=""><img src="images/tableros/tablero-cuerpo.jpg" alt="FImageo" class="img-tm"></a>
                     <div class="ftco-media-details">
-                        <h3><BR>PARA CUERPOS</h3>
-                        <p>IMPORTADOS Y NACIONALES</p>
+                        <h3><BR>Acabados Tradicionales</h3>
+                        <p>MDP HIDRÓFUGO Y NATURAL, IMPORTADOS Y NACIONALES</p>
                       <!--<strong>$20,000,000</strong>-->
                     </div>
                   </div> 
@@ -159,7 +162,7 @@
       <div class="container">
         <div class="row mb-5 justify-content-center">
           <div class="col-md-7 text-center">
-            <h2 class="section-title mb-3 text-white">Somos distribuidores Exclusivos en Venezuela</h2>
+            <h2 class="section-title mb-3 text-white">SOMOS REPRESENTES EXCLUSIVOS EN VENEZUELA DE LAS MARCAS</h2>
           </div>
         </div>
         <div class="row">
@@ -339,7 +342,7 @@
               <div>
                 <h3>Corte o seccionado</h3>
                 <p>Contamos con máquinas que trabajan bajo un software que elabora cortes 
-                  mecanizados precisos para tableros.</p>
+                 precisos en tableros.</p>
                 <p><a href="{{ url('/servicios') }}#corte">Leer más</a></p>
               </div>
             </div>
@@ -348,9 +351,9 @@
             <div class="unit-4 d-flex">
               <div class="mr-4"><img src="{{ asset('images/iconos/Ruteado.png') }}" alt="Image" class="img-fluid mr-3"></span></div>
               <div>
-                <h3>Ruteado por mecanizado</h3>
+                <h3>MECANIZADO DE TABLEROS</h3>
                 <p>Maquinaria que cumplen con las exigencias del mercado actual. 
-                Cortes, pantografiado, fresado, ranurado y perforado.</p>
+                Cortes, pantografiado, ruteado, fresado, ranurado y perforado.</p>
                 <p><a href="{{ url('/servicios') }}#routeado">Leer más</a></p>
               </div>
             </div>
