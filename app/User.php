@@ -6,6 +6,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+use DB;
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -27,6 +29,17 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function hasRoles($roleName){
+        $crrRollID = $this->getRoleID($roleName);
+        $userRollID = auth()->user()->roll_id;
+        return $crrRollID === $userRollID;
+    }
+    
+    private function getRoleID($rollName){
+        $rol = DB::table('roles')->where('name', $rollName)->first();
+        return $rol->id;
+    }
 
     /**
      * The attributes that should be cast to native types.

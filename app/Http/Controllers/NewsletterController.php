@@ -70,7 +70,8 @@ class NewsletterController extends Controller
             'name_img' => $fileName
         ]);
 
-        Storage::putFileAs('newsletters/', $file, $fileName);
+        // Storage::putFileAs('newsletters/', $file, $fileName);
+        $request->file('name_img')->storeAs('newsletters', $fileName, 'newsletter');
 
         $categories = $this->getCategories(0);
         
@@ -100,12 +101,14 @@ class NewsletterController extends Controller
                         ->take(3)
                         ->get();
 
-        $tmp = $newsletter->content;
-        $content_array = explode("\r\n", $tmp);
+        // $tmp = $newsletter->content;
+        // $content_array = explode("\r\n", $tmp);
         $tmp = $newsletter->tags;
         $tags_array = explode(" ", $tmp);
 
-        return view('post', compact('newsletter', 'newsletter_top3', 'content_array', 'tags_array'));
+        $categoryList = $this->getCatagoriesList();
+
+        return view('post', compact('newsletter', 'newsletter_top3', 'tags_array', 'categoryList'));
     }
 
     /**
@@ -149,9 +152,12 @@ class NewsletterController extends Controller
         $newsletter->tags = $request->input('tags');
 
         if($file != null){
-            Storage::delete('newsletters/'. $request->input('hname_img'));
+            // Storage::delete('newsletters/'. $request->input('hname_img'));
+            Storage::disk('local')->delete('newsletters/'. $request->input('hname_img'));
             
-            Storage::putFileAs('newsletters/', $file, $fileName);
+            // Storage::putFileAs('newsletters/', $file, $fileName);
+            Storage::disk('local')->put('newsletters/', $file, $fileName);
+
             $newsletter->name_img = $fileName;
         }
 
@@ -224,16 +230,37 @@ class NewsletterController extends Controller
         ->get();
     }
 
-    public function novedades(){
-        $newsletters = DB::table('newsletters')
-                        ->join('categories', 'categories.id', '=', 'newsletters.category_id', 'inner', false)
-                        ->join('users', 'users.id', '=', 'newsletters.user_id')
-                        ->select('newsletters.id', 'newsletters.title', 'newsletters.created_at', 'newsletters.isDeleted', 'newsletters.name_img', 'newsletters.content', 'categories.name', 'users.name as username')
-                        ->where('newsletters.isDeleted', '0')
-                        ->orderby('newsletters.created_at', 'desc')
-                        ->get();
+    public function novedades($category_id=0){
+        // $newsletters = DB::table('newsletters')
+        //                 ->join('categories', 'categories.id', '=', 'newsletters.category_id', 'inner', false)
+        //                 ->join('users', 'users.id', '=', 'newsletters.user_id')
+        //                 ->select('newsletters.id', 'newsletters.title', 'newsletters.created_at', 'newsletters.isDeleted', 'newsletters.name_img', 'newsletters.content', 'categories.name', 'users.name as username')
+        //                 ->where('newsletters.isDeleted', '0')
+        //                 ->orderby('newsletters.created_at', 'desc')
+        //                 ->get();
+        
+        if($category_id == 0){
+            $newsletters = DB::select('CALl sp_getNewsletter');
+        }else{
+            $newsletters = DB::select('CALl sp_getNewsletterFilterByCategory(?)', array($category_id));
+        }
 
-        return view('novedades', compact('newsletters'));
+        $categoryList = $this->getCatagoriesList();
+
+        return view('novedades', compact('newsletters', 'categoryList'));
+    }
+
+    // public function novedadesFilter($category_id){
+    //     $newsletters = DB::select('CALl sp_getNewsletterFilterByCategory(?)', array($category_id));
+
+    //     $categoryList = $this->getCatagoriesList();
+
+    //     return view('novedades', compact('newsletters', 'categoryList'));
+
+    // }
+
+    public function getCatagoriesList(){
+        return DB::select('CALl sp_getCatagoriesList()');   
     }
 
 }

@@ -68,11 +68,15 @@
                                 </div>
                             </div> -->
 
-                            <div class="form-group row mb-0">
-                                <div class="col-md-8 offset-md-4">
+                            <div class="form-group row mb-0 text-center">
+                                <div class="col-12">
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('Login') }}
                                     </button>
+
+
+                                </div>
+                                <div class="col-12">
 
                                     @if (Route::has('password.request'))
                                         <a class="btn btn-link" href="{{ route('password.request') }}">
@@ -80,22 +84,15 @@
                                         </a>
                                     @endif
 
+                                    <a class="btn btn-link" href="{{ route('register') }}">
+                                        Registrarse
+                                    </a>
+
                                 </div>
+
                             </div>
 
-                            @if (Route::has('password.request'))
-                                <div class="form-group row">
-                                    <div class="col-md-6 text-center">
-                                        &nbsp;
-                                    </div>
-                                    <div class="col-md-6 text-center">
-                                        <a class="btn btn-primary" href="{{ route('register') }}">
-                                            Registrarse
-                                        </a>
-                                    </div>
-
-                                </div>
-                            @endif
+                            
 
 
 

@@ -30,7 +30,7 @@
 
             
 
-            <form action="{{ route('contact.store') }}" method="post" class="p-5 bg-white" id="form_send_project">
+            <form action="{{ route('contact.store') }}" method="post" class="p-5 bg-white" id="form_send_project" enctype="multipart/form-data">
               
               {{csrf_field()}}
               
@@ -69,17 +69,26 @@
                   <textarea name="message" id="message" name="message" cols="30" rows="7" class="form-control" placeholder="Escriba su nota aqui..."></textarea>
                 </div>
               </div>
+              
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <label class="text-black" for="name_file">Archivo</label> 
+                  <input type="file" class="form-control" id="name_file" name="name_file" placeholder="Archivo">
+
+                </div>
+              </div>
 
               <div class="row form-group">
                 <div class="col-md-12">
 
-                <div class="alert alert-success" role="alert" id="alertContact">
+                  <div class="alert alert-success" role="alert" id="alertContact">
                     <label id="divMessage" class="text-black"></label> 
                     
                   </div>
 
                 </div>
               </div>
+
               
               <div class="row form-group">
                 <div class="col-md-12">

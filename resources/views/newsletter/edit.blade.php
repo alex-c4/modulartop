@@ -2,6 +2,10 @@
 
 @section('content')
 
+<link rel="stylesheet" href="{{ asset('js/sceditor/minified/themes/square.min.css') }}" id="theme-style" />
+<script src="{{asset('js/sceditor/minified/sceditor.min.js?v=4')}} "></script>
+<script src="{{asset('js/sceditor/minified/icons/monocons.js')}} "></script>
+<script src="{{asset('js/sceditor/minified/formats/xhtml.js')}} "></script>
 
 <div class="site-block-wrap">
     <div class="owl-carousel with-dots">
@@ -46,7 +50,7 @@
                     <div class="row form-group">
                         <div class="col-md-12">
                             <label class="text-black" for="content">Contenido</label> 
-                            <textarea id="content" name="content" cols="30" rows="7" class="form-control" placeholder="Escriba su nota aqui...">{{ $newsletter->content }}</textarea>
+                            <textarea id="content" name="content" rows="7" style="height:300px;" class="form-control">{{ $newsletter->content }}</textarea>
                         </div>
                     </div>
 
@@ -106,6 +110,12 @@
     //     return false;
     // }
 // });
-
+    
+var textarea = document.getElementById('content');
+    sceditor.create(textarea, {
+        format: 'xhtml',
+        icons: 'material',
+        style: '{{ asset("js/sceditor/minified/themes/content/square.min.css") }}'
+    });
 </script>
 @endsection

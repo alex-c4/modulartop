@@ -60,8 +60,8 @@ Route::post('newsletter/store', ['as' => 'newsletter.store', 'uses' => 'Newslett
 Route::get('newsletter/index', ['as' => 'newsletter.index', 'uses' => 'NewsletterController@index']);
 Route::get('newsletter/edit/{id}', ['as' => 'newsletter.edit', 'uses' => 'NewsletterController@edit']);
 Route::put('newsletter/update/{id}', ['as' => 'newsletter.update', 'uses' => 'NewsletterController@update']);
-Route::get('novedades', ['as' => 'novedades', 'uses' => 'NewsletterController@novedades']);
+Route::get('novedades/{id?}', ['as' => 'novedades', 'uses' => 'NewsletterController@novedades']);
 Route::get('post/{id}', ['as' => 'show', 'uses' => 'NewsletterController@show']);
 Route::delete('newsletter/delete/{id}', ['as' => 'newsletter.delete', 'uses' => 'NewsletterController@delete']);
 Route::patch('newsletter/{id}', ['as' => 'newsletter.restore', 'uses' => 'NewsletterController@restore']);
-
+// Route::get('novedadesFilter/{id}', ['as' => 'novedadesFilter', 'uses' => 'NewsletterController@novedadesFilter']);

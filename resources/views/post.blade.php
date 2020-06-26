@@ -32,18 +32,14 @@
             </p>
             
               
-              @foreach($content_array as $p)
                 <blockquote>
                   <p>
-                    @if($p != "") 
-                      {{$p}}
-                    @endif
+                    {!! $newsletter->content !!}
                   </p>
                 </blockquote>
-              @endforeach
 
             <div class="pt-5">
-              <p>Categories:  <a href="#">{{ $newsletter->category }}</a> Tags: @foreach($tags_array as $tag) <a href="#">{{$tag}}</a>@endforeach</p>
+              <p>Categories:  <a href="#">{{ $newsletter->category }}</a> <!-- Tags: @foreach($tags_array as $tag) <a href="#">{{$tag}}</a>@endforeach</p> -->
             </div>
     
                          
@@ -54,11 +50,9 @@
             <div class="sidebar-box">
               <div class="categories">
                 <h3>Categories</h3>
-                <li><a href="#">Creatives <span>(12)</span></a></li>
-                <li><a href="#">News <span>(22)</span></a></li>
-                <li><a href="#">Design <span>(37)</span></a></li>
-                <li><a href="#">HTML <span>(42)</span></a></li>
-                <li><a href="#">Web Development <span>(14)</span></a></li>
+                @foreach($categoryList as $cat)
+                    <li><a href="{{ route('novedades', $cat->id) }}">{{ $cat->name }} <span>({{ $cat->cant }})</span></a></li>
+                @endforeach
               </div>
             </div>
             <div class="sidebar-box">
@@ -77,7 +71,7 @@
                                 <div class="recent-text">
 
                                   <h5 class="font-size-regular"><a href="{{ route('show', $news->id) }}"><br>{{ $news->title }}</a></h5>
-                                  <div class="meta mb-4">{{ $news->author }} 
+                                  <div class="meta mb-4"><!-- {{ $news->author }}  -->
                                     <span class="mx-2">&bullet;</span> {{ explode(' ', $news->created_at)[0] }}
                                     <span class="mx-2">&bullet;</span> 
                                     <a href="{{ route('show', $news->id) }}">Leer</a>

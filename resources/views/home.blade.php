@@ -33,9 +33,14 @@
                             <h3>Newsletters</h3>
                             <p>Novedades y noticias</p>
                             <p>
+                            
+                            @if(auth()->user()->hasRoles('Administrator') || auth()->user()->hasRoles('Newsletter')) 
                                 <a href="{{ route('newsletter.create') }}"><span class="icon-plus"></span></a>
                                 &nbsp;
                                 <a href="{{ route('newsletter.index') }}"><span class="icon-list"></span></a>
+                                &nbsp;
+                            @endif
+                                <a href="{{ route('novedades') }}"><span class="icon-th-large"></span></a>
                             </p>
                         </div>
                     </div>

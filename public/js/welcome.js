@@ -24,20 +24,30 @@ $('#form_send_contact_info').submit(function(){
 
     return false;
 });
-$('#form_send_project').submit(function(){
+$('#form_send_project').submit(function(e){
+    e.preventDefault();
     blockButton();
+
+    var formData = new FormData(document.getElementById("form_send_project"));
+    formData.append("fname", $('#fname').val());
+    formData.append("lname", $('#lname').val());
+    formData.append("email", $('#email').val());
+    formData.append("subject", $('#subject').val());
+    // formData.append("name_file", fileInputElement.files[0]);
+    formData.append("name_file", $('#name_file')[0].files[0]);
 
     var _route = $(this).attr('action');
     var _token = $("#token").val();
-    var _data = $(this).serialize();
+    // var _data = $(this).serialize();
+    var _data = formData;
 
-    sendForm(_route, _token, _data, "contact");
+    sendFormProject(_route, _token, _data, "contact");
 
     return false;
 });
 
-var sendForm = function(_route, _token, _data, _form_id){debugger
-
+var sendForm = function(_route, _token, _data, _form_id){
+    
     if($('#fname').val() == ""){
         $('#fname').select();
         enableButton();
@@ -88,6 +98,60 @@ var sendForm = function(_route, _token, _data, _form_id){debugger
     })
 };
 
+var sendFormProject = function(_route, _token, _data, _form_id){
+    
+    if($('#fname').val() == ""){
+        $('#fname').select();
+        enableButton();
+        return false;
+    }else if($('#lname').val() == ""){
+        $('#lname').select();
+        enableButton();
+        return false;
+    }else if(!regex.test($('#email').val().trim())){
+        $('#email').select();
+        enableButton();
+        return false;
+    }else if($('#subject').val() == ""){
+        $('#subject').select();
+        enableButton();
+        return false;
+    }else if($('#message').val() == ""){
+        $('#message').select();
+        enableButton();
+        return false;
+      }
+    
+    $.ajax({
+        url: _route,
+        headers: { 'X-CSRF-TOKEN': _token },
+        type: 'POST',
+        data: _data,
+        processData: false,  
+        contentType: false
+    })
+    .done(function(data, textStatus, jqXHR){
+        if(data.success){
+          showAlert("" + data.message + "");
+          clearForm();
+        //   $("#sendmessage").addClass("sendmessageShow");
+          enableButton();
+        }else{
+          showAlert(data.message);
+          clearForm();
+          console.log(data.exeption);
+          enableButton();
+        }
+        
+    })
+    .fail(function(jqXHR, textStatus, errorThrown ){   
+             
+        console.log(jqXHR.responseJSON.errors);
+        showAlert("Hubo un error en la operación, por favor intente de nuevo. Muchas gracias!");
+        enableButton();
+    })
+};
+
 var clearForm = function(){
     $("#fname").val("");
     $("#lname").val("");
@@ -102,13 +166,13 @@ var showAlert = function(msg){
 }
 
 var blockButton = function(){
+    $('#btnSendContactInfo').val("Enviando...");
     $('#btnSendContactInfo').attr("disabled", true);
-    $('#btnSendContactInfo').html("Enviando...");
   }
   
 var enableButton = function(){
     $('#btnSendContactInfo').attr("disabled", false);
-    $('#btnSendContactInfo').html("Enviar");
+    $('#btnSendContactInfo').val("Enviar");
 }
 
 // Newsletter
