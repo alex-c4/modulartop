@@ -163,6 +163,7 @@ jQuery(document).ready(function($) {
 			stagePadding: 0,
 	    margin: 0,
 			autoplay: true,
+			autoplayTimeout: 7000,
 			smartSpeed: 1000,
 	    pauseOnHover: false,
 	    nav: false,

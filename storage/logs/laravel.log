@@ -8408,3 +8408,20 @@ ewsletter\\index.blade.php) at C:\\xampp\\htdocs\\modulartop\esources\\views/ne
 #56 C:\\xampp\\htdocs\\modulartop\\modulartop\\public\\index.php(55): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #57 {main}
 "} 
+[2020-06-25 15:11:40] local.ERROR: Maximum execution time of 30 seconds exceeded {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 1): Maximum execution time of 30 seconds exceeded at C:\\xampp\\htdocs\\modulartop\\modulartop\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\EngineResolver.php:8)
+[stacktrace]
+#0 {main}
+"} 
+[2020-06-25 15:13:00] local.ERROR: Maximum execution time of 30 seconds exceeded {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 1): Maximum execution time of 30 seconds exceeded at C:\\xampp\\htdocs\\modulartop\\modulartop\\vendor\\laravel\\framework\\src\\Illuminate\\View\\ViewServiceProvider.php:12)
+[stacktrace]
+#0 {main}
+"} 
+[2020-06-25 15:13:01] local.ERROR: Maximum execution time of 30 seconds exceeded {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 1): Maximum execution time of 30 seconds exceeded at C:\\xampp\\htdocs\\modulartop\\modulartop\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\ConnectionResolverInterface.php:5)
+[stacktrace]
+#0 {main}
+"} 
+[2020-06-25 15:16:01] local.ERROR: Maximum execution time of 30 seconds exceeded {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 1): Maximum execution time of 30 seconds exceeded at C:\\xampp\\htdocs\\modulartop\\modulartop\\vendor\
+unomaduro\\collision\\src\\Adapters\\Laravel\\CollisionServiceProvider.php:28)
+[stacktrace]
+#0 {main}
+"} 
