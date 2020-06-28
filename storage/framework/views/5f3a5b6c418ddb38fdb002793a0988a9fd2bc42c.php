@@ -1,3 +1,10 @@
+<?php $__env->startSection('meta'); ?> 
+<title>Novedades - Modular Top</title> 
+<meta name="description" 
+content="Noticias y contenido de valor con todo lo relacionado a diseño de interiores, tipos de 
+muebles, historia, servicios de madera y fabricación de mueblería." />
+<?php $__env->stopSection(); ?>
+
 <?php $__env->startSection('content'); ?>
 
     <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(images/novedades/newsletter-novedades.jpg);" data-aos="fade">
@@ -48,72 +55,31 @@
                 <div class="col-lg-8 order-1 order-lg-2">
                     <div class="blog-post">
 
-                        <div class="single-blog-post">
-                            <div class="blog-pic">
-                                <img src="images/blog/blog-1.jpg" alt="">
-                            </div>
-                            <div class="blog-text">
-                                <h4>En marzo 2020 comienza feria del mueble CCCT.</h4>
-                                <div class="blog-widget">
-                                <div class="mx-2">
-                                        <img src="images/clock.png" alt="">
-                                        <span>February 17, 2018</span><span class="mx-2">&bullet;
-                                        </span><i class="lnr lnr-user"></i> Bryan Becerra
-                                    </div>
-                                                                       
-                                </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero mauris,
-                                    bibendum eget sapien ac, ultrices rhoncus ipsum. Donec nec sapien in urna fermentum
-                                    ornare. Morbi vel ultrices leo. Sed eu turpis eu arcu vehicula fringilla ut vitae
-                                    orci. ...</p>
-                                <p><a href="<?php echo e(url('/post')); ?>#post1" class="btn btn-primary btn-sm">Leer más</a></p>
-                                <!--<a href="#">Continue Reading <i class="lnr lnr-arrow-right"></i></a>-->
-                               
+                    <?php $__currentLoopData = $newsletters; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $newsletter): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
-                            </div>
-                        </div>
                         <div class="single-blog-post">
                             <div class="blog-pic">
-                                <img src="images/blog/blog-2.jpg" alt="">
+                                <img src="<?php echo e(asset('images/newsletters/'.$newsletter->name_img)); ?>" alt="">
                             </div>
                             <div class="blog-text">
-                                <h4>Llegaron los ultimos modelos de mobiliareio para el hogar.</h4>
+                                <h4><?php echo e($newsletter->title); ?></h4>
                                 <div class="blog-widget">
                                     <div class="blog-info">
                                     <img src="images/clock.png" alt="">
-                                        <span>February 17, 2018</span><span class="mx-2">&bullet;
-                                        </span><i class="lnr lnr-user"></i> Bryan Becerra
+                                        <span><?php echo e(explode(' ', $newsletter->created_at)[0]); ?></span><span class="mx-2">&bullet;
+                                        </span><i class="lnr lnr-user"></i> <?php echo e($newsletter->username); ?>
+
                                     </div>
                                    
                                 </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero mauris,
-                                    bibendum eget sapien ac, ultrices rhoncus ipsum. Donec nec sapien in urna fermentum
-                                    ornare. Morbi vel ultrices leo. Sed eu turpis eu arcu vehicula fringilla ut vitae
-                                    orci. ...</p>
-                                    <p><a href="<?php echo e(url('/post')); ?>#post1" class="btn btn-primary btn-sm">Leer más</a></p>
+                                <p><?php echo e(substr($newsletter->content, 0, 230)); ?> ...</p>
+                                    <p><a href="<?php echo e(route('show', $newsletter->id)); ?>" class="btn btn-primary btn-sm">Leer más</a></p>
                             </div>
                         </div>
-                        <div class="single-blog-post">
-                            <div class="blog-pic">
-                                <img src="images/blog/blog-3.jpg" alt="">
-                            </div>
-                            <div class="blog-text">
-                                <h4>Vive la expericna de los modulares para oficnas</h4>
-                                <div class="blog-widget">
-                                    <div class="blog-info">
-                                    <img src="images/clock.png" alt="">
-                                        <span>February 17, 2018</span><span class="mx-2">&bullet;
-                                        </span><i class="lnr lnr-user"></i> Bryan Becerra
-                                    </div>
-                                    
-                                </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero mauris,
-                                    bibendum eget sapien ac, ultrices rhoncus ipsum. Donec nec sapien in urna fermentum
-                                    ornare. Morbi vel ultrices leo. Sed eu turpis eu arcu vehicula fringilla ut vitae
-                                    orci. ...</p>
-                                    <p><a href="<?php echo e(url('/post')); ?>#post1" class="btn btn-primary btn-sm">Leer más</a></p>
-                            </div>
-                        </div>
+
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+
                         <!--
                         <div class="blog-pagination">
                             <a class="active" href="#">1</a>

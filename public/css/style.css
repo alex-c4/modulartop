@@ -34,6 +34,7 @@ a {
   transition: .3s all ease; 
   color: #8B171A}
   a:hover {
+    color: gray;
     text-decoration: none; }
 
 
@@ -509,12 +510,14 @@ h1, h2, h3, h4, h5,
       position: relative;
       color: #212529; }
       .site-mobile-menu .site-nav-wrap a:hover {
-        color: #37cfa2; }
+        /* color: #37cfa2;*/ 
+        color: #8B171A;} 
     .site-mobile-menu .site-nav-wrap li {
       position: relative;
       display: block; }
       .site-mobile-menu .site-nav-wrap li .active {
-        color: #37cfa2; }
+        /* color: #37cfa2;*/ 
+        color: #8B171A;}
     .site-mobile-menu .site-nav-wrap .arrow-collapse {
       position: absolute;
       right: 0px;

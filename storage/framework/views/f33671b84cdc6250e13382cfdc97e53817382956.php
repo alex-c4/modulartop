@@ -1,3 +1,12 @@
+<?php $__env->startSection('meta'); ?> 
+<title>¡Bienvenido a Modular Top! - Lider de la industria mobiliaria</title> 
+<meta name="description" 
+content="Comercializadora de Tableros Melaminicos, especialistas en la fabricación de muebles y 
+servicios de madera con maquinarias de última generación en Caracas, Venezuela." />
+<meta name="keywords" content="Modular Top, tableros melaminicos, fabricacion de mobiliario, maquinaria cnc, 
+seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
+<?php $__env->stopSection(); ?>
+
 <?php $__env->startSection('content'); ?>
    
     
@@ -68,7 +77,7 @@
               <div class="hijostm">
                 <div class="ftco-media-1">
                   <div class="ftco-media-1-inner">
-                    <a href="" class=""><img src="images/tableros/tablero-altobrillo.jpg" alt="FImageo" class="img-tm"></a>
+                    <a href="" class=""><img src="images/tableros/tablero-altobrillo.jpg" alt="Tablero melaminico alto brillo MDF importado, acabado premium oneskin" class="img-tm"></a>
                     <div class="ftco-media-details">
                       <h3><BR>ACABADOS PREMIUM</h3>
                       <p>MDF EN ALTO BRILLO - IMPORTADO</p>
@@ -82,7 +91,7 @@
               <div class="hijostm">
                 <div class="ftco-media-1">
                   <div class="ftco-media-1-inner">
-                    <a href="" class=""><img src="images/tableros/tablero-supermate.jpg" alt="FImageo" class="img-tm"></a>
+                    <a href="" class=""><img src="images/tableros/tablero-supermate.jpg" alt="Tablero melaminico super mate MDF importado, acabado premium oneskin" class="img-tm"></a>
                     <div class="ftco-media-details">
                         <h3><BR>ACABADOS PREMIUM</h3>
                         <p>MDF EN SUPER MATE - IMPORTADO</p>
@@ -96,7 +105,7 @@
               <div class="hijostm">
                 <div class="ftco-media-1">
                   <div class="ftco-media-1-inner">
-                    <a href="" class=""><img src="images/tableros/tablero-cuerpo.jpg" alt="FImageo" class="img-tm"></a>
+                    <a href="" class=""><img src="images/tableros/tablero-cuerpo.jpg" alt="Tablero melaminico hidrófugo y natural MDP importado y nacional, acabado tradicional masisa/losan" class="img-tm"></a>
                     <div class="ftco-media-details">
                         <h3><BR>Acabados Tradicionales</h3>
                         <p>MDP HIDRÓFUGO Y NATURAL, IMPORTADOS Y NACIONALES</p>
@@ -110,7 +119,7 @@
               <div class="hijostm">
                 <div class="ftco-media-1">
                   <div class="ftco-media-1-inner">
-                    <a href="" class=""><img src="images/tableros/cocina-altobrillo.jpg" alt="FImageo" class="img-tm"></a>
+                    <a href="" class=""><img src="images/tableros/cocina-altobrillo.jpg" alt="Fabricacion de muebles alto brillo MDF importado, acabado premium oneskin" class="img-tm"></a>
                     <br>
                     <div class="ftco-media-details">
                     <h3><BR></h3>    
@@ -124,7 +133,7 @@
               <div class="hijostm">
                 <div class="ftco-media-1">
                   <div class="ftco-media-1-inner">
-                    <a href="" class=""><img src="images/tableros/cocina-supermate.jpg" alt="FImageo" class="img-tm"></a>
+                    <a href="" class=""><img src="images/tableros/cocina-supermate.jpg" alt="Fabricacion de muebles super mate MDF importado, acabado premium oneskin" class="img-tm"></a>
                     <div class="ftco-media-details">
                     <h3><BR></h3>        
                       <!--<strong>$20,000,000</strong>-->
@@ -137,7 +146,7 @@
               <div class="hijostm">
                 <div class="ftco-media-1">
                   <div class="ftco-media-1-inner">
-                    <a href="" class=""><img src="images/tableros/brillo_doblecara.jpg" alt="FImageo" class="img-tm"></a>
+                    <a href="" class=""><img src="images/tableros/brillo_doblecara.jpg" alt="Fabricacion de muebles hidrófugo y natural MDP importado y nacional, acabado tradicional masisa/losan" class="img-tm"></a>
                     <div class="ftco-media-details">
                     <h3><BR></h3>       
                       <!--<strong>$20,000,000</strong>-->
@@ -166,7 +175,7 @@
         <div class="row">
           <div class="col-md-6 text-center">
             <div class="pr-5">
-              <a href="http://www.losan.es" target="_blank"><img src="images/aliados/losan-logo.png" alt="FImageo" class="img-fluid"></a>
+              <a href="http://www.losan.es" target="_blank"><img src="images/aliados/losan-logo.png" alt="Losan diseño y tendencias en melaminas - madera - tablero." class="img-fluid"></a>
               <h3><BR></h3>
             </div>
           </div>
@@ -174,7 +183,7 @@
           <div class="col-md-6 text-center">
             <div class="pr-5">
               
-              <a href="http://www.oneskin.pt" target="_blank"><img src="images/aliados/oneskin-logo.png" alt="FImageo" class="img-fluid"></a>
+              <a href="http://www.oneskin.pt" target="_blank"><img src="images/aliados/oneskin-logo.png" alt="Oneskin nace con el propósito de suministrar al mercado internacional con tableros lacados de alta calidad e innovación que abran nuevas oportunidades en la industria del mueble, decoración de interiores, panelación y otros trabajos arquitectónicos." class="img-fluid"></a>
               <h3><BR></h3>
             </div>
           </div>
@@ -197,11 +206,11 @@
     <section class="site-section-fabricacion" id="about-section">
       <!-- Elastislide Carousel -->
       <ul id="carousel" class="elastislide-list">
-        <li><a href="<?php echo e(url('/fabricacion')); ?>"><img src="images/fabricacion/fabricacion-cocina-1.jpg" alt="image01" /></a></li>
-        <li><a href="<?php echo e(url('/fabricacion')); ?>"><img src="images/fabricacion/fabricacion-habitacion-1.jpg" alt="image02" /></a></li>
-        <li><a href="<?php echo e(url('/fabricacion')); ?>"><img src="images/fabricacion/fabricacion-cocina-2.jpg" alt="image03" /></a></li>
-        <li><a href="<?php echo e(url('/fabricacion')); ?>"><img src="images/fabricacion/fabricacion-habitacion-2.jpg" alt="image03" /></a></li>
-        <li><a href="<?php echo e(url('/fabricacion')); ?>"><img src="images/fabricacion/fabricacion-mobiliario.jpg" alt="image03" /></a></li>
+        <li><a href="<?php echo e(url('/fabricacion')); ?>"><img src="images/fabricacion/fabricacion-cocina-1.jpg" alt="Asesoría y desarrollo de proyectos de fabricación de mobiliarios para cocina, diseño, interiores, arquitectura, ingeniería civil, construcción, hoteles, restaurantes" /></a></li>
+        <li><a href="<?php echo e(url('/fabricacion')); ?>"><img src="images/fabricacion/fabricacion-habitacion-1.jpg" alt="Asesoría y desarrollo de proyectos de fabricación de mobiliarios para habitaciones, diseño, interiores, arquitectura, ingeniería civil, construcción, hoteles, restaurantes" /></a></li>
+        <li><a href="<?php echo e(url('/fabricacion')); ?>"><img src="images/fabricacion/fabricacion-cocina-2.jpg" alt="Asesoría y desarrollo de proyectos de fabricación de mobiliarios para cocina, diseño, interiores, arquitectura, ingeniería civil, construcción, hoteles, restaurantes" /></a></li>
+        <li><a href="<?php echo e(url('/fabricacion')); ?>"><img src="images/fabricacion/fabricacion-habitacion-2.jpg" alt="Asesoría y desarrollo de proyectos de fabricación de mobiliarios para habitaciones, diseño, interiores, arquitectura, ingeniería civil, construcción, hoteles, restaurantes" /></a></li>
+        <li><a href="<?php echo e(url('/fabricacion')); ?>"><img src="images/fabricacion/fabricacion-mobiliario.jpg" alt="Asesoría y desarrollo de proyectos de fabricación de mobiliarios para habitaciones, diseño, interiores, arquitectura, ingeniería civil, construcción, hoteles, restaurantes" /></a></li>
             
       </ul>
       <!-- End Elastislide Carousel -->
@@ -336,7 +345,7 @@
         <div class="row align-items-stretch">
           <div class="col-mb-6 col-lg-6 mb-6 mb-lg-6" data-aos="fade-up">
             <div class="unit-4 d-flex">
-              <div class="mr-4"><img src="images/iconos/corte.png" alt="Image" class="img-fluid mr-3"></div>
+              <div class="mr-4"><img src="images/iconos/corte.png" alt="Seccionado preciso de tableros para ahorro de material" class="img-fluid mr-3"></div>
               <div>
                 <h3>Corte o seccionado</h3>
                 <p>Contamos con máquinas que trabajan bajo un software que elabora cortes 
@@ -347,7 +356,7 @@
           </div>
           <div class="col-md-6 col-lg-6 mb-6 mb-lg-6" data-aos="fade-up" data-aos-delay="100">
             <div class="unit-4 d-flex">
-              <div class="mr-4"><img src="<?php echo e(asset('images/iconos/Ruteado.png')); ?>" alt="Image" class="img-fluid mr-3"></span></div>
+              <div class="mr-4"><img src="<?php echo e(asset('images/iconos/Ruteado.png')); ?>" alt="Mecanizados de los tableros para optimizar la calidad del producto final" class="img-fluid mr-3"></span></div>
               <div>
                 <h3>MECANIZADO DE TABLEROS</h3>
                 <p>Maquinaria que cumplen con las exigencias del mercado actual. 
@@ -358,7 +367,7 @@
           </div>
           <div class="col-md-6 col-lg-6 mb-6 mb-lg-6" data-aos="fade-up" data-aos-delay="200">
             <div class="unit-4 d-flex">
-              <div class="mr-4"><img src="images/iconos/enchapado.png" alt="Image" class="img-fluid mr-3"></div>
+              <div class="mr-4"><img src="images/iconos/enchapado.png" alt="Pegadora de tapa canto termoadherido para mejor recistencia en el acabado de los bordes." class="img-fluid mr-3"></div>
               <div>
                 <h3>Enchapado</h3>
                 <p>Enchapadoras rectas y curvas automáticas de encolado termoadherido.  
@@ -371,7 +380,7 @@
 
           <div class="col-md-6 col-lg-6 mb-6 mb-lg-6" data-aos="fade-up" data-aos-delay="300">
             <div class="unit-4 d-flex">
-              <div class="mr-4"><img src="images/iconos/prensado.png" alt="Image" class="img-fluid mr-3"></div>
+              <div class="mr-4"><img src="images/iconos/prensado.png" alt="Prensado de láminas de alta presión (hlp) como opción a tu proyecto." class="img-fluid mr-3"></div>
               <div>
                 <h3>Prensado de láminas de alta presión (HLP)</h3>
                 <p>
@@ -423,7 +432,7 @@
         <div class="row">
           <div class="col-md-6 text-center">
             <div class="pr-5">
-              <a href="https://dbgroupvenezuela.com/" target="_blank"><img src="images/aliados/dbgroup-logo.png" alt="FImageo" class="img-fluid"></a>
+              <a href="https://dbgroupvenezuela.com/" target="_blank"><img src="images/aliados/dbgroup-logo.png" alt="Herrajes para mobiliario de cocina y baño, bisagras, cajones, sistemas de alzamiento, interiorismo de cocina, aluminio, patas, soportes y colgadores" class="img-fluid"></a>
               
             </div>
             <br>
@@ -432,7 +441,7 @@
           <div class="col-md-6 text-center">
             <div class="pr-5">
               
-              <a href="https://tuherraje.com.ve" target="_blank"><img src="images/aliados/tuherraje-logo.png" alt="FImageo" class="img-fluid"></a>
+              <a href="https://tuherraje.com.ve" target="_blank"><img src="images/aliados/tuherraje-logo.png" alt="Asiáticos · Griferias y Fregaderos · Closets · Europeos · G*Grass · Iluminación · Patas y Rodapie · Perfilería · Poalgi · Tiradores" class="img-fluid"></a>
               
             </div>
           </div>
