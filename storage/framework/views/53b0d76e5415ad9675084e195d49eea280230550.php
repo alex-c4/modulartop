@@ -1,3 +1,11 @@
+<?php $__env->startSection('meta'); ?> 
+<title>Modular Top - Fabricación de Muebles y Servicios</title> 
+<meta name="description" 
+content="40 años en Caracas, Venezuela ofreciendo muebles funcionales con diseño y garantía.
+Tendencias, servicio personalizado y precios competitivos." />
+
+<?php $__env->stopSection(); ?>
+
 <?php $__env->startSection('content'); ?>
 
 <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(images/modulartop/modulartop-empresa.jpg);" data-aos="fade">

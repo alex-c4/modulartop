@@ -1,5 +1,13 @@
 @extends('layouts.layout')
 
+@section('meta') 
+<title>Modular Top - Fabricación de Muebles y Servicios</title> 
+<meta name="description" 
+content="40 años en Caracas, Venezuela ofreciendo muebles funcionales con diseño y garantía.
+Tendencias, servicio personalizado y precios competitivos." />
+
+@endsection
+
 @section('content')
 
 <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(images/modulartop/modulartop-empresa.jpg);" data-aos="fade">
@@ -25,7 +33,8 @@
           <div class="col-lg-6 mb-5">
 
               <div class="owl-carousel slide-one-item with-dots">
-                  <div><img src="images/modulartop/modulartop-equipo.jpg" alt="Image" class="img-fluid"></div>
+                  <div><img src="images/modulartop/modulartop-equipo.jpg" alt="Comercializadora de Tableros Melaminicos, 
+                  especialistas en la fabricación de muebles y servicios de madera con maquinarias de última generación en Caracas, Venezuela." class="img-fluid"></div>
                   
                 </div>
 

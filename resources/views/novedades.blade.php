@@ -1,5 +1,12 @@
 @extends('layouts.layout')
 
+@section('meta') 
+<title>Novedades - Modular Top</title> 
+<meta name="description" 
+content="Noticias y contenido de valor con todo lo relacionado a diseño de interiores, tipos de 
+muebles, historia, servicios de madera y fabricación de mueblería." />
+@endsection
+
 @section('content')
 
     <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(images/novedades/newsletter-novedades.jpg);" data-aos="fade">

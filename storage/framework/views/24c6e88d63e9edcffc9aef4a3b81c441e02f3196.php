@@ -1,3 +1,11 @@
+<?php $__env->startSection('meta'); ?> 
+<title>Servicios - Modular Top</title> 
+<meta name="description" 
+content="Maquinaria de alta tecnología para fabricantes de madera en Caracas, Venezuela. Corte,
+pegado de canto, mecanizado de tableros y prensado de láminas." />
+
+<?php $__env->stopSection(); ?>
+
 <?php $__env->startSection('content'); ?>
 
 <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(images/banner/servicios.jpg);" data-aos="fade">
