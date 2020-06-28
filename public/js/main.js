@@ -239,25 +239,38 @@ jQuery(document).ready(function($) {
 
 	// navigation
   var OnePageNavigation = function() {
-    var navToggler = $('.site-menu-toggle');
-   	$("body").on("click", ".main-menu li a[href^='#'], .smoothscroll[href^='#'], .site-mobile-menu .site-nav-wrap li a", function(e) {
-      e.preventDefault();
+	var navToggler = $('.site-menu-toggle');
+	
+	$("body").on("click", ".main-menu li a[href^='#'], .smoothscroll[href^='#'], .site-mobile-menu .site-nav-wrap li a", function(e) {
+    	var navToggler = $('.site-menu-toggle');
 
-      var hash = this.hash;
-
-      $('html, body').animate({
-        'scrollTop': $(hash).offset().top
-      }, 600, 'easeInOutExpo');
-
-		});
+      	var hash = this.hash;
 		
-		$('.gototop').on('click', function() {
+		if(hash != ""){
+			try{
+				// cierre menu stilo mobile
+				$('body').removeClass('offcanvas-menu');
+				$this.removeClass('active');
+				// fin cierre menu stilo mobile
 
+				$('html, body').animate({
+				'scrollTop': $(hash).offset().top
+				}, 600, 'easeInOutExpo');
+				e.preventDefault();
+			}catch(ex){
+				console.log("Error: " + ex)
+			}
+		}
+		
+	});
+		
+	$('.gototop').on('click', function() {
 
       $('html, body').animate({
         'scrollTop': $('body').offset().top
       }, 600, 'easeInOutExpo');
-		});
+
+	});
   };
   OnePageNavigation();
 

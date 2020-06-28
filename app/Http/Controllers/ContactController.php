@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Contact;
 use Mail;
+use Carbon\Carbon;
 
 class ContactController extends Controller
 {
@@ -39,19 +40,25 @@ class ContactController extends Controller
     {
         try {
             // proceso llamdao desde formulario de contacto
-
-            $name = request()->fname;
-            $lastName = request()->lname;
-            $email = request()->email;
-            $subject = request()->subject;
-            $messageContact = request()->message;
+            $file = $request->file('name_file');
+            $fileName = "";
+            if($file != null){
+                $fileName = Carbon::now()->format('Y-m-d_Hi') ."_". $file->getClientOriginalName();
+            }
+            
+            $name = $request->input('fname');
+            $lastName = $request->input('lname');
+            $email = $request->input('email');
+            $subject = $request->input('subject');
+            $messageContact = $request->input('message');
 
             Contact::create([
                 'nameContact' => $name,
                 'lastNameContact' => $lastName,
                 'emailContact' => $email,
                 'subject' => $subject,
-                'message' => $messageContact
+                'message' => $messageContact,
+                'name_file' => $fileName
             ]);
 
             $data = array(
@@ -60,16 +67,30 @@ class ContactController extends Controller
                 'lastName' => $lastName,
                 'subject' => $subject,
                 'messageContact' => $messageContact
-
             );
+            
+            if($file != null){
+                $request->file('name_file')->storeAs('files', $fileName, 'filesContact');
+            }
+
             $req = array(
                 "correo" => env('EMAIL_ADMIN')
             );
             
-            Mail::send('emails.contactuser', $data, function($message) use($req){
-                $message->from($req["correo"], 'Web Modular Top');
-                $message->to($req["correo"])->subject('Nuevo Contacto');
-            });
+            $pathToFile = public_path('filesContact/files') . '\\' . $fileName;
+
+            if($file != null){
+                Mail::send('emails.contactuser', $data, function($message) use($req, $pathToFile){
+                    $message->from($req["correo"], 'Web Modular Top');
+                    $message->to($req["correo"])->subject('Nuevo Contacto');
+                    $message->attach($pathToFile);
+                });
+            }else{
+                Mail::send('emails.contactuser', $data, function($message) use($req){
+                    $message->from($req["correo"], 'Web Modular Top');
+                    $message->to($req["correo"])->subject('Nuevo Contacto');
+                });
+            }
 
             $result = array(
                 "success" => true,
@@ -82,7 +103,7 @@ class ContactController extends Controller
 
             $result = array(
                 "success" => false,
-                "message" => "Hubo un error en la operación, por favor intente de nuevo. Muchas gracias!"
+                "message" => "Hubo un error en la operación, por favor intente de nuevo. Muchas gracias!" . $th
             );
         }
             

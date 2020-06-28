@@ -24,7 +24,7 @@
 
     <link rel="stylesheet" href="{{ asset('css/aos.css')}}">
 
-    <link rel="stylesheet" href="{{ asset('css/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/style.css')}}?v={{ env('APP_VERSION', '1') }}">
 
     <!--Bloque incorporado para carrusel fabricacion-->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/elastislide.css')}}" />
@@ -67,9 +67,9 @@
             
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                 <li><a href="{{ route('welcome') }}" class="nav-link">Inicio</a></li>
-                <li><a href="{{ route('welcome')}}#howitworks-section" class="nav-link">Materia Prima</a></li>
-                <li><a href="{{ route('welcome')}}#about-section" class="nav-link {{ (Request::is('contact/tellus')) ? 'active' : ''}}">Fabricacion</a></li>
-                <li><a href="{{ route('welcome')}}#services-section" class="nav-link">Servicios</a></li>
+                <li><a href="{{ route('welcome')}}#howitworks-section" class="nav-link" >Materia Prima</a></li>
+                <li><a href="{{ route('welcome')}}#about-section" class="nav-link {{ (Request::is('contact/tellus')) ? 'active' : ''}}" >Fabricacion</a></li>
+                <li><a href="{{ route('welcome')}}#services-section" class="nav-link" >Servicios</a></li>
                 <li><a href="{{ url('/modulartop') }}" class="nav-link">Modular Top</a></li>
                 <li><a href="{{ url('/novedades') }}" class="nav-link">Novedades</a></li>
                 <li><a href="{{ route('welcome')}}#contact-section" class="nav-link">Contactanos</a></li>
@@ -104,7 +104,7 @@
   <script src="{{ asset('js/jquery.fancybox.min.js')}}"></script>
   <script src="{{ asset('js/jquery.sticky.js')}}"></script>
   
-  <script src="{{ asset('js/main.js')}}"></script>
+  <script src="{{ asset('js/main.js')}}?v={{ env('APP_VERSION', '1') }}"></script>
   
   @yield('content')
 
@@ -205,6 +205,6 @@
 		<script type="text/javascript">
 			
 			$( '#carousel' ).elastislide();
-			
+      
 		</script>
   <!-- fin del bloque fabricacion -->  

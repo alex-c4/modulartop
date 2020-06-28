@@ -48,6 +48,16 @@ return [
             'root' => public_path('images'),
         ],
 
+        'newsletter' => [
+            'driver' => 'local',
+            'root' => public_path('images'),
+        ],
+
+        'filesContact' => [
+            'driver' => 'local',
+            'root' => public_path('filesContact'),
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
