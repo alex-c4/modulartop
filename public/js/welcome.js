@@ -4,6 +4,7 @@ $( document ).ready(function() {
     $('#alertContact').hide();
     $('#msgcontact').hide();
     $('#divMessageNews').hide();
+    $('#alertContact2').hide();
 });
 
 $("#btnShowContact").click(function(){
@@ -13,12 +14,49 @@ $("#btnShowContact").click(function(){
 
 });
 
+$('#form_send_contact').submit(function(){
+        
+    $('#button-addon2').text("Enviando...");
+    $('#button-addon2').attr("disabled", true);
+
+    var _route = $(this).attr('action');
+    var _token = $("#token").val();
+    var _data = $(this).serialize();
+
+    sendForm_contact(_route, _token, _data, "contact");
+
+    return false;
+});
+
 $('#form_send_contact_info').submit(function(){
     blockButton();
 
     var _route = $(this).attr('action');
     var _token = $("#token").val();
     var _data = $(this).serialize();
+
+    debugger
+    if($('#fname').val() == ""){
+        $('#fname').select();
+        enableButton();
+        return false;
+    }else if($('#lname').val() == ""){
+        $('#lname').select();
+        enableButton();
+        return false;
+    }else if(!regex.test($('#email').val().trim())){
+        $('#email').select();
+        enableButton();
+        return false;
+    }else if($('#subject').val() == ""){
+        $('#subject').select();
+        enableButton();
+        return false;
+    }else if($('#message').val() == ""){
+        $('#message').select();
+        enableButton();
+        return false;
+    }
 
     sendForm(_route, _token, _data, "contact");
 
@@ -46,29 +84,40 @@ $('#form_send_project').submit(function(e){
     return false;
 });
 
+var sendForm_contact = function(_route, _token, _data, _form_id){
+    $.ajax({
+        url: _route,
+        headers: { 'X-CSRF-TOKEN': _token },
+        type: 'POST',
+        data: _data
+    })
+    .done(function(data, textStatus, jqXHR){
+        if(data.success){
+            $("#emailnews").val("");
+
+            $('#divMessage2').html(data.message);
+            $('#alertContact2').slideDown();
+
+            $('#button-addon2').text("Enviar");
+            $('#button-addon2').attr("disabled", false);
+        }else{
+          showAlert(data.message);
+          clearForm();
+          console.log(data.exeption);
+          $('#button-addon2').text("Enviar");
+          $('#button-addon2').attr("disabled", false);
+        }
+        
+    })
+    .fail(function(jqXHR, textStatus, errorThrown ){   
+             
+        console.log(jqXHR.responseJSON.errors);
+        showAlert("Hubo un error en la operación, por favor intente de nuevo. Muchas gracias!");
+        enableButton();
+    })
+};
 var sendForm = function(_route, _token, _data, _form_id){
     
-    if($('#fname').val() == ""){
-        $('#fname').select();
-        enableButton();
-        return false;
-    }else if($('#lname').val() == ""){
-        $('#lname').select();
-        enableButton();
-        return false;
-    }else if(!regex.test($('#email').val().trim())){
-        $('#email').select();
-        enableButton();
-        return false;
-    }else if($('#subject').val() == ""){
-        $('#subject').select();
-        enableButton();
-        return false;
-    }else if($('#message').val() == ""){
-        $('#message').select();
-        enableButton();
-        return false;
-      }
     
     $.ajax({
         url: _route,
@@ -176,22 +225,22 @@ var enableButton = function(){
 }
 
 // Newsletter
-$('#form_send_newsletter').submit(function(){
-    var _route = $(this).attr('action');
-    var _token = $("#token").val();
-    var _data = $(this).serialize();
+// $('#form_send_newsletter').submit(function(){
+//     var _route = $(this).attr('action');
+//     var _token = $("#token").val();
+//     var _data = $(this).serialize();
 
-    sendFormNewsletter(_route, _token, _data, "contact");
+//     sendFormNewsletter(_route, _token, _data, "contact");
 
-    return false;
-});
+//     return false;
+// });
 
-var sendFormNewsletter = function(_route, _token, _data, _form_id){
-    if(!regex.test($('#emailnews').val().trim())){
-        $('#emailemailnews').select();
-        enableButton();
-        return false;
-    }
+var sendFormNewsletter = function(_route, _token, _data, _form_id){debugger
+    // if(!regex.test($('#emailnews').val().trim())){
+    //     $('#emailemailnews').select();
+    //     enableButton();
+    //     return false;
+    // }
 
     $.ajax({
         url: _route,
