@@ -152,11 +152,11 @@ class NewsletterController extends Controller
         $newsletter->tags = $request->input('tags');
 
         if($file != null){
-            // Storage::delete('newsletters/'. $request->input('hname_img'));
-            Storage::disk('local')->delete('newsletters/'. $request->input('hname_img'));
+            Storage::delete('newsletters/'. $request->input('hname_img'));
+            // Storage::disk('newsletter')->delete('newsletters/'. $request->input('hname_img'));
             
-            // Storage::putFileAs('newsletters/', $file, $fileName);
-            Storage::disk('local')->put('newsletters/', $file, $fileName);
+            Storage::putFileAs('newsletters/', $file, $fileName);
+            // Storage::disk('newsletter')->put('newsletters/', $file, $fileName);
 
             $newsletter->name_img = $fileName;
         }

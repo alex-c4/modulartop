@@ -32,7 +32,7 @@
 
         <div class="row">
             <div class="col-md-12 mb-5">
-                <form action="{{ route('newsletter.update', $newsletter->id) }}" method="post" class="p-5 bg-white" id="form_send_newsletter" enctype="multipart/form-data">
+                <form action="{{ route('newsletter.update', $newsletter->id) }}" method="post" class="p-5 bg-white" id="form_send_newsletter_edit" enctype="multipart/form-data">
                     {{ method_field('PUT') }}
                     {{csrf_field()}}
 
