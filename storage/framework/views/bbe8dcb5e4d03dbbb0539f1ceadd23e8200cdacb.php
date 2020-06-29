@@ -30,7 +30,7 @@
 
         <div class="row">
             <div class="col-md-12 mb-5">
-                <form action="<?php echo e(route('newsletter.store')); ?>" method="post" class="p-5 bg-white" id="form_send_newsletter" enctype="multipart/form-data">
+                <form action="<?php echo e(route('newsletter.store')); ?>" method="post" class="p-5 bg-white" id="form_send_newsletter_create" enctype="multipart/form-data">
                     <?php echo e(csrf_field()); ?>
 
 

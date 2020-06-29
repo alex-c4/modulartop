@@ -31,9 +31,9 @@ mundial para casas, hoteles, oficinas, restaurantes y tiendas comerciales." />
         <div class="row">
           <div class="col-lg-7">
             <div class="owl-carousel slide-one-item with-dots">
-              <div><img src="images/fabricacion/fabricacion-cocina-1.jpg" alt="Image" class="img-fluid"></div>
-              <div><img src="images/fabricacion/fabricacion-cocina-2.jpg" alt="Image" class="img-fluid"></div>
-              <div><img src="images/fabricacion/fabricacion-habitacion-1.jpg" alt="Image" class="img-fluid"></div>
+              <div><img src="images/fabricacion/fabricacion-cocina-1.jpg" alt="Asesoría y desarrollo de proyectos de fabricación de mobiliarios para cocina, diseño, interiores, arquitectura, ingeniería civil, construcción, hoteles, restaurantes" class="img-fluid"></div>
+              <div><img src="images/fabricacion/fabricacion-cocina-2.jpg" alt="Asesoría y desarrollo de proyectos de fabricación de mobiliarios para cocina, diseño, interiores, arquitectura, ingeniería civil, construcción, hoteles, restaurantes" class="img-fluid"></div>
+              <div><img src="images/fabricacion/fabricacion-habitacion-1.jpg" alt="Asesoría y desarrollo de proyectos de fabricación de mobiliarios para habitaciones, diseño, interiores, arquitectura, ingeniería civil, construcción, hoteles, restaurantes" class="img-fluid"></div>
             </div>
           </div>
           <div class="col-lg-5 pl-lg-5 ml-auto">

@@ -1,6 +1,17 @@
+<?php $__env->startSection('meta'); ?> 
+<title>Novedades - Modular Top</title> 
+<meta name="description" 
+content="Noticias y contenido de valor con todo lo relacionado a diseño de interiores, tipos de 
+muebles, historia, servicios de madera y fabricación de mueblería." />
+
+<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5efa285e4b89f600120fcd12&product=image-share-buttons&cms=website' 
+async='async'></script>
+
+<?php $__env->stopSection(); ?>
+
 <?php $__env->startSection('content'); ?>
 
-<div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(images/novedades/newsletter-novedades.jpg);" data-aos="fade">
+<div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(<?php echo e(asset('images/novedades/newsletter-novedades.jpg')); ?>);" data-aos="fade">
       <div class="container">
         <div class="row align-items-center justify-content-center">
           <div class="col-md-5 mx-auto mt-lg-5 text-center">
@@ -22,23 +33,26 @@
        
           <div class="col-md-8 blog-content">
           <div class="vcard bio">
-                    <img src="images/blog/blog-1.jpg" alt="Image placeholder">
+                    <img src="<?php echo e(asset('images/newsletters/'.$newsletter->name_img)); ?>" alt="Image placeholder">
                   </div>
-            <p class="lead"><br>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda nihil aspernatur nemo sunt, qui, harum repudiandae quisquam eaque dolore itaque quod tenetur quo quos labore?</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae expedita cumque necessitatibus ducimus debitis totam, quasi praesentium eveniet tempore possimus illo esse, facilis? Corrupti possimus quae ipsa pariatur cumque, accusantium tenetur voluptatibus incidunt reprehenderit, quidem repellat sapiente, id, earum obcaecati.</p>
+            <p class="lead">
+              <br>
+              <!-- Botonera compartir redes sociales -->
+              <div class="sharethis-inline-share-buttons"></div>
+              <?php echo e($newsletter->title); ?>
 
-            <blockquote><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident vero tempora aliquam excepturi labore, ad soluta voluptate necessitatibus. Nulla error beatae, quam, facilis suscipit quaerat aperiam minima eveniet quis placeat.</p></blockquote>
+            </p>
+            
+              
+                <blockquote>
+                  <p>
+                    <?php echo $newsletter->content; ?>
 
-            <p>Eveniet deleniti accusantium nulla natus nobis nam asperiores ipsa minima laudantium vero cumque cupiditate ipsum ratione dicta, expedita quae, officiis provident harum nisi! Esse eligendi ab molestias, quod nostrum hic saepe repudiandae non. Suscipit reiciendis tempora ut, saepe temporibus nemo.</p>
-            <p>Accusamus, temporibus, ullam. Voluptate consectetur laborum totam sunt culpa repellat, dolore voluptas. Quaerat cum ducimus aut distinctio sit, facilis corporis ab vel alias, voluptas aliquam, expedita molestias quisquam sequi eligendi nobis ea error omnis consequatur iste deleniti illum, dolorum odit.</p>
-            <p>In adipisci corporis at delectus! Cupiditate, voluptas, in architecto odit id error reprehenderit quam quibusdam excepturi distinctio dicta laborum deserunt qui labore dignissimos necessitatibus reiciendis tenetur corporis quas explicabo exercitationem suscipit. Nisi quo nulla, nihil harum obcaecati vel atque quos.</p>
-            <p>Amet sint explicabo maxime accusantium qui dicta enim quia, nostrum id libero voluptates quae suscipit dolor quam tenetur dolores inventore illo laborum, corporis non ex, debitis quidem obcaecati! Praesentium maiores illo atque error! Earum, et, fugit. Sint, delectus molestiae. Totam.</p>
+                  </p>
+                </blockquote>
 
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa iste, repudiandae facere aperiam sapiente, officia delectus soluta molestiae nihil corporis animi quos ratione qui labore? Sint eaque perspiciatis minus illum.</p>
-            <p>Consectetur porro odio quod iure quaerat cupiditate similique, dolor reprehenderit molestias provident, esse dolorum omnis architecto magni amet corrupti neque ratione sunt beatae perspiciatis? Iste pariatur omnis sed ut itaque.</p>
-            <p>Id similique, rem ipsam accusantium iusto dolores sit velit ex quas ea atque, molestiae. Sint, sed. Quisquam, suscipit! Quisquam quibusdam maiores fugiat eligendi eius consequuntur, molestiae saepe commodi expedita nemo!</p>
             <div class="pt-5">
-              <p>Categories:  <a href="#">Design</a>, <a href="#">Events</a>  Tags: <a href="#">#html</a>, <a href="#">#trends</a></p>
+              <p>Categories:  <a href="#"><?php echo e($newsletter->category); ?></a> <!-- Tags: <?php $__currentLoopData = $tags_array; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tag): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> <a href="#"><?php echo e($tag); ?></a><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?></p> -->
             </div>
     
                          
@@ -49,11 +63,9 @@
             <div class="sidebar-box">
               <div class="categories">
                 <h3>Categories</h3>
-                <li><a href="#">Creatives <span>(12)</span></a></li>
-                <li><a href="#">News <span>(22)</span></a></li>
-                <li><a href="#">Design <span>(37)</span></a></li>
-                <li><a href="#">HTML <span>(42)</span></a></li>
-                <li><a href="#">Web Development <span>(14)</span></a></li>
+                <?php $__currentLoopData = $categoryList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cat): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <li><a href="<?php echo e(route('novedades', $cat->id)); ?>"><?php echo e($cat->name); ?> <span>(<?php echo e($cat->cant); ?>)</span></a></li>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
               </div>
             </div>
             <div class="sidebar-box">
@@ -64,51 +76,26 @@
               -->
               <div class="recent-post" id="post1">
                         <h3 class="text-black">POST RECIENTES</h3>
+                        <?php $__currentLoopData = $newsletter_top3; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $news): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <div class="single-recent-post">
                                 <div class="recent-pic">
-                                    <img src="images/blog/blog-1.jpg" alt="">
+                                    <img src="<?php echo e(asset('images/newsletters/'.$news->name_img)); ?>" alt="">
                                 </div>
                                 <div class="recent-text">
 
-                                <h5 class="font-size-regular"><a href="<?php echo e(url('/post')); ?>"><br>En marzo 2020 comienza feria del mueble CCCT</a></h5>
-                                  <div class="meta mb-4">Bryan 
-                                    <span class="mx-2">&bullet;</span> Jan 18, 2020
+                                  <h5 class="font-size-regular"><a href="<?php echo e(route('show', $news->id)); ?>"><br><?php echo e($news->title); ?></a></h5>
+                                  <div class="meta mb-4"><!-- <?php echo e($news->author); ?>  -->
+                                    <span class="mx-2">&bullet;</span> <?php echo e(explode(' ', $news->created_at)[0]); ?>
+
                                     <span class="mx-2">&bullet;</span> 
-                                    <a href="<?php echo e(url('/post')); ?>">Leer</a>
+                                    <a href="<?php echo e(route('show', $news->id)); ?>">Leer</a>
                                   </div>
-                                   
                                                                  
                                 </div>
                             </div>
-                            <div class="single-recent-post">
-                                <div class="recent-pic">
-                                    <img src="images/blog/blog-2.jpg" alt="">
-                                </div>
-                                <div class="recent-text">
-                                <h5 class="font-size-regular"><a href="<?php echo e(url('/post')); ?>"><br>Llegaron los ultimos modelos de mobiliareio para el hogar.</a></h5>
-                                  <div class="meta mb-4">Bryan 
-                                    <span class="mx-2">&bullet;</span> Jan 18, 2020
-                                    <span class="mx-2">&bullet;</span> 
-                                    <a href="<?php echo e(url('/post')); ?>">Leer</a>
-                                  </div>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            
 
-
-                                </div>
-                            </div>
-                            <div class="single-recent-post">
-                                <div class="recent-pic">
-                                    <img src="images/blog/blog-3.jpg" alt="">
-                                </div>
-                                <div class="recent-text">
-                                   <h5 class="font-size-regular"><a href="<?php echo e(url('/post')); ?>"><br>Vive la expericna de los modulares para oficnas</a></h5>
-                                  <div class="meta mb-4">Bryan 
-                                    <span class="mx-2">&bullet;</span> Jan 18, 2020
-                                    <span class="mx-2">&bullet;</span> 
-                                    <a href="<?php echo e(url('/post')); ?>">Leer</a>
-                                  </div>
-
-                                </div>
-                            </div>
                         </div>
             </div>
 
