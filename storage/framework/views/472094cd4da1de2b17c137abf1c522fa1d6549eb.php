@@ -146,13 +146,14 @@
               <div class="input-group mb-3">
                 <input id="emailnews" name="emailnews" type="text" class="form-control border-secondary text-white bg-transparent" placeholder="Ingrese su Email" aria-label="Enter Email" aria-describedby="button-addon2">
                 <div class="input-group-append">
-                  <button class="btn btn-primary" type="submit" id="button-addon2">Enviar</button>
+                  <button class="btn btn-primary" type="submit" id="button-addon2" name="button-addon2">Enviar</button>
                 </div>
               </div>
 
-              <div class="alert alert-dark" role="alert" id="divMessageNews">
-                Registro saisfactorio
-              </div>
+              <div class="alert alert-success" role="alert" id="alertContact2">
+                  <label id="divMessage2" class="text-black"></label> 
+                  
+                </div>
               
             </form>
           </div>
