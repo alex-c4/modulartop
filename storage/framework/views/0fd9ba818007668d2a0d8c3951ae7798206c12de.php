@@ -31,9 +31,14 @@
                             <h3>Newsletters</h3>
                             <p>Novedades y noticias</p>
                             <p>
+                            
+                            <?php if(auth()->user()->hasRoles('Administrator') || auth()->user()->hasRoles('Newsletter')): ?> 
                                 <a href="<?php echo e(route('newsletter.create')); ?>"><span class="icon-plus"></span></a>
                                 &nbsp;
                                 <a href="<?php echo e(route('newsletter.index')); ?>"><span class="icon-list"></span></a>
+                                &nbsp;
+                            <?php endif; ?>
+                                <a href="<?php echo e(route('novedades')); ?>"><span class="icon-th-large"></span></a>
                             </p>
                         </div>
                     </div>

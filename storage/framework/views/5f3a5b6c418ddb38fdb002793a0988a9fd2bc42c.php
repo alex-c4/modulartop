@@ -7,7 +7,7 @@ muebles, historia, servicios de madera y fabricación de mueblería." />
 
 <?php $__env->startSection('content'); ?>
 
-    <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(images/novedades/newsletter-novedades.jpg);" data-aos="fade">
+    <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(<?php echo e(asset('images/novedades/newsletter-novedades.jpg')); ?>);" data-aos="fade">
       <div class="container">
         <div class="row align-items-center justify-content-center">
           <div class="col-md-5 mx-auto mt-lg-5 text-center">
@@ -31,15 +31,13 @@ muebles, historia, servicios de madera y fabricación de mueblería." />
                         <div class="sidebar-box">
                             <div class="categories">
                                 <h3><br>Categorias</h3>
-                                <li><a href="#">Noticias <span>(12)</span></a></li>
-                                <li><a href="#">Eventos <span>(22)</span></a></li>
-                                <li><a href="#">Moda <span>(37)</span></a></li>
-                                <li><a href="#">Mobiliarios <span>(42)</span></a></li>
-                               
+                                <?php $__currentLoopData = $categoryList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cat): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <li><a href="<?php echo e(route('novedades', $cat->id)); ?>"><?php echo e($cat->name); ?> <span>(<?php echo e($cat->cant); ?>)</span></a></li>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </div>
                         </div>
                         
-                        <div class="tags-item">
+                        <!-- <div class="tags-item">
                             <h4>Tags</h4>
                             <div class="tag-links">
                                 <a href="#">Tableros</a>
@@ -49,7 +47,7 @@ muebles, historia, servicios de madera y fabricación de mueblería." />
                                 <a href="#">Routeado</a>
                                 <a href="#">Pantografiado</a>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="col-lg-8 order-1 order-lg-2">
@@ -67,13 +65,14 @@ muebles, historia, servicios de madera y fabricación de mueblería." />
                                     <div class="blog-info">
                                     <img src="images/clock.png" alt="">
                                         <span><?php echo e(explode(' ', $newsletter->created_at)[0]); ?></span><span class="mx-2">&bullet;
-                                        </span><i class="lnr lnr-user"></i> <?php echo e($newsletter->username); ?>
-
+                                        <!-- </span><i class="lnr lnr-user"></i> Author Name -->
                                     </div>
                                    
                                 </div>
-                                <p><?php echo e(substr($newsletter->content, 0, 230)); ?> ...</p>
-                                    <p><a href="<?php echo e(route('show', $newsletter->id)); ?>" class="btn btn-primary btn-sm">Leer más</a></p>
+                                
+                                <p>
+                                    <a href="<?php echo e(route('show', $newsletter->id)); ?>" class="btn btn-primary btn-sm">Leer más</a>
+                                </p>
                             </div>
                         </div>
 

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
   <head>
-    <!-- <title>Modular Top</title> -->
+     <!-- Isotipo Modular Top Favicons -->
+    <link href="<?php echo e(asset('images/modulartop.ico')); ?>" rel="icon">
     <?php echo $__env->yieldContent('meta'); ?>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -24,7 +25,7 @@
 
     <link rel="stylesheet" href="<?php echo e(asset('css/aos.css')); ?>">
 
-    <link rel="stylesheet" href="<?php echo e(asset('css/style.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('css/style.css')); ?>?v=<?php echo e(env('APP_VERSION', '1')); ?>">
 
     <!--Bloque incorporado para carrusel fabricacion-->
     <link rel="stylesheet" type="text/css" href="<?php echo e(asset('css/elastislide.css')); ?>" />
@@ -67,9 +68,9 @@
             
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                 <li><a href="<?php echo e(route('welcome')); ?>" class="nav-link">Inicio</a></li>
-                <li><a href="<?php echo e(route('welcome')); ?>#howitworks-section" class="nav-link">Materia Prima</a></li>
-                <li><a href="<?php echo e(route('welcome')); ?>#about-section" class="nav-link <?php echo e((Request::is('contact/tellus')) ? 'active' : ''); ?>">Fabricacion</a></li>
-                <li><a href="<?php echo e(route('welcome')); ?>#services-section" class="nav-link">Servicios</a></li>
+                <li><a href="<?php echo e(route('welcome')); ?>#howitworks-section" class="nav-link" >Materia Prima</a></li>
+                <li><a href="<?php echo e(route('welcome')); ?>#about-section" class="nav-link <?php echo e((Request::is('contact/tellus')) ? 'active' : ''); ?>" >Fabricacion</a></li>
+                <li><a href="<?php echo e(route('welcome')); ?>#services-section" class="nav-link" >Servicios</a></li>
                 <li><a href="<?php echo e(url('/modulartop')); ?>" class="nav-link">Modular Top</a></li>
                 <li><a href="<?php echo e(url('/novedades')); ?>" class="nav-link">Novedades</a></li>
                 <li><a href="<?php echo e(route('welcome')); ?>#contact-section" class="nav-link">Contactanos</a></li>
@@ -104,7 +105,7 @@
   <script src="<?php echo e(asset('js/jquery.fancybox.min.js')); ?>"></script>
   <script src="<?php echo e(asset('js/jquery.sticky.js')); ?>"></script>
   
-  <script src="<?php echo e(asset('js/main.js')); ?>"></script>
+  <script src="<?php echo e(asset('js/main.js')); ?>?v=<?php echo e(env('APP_VERSION', '1')); ?>"></script>
   
   <?php echo $__env->yieldContent('content'); ?>
 
@@ -206,6 +207,6 @@
 		<script type="text/javascript">
 			
 			$( '#carousel' ).elastislide();
-			
+      
 		</script>
   <!-- fin del bloque fabricacion -->  <?php /**PATH C:\xampp\htdocs\modulartop\modulartop\resources\views/layouts/layout.blade.php ENDPATH**/ ?>
