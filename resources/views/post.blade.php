@@ -42,6 +42,7 @@ async='async'></script>
               <br>
               <!-- Botonera compartir redes sociales -->
               <div class="sharethis-inline-share-buttons"></div>
+              
               {{ $newsletter->title }}
             </p>
             
