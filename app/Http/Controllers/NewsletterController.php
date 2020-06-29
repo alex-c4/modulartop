@@ -63,6 +63,7 @@ class NewsletterController extends Controller
 
         $newsletter = Newsletter::create([
             'title' => $request->input('title'),
+            'summary' => $request->input('summary'),
             'content' => $request->input('content'),
             'user_id' => $user_id,
             'category_id' => $request->input('category'),
@@ -90,7 +91,7 @@ class NewsletterController extends Controller
         $newsletter = DB::table('newsletters')
                         ->join('categories', 'newsletters.category_id', '=', 'categories.id','inner', false)
                         ->join('users', 'users.id', '=', 'newsletters.user_id','inner', false)
-                        ->select('newsletters.id', 'newsletters.title', 'newsletters.content', 'newsletters.tags', 'newsletters.name_img', 'newsletters.created_at', 'users.name as author', 'categories.name as category')
+                        ->select('newsletters.id', 'newsletters.title', 'newsletters.content', 'newsletters.tags', 'newsletters.name_img', 'newsletters.created_at', 'users.name as author', 'categories.id as category_id', 'categories.name as category')
                         ->where('newsletters.id', $id)
                         ->first();
 
@@ -147,6 +148,7 @@ class NewsletterController extends Controller
 
         $newsletter = Newsletter::where('id', $id)->first();
         $newsletter->title = $request->input('title');
+        $newsletter->summary = $request->input('summary');
         $newsletter->content = $request->input('content');
         $newsletter->category_id = $request->input('category');
         $newsletter->tags = $request->input('tags');

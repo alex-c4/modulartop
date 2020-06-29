@@ -56,9 +56,11 @@
         <div class="row align-items-center">
           
           <div class="col-6 col-xl-2">
-            <h1 class="mb-0 site-logo m-0 p-0">
-              <a href="{{ route('welcome') }}" class="mb-0" style="color:transparent" >Modular Top</a>
-            </h1>
+            <!-- <h1 class="mb-0 m-0 p-0">
+              </h1> -->
+              <div class="mb-0 m-0 p-0 site-logo" style="width: 190px;">
+                <a href="{{ route('welcome') }}" class="mb-0" style="color:transparent" >Modular Top</a>
+              </div>
            
           </div>
   

@@ -54,7 +54,7 @@ async='async'></script>
                 </blockquote>
 
             <div class="pt-5">
-              <p>Categories:  <a href="#">{{ $newsletter->category }}</a> <!-- Tags: @foreach($tags_array as $tag) <a href="#">{{$tag}}</a>@endforeach</p> -->
+              <p>Categorias:  <a href="{{ route('novedades', $newsletter->category_id) }}">{{ $newsletter->category }}</a> <!-- Tags: @foreach($tags_array as $tag) <a href="#">{{$tag}}</a>@endforeach</p> -->
             </div>
     
                          
@@ -64,7 +64,7 @@ async='async'></script>
            
             <div class="sidebar-box">
               <div class="categories">
-                <h3>Categories</h3>
+                <h3>Categorias</h3>
                 @foreach($categoryList as $cat)
                     <li><a href="{{ route('novedades', $cat->id) }}">{{ $cat->name }} <span>({{ $cat->cant }})</span></a></li>
                 @endforeach
