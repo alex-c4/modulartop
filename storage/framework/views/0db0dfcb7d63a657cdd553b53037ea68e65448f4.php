@@ -95,12 +95,16 @@ unset($__errorArgs, $__bag); ?>
                                 </div>
                             </div> -->
 
-                            <div class="form-group row mb-0">
-                                <div class="col-md-8 offset-md-4">
+                            <div class="form-group row mb-0 text-center">
+                                <div class="col-12">
                                     <button type="submit" class="btn btn-primary">
                                         <?php echo e(__('Login')); ?>
 
                                     </button>
+
+
+                                </div>
+                                <div class="col-12">
 
                                     <?php if(Route::has('password.request')): ?>
                                         <a class="btn btn-link" href="<?php echo e(route('password.request')); ?>">
@@ -108,22 +112,15 @@ unset($__errorArgs, $__bag); ?>
                                         </a>
                                     <?php endif; ?>
 
+                                    <a class="btn btn-link" href="<?php echo e(route('register')); ?>">
+                                        Registrarse
+                                    </a>
+
                                 </div>
+
                             </div>
 
-                            <?php if(Route::has('password.request')): ?>
-                                <div class="form-group row">
-                                    <div class="col-md-6 text-center">
-                                        &nbsp;
-                                    </div>
-                                    <div class="col-md-6 text-center">
-                                        <a class="btn btn-primary" href="<?php echo e(route('register')); ?>">
-                                            Registrarse
-                                        </a>
-                                    </div>
-
-                                </div>
-                            <?php endif; ?>
+                            
 
 
 

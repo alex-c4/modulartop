@@ -1,5 +1,9 @@
 <?php $__env->startSection('content'); ?>
 
+<link rel="stylesheet" href="<?php echo e(asset('js/sceditor/minified/themes/square.min.css')); ?>" id="theme-style" />
+<script src="<?php echo e(asset('js/sceditor/minified/sceditor.min.js?v=4')); ?> "></script>
+<script src="<?php echo e(asset('js/sceditor/minified/icons/monocons.js')); ?> "></script>
+<script src="<?php echo e(asset('js/sceditor/minified/formats/xhtml.js')); ?> "></script>
 
 <div class="site-block-wrap">
     <div class="owl-carousel with-dots">
@@ -42,7 +46,7 @@
                     <div class="row form-group">
                         <div class="col-md-12">
                             <label class="text-black" for="content">Contenido</label> 
-                            <textarea id="content" name="content" cols="30" rows="7" class="form-control" placeholder="Escriba su nota aqui..."></textarea>
+                            <textarea id="content" name="content" rows="7" style="height:300px; width: 100%;" class="form-control"></textarea>
                         </div>
                     </div>
 
@@ -65,6 +69,7 @@
                         </div>
                     </div>
 
+                    <!-- Image -->
                     <div class="row form-group">
                         <div class="col-md-12">
                             <label for="name_img">Imagen</label>
@@ -92,6 +97,13 @@
     //     return false;
     // }
 // });
+
+    var textarea = document.getElementById('content');
+    sceditor.create(textarea, {
+        format: 'xhtml',
+        icons: 'material',
+        style: '<?php echo e(asset("js/sceditor/minified/themes/content/square.min.css")); ?>'
+    });
 
 </script>
 <?php $__env->stopSection(); ?>
