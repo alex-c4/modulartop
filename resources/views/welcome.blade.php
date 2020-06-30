@@ -1,10 +1,11 @@
 @extends('layouts.layout')
 
 @section('meta') 
-<title>¡Bienvenido a Modular Top! - Lider de la industria mobiliaria</title> 
+<title>Venta de Muebles y Servicio - Tableros Melamínicos - Modular Top</title> 
 <meta name="description" 
 content="Comercializadora de Tableros Melaminicos, especialistas en la fabricación de muebles y 
 servicios de madera con maquinarias de última generación en Caracas, Venezuela." />
+
 <meta name="keywords" content="Modular Top, tableros melaminicos, fabricacion de mobiliario, maquinaria cnc, 
 seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
 @endsection
@@ -171,7 +172,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
       <div class="container">
         <div class="row mb-5 justify-content-center">
           <div class="col-md-7 text-center">
-            <h2 class="section-title mb-3 text-white">SOMOS REPRESENTES EXCLUSIVOS EN VENEZUELA DE LAS MARCAS</h2>
+            <h2 class="section-title mb-3 text-white">SOMOS REPRESENTANTES EXCLUSIVOS EN VENEZUELA DE LAS MARCAS</h2>
           </div>
         </div>
         <div class="row">

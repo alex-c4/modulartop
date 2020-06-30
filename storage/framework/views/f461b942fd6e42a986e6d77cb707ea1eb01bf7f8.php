@@ -1,4 +1,12 @@
 <?php $__env->startSection('meta'); ?>
+<!-- META DATA DE REDES SOCIALES -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="<?php echo e($newsletter->title); ?>" />
+<meta property="og:description" content="<?php echo e($newsletter->summary); ?>" />
+<meta property="og:image" content="<?php echo e(asset('images/newsletters/'.$newsletter->name_img)); ?>" />
+<!-- <meta property="og:url" content="ENLACE PERMANENTE" /> -->
+<meta property="og:site_name" content="MODULAR TOP" />
+
 <title>Novedades - Modular Top</title> 
 <meta name="description" 
 content="Noticias y contenido de valor con todo lo relacionado a diseño de interiores, tipos de 
@@ -9,14 +17,8 @@ muebles, historia, servicios de madera y fabricación de mueblería." />
 <meta name="description" 
 content="<?php echo e($newsletter->summary); ?>" />
  -->
+
  
-<!-- META DATA DE REDES SOCIALES -->
-<meta property="og:type" content="article" />
-<meta property="og:title" content="<?php echo e($newsletter->title); ?>" />
-<meta property="og:description" content="<?php echo e($newsletter->summary); ?>" />
-<meta property="og:image" content="<?php echo e(asset('images/newsletters/'.$newsletter->name_img)); ?>" />
-<!-- <meta property="og:url" content="ENLACE PERMANENTE" /> -->
-<meta property="og:site_name" content="MODULAR TOP" /> 
 
 <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5efa285e4b89f600120fcd12&product=inline-share-buttons&cms=website' 
 async='async'></script>
