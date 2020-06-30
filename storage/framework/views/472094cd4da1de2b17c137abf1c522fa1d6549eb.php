@@ -162,10 +162,10 @@
           
           <div class="">
             <h2 class="footer-heading mb-4">Siguenos</h2>
-            <a href="#" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
-            <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
-            <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
-            <a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
+            <a href="https://www.facebook.com/modular.top.7" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
+            <a href="https://twitter.com/ModularTop?lang=es" target="_blank" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
+            <a href="https://www.instagram.com/modular_top" target="_blank" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
+            <a href="https://www.youtube.com/channel/UC7LbswJwcC3uWFhOOTS1N2A" target="_blank" class="pl-3 pr-3"><span class="icon-youtube"></span></a>
           </div>
 
         </div>

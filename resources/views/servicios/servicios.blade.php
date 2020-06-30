@@ -3,8 +3,8 @@
 @section('meta') 
 <title>Servicios - Modular Top</title> 
 <meta name="description" 
-content="Maquinaria de alta tecnología para fabricantes de madera en Caracas, Venezuela. Corte,
-pegado de canto, mecanizado de tableros y prensado de láminas." />
+content="Ofrecemos tableros melaminicos, fabricación de mobiliario, maquinaria CNC, mecanizado
+de madera, prensado MDP, enchapado de tapa de cantos y más. Fabricamos tus sueños." />
 
 @endsection
 

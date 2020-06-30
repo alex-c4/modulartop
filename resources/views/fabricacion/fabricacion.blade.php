@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('meta') 
-<title>Fabricación de mobiliarios - Modular Top</title> 
+<title>Venta de Muebles - Fabricación - Modular Top</title> 
 <meta name="description" 
 content="Los muebles que sueñas fabricados en Caracas, Venezuela. Mobiliarios de tendencia
 mundial para casas, hoteles, oficinas, restaurantes y tiendas comerciales." />
