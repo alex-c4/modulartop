@@ -99,6 +99,7 @@ class NewsletterController extends Controller
                         ->join('users', 'users.id', '=', 'newsletters.user_id','inner', false)
                         ->select('newsletters.id', 'newsletters.title', 'newsletters.name_img', 'newsletters.created_at', 'users.name as author', 'newsletters.summary')
                         ->where('newsletters.isDeleted', '0')
+                        ->orderby('newsletters.created_at', 'desc')
                         ->take(3)
                         ->get();
 
