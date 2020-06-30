@@ -1,10 +1,24 @@
 @extends('layouts.layout')
 
-@section('meta') 
+@section('meta')
 <title>Novedades - Modular Top</title> 
 <meta name="description" 
 content="Noticias y contenido de valor con todo lo relacionado a diseño de interiores, tipos de 
 muebles, historia, servicios de madera y fabricación de mueblería." />
+
+<!-- 
+<title>{{ $newsletter->title }}</title> 
+<meta name="description" 
+content="{{ $newsletter->summary }}" />
+ -->
+ 
+<!-- META DATA DE REDES SOCIALES -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="{{ $newsletter->title }}" />
+<meta property="og:description" content="{{ $newsletter->summary }}" />
+<meta property="og:image" content="{{ asset('images/newsletters/'.$newsletter->name_img) }}" />
+<!-- <meta property="og:url" content="ENLACE PERMANENTE" /> -->
+<meta property="og:site_name" content="MODULAR TOP" /> 
 
 <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5efa285e4b89f600120fcd12&product=inline-share-buttons&cms=website' 
 async='async'></script>
@@ -42,6 +56,7 @@ async='async'></script>
               <br>
               <!-- Botonera compartir redes sociales -->
               <div class="sharethis-inline-share-buttons"></div>
+              
               {{ $newsletter->title }}
             </p>
             

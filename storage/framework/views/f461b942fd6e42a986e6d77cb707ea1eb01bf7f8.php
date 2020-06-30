@@ -1,11 +1,26 @@
-<?php $__env->startSection('meta'); ?> 
+<?php $__env->startSection('meta'); ?>
 <title>Novedades - Modular Top</title> 
 <meta name="description" 
 content="Noticias y contenido de valor con todo lo relacionado a diseño de interiores, tipos de 
 muebles, historia, servicios de madera y fabricación de mueblería." />
 
-<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5efa285e4b89f600120fcd12&product=image-share-buttons&cms=website' 
+<!-- 
+<title><?php echo e($newsletter->title); ?></title> 
+<meta name="description" 
+content="<?php echo e($newsletter->summary); ?>" />
+ -->
+ 
+<!-- META DATA DE REDES SOCIALES -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="<?php echo e($newsletter->title); ?>" />
+<meta property="og:description" content="<?php echo e($newsletter->summary); ?>" />
+<meta property="og:image" content="<?php echo e(asset('images/newsletters/'.$newsletter->name_img)); ?>" />
+<!-- <meta property="og:url" content="ENLACE PERMANENTE" /> -->
+<meta property="og:site_name" content="MODULAR TOP" /> 
+
+<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5efa285e4b89f600120fcd12&product=inline-share-buttons&cms=website' 
 async='async'></script>
+
 
 <?php $__env->stopSection(); ?>
 
@@ -39,6 +54,7 @@ async='async'></script>
               <br>
               <!-- Botonera compartir redes sociales -->
               <div class="sharethis-inline-share-buttons"></div>
+              
               <?php echo e($newsletter->title); ?>
 
             </p>
@@ -52,7 +68,7 @@ async='async'></script>
                 </blockquote>
 
             <div class="pt-5">
-              <p>Categories:  <a href="#"><?php echo e($newsletter->category); ?></a> <!-- Tags: <?php $__currentLoopData = $tags_array; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tag): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> <a href="#"><?php echo e($tag); ?></a><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?></p> -->
+              <p>Categorias:  <a href="<?php echo e(route('novedades', $newsletter->category_id)); ?>"><?php echo e($newsletter->category); ?></a> <!-- Tags: <?php $__currentLoopData = $tags_array; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tag): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> <a href="#"><?php echo e($tag); ?></a><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?></p> -->
             </div>
     
                          
@@ -62,7 +78,7 @@ async='async'></script>
            
             <div class="sidebar-box">
               <div class="categories">
-                <h3>Categories</h3>
+                <h3>Categorias</h3>
                 <?php $__currentLoopData = $categoryList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cat): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <li><a href="<?php echo e(route('novedades', $cat->id)); ?>"><?php echo e($cat->name); ?> <span>(<?php echo e($cat->cant); ?>)</span></a></li>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

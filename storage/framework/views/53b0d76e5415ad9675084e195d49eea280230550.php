@@ -31,7 +31,8 @@ Tendencias, servicio personalizado y precios competitivos." />
           <div class="col-lg-6 mb-5">
 
               <div class="owl-carousel slide-one-item with-dots">
-                  <div><img src="images/modulartop/modulartop-equipo.jpg" alt="Image" class="img-fluid"></div>
+                  <div><img src="images/modulartop/modulartop-equipo.jpg" alt="Comercializadora de Tableros Melaminicos, 
+                  especialistas en la fabricación de muebles y servicios de madera con maquinarias de última generación en Caracas, Venezuela." class="img-fluid"></div>
                   
                 </div>
 

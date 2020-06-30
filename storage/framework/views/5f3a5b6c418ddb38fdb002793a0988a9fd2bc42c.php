@@ -71,8 +71,10 @@ muebles, historia, servicios de madera y fabricación de mueblería." />
                                 </div>
                                 
                                 <p>
-                                    <a href="<?php echo e(route('show', $newsletter->id)); ?>" class="btn btn-primary btn-sm">Leer más</a>
+                                    <?php echo e($newsletter->summary); ?>
+
                                 </p>
+                                <a href="<?php echo e(route('show', $newsletter->id)); ?>" class="btn btn-primary btn-sm">Leer más</a>
                             </div>
                         </div>
 
