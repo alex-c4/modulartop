@@ -73,7 +73,7 @@ muebles, historia, servicios de madera y fabricación de mueblería." />
                                 </div>
                                 
                                 <p>
-                                    {{ $newsletter->summary }}
+                                    {{ $newsletter->summary }}...
                                 </p>
                                 <a href="{{ route('show', $newsletter->id) }}" class="btn btn-primary btn-sm">Leer más</a>
                             </div>
