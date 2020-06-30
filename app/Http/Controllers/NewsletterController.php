@@ -91,13 +91,13 @@ class NewsletterController extends Controller
         $newsletter = DB::table('newsletters')
                         ->join('categories', 'newsletters.category_id', '=', 'categories.id','inner', false)
                         ->join('users', 'users.id', '=', 'newsletters.user_id','inner', false)
-                        ->select('newsletters.id', 'newsletters.title', 'newsletters.content', 'newsletters.tags', 'newsletters.name_img', 'newsletters.created_at', 'users.name as author', 'categories.id as category_id', 'categories.name as category')
+                        ->select('newsletters.id', 'newsletters.title', 'newsletters.content', 'newsletters.tags', 'newsletters.name_img', 'newsletters.created_at', 'users.name as author', 'categories.id as category_id', 'categories.name as category', 'newsletters.summary')
                         ->where('newsletters.id', $id)
                         ->first();
 
         $newsletter_top3 = DB::table('newsletters')
                         ->join('users', 'users.id', '=', 'newsletters.user_id','inner', false)
-                        ->select('newsletters.id', 'newsletters.title', 'newsletters.name_img', 'newsletters.created_at', 'users.name as author')
+                        ->select('newsletters.id', 'newsletters.title', 'newsletters.name_img', 'newsletters.created_at', 'users.name as author', 'newsletters.summary')
                         ->where('newsletters.isDeleted', '0')
                         ->take(3)
                         ->get();

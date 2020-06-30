@@ -42,6 +42,14 @@
                         </div>
                     </div>
 
+                    <!-- summary -->
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <label class="text-black" for="summary">Descripción</label> 
+                            <textarea maxlength="200" id="summary" name="summary" rows="2" class="form-control"></textarea>
+                        </div>
+                    </div>
+
                     <!-- contenido -->
                     <div class="row form-group">
                         <div class="col-md-12">
