@@ -743,7 +743,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
                 <p class="mb-0 font-weight-bold">Teléfono</p>
                 <p class="mb-4"><a href="#">+58 (0212)-2322354 </a></p>
                 
-                <a href="https://api.whatsapp.com/send?phone=+58 04168089578">
+                <a href="https://api.whatsapp.com/send?phone=+58 04129327820">
                 <img src="images/boton-watsapp.webp" alt="Contacto via whatsapp" class="img-fluid"></a>
                 
               </div>

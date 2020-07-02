@@ -1,8 +1,8 @@
 <?php $__env->startSection('meta'); ?> 
-<title>Modular Top - Fabricación de Muebles y Servicios</title> 
+<title>Modular Top - Fabricación de Muebles - Tableros Melamínicos</title> 
 <meta name="description" 
 content="40 años en Caracas, Venezuela ofreciendo muebles funcionales con diseño y garantía.
-Tendencias, servicio personalizado y precios competitivos." />
+Tendencias, servicio personalizado y tableros melaminicos importados." />
 
 <?php $__env->stopSection(); ?>
 

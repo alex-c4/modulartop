@@ -1,8 +1,8 @@
 <?php $__env->startSection('meta'); ?> 
 <title>Servicios - Modular Top</title> 
 <meta name="description" 
-content="Maquinaria de alta tecnología para fabricantes de madera en Caracas, Venezuela. Corte,
-pegado de canto, mecanizado de tableros y prensado de láminas." />
+content="Ofrecemos tableros melaminicos, fabricación de mobiliario, maquinaria CNC, mecanizado
+de madera, prensado MDP, enchapado de tapa de cantos y más. Fabricamos tus sueños." />
 
 <?php $__env->stopSection(); ?>
 
@@ -28,7 +28,8 @@ pegado de canto, mecanizado de tableros y prensado de láminas." />
       <div class="container">
         <div class="row align-items-center mb-5">
           <div class="col-lg-7 order-md-2">
-            <div class="scaling-image"><div class="frame"><br><img src="images/servicios/corte.jpg" alt="" class="img-fluid"></div></div>
+            <div class="scaling-image"><div class="frame"><br><img src="images/servicios/corte.jpg" alt="Corte o seccionado - máquinas que trabajan bajo un software que elabora cortes 
+                 precisos en tableros" class="img-fluid"></div></div>
           </div>
           <div class="col-md-5 pr-md-5 mb-5">
             <div class="block-41">
@@ -49,7 +50,8 @@ pegado de canto, mecanizado de tableros y prensado de láminas." />
       <div class="container">
         <div class="row align-items-center mb-5">
           <div class="col-lg-7 order-md-1">
-            <div class="scaling-image"><div class="frame"><img src="images/servicios/ruteado.jpg" alt="" class="img-fluid"></div></div>
+            <div class="scaling-image"><div class="frame"><img src="images/servicios/ruteado.jpg" alt="Mecanizado de tablero - Maquinaria que cumplen con las exigencias del mercado actual. 
+                Cortes, pantografiado, ruteado, fresado, ranurado y perforado." class="img-fluid"></div></div>
           </div>
           <div class="col-md-5 pl-md-5 mb-5 order-md-2">
             <div class="block-41">
@@ -72,7 +74,8 @@ pegado de canto, mecanizado de tableros y prensado de láminas." />
       <div class="container">
         <div class="row align-items-center mb-5">
           <div class="col-lg-7 order-md-2">
-            <div class="scaling-image" ><div class="frame"><img src="images/servicios/enchapado.jpg" alt="" class="img-fluid"></div></div>
+            <div class="scaling-image" ><div class="frame"><img src="images/servicios/enchapado.jpg" alt="Enchapadoras rectas y curvas automáticas de encolado termoadherido.  
+                Aprovecha una infraestructura con tecnología CNC." class="img-fluid"></div></div>
           </div>
           <div class="col-md-5 pr-md-5 mb-5">
             <div class="block-41">
@@ -94,7 +97,8 @@ pegado de canto, mecanizado de tableros y prensado de láminas." />
       <div class="container">
         <div class="row align-items-center mb-5">
           <div class="col-lg-7 order-md-1">
-            <div class="scaling-image"><div class="frame"><img src="images/servicios/prensa.jpg" alt="" class="img-fluid"></div></div>
+            <div class="scaling-image"><div class="frame"><img src="images/servicios/prensa.jpg" alt="Prensado de láminas de alta presión (HLP) - Aprovecha una mano de obra calificada y máquinas de última generación 
+                  que optimizan el proceso del prensado." class="img-fluid"></div></div>
           </div>
           <div class="col-md-5 pl-md-5 mb-5 order-md-2">
             <div class="block-41">
