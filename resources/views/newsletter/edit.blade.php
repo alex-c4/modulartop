@@ -42,7 +42,7 @@
                     <div class="row form-group">
                         <div class="col-md-12">
                             <label class="text-black" for="title">Titulo</label> 
-                            <input type="text" id="title" name="title" class="form-control" value="{{ $newsletter->title }}">
+                            <input maxlength="100" type="text" id="title" name="title" class="form-control" value="{{ $newsletter->title }}">
                         </div>
                     </div>
 
