@@ -598,15 +598,17 @@ h1, h2, h3, h4, h5,
 
   .sticky-wrapper .site-navbar .site-logo a {
     color:transparent; 
-    background-image: url("../images/modulartop_blanco.png");
-    background-repeat: no-repeat;
+    /* background-image: url("../images/modulartop_blanco.png"); */
+    /* background-repeat: no-repeat; */
   }
   .sticky-wrapper.is-sticky .site-navbar .site-logo a {
     /*color: #000;*/ 
     color:transparent;
-    background-image: url("../images/modulartop.png");
-    background-repeat: no-repeat;
+    /* background-image: url("../images/modulartop.png"); */
+    /* background-repeat: no-repeat; */
+
   }
+
     .sticky-wrapper .site-navbar ul li a {
       color: rgba(255, 255, 255, 0.7); }
       .sticky-wrapper .site-navbar ul li a:hover {

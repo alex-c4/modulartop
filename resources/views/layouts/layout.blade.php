@@ -58,8 +58,8 @@
           <div class="col-6 col-xl-2">
             <!-- <h1 class="mb-0 m-0 p-0">
               </h1> -->
-              <div class="mb-0 m-0 p-0 site-logo" style="width: 190px;">
-                <a href="{{ route('welcome') }}" class="mb-0" style="color:transparent" >Modular Top</a>
+              <div class="mb-0 m-0 p-0 site-logo" style="width: 190px;"> 
+                <a href="{{ route('welcome') }}"><img id="logoClass" src="{{ asset('images/modulartop_blanco.png') }}" alt="" srcset=""></a>
               </div>
            
           </div>
@@ -210,5 +210,17 @@
 			
 			$( '#carousel' ).elastislide();
       
+      /**
+       * Script para cambiar el logo cuando el usuario realiza el scroll
+       */
+      $(function(){
+        $(document).scroll(function(){
+        if($(this).scrollTop() > 1){
+          $('#logoClass').attr('src', '{{ asset('images/modulartop.png') }}')              
+        }else{
+          $('#logoClass').attr('src', '{{ asset('images/modulartop_blanco.png') }}')
+        }
+        });
+      });
 		</script>
   <!-- fin del bloque fabricacion -->  
