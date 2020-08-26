@@ -79,7 +79,7 @@ de madera, prensado MDP, enchapado de tapa de cantos y más. Fabricamos tus sue�
           </div>
           <div class="col-md-5 pr-md-5 mb-5">
             <div class="block-41">
-              <h2 class="block-41-heading mb-5"><br>PEGADORA DE TAPA CANTO TERMOADHERIDO PARA MEJOR RECISTENCIA EN EL ACABADO DE LOS BORDES. </h2>
+              <h2 class="block-41-heading mb-5"><br>PEGADORA DE TAPA CANTO TERMOADHERIDO PARA MEJOR RESISTENCIA EN EL ACABADO DE LOS BORDES. </h2>
               <div class="block-41-text">
                 <p>Pegado de tapa cantos ABS en piezas rectas y curvas, mediante la adhesion con pega 
                 granulada que se funde a alta temperatura, dejando una pieza completamente impermeable
@@ -104,10 +104,9 @@ de madera, prensado MDP, enchapado de tapa de cantos y más. Fabricamos tus sue�
             <div class="block-41">
               <h2 class="block-41-heading mb-5"><br>Prensado de láminas de alta presión (HLP) como opción a tu proyecto.</h2>
               <div class="block-41-text">
-                <p> Experimenta un servicio con mano de obra calificada. Resultados que
-                cumplen con la expectativa de cada cliente. 
+                <p> Encolado de Laminas  Decorativas de Alta Presión (conocido popularmente como Fòrmica) sobre sustratos MDP o MDF mediante prensado térmico. 
                 </p>
-                <p>Tecnológicamente estamos un paso adelante de la competencia.</p>
+                
 
                 <p><a href="<?php echo e(url('/')); ?>#contact-section" class="btn btn-primary btn-sm">Contáctanos</a></p>
               </div>

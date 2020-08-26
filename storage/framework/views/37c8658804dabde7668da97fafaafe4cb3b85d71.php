@@ -23,7 +23,7 @@ mundial para casas, hoteles, oficinas, restaurantes y tiendas comerciales." />
     </div>  
 
 
- <!--Seccion sericios-->
+ <!--Fabricacion-->
  
     
     <div class="site-section" id="property-details">
@@ -46,9 +46,9 @@ mundial para casas, hoteles, oficinas, restaurantes y tiendas comerciales." />
               
               <P>Convierte tu espacio en un ambiente agradable para compartir.</p>
               
-              <p class="lead">40 AÑOS OFRECIENDO CALIDAD</p>
+              <p class="lead">40 AÑOS DE EXPERIENCIA ACUMULADA</p>
               <P> Si te encuentras en el sector de hoteles, oficinas y tiendas comerciales, te   
-              informamos que fabricamos los muebles ideales a un precio único.</p>
+              informamos que fabricamos los muebles ideales a precios competitivos.</p>
 
               <p class="lead">¡Cuéntanos tu proyecto y lo fabricamos!</p>
               <a href="<?php echo e(route('contact.tellus')); ?>#contact-section" class="btn btn-primary mr-2 mb-2">Cuéntanos</a>
@@ -62,7 +62,7 @@ mundial para casas, hoteles, oficinas, restaurantes y tiendas comerciales." />
         </div>
       </div>
     </div>
-    <!--Fin Seccion seccion servicios-->
+    <!--Fin Seccion seccion Fabricacion-->
 
 
 <?php $__env->stopSection(); ?>

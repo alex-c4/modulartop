@@ -48,6 +48,9 @@ Route::view('/modulartop', 'modulartop');
 // Route::view('/post', 'post');
 Route::view('/servicios', 'servicios/servicios');
 Route::view('/fabricacion', 'fabricacion/fabricacion');
+Route::view('/acabado-tradicional', 'tableros/tableros-tradicional');
+Route::view('/acabado-altobrillo', 'tableros/tableros-altobrillo');
+Route::view('/acabado-supermate', 'tableros/tableros-supermate');
 
 // Contacts
 Route::post('contact.store', ['as' => 'contact.store', 'uses' => 'ContactController@store']);

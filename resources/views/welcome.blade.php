@@ -46,8 +46,8 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
         <div class="site-blocks-cover overlay overlay-2" style="background-image: url(images/banner/servicios.jpg);" data-aos="fade" id="home-section">  
           <div class="container">
             <div class="row align-items-center justify-content-center">
-              <div class="col-md-6 mt-lg-5 text-center">
-                <h1 class="text-shadow">CORTE, MECANIZADO DE TABLEROS Y PEGADO DE TAPACANTO</h1>
+              <div class="col-md-8 mt-lg-5 text-center">
+                <h1 class="text-shadow">CORTE, MECANIZADO, Y PEGADO DE TAPACANTO EN TABLEROS </h1>
                   <p class="mb-5 text-shadow">Si necesitas transformar tu materia prima, estás en la Web correcta. 
                   Modificamos tus tableros de madera en partes y piezas, convirtiendo tus proyectos en 
                    productos  que sueñas. 
@@ -70,9 +70,9 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
         <div class="contenedor">
 
             <div class="titulotm">
-              <h2 class="section-title2">TABLEROS MELAMINICOS Y SUS TAPACANTOS</h2>
+              <h2 class="section-title2">TABLEROS MELAMÍNICOS Y SUS TAPACANTOS</h2>
               <p class="lead">Diversidad en colores y diseños que se ajustan a la necesidad de tu proyecto de construcción o decoración. </p>
-              <!-- <p class="lead">Resistencia comprobada por arquitectos y carpinteros.</p> -->
+              
             </div>
             
             <div class="itemchildtm">
@@ -80,11 +80,11 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
               <div class="hijostm">
                 <div class="ftco-media-1">
                   <div class="ftco-media-1-inner">
-                    <a href="" class=""><img src="images/tableros/tablero-altobrillo.jpg" alt="Tablero melaminico alto brillo MDF importado, acabado premium oneskin" class="img-tm"></a>
+                    <a href="{{ url('/acabado-altobrillo') }}" class=""><img src="images/tableros/tablero-altobrillo.jpg" alt="Tablero melaminico alto brillo MDF importado, acabado premium oneskin" class="img-tm"></a>
                     <div class="ftco-media-details">
                       <h3><BR>ACABADOS PREMIUM</h3>
                       <p>MDF EN ALTO BRILLO - IMPORTADO</p>
-                      <!--<strong>$20,000,000</strong>-->
+                     
                     </div>
                   </div> 
                 </div>
@@ -94,11 +94,11 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
               <div class="hijostm">
                 <div class="ftco-media-1">
                   <div class="ftco-media-1-inner">
-                    <a href="" class=""><img src="images/tableros/tablero-supermate.jpg" alt="Tablero melaminico super mate MDF importado, acabado premium oneskin" class="img-tm"></a>
+                    <a href="{{ url('/acabado-supermate') }}" class=""><img src="images/tableros/tablero-supermate.jpg" alt="Tablero melaminico super mate MDF importado, acabado premium oneskin" class="img-tm"></a>
                     <div class="ftco-media-details">
                         <h3><BR>ACABADOS PREMIUM</h3>
                         <p>MDF EN SUPER MATE - IMPORTADO</p>
-                      <!--<strong>$20,000,000</strong>-->
+                     
                     </div>
                   </div> 
                 </div>
@@ -108,11 +108,11 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
               <div class="hijostm">
                 <div class="ftco-media-1">
                   <div class="ftco-media-1-inner">
-                    <a href="" class=""><img src="images/tableros/tablero-cuerpo.jpg" alt="Tablero melaminico hidrófugo y natural MDP importado y nacional, acabado tradicional masisa/losan" class="img-tm"></a>
+                    <a href="{{ url('/acabado-tradicional') }}" class=""><img src="images/tableros/tablero-cuerpo.jpg" alt="Tablero melaminico hidrófugo y natural MDP importado y nacional, acabado tradicional masisa/losan" class="img-tm"></a>
                     <div class="ftco-media-details">
                         <h3><BR>Acabados Tradicionales</h3>
                         <p>MDP HIDRÓFUGO Y NATURAL, IMPORTADOS Y NACIONALES</p>
-                      <!--<strong>$20,000,000</strong>-->
+                     
                     </div>
                   </div> 
                 </div>
@@ -126,7 +126,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
                     <br>
                     <div class="ftco-media-details">
                     <h3><BR></h3>    
-                      <!--<strong>$20,000,000</strong>-->
+                      
                     </div>
                   </div> 
                 </div>
@@ -139,7 +139,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
                     <a href="" class=""><img src="images/tableros/cocina-supermate.jpg" alt="Fabricacion de muebles super mate MDF importado, acabado premium oneskin" class="img-tm"></a>
                     <div class="ftco-media-details">
                     <h3><BR></h3>        
-                      <!--<strong>$20,000,000</strong>-->
+                     
                     </div>
                   </div> 
                 </div>
@@ -152,7 +152,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
                     <a href="" class=""><img src="images/tableros/brillo_doblecara.jpg" alt="Fabricacion de muebles hidrófugo y natural MDP importado y nacional, acabado tradicional masisa/losan" class="img-tm"></a>
                     <div class="ftco-media-details">
                     <h3><BR></h3>       
-                      <!--<strong>$20,000,000</strong>-->
+                      
                     </div>
                   </div> 
                 </div>
@@ -167,7 +167,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
   </section>
   
 
-    <!-- Apartado Distribuidores Exclusiva-->
+    <!-- Apartado Distribuidores Exclusivos-->
     <section class="py-5 bg-pri site-section how-it-works" id="howitworks-section">
       <div class="container">
         <div class="row mb-5 justify-content-center">
@@ -179,7 +179,9 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
           <div class="col-md-6 text-center">
             <div class="pr-5">
               <a href="http://www.losan.es" target="_blank"><img src="images/aliados/losan-logo.png" alt="Losan diseño y tendencias en melaminas - madera - tablero." class="img-fluid"></a>
-              <h3><BR></h3>
+              <h3><BR><BR><BR></h3>
+                <p class="site-aliados"><a href="http://www.losan.es" target="_blank">Ver más</a></p>
+                        
             </div>
           </div>
 
@@ -188,18 +190,10 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
               
               <a href="http://www.oneskin.pt" target="_blank"><img src="images/aliados/oneskin-logo.png" alt="Oneskin nace con el propósito de suministrar al mercado internacional con tableros lacados de alta calidad e innovación que abran nuevas oportunidades en la industria del mueble, decoración de interiores, panelación y otros trabajos arquitectónicos." class="img-fluid"></a>
               <h3><BR></h3>
+              <p class="site-aliados"><a href="http://www.oneskin.pt" target="_blank">Ver más</a></p>
             </div>
           </div>
-          <!--
-          <div class="col-md-4 text-center">
-            <div class="pr-5">
-              <span class="text-black">03.</span>
-              <span class="custom-icon flaticon-home text-black"></span>
-              <h3 class="text-dark">Ejecución.</h3>
-              <p class="text-black">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            </div>
-          </div>
-         --> 
+          
         </div>
       </div>  
     </section>
@@ -243,34 +237,9 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
              <br> <br><a href="{{ route('contact.tellus') }}#contact-section" class="btn btn-primary mr-2 mb-2">Cuéntanos</a>
             </p>
             
-              <!--
-              <div class="owl-carousel slide-one-item with-dots">
-                  <div><img src="images/fabricacion/fabricacion_1.png" alt="Image" class="img-fluid"></div>
-                  <div><img src="images/fabricacion/fabricacion_2.png" alt="Image" class="img-fluid"></div>
-                  <div><img src="images/fabricacion/fabricacion_3.png" alt="Image" class="img-fluid"></div>
-                  <div><img src="images/fabricacion/fabricacion_4.png" alt="Image" class="img-fluid"></div>
-                </div>
-                -->
+             
           </div>
-          <!--
-          <div class="col-lg-4 ml-auto">         
-                
-               
-                <p>Est qui eos quasi ratione nostrum excepturi id recusandae fugit omnis ullam pariatur itaque nisi voluptas impedit  Quo suscipit omnis iste velit maxime.</p>
-                
-                <p class="lead">Cuentanos de tu proyecto y te lo hacemos realidad...</p>
-
-                <ul class="list-unstyled ul-check success">
-                  <li>Placeat maxime animi minus</li>
-                  <li>Dolore qui placeat maxime</li>
-                  <li>Consectetur adipisicing</li>
-                  <li>Lorem ipsum dolor</li>
-                  <li>Placeat molestias animi</li>
-                </ul>
-                
-                <p><a href="#" class="btn btn-primary mr-2 mb-2">Cuentanos</a></p>
-               
-          </div>
+         
            -->
         </div>
       </div>
@@ -290,14 +259,14 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
             <div class="col-md-4 mb-4">
                 <div class="ftco-testimonial-1">
                   <div class="ftco-testimonial-vcard d-flex align-items-center mb-4">
-                    <img src="images/person_1.jpg" alt="Image" class="img-fluid mr-3">
+                    <img src="images/yanira.jpg" alt="Image" class="img-fluid mr-3">
                     <div>
-                      <h3>Pedro Perez</h3>
-                      <span>Cliente</span>
+                      <h3>YANIRA SALAZA</h3>
+                      <span>Fabricacion de cocina</span>
                     </div>
                   </div>
                   <div>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque, mollitia. Possimus mollitia nobis libero quidem aut tempore dolore iure maiores, perferendis, provident numquam illum nisi amet necessitatibus. A, provident aperiam!</p>
+                    <p>Realmente me sentí muy contenta con el resultado final, desde el primer momento la arquitecta comprendió perfectamente lo que se deseaba hacer en la cocina, nos dio sus recomendaciones para mejorar el aprovechamiento del espacio. Además, Modular Top me apoyó de principio a fin, los recomiendo por su compromiso y seriedad.</p>
                   </div>
                 </div>
             </div>
@@ -305,14 +274,14 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
             <div class="col-md-4 mb-4">
                 <div class="ftco-testimonial-1">
                   <div class="ftco-testimonial-vcard d-flex align-items-center mb-4">
-                    <img src="images/person_2.jpg" alt="Image" class="img-fluid mr-3">
+                    <img src="images/match21.jpg" alt="Image" class="img-fluid mr-3">
                     <div>
-                      <h3>Julio Cortez</h3>
-                      <span>Cliente</span>
+                      <h3>PROYECTO MATCH 21</h3>
+                      <span>Servicio de Maquilado</span>
                     </div>
                   </div>
                   <div>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque, mollitia. Possimus mollitia nobis libero quidem aut tempore dolore iure maiores, perferendis, provident numquam illum nisi amet necessitatibus. A, provident aperiam!</p>
+                    <p>Como fabricantes de cocinas de alto target, hemos encontrado en Modular Top un equipo de personas solidarias y colaboradoras en su gestión de prestar soporte a empresas como la nuestra con su servicio de maquilado. Nos complace referirlos por su empatía, su capacidad de respuesta y su disposición a ofrecer soluciones. </p>
                   </div>
                 </div>
             </div> 
@@ -320,14 +289,14 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
             <div class="col-md-4 mb-4">
               <div class="ftco-testimonial-1">
                 <div class="ftco-testimonial-vcard d-flex align-items-center mb-4">
-                  <img src="images/person_3.jpg" alt="Image" class="img-fluid mr-3">
+                  <img src="images/estilos_mendez.png" alt="Image" class="img-fluid mr-3">
                   <div>
-                    <h3>Jose Cardenas</h3>
-                    <span>Cliente</span>
+                    <h3>ESTILO MENDEZ</h3>
+                    <span>Adquisición de Materia Prima</span>
                   </div>
                 </div>
                 <div>
-                  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque, mollitia. Possimus mollitia nobis libero quidem aut tempore dolore iure maiores, perferendis, provident numquam illum nisi amet necessitatibus. A, provident aperiam!</p>
+                  <p>Como fabricantes de muebles del hogar, recomendamos los melamínicos que ofrece Modular Top, quienes se han esforzado por tener alternativas de materia prima. Igualmente cuentan con marcas de reconocida trayectoria internacional: ONESKIN y LOSAN, quienes logran tableros de colores y texturas vanguardistas. </p>
                 </div>
               </div>
             </div>
@@ -372,8 +341,8 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
             <div class="unit-4 d-flex">
               <div class="mr-4"><img src="images/iconos/enchapado.png" alt="Pegadora de tapa canto termoadherido para mejor recistencia en el acabado de los bordes." class="img-fluid mr-3"></div>
               <div>
-                <h3>Enchapado</h3>
-                <p>Enchapadoras rectas y curvas automáticas de encolado termoadherido.  
+                <h3>PEGADO DE TAPA CANTO</h3>
+                <p>Enchapadoras rectas y curvas automáticas de pegado termoadherido.  
                 Aprovecha una infraestructura con tecnología CNC.</p>
                 <p><a href="{{ url('/servicios') }}#enchapado">Leer más</a></p>
               </div>
@@ -394,37 +363,13 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
               </div>
             </div>
           </div>
-
-          <!--
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="400">
-            <div class="unit-4 d-flex">
-              <div class="unit-4-icon mr-4"><span class="text-primary flaticon-location"></span></div>
-              <div>
-                <h3>Maquilado</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis molestiae vitae eligendi at.</p>
-                <p><a href="#">Leer mas</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="500">
-            <div class="unit-4 d-flex">
-              <div class="unit-4-icon mr-4"><span class="text-primary flaticon-home"></span></div>
-              <div>
-                <h3>Enchapado</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis molestiae vitae eligendi at.</p>
-                <p><a href="#">Leer mas</a></p>
-              </div>
-            </div>
-          </div>
-          -->
-
-
+          
         </div>
       </div>
     </section>
      <!--Fin  Seccion Servicio-->
 
-      <!-- Seccion Metodologia-->
+      <!-- Seccion Aliados-->
     <section class="py-5 bg-pri site-section how-it-works" id="howitworks-section">
       <div class="container">
         <div class="row mb-5 justify-content-center">
@@ -432,220 +377,102 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
             <h2 class="section-title mb-3 text-white">Nuestros aliados comerciales</h2>
           </div>
         </div>
+
         <div class="row">
-          <div class="col-md-6 text-center">
+          <div class="col-md-4 text-center">
             <div class="pr-5">
-              <a href="https://dbgroupvenezuela.com/" target="_blank"><img src="images/aliados/dbgroup-logo.png" alt="Herrajes para mobiliario de cocina y baño, bisagras, cajones, sistemas de alzamiento, interiorismo de cocina, aluminio, patas, soportes y colgadores" class="img-fluid"></a>
-              
+              <a href="https://www.instagram.com/adcgroupvzla" target="_blank"><img src="images/aliados/adcgroup_venezuela.png" alt="Arquitectura, Diseño, Construcción, Todas las soluciones para el hogar o negocio" class="img-fluid"></a>
+              <p class="site-aliados"><a href="https://www.instagram.com/adcgroupvzla" target="_blank">@adcgroupvzla</a></p>
             </div>
+            
             <br>
           </div>
 
-          <div class="col-md-6 text-center">
+          <div class="col-md-4 text-center">
             <div class="pr-5">
               
-              <a href="https://tuherraje.com.ve" target="_blank"><img src="images/aliados/tuherraje-logo.png" alt="Asiáticos · Griferias y Fregaderos · Closets · Europeos · G*Grass · Iluminación · Patas y Rodapie · Perfilería · Poalgi · Tiradores" class="img-fluid"></a>
+              <a href="https://www.instagram.com/dbgroup.bqto" target="_blank"><img src="images/aliados/dbgroup-bqto.png" alt="Soluciones y herrajes técnicos para mobiliario modernos" class="img-fluid"></a>
+              <p class="site-aliados"><a href="https://www.instagram.com/dbgroup.bqto" target="_blank">@dbgroup.bqto</a></p>
               
             </div>
-          </div>
-          <!--
+            <br>
+          </div> 
+          
           <div class="col-md-4 text-center">
             <div class="pr-5">
-              <span class="text-black">03.</span>
-              <span class="custom-icon flaticon-home text-black"></span>
-              <h3 class="text-dark">Ejecución.</h3>
-              <p class="text-black">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+              
+              <a href="https://tuherraje.com.ve" target="_blank"><img src="images/aliados/tuherraje-logo.png" alt="Mejores marcas del mercado Con gran Variedad de Herrajes y Accesorios para Cocinas y Closet, Condimentero, Bisagras, Correderas, iluminacion, Sistemas de alzamientos. Brindando a nuestros Clientes la Asesoria requerida y Atencion calificada" class="img-fluid"></a>
+              <p class="site-aliados"><a href="https://www.instagram.com/tuherraje_accesorios" target="_blank">@tuherraje_accesorios</a></p>
+              
             </div>
-          </div>
-         --> 
-        </div>
-      </div>  
-    </section>
-     <!-- Fin Seccion Metodologia-->
-
-    <!-- Seccion equipo
-    <section class="site-section" id="agents-section">
-      <div class="container">
-        <div class="row mb-5">
-          <div class="col-md-7 text-left">
-            <h2 class="section-title mb-3">Empresarios dedicados</h2>
-            <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus minima neque tempora reiciendis.</p>
-          </div>
-        </div>
-        <div class="row">
-          
-
-          <div class="col-md-6 col-lg-4 mb-4">
-            <div class="team-member">
-              <figure>
-                <ul class="social">
-                  <li><a href="#"><span class="icon-facebook"></span></a></li>
-                  <li><a href="#"><span class="icon-twitter"></span></a></li>
-                  <li><a href="#"><span class="icon-linkedin"></span></a></li>
-                  <li><a href="#"><span class="icon-instagram"></span></a></li>
-                </ul>
-                <img src="images/person_1.jpg" alt="Image" class="img-fluid">
-              </figure>
-              <div class="p-3 bg-primary">
-                <h3 class="mb-2">Pedro Perez</h3>
-                <span class="position">Presidente</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-4 mb-4">
-            <div class="team-member">
-              <figure>
-                <ul class="social">
-                  <li><a href="#"><span class="icon-facebook"></span></a></li>
-                  <li><a href="#"><span class="icon-twitter"></span></a></li>
-                  <li><a href="#"><span class="icon-linkedin"></span></a></li>
-                  <li><a href="#"><span class="icon-instagram"></span></a></li>
-                </ul>
-                <img src="images/person_2.jpg" alt="Image" class="img-fluid">
-              </figure>
-              <div class="p-3 bg-primary">
-                <h3 class="mb-2">Jose Perdomo</h3>
-                <span class="position">Gerente Ventas</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-4 mb-4">
-            <div class="team-member">
-              <figure>
-                <ul class="social">
-                  <li><a href="#"><span class="icon-facebook"></span></a></li>
-                  <li><a href="#"><span class="icon-twitter"></span></a></li>
-                  <li><a href="#"><span class="icon-linkedin"></span></a></li>
-                  <li><a href="#"><span class="icon-instagram"></span></a></li>
-                </ul>
-                <img src="images/person_3.jpg" alt="Image" class="img-fluid">
-              </figure>
-              <div class="p-3 bg-primary">
-                <h3 class="mb-2">Luis Cradenas</h3>
-                <span class="position">Director</span>
-              </div>
-            </div>
-          </div>
-
-          
-        </div>
-      </div>
-    </section>
-    -->
-    <!-- Fin Seccion Equipo-->
-
-    <!-- Seccion Metodologia
-    <section class="py-5 bg-primary site-section how-it-works" id="howitworks-section">
-      <div class="container">
-        <div class="row mb-5 justify-content-center">
-          <div class="col-md-7 text-center">
-            <h2 class="section-title mb-3 text-black">Como trabajamos</h2>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4 text-center">
-            <div class="pr-5 first-step">
-              <span class="text-black">01.</span>
-              <span class="custom-icon flaticon-house text-black"></span>
-              <h3 class="text-black">Analisis y planificación.</h3>
-              <p class="text-black">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            </div>
-          </div>
-
-          <div class="col-md-4 text-center">
-            <div class="pr-5 second-step">
-              <span class="text-black">02.</span>
-              <span class="custom-icon flaticon-coin text-black"></span>
-              <h3 class="text-dark">Diseño y desarrollo.</h3>
-              <p class="text-black">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            </div>
-          </div>
-
-          <div class="col-md-4 text-center">
-            <div class="pr-5">
-              <span class="text-black">03.</span>
-              <span class="custom-icon flaticon-home text-black"></span>
-              <h3 class="text-dark">Ejecución.</h3>
-              <p class="text-black">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            </div>
-          </div>
-        </div>
-      </div>  
-    </section>
-    -->
-     <!-- Fin Seccion Metodologia-->
-
-     <!-- Seccion Nosotros
-    <section class="site-section" id="modular-top">
-      <div class="container">
+          </div>         
         
-        <div class="row large-gutters">
-          <div class="col-lg-6 mb-5">
+        </div>
+        <div class="row mb-5 align-items-center">
+        </div>  
+       
 
-              <div class="owl-carousel slide-one-item with-dots">
-                  <div><img src="images/modulartop.jpg" alt="Image" class="img-fluid"></div>
+         <!-- Carrusel Aliados-->
+        <div class="owl-carousel nonloop-block-13 mb-5">
+
+            
+              <div class="ftco-media-1 text-center">
+                <div>
+                  <a href="https://dbgroupvenezuela.com/" target="_blank" class="d-inline-block mb-4"><img src="images/aliados/dbgroup-venezuela.png" alt="Herrajes técnicos para mobiliario moderno" class="img-fluid"></a>
                   
-                </div>
-
-          </div>
-          <div class="col-lg-6 ml-auto">
-            
-            <h2 class="section-title mb-3">Modular Top</h2>
-                <p class="lead">Superando retos y evolución constante</p>
-                <p>Est qui eos quasi ratione nostrum excepturi id recusandae fugit omnis ullam pariatur itaque nisi voluptas impedit  Quo suscipit omnis iste velit maxime Est qui eos quasi ratione nostrum excepturi id recusandae fugit omnis ullam pariatur itaque nisi voluptas impedit  Quo suscipit omnis iste velit maxime.</p>
-                <p>Est qui eos quasi ratione nostrum excepturi id recusandae fugit omnis ullam pariatur itaque nisi voluptas impedit  Quo suscipit omnis iste velit maxime</p>
-               
-                <p><a href="#" class="btn btn-primary mr-2 mb-2">Leer Mas</a></p>
-            
-          </div>
-        </div>
-      </div>
-    </section>
-    -->
-    <!--Fin  Seccion Nosotros-->
-    
-     <!--Seccion Noticias
-    <section class="site-section" id="news-section">
-      <div class="container">
-        <div class="row mb-5">
-          <div class="col-12 text-center">
-            <h2 class="section-title mb-3">Noticias &amp; Novedades</h2>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-4">
-            <div class="h-entry">
-              <a href="single.html"><img src="images/img_1.jpg" alt="Image" class="img-fluid"></a>
-              <h2 class="font-size-regular"><a href="single.html" class="text-dark">En marzo 2020 comienza feria del mueble CCCT</a></h2>
-              <div class="meta mb-4">Bryan <span class="mx-2">&bullet;</span> Jan 18, 2020<span class="mx-2">&bullet;</span> <a href="">Leer</a></div>
-             <span class="mx-2">&bullet;</span> <a href="single.html">Leer</a></div>-->
-              <!--
-            </div> 
-          </div>
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-4">
-            <div class="h-entry">
-              <a href="single.html"><img src="images/img_2.jpg" alt="Image" class="img-fluid"></a>
-              <h2 class="font-size-regular"><a href="single.html" class="text-dark">Llegaron los ultimos modelos de mobiliareio para el hogar</a></h2>
-              <div class="meta mb-4">Bryan <span class="mx-2">&bullet;</span> Jan 18, 2020<span class="mx-2">&bullet;</span> <a href="">Leer</a></div>
+                  <div class="site-aliados">
+                    <a href="https://www.instagram.com/dbgroupvenezuela" target="_blank">@dbgroupvenezuela</a>  
+                  </div>
+                      
+                </div> 
+              </div>
               
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-4">
-            <div class="h-entry">
-              <a href="single.html"><img src="images/img_3.jpg" alt="Image" class="img-fluid"></a>
-              <h2 class="font-size-regular"><a href="single.html" class="text-dark">Vive la expericna de los modulares para oficnas</a></h2>
-              <div class="meta mb-4">Bryan <span class="mx-2">&bullet;</span> Jan 18, 2020<span class="mx-2">&bullet;</span> <a href="">Leer</a></div>
-            </div> 
-          </div>
-          
+
+              <div class="ftco-media-1 text-center">
+                <div>
+                  <a href="https://habitatvenezuela.com/" target="_blank" class="d-inline-block mb-4"><img src="images/aliados/habitat-logo.png" alt="Porcelanato Español de primera calidad" class="img-fluid"></a>
+                  <div class="site-aliados">
+                    <a href="https://www.instagram.com/habitatvenezuela" target="_blank">@habitatvenezuela</a>  
+                  </div>
+    
+                </div> 
+              </div>
+              
+              <div class="ftco-media-1 text-center">
+                <div>
+                  <a href="https://grupoaxdesign.com/" target="_blank" class="d-inline-block mb-4"><img src="images/aliados/arredo-logo.png" alt="Piezas sanitarias, griferias, grifos, espejos, muebles de baños modernos, alta calidad y diseño" class="img-fluid"></a>
+                  <div class="site-aliados">
+                    <a href="https://www.instagram.com/arredoxpress" target="_blank">@arredoxpress</a>  
+                  </div>
+    
+                </div> 
+              </div>
+
+              <div class="ftco-media-1 text-center">
+                <div>
+                  <a href="https://www.cisa.com/" target="_blank" class="d-inline-block mb-4"><img src="images/aliados/cisa-logo.png" alt="Herrajes, cerraduras electrónicas, evolucionados sistemas de control de accesos" class="img-fluid"></a>
+                  <div class="site-aliados">
+                    <a href="https://www.instagram.com/cisalatam" target="_blank">@cisalatam</a>  
+                  </div>
+    
+                </div> 
+              </div>
+
+              <div class="ftco-media-1 text-center">
+                <div>
+                  <a href="http://rpccontroltest.com/" target="_blank" class="d-inline-block mb-4"><img src="images/aliados/rpc-logo.png" alt="diseño, asesoría y comercialización de sistemas de control de iluminación, automatización de espacios y seguridad para el mercado residencial, comercial y corporativo" class="img-fluid"></a>
+                  <div class="site-aliados">
+                    <a href="https://www.instagram.com/rpccontrol" target="_blank">@rpccontrol</a>  
+                  </div>
+    
+                </div> 
+
         </div>
-      </div>
+
+       
+      </div>  
     </section>
-    -->
-    <!--Fin Seccion Noticias-->
+     <!-- Fin Seccion Aliados-->
 
     <!--Seccion contactanos-->
     <section class="site-section bg-light bg-image" id="contact-section">
@@ -729,10 +556,10 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
                 
               </div>
               <p class="mb-0 font-weight-bold">Dirección</p>
-              <p class="mb-4">La Yaguara - Calle 11, Caracas, Venezuela</p>
+              <p class="mb-4">Calle 2 con calle 1, Galpon 3, La Yaguara, Caracas. Diagonal a la antigua inspectoría de Tránsito, Caracas, Venezuela</p>
 
               <p class="mb-0 font-weight-bold">Email</p>
-                <p class="mb-0"><a href="#">atencion@modulartop.com</a></p>
+                <p class="mb-0"><a href="mailto:info@modulartop.com">info@modulartop.com</a></p>
                 <br>
               <div>
                 <button type="button" class="btn btn-primary btn-sm" id="btnShowContact">Ver teléfono</button>
@@ -740,10 +567,14 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
               </div>
               <div id="msgcontact">
              
-                <p class="mb-0 font-weight-bold">Teléfono</p>
-                <p class="mb-4"><a href="#">+58 (0212)-2322354 </a></p>
-                
-                <a href="https://api.whatsapp.com/send?phone=+58 04129327820">
+                <p class="mb-0 font-weight-bold">Teléfonos</p>
+                <p class="mb-4"><a href="tel:+58 212 4433391">+58 (0212)-4433391 </a>/
+                <a href="tel:+58 212 4725527">4725527 </a>/
+                <a href="tel:+58 212 4720462">4720462</a>
+                </p>
+               
+
+                <a href="https://api.whatsapp.com/send?phone=+58 04143805063">
                 <img src="images/boton-watsapp.webp" alt="Contacto via whatsapp" class="img-fluid"></a>
                 
               </div>
