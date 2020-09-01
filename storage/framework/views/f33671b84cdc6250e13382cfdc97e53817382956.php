@@ -81,7 +81,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
                     <a href="<?php echo e(url('/acabado-altobrillo')); ?>" class=""><img src="images/tableros/tablero-altobrillo.jpg" alt="Tablero melaminico alto brillo MDF importado, acabado premium oneskin" class="img-tm"></a>
                     <div class="ftco-media-details">
                       <h3><BR>ACABADOS PREMIUM</h3>
-                      <p>MDF EN ALTO BRILLO - IMPORTADO</p>
+                      <p>MDF EN ALTO BRILLO-IMPORTADO</p>
                      
                     </div>
                   </div> 
@@ -95,7 +95,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
                     <a href="<?php echo e(url('/acabado-supermate')); ?>" class=""><img src="images/tableros/tablero-supermate.jpg" alt="Tablero melaminico super mate MDF importado, acabado premium oneskin" class="img-tm"></a>
                     <div class="ftco-media-details">
                         <h3><BR>ACABADOS PREMIUM</h3>
-                        <p>MDF EN SUPER MATE - IMPORTADO</p>
+                        <p>MDF EN SUPER MATE-IMPORTADO</p>
                      
                     </div>
                   </div> 
@@ -120,7 +120,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
               <div class="hijostm">
                 <div class="ftco-media-1">
                   <div class="ftco-media-1-inner">
-                    <a href="" class=""><img src="images/tableros/cocina-altobrillo.jpg" alt="Fabricacion de muebles alto brillo MDF importado, acabado premium oneskin" class="img-tm"></a>
+                    <a href="<?php echo e(url('/acabado-altobrillo')); ?>" class=""><img src="images/tableros/cocina-altobrillo.jpg" alt="Fabricacion de muebles alto brillo MDF importado, acabado premium oneskin" class="img-tm"></a>
                     <br>
                     <div class="ftco-media-details">
                     <h3><BR></h3>    
@@ -134,7 +134,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
               <div class="hijostm">
                 <div class="ftco-media-1">
                   <div class="ftco-media-1-inner">
-                    <a href="" class=""><img src="images/tableros/cocina-supermate.jpg" alt="Fabricacion de muebles super mate MDF importado, acabado premium oneskin" class="img-tm"></a>
+                    <a href="<?php echo e(url('/acabado-supermate')); ?>" class=""><img src="images/tableros/cocina-supermate.jpg" alt="Fabricacion de muebles super mate MDF importado, acabado premium oneskin" class="img-tm"></a>
                     <div class="ftco-media-details">
                     <h3><BR></h3>        
                      
@@ -147,7 +147,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
               <div class="hijostm">
                 <div class="ftco-media-1">
                   <div class="ftco-media-1-inner">
-                    <a href="" class=""><img src="images/tableros/brillo_doblecara.jpg" alt="Fabricacion de muebles hidrófugo y natural MDP importado y nacional, acabado tradicional masisa/losan" class="img-tm"></a>
+                    <a href="<?php echo e(url('/acabado-tradicional')); ?>" class=""><img src="images/tableros/brillo_doblecara.jpg" alt="Fabricacion de muebles hidrófugo y natural MDP importado y nacional, acabado tradicional masisa/losan" class="img-tm"></a>
                     <div class="ftco-media-details">
                     <h3><BR></h3>       
                       
@@ -238,7 +238,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
              
           </div>
          
-           -->
+         
         </div>
       </div>
     </section>

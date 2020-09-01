@@ -59,7 +59,8 @@ async='async'></script>
               <!-- Botonera compartir redes sociales -->
               <div class="sharethis-inline-share-buttons"></div>
               
-              {{ $newsletter->title }}
+              <h2 class="section-title-modulartop mb-3"><br>{{ $newsletter->title }}</h2> 
+              
             </p>
             
               

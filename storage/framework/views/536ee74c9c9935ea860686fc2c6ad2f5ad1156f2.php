@@ -18,7 +18,7 @@ content="Tablero melaminico hidrófugo y natural MDP importado y nacional, acaba
         </div>
       </div>
 
-      <a href="#blog" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a>
+      <a href="#properties-section" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a>
     </div>  
 
 

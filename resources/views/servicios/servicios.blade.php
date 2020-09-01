@@ -21,7 +21,7 @@ de madera, prensado MDP, enchapado de tapa de cantos y m√°s. Fabricamos tus sue√
         </div>
       </div>
 
-      <a href="#blog" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a>
+      <a href="#cortes" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a>
     </div>  
 
 

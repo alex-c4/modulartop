@@ -2,20 +2,20 @@
 
 @section('content')
 
-<div class="site-block-wrap">
-    <div class="owl-carousel with-dots">
-        <div class="site-blocks-cover overlay overlay-2" style="background-image: url({{ asset('images/banner/fabricacion.jpg')}});" data-aos="fade" id="home-section">  
-            <div class="container">
-                <div class="row align-items-center justify-content-center">
-                    <div class="col-md-6 mt-lg-5 text-center">
-                        <h1 class="text-shadow">Novedades</h1>
-                        <p class="mb-5 text-shadow">Lista de novedades</p>
-                    </div>
-                </div>
-            </div>        
-        </div> 
+<div class="site-blocks-cover inner-page-cover overlay" style="background-image: url({{ asset('images/novedades/newsletter-novedades.jpg') }});" data-aos="fade">
+    <div class="container">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-md-5 mx-auto mt-lg-5 text-center">
+                <h1>Novedades</h1>
+                <p class="mb-5"><strong class="text-white">Lista de novedades</strong></p>
+        
+            </div>
+        </div>
     </div>
-</div>
+
+    <!-- <a href="#blog" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a> -->
+</div> 
+
 
 <section class="site-section bg-light bg-image" id="contact-section">
     <div class="container">

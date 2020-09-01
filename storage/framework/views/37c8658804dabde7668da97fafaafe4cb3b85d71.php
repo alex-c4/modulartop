@@ -19,7 +19,7 @@ mundial para casas, hoteles, oficinas, restaurantes y tiendas comerciales." />
         </div>
       </div>
 
-      <a href="#blog" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a>
+      <a href="#property-details" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a>
     </div>  
 
 

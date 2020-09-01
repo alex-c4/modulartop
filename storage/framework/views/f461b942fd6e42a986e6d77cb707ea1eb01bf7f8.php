@@ -57,8 +57,8 @@ async='async'></script>
               <!-- Botonera compartir redes sociales -->
               <div class="sharethis-inline-share-buttons"></div>
               
-              <?php echo e($newsletter->title); ?>
-
+              <h2 class="section-title-modulartop mb-3"><br><?php echo e($newsletter->title); ?></h2> 
+              
             </p>
             
               

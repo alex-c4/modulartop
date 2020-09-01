@@ -5,26 +5,25 @@
 <script src="<?php echo e(asset('js/sceditor/minified/icons/monocons.js')); ?> "></script>
 <script src="<?php echo e(asset('js/sceditor/minified/formats/xhtml.js')); ?> "></script>
 
-<div class="site-block-wrap">
-    <div class="owl-carousel with-dots">
-    <div class="site-blocks-cover overlay overlay-2" style="background-image: url(<?php echo e(asset('images/banner/fabricacion.jpg')); ?>);" data-aos="fade" id="home-section">  
-        <div class="container">
-            <div class="row align-items-center justify-content-center">
-                <div class="col-md-6 mt-lg-5 text-center">
-                    <h1 class="text-shadow">¡Fabricamos tus sueños!</h1>
-                    <p class="mb-5 text-shadow">Nos adaptamos a cualquier diseño de interior a madera que tengas en mente... Muebles ideales para hoteles, cocinas, oficina, dormitorios, baños y más.</p>
-                </div>
+<div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(<?php echo e(asset('images/novedades/newsletter-novedades.jpg')); ?>);" data-aos="fade">
+    <div class="container">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-md-5 mx-auto mt-lg-5 text-center">
+                <h1>Novedades</h1>
+               <!-- <p class="mb-5"><strong class="text-white">Nuevo Post</strong></p>-->
+        
             </div>
-        </div>        
-    </div> 
-    </div>    
+        </div>
+    </div>
+
+    <!-- <a href="#blog" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a> -->
 </div>
 
 <section class="site-section bg-light bg-image" id="contact-section">
     <div class="container">
         <div class="row mb-5">
           <div class="col-12 text-center">
-            <h2 class="section-title mb-3 text-black">Novedades</h2>
+            <h2 class="section-title mb-3 text-black">Nuevo Post</h2>
           </div>
         </div>
 
@@ -38,7 +37,7 @@
                     <div class="row form-group">
                         <div class="col-md-12">
                             <label class="text-black" for="title">Titulo</label> 
-                            <input type="text" id="title" name="title" class="form-control">
+                            <input maxlength="100" type="text" id="title" name="title" class="form-control">
                         </div>
                     </div>
 
