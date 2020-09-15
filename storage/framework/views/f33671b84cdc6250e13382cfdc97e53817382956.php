@@ -109,7 +109,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
                     <a href="<?php echo e(url('/acabado-tradicional')); ?>" class=""><img src="images/tableros/tablero-cuerpo.jpg" alt="Tablero melaminico hidrófugo y natural MDP importado y nacional, acabado tradicional masisa/losan" class="img-tm"></a>
                     <div class="ftco-media-details">
                         <h3><BR>Acabados Tradicionales</h3>
-                        <p>MDP HIDRÓFUGO Y NATURAL, IMPORTADOS Y NACIONALES</p>
+                        <p>MDP HR (HIDRÓFUGOS) Y ESTÁNDAR, IMPORTADOS Y NACIONALES</p>
                      
                     </div>
                   </div> 
@@ -170,7 +170,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
       <div class="container">
         <div class="row mb-5 justify-content-center">
           <div class="col-md-7 text-center">
-            <h2 class="section-title mb-3 text-white">SOMOS REPRESENTANTES EXCLUSIVOS EN VENEZUELA DE LAS MARCAS</h2>
+            <h2 class="section-title mb-3 text-white">SOMOS REPRESENTANTES EXCLUSIVOS PARA VENEZUELA DE LAS MARCAS</h2>
           </div>
         </div>
         <div class="row">
@@ -264,7 +264,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
                     </div>
                   </div>
                   <div>
-                    <p>Realmente me sentí muy contenta con el resultado final, desde el primer momento la arquitecta comprendió perfectamente lo que se deseaba hacer en la cocina, nos dio sus recomendaciones para mejorar el aprovechamiento del espacio. Además, Modular Top me apoyó de principio a fin, los recomiendo por su compromiso y seriedad.</p>
+                    <p>Realmente me sentí muy contenta con el resultado final, desde el primer momento la arquitecta comprendió perfectamente lo que se deseaba hacer en la cocina, nos dio sus recomendaciones para mejorar el aprovechamiento del espacio. Además, Modular Top me apoyó de principio a fin, los recomiendo por su compromiso, seriedad y la calidad de su producto.</p>
                   </div>
                 </div>
             </div>
@@ -279,7 +279,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
                     </div>
                   </div>
                   <div>
-                    <p>Como fabricantes de cocinas de alto target, hemos encontrado en Modular Top un equipo de personas solidarias y colaboradoras en su gestión de prestar soporte a empresas como la nuestra con su servicio de maquilado. Nos complace referirlos por su empatía, su capacidad de respuesta y su disposición a ofrecer soluciones. </p>
+                    <p>Como fabricantes de cocinas de alto target, hemos encontrado en Modular Top un equipo de personas solidarias y colaboradoras en su gestión de prestar soporte a empresas como la nuestra con su servicio de maquilado. Nos complace referirlos por su empatía, su capacidad de respuesta, su disposición a ofrecer soluciones y la calidad y precisión en los servicios de maquilado. </p>
                   </div>
                 </div>
             </div> 

@@ -30,36 +30,29 @@ Tendencias, servicio personalizado y tableros melaminicos importados." />
         <div class="row large-gutters">
           <div class="col-lg-6 mb-5">
 
-              <div class="owl-carousel slide-one-item with-dots">
-                  <div><img src="images/modulartop/modulartop.gif" alt="Comercializadora de Tableros Melaminicos, 
+              <div >
+                  <div><img src="images/modulartop/mt_corporativa.jpg" alt="Comercializadora de Tableros Melaminicos, 
                   especialistas en la fabricación de muebles y servicios de madera con maquinarias de última generación en Caracas, Venezuela." class="img-fluid"></div>
                   
                 </div>
 
           </div>
           <div class="col-lg-6 ml-auto">              
-                <p align="justify">En 40 años de experiencia acumulada nos hemos dado cuenta de la exigencia, responsabilidad y pasión que dedican todas las personas relacionadas a la industria de la madera y el diseño de interiores.</p>
+                <p align="justify">Somos la Generación de Relevo y en 40 años de experiencia acumulada nos hemos dado cuenta de la exigencia, responsabilidad y pasión que dedican todas las personas relacionadas a la industria de la madera y el diseño de interiores.</p>
                 <p align="justify">Nos complace saber que hemos mantenido una larga trayectoria cumpliendo los 
                 sueños de profesionales y familias venezolanas.</p>
                 <p align="justify">Logramos que los espacios vacíos se conviertan en un ambiente ideal para  
                 compartir.</p>
-                <p align="justify">Damos en el gusto de cada cliente por tener muebles con diseños creativos, 
-                minimalistas, sofisticados, multifuncionales y en tendencia.</p>
-                <p align="justify">La diversidad es un detalle que nos distingue.</p>
-                <p align="justify">También somos el brazo fuerte de carpinterías y fabricantes, ya que disponemos de
-                maquinarias sofisticadas con Softwares de Centro Numérico Computarizado (CNC). </p>
-                <p align="justify">Las cuales facilitan los procesos de corte de tableros, pegado de tapa canto y 
-                mecanizado de tableros, minimizando los costes de producción con una entrega               
-                rápida del producto.  </p>               
-          </div>  
-
-        </div>
-
-       
+                <p align="justify">Satisfacemos las necesidades y expectativas de cada cliente por tener muebles con diseños creativos, minimalistas, sofisticados, multifuncionales y en tendencia.</p>
+                <p align="justify">La diversidad es un detalle que nos distingue.</p>         
+                               
+          </div> 
+        </div>      
 
         <div class="row large-gutters">
           <div class="col-lg-12 mb-5">
-          
+          <p align="justify">Somos un apoyo importante para carpinteros y fabricantes, ya que disponemos de maquinarias sofisticadas con Softwares de Centro Numérico Computarizado (CNC). </p>
+          <p align="justify">Las cuales facilitan los procesos de corte y mecanizado de tableros, pegado de tapa canto y mecanizado de tableros, minimizando los costes de producción con una entrega rápida del producto.  </p>         
           <p align="justify">Hoy nos sentimos convencidos de seguir siempre con pie firme de manera 
           optimista.  </p>
           <p align="justify">Tenemos el hábito de convertir las adversidades en fuente de inspiración para crear 
