@@ -262,7 +262,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
                     <img src="images/yanira.jpg" alt="Image" class="img-fluid mr-3">
                     <div>
                       <h3>YANIRA SALAZA</h3>
-                      <span>Fabricacion de cocina</span>
+                      <span>Fabricación de cocina</span>
                     </div>
                   </div>
                   <div>
