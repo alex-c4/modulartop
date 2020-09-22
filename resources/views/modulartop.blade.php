@@ -32,7 +32,7 @@ Tendencias, servicio personalizado y tableros melaminicos importados." />
         <div class="row large-gutters">
           <div class="col-lg-6 mb-5">
 
-              <div >
+              <div>
                   <div><img src="images/modulartop/mt_corporativa.jpg" alt="Comercializadora de Tableros Melaminicos, 
                   especialistas en la fabricación de muebles y servicios de madera con maquinarias de última generación en Caracas, Venezuela." class="img-fluid"></div>
                   
@@ -95,7 +95,7 @@ Tendencias, servicio personalizado y tableros melaminicos importados." />
           la Española LOSAN, con el propósito de ofrecer materia prima de alta gama
           para la industria del mueble.          
           </p> 
-          <p>Nuestras alianzas hacen que podamos ofrecer productos innovadores de gran calidad. </p>
+          <p>Nuestras alianzas nos permite ofrecer productos innovadores de gran calidad. </p>
         
           <h2 class="section-title-modulartop mb-3"><br>Misión</h2>
           <p>Ofrecer a nuestros clientes servicios y productos de calidad, con el objetivo de  
