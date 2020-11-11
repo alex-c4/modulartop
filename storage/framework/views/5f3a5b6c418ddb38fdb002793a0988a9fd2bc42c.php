@@ -12,7 +12,7 @@ muebles, historia, servicios de madera y fabricación de mueblería." />
         <div class="row align-items-center justify-content-center">
           <div class="col-md-5 mx-auto mt-lg-5 text-center">
             <h1>Novedades</h1>
-            <p class="mb-5"><strong class="text-white">de la Industra Mobiliaria.</strong></p>
+            <p class="mb-5"><strong class="text-white">de la Industria Mobiliaria.</strong></p>
             
           </div>
         </div>
