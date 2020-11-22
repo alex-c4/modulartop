@@ -31,7 +31,35 @@
     <link rel="stylesheet" type="text/css" href="<?php echo e(asset('css/elastislide.css')); ?>" />
     <link rel="stylesheet" type="text/css" href="<?php echo e(asset('css/custom.css')); ?>" />
     <script src="<?php echo e(asset('js/modernizr.custom.17475.js')); ?>"></script>
-    <!-- fin del bloque fabricacion -->  
+    <!-- fin del bloque fabricacion --> 
+
+<!--Bloque tracking code de Google Analytics VERSION UA-->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-183802895-1"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'UA-183802895-1');
+        </script>
+  <!-- fin del Bloque tracking code de Google Analytics --> 
+
+  
+    <!--Bloque tracking code de Google Analytics VERSION GA4-->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-2NPLXFJ07C"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-2NPLXFJ07C');
+      </script>
+  
+    <!-- fin del Bloque tracking code de Google Analytics --> 
+
+
 
   </head>
 
@@ -183,7 +211,7 @@
             -->
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 
-            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script> Modular Top C.A. All rights reserved | Website Design by <a href="https://www.instagram.com/erikreativa/" target="_blank" >Erikreativa</a> 
             
             </p>
           

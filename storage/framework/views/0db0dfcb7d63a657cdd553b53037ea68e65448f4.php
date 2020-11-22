@@ -112,9 +112,10 @@ unset($__errorArgs, $__bag); ?>
                                         </a>
                                     <?php endif; ?>
 
-                                    <a class="btn btn-link" href="<?php echo e(route('register')); ?>">
+                                    <!-- comentado temporalmente para evitar registros de usuarios -->
+                                    <!-- <a class="btn btn-link" href="<?php echo e(route('register')); ?>">
                                         Registrarse
-                                    </a>
+                                    </a> -->
 
                                 </div>
 
