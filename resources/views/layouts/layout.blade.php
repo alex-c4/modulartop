@@ -31,7 +31,21 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/elastislide.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/custom.css')}}" />
     <script src="{{ asset('js/modernizr.custom.17475.js')}}"></script>
-    <!-- fin del bloque fabricacion -->  
+    <!-- fin del bloque fabricacion --> 
+
+    <!--Bloque tracking code de Google Analytics-->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-M2WBL3YNFE"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-M2WBL3YNFE');
+      </script>
+    <!-- fin del Bloque tracking code de Google Analytics --> 
+
+
 
   </head>
 
