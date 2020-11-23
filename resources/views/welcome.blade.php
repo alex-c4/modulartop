@@ -83,7 +83,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
                     <a href="{{ url('/acabado-altobrillo') }}" class=""><img src="images/tableros/tablero-altobrillo.jpg" alt="Tablero melaminico alto brillo MDF importado, acabado premium oneskin" class="img-tm"></a>
                     <div class="ftco-media-details">
                       <h3><BR>ACABADOS PREMIUM</h3>
-                      <p>MDF EN ALTO BRILLO-IMPORTADO</p>
+                      <p>MDF-ALTO BRILLO-IMPORTADO</p>
                      
                     </div>
                   </div> 
@@ -97,7 +97,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
                     <a href="{{ url('/acabado-supermate') }}" class=""><img src="images/tableros/tablero-supermate.jpg" alt="Tablero melaminico super mate MDF importado, acabado premium oneskin" class="img-tm"></a>
                     <div class="ftco-media-details">
                         <h3><BR>ACABADOS PREMIUM</h3>
-                        <p>MDF EN SUPER MATE-IMPORTADO</p>
+                        <p>MDF-SUPER MATE-IMPORTADO</p>
                      
                     </div>
                   </div> 
