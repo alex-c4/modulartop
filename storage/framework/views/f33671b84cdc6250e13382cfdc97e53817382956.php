@@ -326,7 +326,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
           </div>
           <div class="col-md-6 col-lg-6 mb-6 mb-lg-6" data-aos="fade-up" data-aos-delay="100">
             <div class="unit-4 d-flex">
-              <div class="mr-4"><img src="<?php echo e(asset('images/iconos/Ruteado.png')); ?>" alt="Mecanizados de los tableros para optimizar la calidad del producto final" class="img-fluid mr-3"></span></div>
+              <div class="mr-4"><img src="<?php echo e(asset('images/iconos/ruteado.png')); ?>" alt="Mecanizados de los tableros para optimizar la calidad del producto final" class="img-fluid mr-3"></span></div>
               <div>
                 <h3>MECANIZADO DE TABLEROS</h3>
                 <p>Maquinaria que cumplen con las exigencias del mercado actual. 
@@ -573,7 +573,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
                 </p>
                
 
-                <a href="https://api.whatsapp.com/send?phone=+58 04143805063">
+                <a href="https://api.whatsapp.com/send?phone=+58 04241854168">
                 <img src="images/boton-watsapp.webp" alt="Contacto via whatsapp" class="img-fluid"></a>
                 
               </div>

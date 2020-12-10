@@ -574,7 +574,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
                 </p>
                
 
-                <a href="https://api.whatsapp.com/send?phone=+58 04143805063">
+                <a href="https://api.whatsapp.com/send?phone=+58 04241854168">
                 <img src="images/boton-watsapp.webp" alt="Contacto via whatsapp" class="img-fluid"></a>
                 
               </div>
