@@ -270,6 +270,7 @@ jQuery(document).ready(function($) {
       }, 600, 'easeInOutExpo');
 
 	});
+
   };
   OnePageNavigation();
 

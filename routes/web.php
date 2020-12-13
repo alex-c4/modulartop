@@ -11,9 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+// comentado temporalmente
+// Route::get('/', function () {
+//     return view('welcome');
+// })->name('welcome');
+Route::get('/', 'WelcomeController@index')->name('welcome');
 
 
 // Authentication Routes...
