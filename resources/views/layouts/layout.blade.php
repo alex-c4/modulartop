@@ -64,7 +64,7 @@
   <style>
     .navidad{
       width: 100%;
-      background-color: #00000087;
+      background-color: #000000f0;
       height: 100vh;
       position: fixed;
       z-index: 999;
@@ -143,7 +143,7 @@
       <img  src="{{ asset('images/navidad/iconClose25x25.png') }}" alt="" srcset="">
     </div>
     <div class="imgNavidad">
-      <img src="{{ asset('images/navidad/navidad2.jpg') }}" alt="" srcset="">
+      <img src="{{ asset('images/navidad/Banner-1000.jpg') }}" alt="" srcset="">
     </div>
     </div>
     <div class="site-mobile-menu site-navbar-target">
@@ -314,9 +314,16 @@
       <div id="whatsAppHeader">
         <img src="{{ asset('images/iconClose25x25.png') }}" alt="" srcset="" onclick="closeWhatsApp()">
       </div>
-      <div>
-        <a href="https://api.whatsapp.com/send?phone=+58 04241854168">
-        <img src="images/boton-watsapp.webp" alt="Contacto via whatsapp" class="img-fluid"></a>
+      <div >
+        <a href="javascript:void(0)">
+        <img src="{{asset('images/messageWhatsApp.png')}}" alt="Contacto via whatsapp" class="img-fluid"></a>
+      </div>
+      <div class="containerSendWhartsApp">
+        <div class="sendWhatsApp">
+          <a href="https://api.whatsapp.com/send?phone=+58 04241854168">
+            Abrir chat <span style="vertical-align: middle;" class="icon-telegram"></span>
+          </a>
+        </div>
       </div>
     </div>
 
@@ -368,7 +375,7 @@
         var div = $("#whatsAppContent");
 		    div.animate({
           bottom: '20px',
-          height: '160px',
+          height: '182px',
           width: '300px',
           opacity: '1',
         }, "slow");

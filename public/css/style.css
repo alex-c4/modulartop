@@ -2358,7 +2358,7 @@ img {
   /* height: 160px; */
   width: 0px;
   height: 0px;
-  background-color: #ffffff;
+  background-color: #f4f4f4;
   position: fixed;
   bottom: -200px;
   right: 20px;
@@ -2382,4 +2382,23 @@ img {
 
 #whatsAppHeader img{
   cursor: pointer;
+}
+
+.containerSendWhartsApp{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.sendWhatsApp{
+  background-color: #00c954;
+  margin: 5px;
+  border-radius: 15px;
+  padding: 5px;
+  font-size: 15px;
+}
+.sendWhatsApp:hover{
+  background-color: #00c9546e;
+}
+.sendWhatsApp a{
+  color: white !important;
 }
