@@ -35,20 +35,20 @@
 
 <!--Bloque tracking code de Google Analytics VERSION UA-->
     <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-183802895-1"></script>
+        <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-183802895-1"></script>
         <script>
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
 
           gtag('config', 'UA-183802895-1');
-        </script>
+        </script> -->
   <!-- fin del Bloque tracking code de Google Analytics --> 
 
   
     <!--Bloque tracking code de Google Analytics VERSION GA4-->
     <!-- Global site tag (gtag.js) - Google Analytics -->
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-2NPLXFJ07C"></script>
+      <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-2NPLXFJ07C"></script>
       <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
@@ -56,7 +56,7 @@
 
         gtag('config', 'G-2NPLXFJ07C');
 
-      </script>
+      </script> -->
   
     <!-- fin del Bloque tracking code de Google Analytics --> 
 

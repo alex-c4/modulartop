@@ -35,39 +35,117 @@
 
 <!--Bloque tracking code de Google Analytics VERSION UA-->
     <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-183802895-1"></script>
+        <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-183802895-1"></script>
         <script>
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
 
           gtag('config', 'UA-183802895-1');
-        </script>
+        </script> -->
   <!-- fin del Bloque tracking code de Google Analytics --> 
 
   
     <!--Bloque tracking code de Google Analytics VERSION GA4-->
     <!-- Global site tag (gtag.js) - Google Analytics -->
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-2NPLXFJ07C"></script>
+      <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-2NPLXFJ07C"></script>
       <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
         gtag('config', 'G-2NPLXFJ07C');
-      </script>
+
+      </script> -->
   
     <!-- fin del Bloque tracking code de Google Analytics --> 
 
 
+  <style>
+    .navidad{
+      width: 100%;
+      background-color: #000000f0;
+      height: 100vh;
+      position: fixed;
+      z-index: 999;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      /* flex-wrap: wrap; */
+      flex-direction: column;
+    }
+    .imgNavidad img{
+      width: 500px;
+      cursor: pointer;
+      border-radius: 10px;
+    }
+    .imgClose{
+      display: flex;
+      justify-content: flex-end;
+      width: 545px;
+      /* background-color: aqua; */
+    }
+    .imgClose img{
+      cursor: pointer;
+      /* width: 30px */
+    }
 
+  @media (max-width: 768px) {
+    .imgNavidad img{
+      width: 55vh;
+    }
+
+    .imgClose{
+      width: 60vh;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .imgNavidad img{
+      width: 35vh;
+    }
+
+    .imgClose{
+      width: 40vh;
+    }
+  }
+
+  @media (max-width: 280px) {
+    .imgNavidad img{
+      width: 30vh;
+    }
+
+    .imgClose{
+      width: 35vh;
+    }
+  }
+
+  </style>
   </head>
 
 
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
   
   <div class="site-wrap">
+    <div class="navidad" onclick="closeMessage()">
 
+      <!-- <div class="container">
+        <div class="row">
+          <div class="col">
+
+          
+          </div>
+        </div>
+      </div> -->
+
+
+    <div class="imgClose">
+      <img  src="<?php echo e(asset('images/navidad/iconClose25x25.png')); ?>" alt="" srcset="">
+    </div>
+    <div class="imgNavidad">
+      <img src="<?php echo e(asset('images/navidad/Banner-1000.jpg')); ?>" alt="" srcset="">
+    </div>
+    </div>
     <div class="site-mobile-menu site-navbar-target">
       <div class="site-mobile-menu-header">
         <div class="site-mobile-menu-close mt-3">
@@ -225,7 +303,32 @@
 
   </div> <!-- .site-wrap -->
 
+  <hatsAppCont>
+  	<a href="javascript:void(0);" class="whatsapp" >
+  	  <img src="<?php echo e(asset('images/WhatsApp2.png')); ?>" alt="" srcset="" onclick="showWhatsAppContent()">
+  	</a>
+  </hatsAppCont>
+
   <a href="#top" class="gototop"><span class="icon-angle-double-up"></span></a>
+
+    <div id="whatsAppContent">
+      <div id="whatsAppHeader">
+        <!-- <img src="<?php echo e(asset('images/iconClose25x25.png')); ?>" alt="" srcset="" onclick="closeWhatsApp()"> -->
+        <span class="icon-close2 closeWhatsApp" onclick="closeWhatsApp()"></span>
+
+      </div>
+      <div >
+        <a href="javascript:void(0)">
+        <img src="<?php echo e(asset('images/messageWhatsApp.png')); ?>" alt="Contacto via whatsapp" class="img-fluid"></a>
+      </div>
+      <div class="containerSendWhartsApp">
+        <div class="sendWhatsApp">
+          <a href="https://api.whatsapp.com/send?phone=+58 04241854168" target="_blank">
+            Abrir chat <span style="vertical-align: middle;" class="icon-telegram"></span>
+          </a>
+        </div>
+      </div>
+    </div>
 
   </body>
 </html>
@@ -244,12 +347,54 @@
        */
       $(function(){
         $(document).scroll(function(){
-        if($(this).scrollTop() > 1){
-          $('#logoClass').attr('src', '<?php echo e(asset('images/modulartop.png')); ?>')              
-        }else{
-          $('#logoClass').attr('src', '<?php echo e(asset('images/modulartop_blanco.png')); ?>')
-        }
+          if($(this).scrollTop() > 1){
+            $('#logoClass').attr('src', '<?php echo e(asset('images/modulartop.png')); ?>')              
+          }else{
+            $('#logoClass').attr('src', '<?php echo e(asset('images/modulartop_blanco.png')); ?>')
+          }
         });
+
+      var Message = function(){
+        
+        <?php if( isset($show) ): ?>
+          if(eval("<?php echo e($show); ?>")){
+            showMessage();
+          }
+        <?php endif; ?>
+        }
+
+        Message();
       });
+      
+
+      var closeMessage = function(){
+        $(".navidad").css("display", "none");
+      }
+      var showMessage = function(){
+        $(".navidad").css("display", "flex");
+      }
+
+      var showWhatsAppContent = function(){
+        var div = $("#whatsAppContent");
+		    div.animate({
+          bottom: '20px',
+          height: '182px',
+          width: '300px',
+          opacity: '1',
+        }, "slow");
+      }
+
+      var closeWhatsApp = function(){
+        var div = $("#whatsAppContent");
+		    div.animate({ 
+          height: '0px',
+          width: '0px',
+          opacity: '0.5',
+        }, "slow");
+
+        div.animate({bottom: '-200px'},  "slow");
+
+      }
+
 		</script>
   <!-- fin del bloque fabricacion -->  <?php /**PATH C:\xampp\htdocs\modulartop\modulartop\resources\views/layouts/layout.blade.php ENDPATH**/ ?>
