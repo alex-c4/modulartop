@@ -312,7 +312,9 @@
 
     <div id="whatsAppContent">
       <div id="whatsAppHeader">
-        <img src="{{ asset('images/iconClose25x25.png') }}" alt="" srcset="" onclick="closeWhatsApp()">
+        <!-- <img src="{{ asset('images/iconClose25x25.png') }}" alt="" srcset="" onclick="closeWhatsApp()"> -->
+        <span class="icon-close2 closeWhatsApp" onclick="closeWhatsApp()"></span>
+
       </div>
       <div >
         <a href="javascript:void(0)">

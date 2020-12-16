@@ -2402,3 +2402,15 @@ img {
 .sendWhatsApp a{
   color: white !important;
 }
+
+.closeWhatsApp{
+  background-color: #008f3c;
+  color: white;
+  padding: 5px;
+  border-radius: 15px;
+}
+
+.closeWhatsApp:hover{
+  background-color: #006329;
+  cursor: pointer;
+}
