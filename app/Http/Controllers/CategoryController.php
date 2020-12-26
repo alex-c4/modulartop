@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use DB;
+use App\Category;
 
-class WelcomeController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,16 +16,7 @@ class WelcomeController extends Controller
      */
     public function index()
     {
-        $exist = session()->has('showMessage');
-        // dd($exist);
-        if($exist){
-            $show = "false";
-        } else{
-            session(['showMessage' => 'true']);
-            $show = "true";
-        }
-        
-        return view('welcome', compact('show'));
+        //
     }
 
     /**
@@ -42,9 +35,36 @@ class WelcomeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         //
+    }
+
+    public function store_ajax(Request $request)
+    {
+        try {
+            $user_id = auth()->user()->id; 
+
+            $category = Category::create([
+                'name' => $request->input("categoryName"),
+                'updated_by' => $user_id
+            ]);
+
+            $result = array(
+                "result" => true,
+                "id" => $category->id,
+                "name" => $category->name
+            );
+
+        } catch (Throwable $th) {
+            $result = array(
+                "result" => false,
+                "id" => 0,
+                "name" => ""
+            );
+        }
+
+           
+        return $result;
     }
 
     /**
@@ -91,5 +111,4 @@ class WelcomeController extends Controller
     {
         //
     }
-
 }

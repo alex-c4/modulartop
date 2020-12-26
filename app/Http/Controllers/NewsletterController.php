@@ -27,10 +27,13 @@ class NewsletterController extends Controller
     {
         $newsletters = DB::table('newsletters')
                         ->join('categories', 'categories.id', '=', 'newsletters.category_id', 'inner', false)
-                        ->select('newsletters.id', 'newsletters.title', 'newsletters.created_at', 'newsletters.isDeleted', 'categories.name')
+                        ->select('newsletters.id', 'newsletters.title', 'newsletters.created_at', 'newsletters.isDeleted', 'categories.name', 'newsletters.title as url')
                         ->orderby('newsletters.created_at', 'desc')
                         ->get();
         
+        foreach($newsletters as $row){
+            $row->url =  str_replace(" ", "-", $row->url);
+        }
         return view('newsletter.index', compact('newsletters'));
     }
 
@@ -85,7 +88,7 @@ class NewsletterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, $name)
     {
         // #post1
         $newsletter = DB::table('newsletters')
@@ -97,7 +100,7 @@ class NewsletterController extends Controller
 
         $newsletter_top3 = DB::table('newsletters')
                         ->join('users', 'users.id', '=', 'newsletters.user_id','inner', false)
-                        ->select('newsletters.id', 'newsletters.title', 'newsletters.name_img', 'newsletters.created_at', 'users.name as author', 'newsletters.summary')
+                        ->select('newsletters.id', 'newsletters.title', 'newsletters.name_img', 'newsletters.created_at', 'users.name as author', 'newsletters.summary', 'newsletters.title as url')
                         ->where('newsletters.isDeleted', '0')
                         ->orderby('newsletters.created_at', 'desc')
                         ->take(3)
@@ -110,6 +113,10 @@ class NewsletterController extends Controller
 
         $categoryList = $this->getCatagoriesList();
 
+        foreach($newsletter_top3 as $row){
+            $row->url =  str_replace(" ", "-", $row->url);
+        }
+        
         return view('post', compact('newsletter', 'newsletter_top3', 'tags_array', 'categoryList'));
     }
 
@@ -186,10 +193,13 @@ class NewsletterController extends Controller
 
         $newsletters = DB::table('newsletters')
                         ->join('categories', 'categories.id', '=', 'newsletters.category_id', 'inner', false)
-                        ->select('newsletters.id', 'newsletters.title', 'newsletters.created_at', 'newsletters.isDeleted', 'categories.name')
+                        ->select('newsletters.id', 'newsletters.title', 'newsletters.created_at', 'newsletters.isDeleted', 'categories.name', 'newsletters.title as url')
                         ->orderby('newsletters.created_at', 'desc')
                         ->get();
-        
+
+        foreach($newsletters as $row){
+            $row->url =  str_replace(" ", "-", $row->url);
+        }
         return view('newsletter.index', compact('newsletters'));
     }
 
@@ -208,10 +218,13 @@ class NewsletterController extends Controller
 
         $newsletters = DB::table('newsletters')
                         ->join('categories', 'categories.id', '=', 'newsletters.category_id', 'inner', false)
-                        ->select('newsletters.id', 'newsletters.title', 'newsletters.created_at', 'newsletters.isDeleted', 'categories.name')
+                        ->select('newsletters.id', 'newsletters.title', 'newsletters.created_at', 'newsletters.isDeleted', 'categories.name', 'newsletters.title as url')
                         ->orderby('newsletters.created_at', 'desc')
                         ->get();
-        
+
+        foreach($newsletters as $row){
+            $row->url =  str_replace(" ", "-", $row->url);
+        }
         return view('newsletter.index', compact('newsletters'));
     }
 
@@ -246,6 +259,10 @@ class NewsletterController extends Controller
             $newsletters = DB::select('CALl sp_getNewsletter');
         }else{
             $newsletters = DB::select('CALl sp_getNewsletterFilterByCategory(?)', array($category_id));
+        }
+        
+        foreach($newsletters as $row){
+            $row->url =  str_replace(" ", "-", $row->url);
         }
 
         $categoryList = $this->getCatagoriesList();

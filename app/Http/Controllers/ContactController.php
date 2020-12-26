@@ -112,8 +112,13 @@ class ContactController extends Controller
 
     public function contact(Request $request){
         // proceso llamdao desde suscripcion a novedades
-
-        $email = request()->emailnews;
+        if(request()->emailnews != null){
+            $email = request()->emailnews;
+        }else if(request()->emailnews3 != null){
+            $email = request()->emailnews3;
+        }else if(request()->emailnews4 != null){
+            $email = request()->emailnews4;
+        }
 
         try {
             Contact::create([
@@ -128,10 +133,10 @@ class ContactController extends Controller
                 "correo" => env('EMAIL_ADMIN')
             );
             
-            Mail::send('emails.suscriptionnews', $data, function($message) use($req){
-                $message->from($req["correo"], 'Web Modular Top');
-                $message->to($req["correo"])->subject('Subcripción a novedades');
-            });
+            // Mail::send('emails.suscriptionnews', $data, function($message) use($req){
+            //     $message->from($req["correo"], 'Web Modular Top');
+            //     $message->to($req["correo"])->subject('Subcripción a novedades');
+            // });
                 
             $result = array(
                 "success" => true,

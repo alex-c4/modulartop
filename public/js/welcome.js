@@ -5,6 +5,7 @@ $( document ).ready(function() {
     $('#msgcontact').hide();
     $('#divMessageNews').hide();
     $('#alertContact2').hide();
+    $('#alertContact3').hide();
 });
 
 $("#btnShowContact").click(function(){
@@ -24,6 +25,37 @@ $('#form_send_contact').submit(function(){
     var _data = $(this).serialize();
 
     sendForm_contact(_route, _token, _data, "contact");
+
+    return false;
+});
+
+$('#form_send_contact3').submit(function(){
+        
+    $('#button-addon3').text("Enviando...");
+    $('#button-addon3').attr("disabled", true);
+
+    var _route = $(this).attr('action');
+    var _token = $("#token").val();
+    
+    var _data = $(this).serialize();
+    debugger
+    sendForm_contact_fromPost(_route, _token, _data, "contact");
+
+    return false;
+});
+
+
+$('#form_send_contact4').submit(function(){
+        
+    $('#button-addon4').text("Enviando...");
+    $('#button-addon4').attr("disabled", true);
+
+    var _route = $(this).attr('action');
+    var _token = $("#token").val();
+    var _data = $(this).serialize();
+    
+
+    sendForm_contact_fromBotonFlotante(_route, _token, _data, "contact");
 
     return false;
 });
@@ -114,6 +146,69 @@ var sendForm_contact = function(_route, _token, _data, _form_id){
         console.log(jqXHR.responseJSON.errors);
         showAlert("Hubo un error en la operación, por favor intente de nuevo. Muchas gracias!");
         enableButton();
+    })
+};
+
+
+var sendForm_contact_fromPost = function(_route, _token, _data, _form_id){
+    $.ajax({
+        url: _route,
+        headers: { 'X-CSRF-TOKEN': _token },
+        type: 'POST',
+        data: _data
+    })
+    .done(function(data, textStatus, jqXHR){
+        if(data.success){
+            $("#emailnews3").val("");
+
+            // $('#divMessage3').html(data.message);
+            // $('#alertContact3').slideDown();
+            showAlert(data.message, $('#divMessage3'), $('#alertContact3'));
+            $('#button-addon3').text("Enviar");
+            $('#button-addon3').attr("disabled", false);
+        }else{
+            showAlert(data.message, $('#divMessage3'), $('#alertContact3'));
+            clearForm();
+            console.log(data.exeption);
+            $('#button-addon3').text("Enviar");
+            $('#button-addon3').attr("disabled", false);
+        }
+        
+    })
+    .fail(function(jqXHR, textStatus, errorThrown ){   
+             
+        console.log(jqXHR.responseJSON.errors);
+        showAlert("Hubo un error en la operación, por favor intente de nuevo. Muchas gracias!", $('#divMessage3'), $('#alertContact3'));
+        enableButton();
+    })
+};
+
+var sendForm_contact_fromBotonFlotante = function(_route, _token, _data, _form_id){
+    $.ajax({
+        url: _route,
+        headers: { 'X-CSRF-TOKEN': _token },
+        type: 'POST',
+        data: _data
+    })
+    .done(function(data, textStatus, jqXHR){
+        if(data.success){
+            $("#emailnews4").val("");
+
+            $('#button-addon4').text("Enviar");
+            $('#button-addon4').attr("disabled", false);
+            $("#messageSuscripcion").html(data.message);
+        }else{
+            clearForm();
+            console.log(data.exeption);
+            $('#button-addon4').text("Enviar");
+            $('#button-addon4').attr("disabled", false);
+        }
+        
+    })
+    .fail(function(jqXHR, textStatus, errorThrown ){   
+        $('#button-addon4').text("Enviar");
+        $('#button-addon4').attr("disabled", false);
+        $("#messageSuscripcion").html("Hubo un error en la operación.");
     })
 };
 var sendForm = function(_route, _token, _data, _form_id){
@@ -212,6 +307,11 @@ var clearForm = function(){
 var showAlert = function(msg){
     $('#divMessage').html(msg);
     $('#alertContact').slideDown();
+}
+
+var showAlert = function(msg, divMsg, alert){
+    divMsg.html(msg);
+    alert.slideDown();
 }
 
 var blockButton = function(){

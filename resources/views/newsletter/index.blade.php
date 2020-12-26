@@ -36,7 +36,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Titulo</th>
                 <th scope="col">Categoria</th>
-                <th scope="col" colspan="4">Fecha de publicación</th>
+                <th scope="col" colspan="5">Fecha de publicación</th>
                 <th></th>
             </tr>
         </thead>
@@ -49,15 +49,16 @@
                 <td>{{ $news->name }}</td>
                 <td>{{ $news->created_at }}</td>
                 <td>
-                    <a href="{{ route('newsletter.edit', $news->id) }}"><span class="icon-pencil-square-o"></span></a>
-                    &nbsp;
+                    <a href="{{ route('newsletter.edit', $news->id) }}" title="Editar"><span class="icon-pencil-square-o"></span></a>
+                <td>
+                    <a href="{{ route('show', [$news->id, $news->url]) }}" title="Previsualizar"><span class="icon-binoculars"></span></a>
                 </td>
                 <td>
                     @if($news->isDeleted == 0)
                         <form id="formDestroy_{{ $news->id }}" action="{{ route('newsletter.delete', $news->id) }}" method="post">
                             {{ method_field('DELETE') }}
                             {{ csrf_field() }}
-                            <a href="#" title="Ocultar novedad" onclick="document.getElementById('formDestroy_{{ $news->id }}').submit()"><span class="icon-trash-o"></span></a>
+                            <a href="#" title="Ocultar novedad" onclick="document.getElementById('formDestroy_{{ $news->id }}').submit()"><span class="icon-eye-slash"></span></a>
                         </form>
                     @else
                         <form id="formRestore_{{ $news->id }}" action="{{ route('newsletter.restore', $news->id) }}" method="post">

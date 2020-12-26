@@ -9,10 +9,9 @@
 <!-- <meta property="og:url" content="ENLACE PERMANENTE" /> -->
 <meta property="og:site_name" content="MODULAR TOP" />
 
+
 <title>Novedades - Modular Top</title> 
-<meta name="description" 
-content="Noticias y contenido de valor con todo lo relacionado a diseño de interiores, tipos de 
-muebles, historia, servicios de madera y fabricación de mueblería." />
+<meta name="description" content="{{ $newsletter->summary }}" />
 
 <!-- 
 <title>{{ $newsletter->title }}</title> 
@@ -60,7 +59,15 @@ async='async'></script>
               <div class="sharethis-inline-share-buttons"></div>
               
               <h2 class="section-title-modulartop mb-3"><br>{{ $newsletter->title }}</h2> 
-              
+              @if(Auth::check())
+                @if(auth()->user()->hasRoles('Administrator') || auth()->user()->hasRoles('Newsletter')) 
+                  <div class="botonesEditList">
+                    <a href="{{ route('newsletter.edit', $newsletter->id) }}" title="Editar"><span class="icon-pencil-square-o"></span></a>
+                    &nbsp;
+                    <a href="{{ route('newsletter.index') }}"><span class="icon-list"></span></a>
+                  </div>
+                @endif
+              @endif
             </p>
             
               
@@ -73,6 +80,33 @@ async='async'></script>
             <div class="pt-5">
               <p>Categorias:  <a href="{{ route('novedades', $newsletter->category_id) }}">{{ $newsletter->category }}</a> <!-- Tags: @foreach($tags_array as $tag) <a href="#">{{$tag}}</a>@endforeach</p> -->
             </div>
+
+            <div class="divFormSubscribeNewsletter2"> 
+              <div>
+                <img src="{{ asset('images/email-box-web.png') }}" alt="" srcset="">
+              </div>
+              <div class="titleSubcripcion">
+                Si te gusto el articulo suscribete para recibir cuando hayan nuevos
+              </div>
+              <div class="col-sm-12 col-md-9">
+                <form action="{{ route('contact.contact') }}" method="post" class="" id="form_send_contact3">
+                  {{csrf_field()}}
+
+                  <div class="input-group mb-3">
+                    <input id="emailnews3" name="emailnews3" type="text" class="form-control border-secondary bg-transparent" placeholder="Ingrese su Email" aria-label="Enter Email" aria-describedby="button-addon2">
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" style="height: 43px" type="submit" id="button-addon3" name="button-addon3">Enviar</button>
+                    </div>
+                  </div>
+
+                  <div class="alert alert-success" role="alert" id="alertContact3">
+                    <label id="divMessage3" class="text-black"></label> 
+                  </div>
+                  
+                </form>
+              </div>
+            </div>
+            
     
                          
 
@@ -102,11 +136,11 @@ async='async'></script>
                                 </div>
                                 <div class="recent-text">
 
-                                  <h5 class="font-size-regular"><a href="{{ route('show', $news->id) }}"><br>{{ $news->title }}</a></h5>
+                                  <h5 class="font-size-regular"><a href="{{ route('show', [$news->id, $news->url]) }}"><br>{{ $news->title }}</a></h5>
                                   <div class="meta mb-4"><!-- {{ $news->author }}  -->
                                     <span class="mx-2">&bullet;</span> {{ explode(' ', $news->created_at)[0] }}
                                     <span class="mx-2">&bullet;</span> 
-                                    <a href="{{ route('show', $news->id) }}">Leer</a>
+                                    <a href="{{ route('show', [$news->id, $news->url]) }}">Leer</a>
                                   </div>
                                                                  
                                 </div>
@@ -114,7 +148,7 @@ async='async'></script>
                         @endforeach
                             
 
-                        </div>
+              </div>
             </div>
 
             
@@ -124,6 +158,10 @@ async='async'></script>
     </section>
     <!-- Blog Section End -->
  
+    <script>
+      $(function(){
+        //ajuste de url
+      })
+    </script>
 
-    
 @endsection    

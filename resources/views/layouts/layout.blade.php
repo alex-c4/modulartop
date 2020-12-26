@@ -60,7 +60,59 @@
   
     <!-- fin del Bloque tracking code de Google Analytics --> 
 
+<script>
+  
+  var closeMessage = function(){
+        $(".navidad").css("display", "none");
+      }
+      var showMessage = function(){
+        $(".navidad").css("display", "flex");
+      }
 
+      var showWhatsAppContent = function(){
+        var div = $("#whatsAppContent");
+		    div.animate({
+          bottom: '20px',
+          height: '182px',
+          width: '300px',
+          opacity: '1',
+        }, "slow");
+      }
+
+      var showSubcripcionAppContent = function(){
+        var div = $("#subcripcionContent");
+		    div.animate({
+          bottom: '20px',
+          height: '120px',
+          width: '50vh',
+          opacity: '1',
+        }, "slow");
+      }
+
+      var closeWhatsApp = function(){
+        var div = $("#whatsAppContent");
+		    div.animate({ 
+          height: '0px',
+          width: '0px',
+          opacity: '0.5',
+        }, "slow");
+
+        div.animate({bottom: '-200px'},  "slow");
+
+      }
+
+      var closeSubcripcion = function(){
+        var div = $("#subcripcionContent");
+        div.animate({ 
+          height: '0px',
+          width: '0px',
+          opacity: '0.5',
+        }, "slow");
+
+        div.animate({bottom: '-200px'},  "slow");
+
+      }
+</script>
   <style>
     .navidad{
       width: 100%;
@@ -180,7 +232,7 @@
                 <li><a href="{{ route('welcome')}}#about-section" class="nav-link {{ (Request::is('contact/tellus')) ? 'active' : ''}}" >Fabricacion</a></li>
                 <li><a href="{{ route('welcome')}}#services-section" class="nav-link" >Servicios</a></li>
                 <li><a href="{{ url('/modulartop') }}" class="nav-link">Modular Top</a></li>
-                <li><a href="{{ url('/novedades') }}" class="nav-link">Novedades</a></li>
+                <li><a href="{{ url('/novedades') }}" class="nav-link">Novedades @if(Utils::getCountNews() > 0)<span class="cantNews">{{ Utils::getCountNews() }}</span>@endif</a></li>
                 <li><a href="{{ route('welcome')}}#contact-section" class="nav-link">Contactanos</a></li>
                 @if(Auth::check())
                   <li><a href="{{ route('logout')}}" class="nav-link">Salir</a></li>
@@ -306,10 +358,14 @@
   	<a href="javascript:void(0);" class="whatsapp" >
   	  <img src="{{ asset('images/WhatsApp2.png') }}" alt="" srcset="" onclick="showWhatsAppContent()">
   	</a>
+  	<a href="javascript:void(0);" class="whatsapp newsletterSubc" >
+  	  <img src="{{ asset('images/email-box-web.png') }}" alt="" srcset="" onclick="showSubcripcionAppContent()">
+  	</a>
   </hatsAppCont>
 
   <a href="#top" class="gototop"><span class="icon-angle-double-up"></span></a>
 
+  <!-- whatsApp content -->
     <div id="whatsAppContent">
       <div id="whatsAppHeader">
         <!-- <img src="{{ asset('images/iconClose25x25.png') }}" alt="" srcset="" onclick="closeWhatsApp()"> -->
@@ -329,15 +385,37 @@
       </div>
     </div>
 
+    <!-- subcripcion newletter content bonton flotante -->
+    <div id="subcripcionContent">
+    <form action="{{ route('contact.contact') }}" method="post" class="" id="form_send_contact4">
+      {{csrf_field()}}
+
+      <div id="subcripcionHeader">
+        <span class="icon-close2 closeSubcripcion" onclick="closeSubcripcion()"></span>
+      </div>
+
+      <div style="padding: 0px 20px 0px 20px;">
+        <div class="input-group mb-3">
+          <input id="emailnews4" name="emailnews4" type="text" class="form-control border-secondary text-white bg-transparent" placeholder="Ingrese su Email" aria-label="Enter Email" aria-describedby="button-addon2">
+          <div class="input-group-append" style="height: 43px !important;">
+            <button class="btn btn-primary" type="submit" id="button-addon4" name="button-addon4">Enviar</button>
+          </div>
+        </div>
+        <small id="messageSuscripcion" class="form-text text-muted">&nbsp;</small>
+      </div>
+    </form>
+    </div>
+
   </body>
 </html>
 
 <script src="{{ asset('js/welcome.js') }}"></script>
  <!--Bloque incorporado para carrusel fabricacion -->
  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-		<script type="text/javascript" src="js/jquerypp.custom.js"></script>
-		<script type="text/javascript" src="js/jquery.elastislide.js"></script>
-		<script type="text/javascript">
+		<script type="text/javascript" src="{{ asset('js/jquerypp.custom.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/jquery.elastislide.js') }}"></script>
+    <script type="text/javascript">
+    
 			
 			$( '#carousel' ).elastislide();
       
@@ -366,34 +444,8 @@
       });
       
 
-      var closeMessage = function(){
-        $(".navidad").css("display", "none");
-      }
-      var showMessage = function(){
-        $(".navidad").css("display", "flex");
-      }
-
-      var showWhatsAppContent = function(){
-        var div = $("#whatsAppContent");
-		    div.animate({
-          bottom: '20px',
-          height: '182px',
-          width: '300px',
-          opacity: '1',
-        }, "slow");
-      }
-
-      var closeWhatsApp = function(){
-        var div = $("#whatsAppContent");
-		    div.animate({ 
-          height: '0px',
-          width: '0px',
-          opacity: '0.5',
-        }, "slow");
-
-        div.animate({bottom: '-200px'},  "slow");
-
-      }
 
 		</script>
   <!-- fin del bloque fabricacion -->  
+
+  @yield('script')

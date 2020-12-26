@@ -59,16 +59,23 @@
                     </div>
 
                     <!-- categoria / tags -->
-                    <div class="row form-group">
+                    <div class="row form-group" >
                         <div class="col-md-6 mb-3 mb-md-0">
-                            <label class="text-black" for="category">Categoria</label>
+                                <label class="text-black" for="category">Categoria</label>
+                            <div class="input-group" >
 
-                            <select class="custom-select" id="category" name="category">
-                                @foreach($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->name}}</option>
-                                @endforeach
-                            </select>
-
+                                <select class="custom-select" id="category" name="category">
+                                    @foreach($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name}}</option>
+                                    @endforeach
+                                </select>
+                                <div class="input-group-append">
+                                    <button style="height: 38px" id="btnAddCategory" data-toggle="modal" data-target="#categoryModal" title="Agregar nueva cartegoria" class="btn btn-primary" type="button"><span class="icon-add"></span></button>
+                                </div>
+                                
+                                
+                            </div>
+                            <small id="addMessage" name="addMessage" class="form-text text-muted"></small>
                         </div>
 
                         <div class="col-md-6">
@@ -88,12 +95,47 @@
                     <button type="submit" class="btn btn-primary">
                         Guardar
                     </button>
+
+                    <a href="{{ route('newsletter.index') }}" class="btn btn-primary">Cancelar</a>
+                    
                 </form>
             </div>
 
         </div>
     </div>
 </section>
+
+<!-- modal para agregar nueva categoria -->
+<div class="modal fade" id="categoryModal" tabindex="-1" aria-labelledby="categoryModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Agregar categoria</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+        <input type="hidden" id="routeCurrent" value="{{ route('category.storeajax') }}">
+
+        <div class="form-group">
+            <label for="txtCategoryName">Nueva categoria</label>
+                <input type="text" class="form-control" id="txtCategoryName">
+            </div>
+            
+        </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="Utils.onclick_addCategory()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
 <script>
 // $('#form_send_newsletter').submit(function() {debugger
@@ -114,4 +156,10 @@
     });
 
 </script>
+@endsection
+
+@section('script')
+    
+<script src="{{ asset('js/utils.js') }}"></script>
+
 @endsection
