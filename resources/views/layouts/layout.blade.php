@@ -84,7 +84,7 @@
 		    div.animate({
           bottom: '20px',
           height: '120px',
-          width: '50vh',
+          width: '300px',
           opacity: '1',
         }, "slow");
       }
@@ -387,29 +387,29 @@
 
     <!-- subcripcion newletter content bonton flotante -->
     <div id="subcripcionContent">
-    <form action="{{ route('contact.contact') }}" method="post" class="" id="form_send_contact4">
-      {{csrf_field()}}
+      <form action="{{ route('contact.contact') }}" method="post" class="" id="form_send_contact4">
+        {{csrf_field()}}
 
-      <div id="subcripcionHeader">
-        <span class="icon-close2 closeSubcripcion" onclick="closeSubcripcion()"></span>
-      </div>
-
-      <div style="padding: 0px 20px 0px 20px;">
-        <div class="input-group mb-3">
-          <input id="emailnews4" name="emailnews4" type="text" class="form-control border-secondary text-white bg-transparent" placeholder="Ingrese su Email" aria-label="Enter Email" aria-describedby="button-addon2">
-          <div class="input-group-append" style="height: 43px !important;">
-            <button class="btn btn-primary" type="submit" id="button-addon4" name="button-addon4">Enviar</button>
-          </div>
+        <div id="subcripcionHeader">
+          <span class="icon-close2 closeSubcripcion" onclick="closeSubcripcion()"></span>
         </div>
-        <small id="messageSuscripcion" class="form-text text-muted">&nbsp;</small>
-      </div>
-    </form>
+
+        <div style="padding: 0px 20px 0px 20px;">
+          <div class="input-group mb-3">
+            <input id="emailnews4" name="emailnews4" type="text" class="form-control border-secondary text-white bg-transparent" placeholder="Ingrese su Email" aria-label="Enter Email" aria-describedby="button-addon2">
+            <div class="input-group-append" style="height: 43px !important;">
+              <button class="btn btn-primary" id="button-addon4" name="button-addon4">Enviar</button>
+            </div>
+          </div>
+          <small id="messageSuscripcion" class="form-text text-muted">&nbsp;</small>
+        </div>
+      </form>
     </div>
 
   </body>
 </html>
 
-<script src="{{ asset('js/welcome.js') }}"></script>
+<script src="{{ asset('js/welcome.js') }}?v={{ env('APP_VERSION', '1') }}"></script>
  <!--Bloque incorporado para carrusel fabricacion -->
  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 		<script type="text/javascript" src="{{ asset('js/jquerypp.custom.js') }}"></script>

@@ -39,7 +39,7 @@ muebles, historia, servicios de madera y fabricación de mueblería." />
                             </div>
                         </div>
                         
-                        <div class="tags-item">
+                        <!-- <div class="tags-item">
                             <h4>Tags</h4>
                             <div class="tag-links">
                                 <a href="#">Tableros</a>
@@ -49,8 +49,8 @@ muebles, historia, servicios de madera y fabricación de mueblería." />
                                 <a href="#">Routeado</a>
                                 <a href="#">Pantografiado</a>
                             </div>
-                        </div>
-                    </div>
+                        </div> 
+                    </div>-->
                 </div>
                 <div class="col-lg-8 order-1 order-lg-2">
                     <div class="blog-post">

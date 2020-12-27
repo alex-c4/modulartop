@@ -52,9 +52,9 @@ $('#form_send_contact4').submit(function(){
 
     var _route = $(this).attr('action');
     var _token = $("#token").val();
+
     var _data = $(this).serialize();
     
-
     sendForm_contact_fromBotonFlotante(_route, _token, _data, "contact");
 
     return false;
@@ -198,7 +198,6 @@ var sendForm_contact_fromBotonFlotante = function(_route, _token, _data, _form_i
             $('#button-addon4').attr("disabled", false);
             $("#messageSuscripcion").html(data.message);
         }else{
-            clearForm();
             console.log(data.exeption);
             $('#button-addon4').text("Enviar");
             $('#button-addon4').attr("disabled", false);
