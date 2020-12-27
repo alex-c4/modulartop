@@ -111,6 +111,7 @@
 
         div.animate({bottom: '-200px'},  "slow");
 
+        $("#messageSuscripcion").html("");
       }
 </script>
   <style>
