@@ -33,7 +33,7 @@
     <script src="{{ asset('js/modernizr.custom.17475.js')}}"></script>
     <!-- fin del bloque fabricacion --> 
 
-<!--Bloque tracking code de Google Analytics VERSION UA-->
+    <!--Bloque tracking code de Google Analytics VERSION UA-->
     <!-- Global site tag (gtag.js) - Google Analytics -->
         <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-183802895-1"></script>
         <script>
@@ -253,7 +253,6 @@
       </div>
       
     </header>
-
   <script src="{{ asset('js/jquery-3.3.1.min.js')}}"></script>
   <script src="{{ asset('js/jquery-ui.js')}}"></script>
   <script src="{{ asset('js/popper.min.js')}}"></script>
@@ -392,6 +391,7 @@
         {{csrf_field()}}
 
         <div id="subcripcionHeader">
+          <div style="margin-right: auto; margin-left: 7px;">Suscribirme a novedades</div>
           <span class="icon-close2 closeSubcripcion" onclick="closeSubcripcion()"></span>
         </div>
 

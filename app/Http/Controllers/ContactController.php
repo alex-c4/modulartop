@@ -133,10 +133,10 @@ class ContactController extends Controller
                 "correo" => env('EMAIL_ADMIN')
             );
             
-            // Mail::send('emails.suscriptionnews', $data, function($message) use($req){
-            //     $message->from($req["correo"], 'Web Modular Top');
-            //     $message->to($req["correo"])->subject('Subcripción a novedades');
-            // });
+            Mail::send('emails.suscriptionnews', $data, function($message) use($req){
+                $message->from($req["correo"], 'Web Modular Top');
+                $message->to($req["correo"])->subject('Subcripción a novedades');
+            });
                 
             $result = array(
                 "success" => true,

@@ -79,7 +79,9 @@ class NewsletterController extends Controller
 
         $categories = $this->getCategories(0);
         
-        return view('newsletter.create', compact('categories'));
+        // return view('newsletter.create', compact('categories'));
+        $msgPost = "¡Registro realizado satisfactoriamente!.";
+        return view('home', compact('msgPost'));
     }
 
     /**
