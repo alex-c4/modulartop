@@ -47,12 +47,12 @@
                             <p>
                             
                             @if(auth()->user()->hasRoles('Administrator') || auth()->user()->hasRoles('Newsletter')) 
-                                <a href="{{ route('newsletter.create') }}"><span class="icon-plus"></span></a>
+                                <a title="Agregar novedades" href="{{ route('newsletter.create') }}"><span class="icon-plus"></span></a>
                                 &nbsp;
-                                <a href="{{ route('newsletter.index') }}"><span class="icon-list"></span></a>
+                                <a title="Listar novedades" href="{{ route('newsletter.index') }}"><span class="icon-list"></span></a>
                                 &nbsp;
                             @endif
-                                <a href="{{ route('novedades') }}"><span class="icon-th-large"></span></a>
+                                <a title="Visualizar novedades" href="{{ route('novedades') }}"><span class="icon-th-large"></span></a>
                             </p>
                         </div>
                     </div>
