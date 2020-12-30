@@ -81,6 +81,17 @@ muebles, historia, servicios de madera y fabricación de mueblería." />
 
                     @endforeach
 
+                        <div id="contentOtherPost"></div>
+                    
+                        {{csrf_field()}}
+                        <input type="hidden" name="hOtherPost" id="hOtherPost" value="{{ route('newsletter.otherpostajax') }}">
+                        <input type="hidden" name="hRouteImage" id="hRouteImage" value="{{ url('images/newsletters/') }}">
+                        <input type="hidden" name="hRoutePost" id="hRoutePost" value="{{ url('post/') }}">
+
+                        <!-- boton ver mas novedades -->
+                        <div class="single-blog-post" style="text-align: center" id="divVerOtrosPost">
+                            <a href="javascript:void(0)" id="btnShowOtherPost" class="btn btn-primary btn-sm" onclick="Utils.onclick_VerOtrosPost()"> Ver más</a>
+                        </div>
 
                         <!--
                         <div class="blog-pagination">
@@ -100,4 +111,10 @@ muebles, historia, servicios de madera y fabricación de mueblería." />
  
 
     
-@endsection    
+@endsection 
+
+@section('script')
+    
+<script src="{{ asset('js/utils.js') }}?v={{ env('APP_VERSION', '1') }}"></script>
+
+@endsection

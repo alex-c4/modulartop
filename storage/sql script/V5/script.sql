@@ -13,6 +13,57 @@ NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER SELECT COUNT(id) AS countNews FROM
 
 ALTER TABLE `categories` ADD `updated_by` INT NOT NULL AFTER `updated_at`;
 
+USE `modulartop`;
+DROP procedure IF EXISTS `sp_getNewsletter`;
+
+USE `modulartop`;
+DROP procedure IF EXISTS `sp_getNewsletter`;
+
+DELIMITER $$
+
+CREATE PROCEDURE `sp_getNewsletter`(IN `allFields` BOOLEAN)
+    NO SQL
+BEGIN
+
+	IF allFields = 0 THEN
+		SELECT 
+			ne.id,
+			ne.title,
+			ne.created_at,
+			ne.name_img,
+			ne.content,
+			ne.summary,
+			cat.name,
+			ne.title AS url
+		FROM newsletters AS ne 
+			INNER JOIN categories AS cat ON ne.category_id=cat.id
+		WHERE 
+			ne.isDeleted = 0 
+		ORDER BY ne.created_at DESC
+		LIMIT 8;
+	ELSE
+		SELECT 
+			ne.id,
+			ne.title,
+			ne.created_at,
+			ne.name_img,
+			ne.content,
+			ne.summary,
+			cat.name,
+			ne.title AS url
+		FROM newsletters AS ne 
+			INNER JOIN categories AS cat ON ne.category_id=cat.id
+		WHERE 
+			ne.isDeleted = 0 
+		ORDER BY ne.created_at DESC
+		LIMIT 8, 1000;
+	END IF;
+END$$
+
+DELIMITER ;
+
+
+
 
 
 

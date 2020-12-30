@@ -14,7 +14,7 @@ use App\Newsletter;
 class NewsletterController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth', ['except' => ['novedades', 'show'] ]);
+        $this->middleware('auth', ['except' => ['novedades', 'show', 'other_post_ajax'] ]);
 
     }
 
@@ -258,7 +258,8 @@ class NewsletterController extends Controller
         //                 ->get();
         
         if($category_id == 0){
-            $newsletters = DB::select('CALl sp_getNewsletter');
+            $allFields = false;
+            $newsletters = DB::select('CALl sp_getNewsletter(?)', array($allFields));
         }else{
             $newsletters = DB::select('CALl sp_getNewsletterFilterByCategory(?)', array($category_id));
         }
@@ -283,6 +284,12 @@ class NewsletterController extends Controller
 
     public function getCatagoriesList(){
         return DB::select('CALl sp_getCatagoriesList()');   
+    }
+
+    public function other_post_ajax(Request $request){
+        $allFields = true;
+        $newsletters = DB::select('CALl sp_getNewsletter(?)', array($allFields));
+        return $newsletters;
     }
 
 }

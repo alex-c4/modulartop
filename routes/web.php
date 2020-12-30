@@ -72,6 +72,11 @@ Route::delete('newsletter/delete/{id}', ['as' => 'newsletter.delete', 'uses' => 
 Route::patch('newsletter/{id}', ['as' => 'newsletter.restore', 'uses' => 'NewsletterController@restore']);
 // Route::get('novedadesFilter/{id}', ['as' => 'novedadesFilter', 'uses' => 'NewsletterController@novedadesFilter']);
 
-//Categori
+// AJAX
+//Category
 Route::post('category/storeajax', ['as' => 'category.storeajax', 'uses' => 'CategoryController@store_ajax']);
+
+//Ver mas post
+Route::post('newsletter/other_post_eajax', ['as' => 'newsletter.otherpostajax', 'uses' => 'NewsletterController@other_post_ajax']);
+
 
