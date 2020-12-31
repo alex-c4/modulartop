@@ -268,9 +268,13 @@ class NewsletterController extends Controller
             $row->url =  str_replace(" ", "-", $row->url);
         }
 
+        $total_newsletters = DB::table('newsletters')
+            ->where('newsletters.isDeleted', '0')
+            ->count();
+        
         $categoryList = $this->getCatagoriesList();
 
-        return view('novedades', compact('newsletters', 'categoryList'));
+        return view('novedades', compact('newsletters', 'categoryList', 'total_newsletters'));
     }
 
     // public function novedadesFilter($category_id){

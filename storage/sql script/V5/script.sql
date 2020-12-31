@@ -13,10 +13,6 @@ NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER SELECT COUNT(id) AS countNews FROM
 
 ALTER TABLE `categories` ADD `updated_by` INT NOT NULL AFTER `updated_at`;
 
-USE `modulartop`;
-DROP procedure IF EXISTS `sp_getNewsletter`;
-
-USE `modulartop`;
 DROP procedure IF EXISTS `sp_getNewsletter`;
 
 DELIMITER $$

@@ -88,11 +88,12 @@ muebles, historia, servicios de madera y fabricación de mueblería." />
                         <input type="hidden" name="hRouteImage" id="hRouteImage" value="{{ url('images/newsletters/') }}">
                         <input type="hidden" name="hRoutePost" id="hRoutePost" value="{{ url('post/') }}">
 
+                        @if($total_newsletters > 8)
                         <!-- boton ver mas novedades -->
                         <div class="single-blog-post" style="text-align: center" id="divVerOtrosPost">
                             <a href="javascript:void(0)" id="btnShowOtherPost" class="btn btn-primary btn-sm" onclick="Utils.onclick_VerOtrosPost()"> Ver más</a>
                         </div>
-
+                        @endif
                         <!--
                         <div class="blog-pagination">
                             <a class="active" href="#">1</a>
