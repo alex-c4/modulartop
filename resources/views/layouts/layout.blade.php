@@ -196,7 +196,7 @@
       <img  src="{{ asset('images/navidad/iconClose25x25.png') }}" alt="" srcset="">
     </div>
     <div class="imgNavidad">
-      <img src="{{ asset('images/navidad/Banner-1000.jpg') }}" alt="" srcset="">
+      <img src="{{ asset('images/navidad/Banner-1000.jpg') }}?v={{ env('APP_VERSION', '1') }}" alt="" srcset="">
     </div>
     </div>
     <div class="site-mobile-menu site-navbar-target">
