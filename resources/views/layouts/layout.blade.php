@@ -435,13 +435,13 @@
           }
         });
 
-      var Message = function(){
-        
-        @if( isset($show) )
-          if(eval("{{$show}}")){
-            showMessage();
-          }
-        @endif
+        var Message = function(){
+          
+          @if( isset($show) )
+            if(eval("{{$show}}")){
+              showMessage();
+            }
+          @endif
         }
 
         Message();

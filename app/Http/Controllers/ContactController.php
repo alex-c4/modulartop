@@ -86,24 +86,32 @@ class ContactController extends Controller
                 "correo" => env('EMAIL_ADMIN')
             );
             
-            $pathToFile = public_path('filesContact/files') . '\\' . $fileName;
+            $pathToFile = public_path('filesContact/files') . '//' . $fileName;
 
-            //comentado temporalmente para no enviar emails durante las pruebas
-            // if($file != null){
-            //     Mail::send('emails.contactuser', $data, function($message) use($req, $pathToFile){
-            //         $message->from($req["correo"], 'Web Modular Top');
-            //         $message->to($req["correo"])->subject('Nuevo Contacto');
-            //         $message->attach($pathToFile);
-            //     });
-            // }else{
-            //     Mail::send('emails.contactuser', $data, function($message) use($req){
-            //         $message->from($req["correo"], 'Web Modular Top');
-            //         $message->to($req["correo"])->subject('Nuevo Contacto');
-            //     });
-            // }
+            switch ($form) {
+                case '1':
+                    $subject = "Nuevo contacto";
+                    break;
+                case '2':
+                    $subject = "Nuevo contacto (Fabricación)";
+                    break;
+            }
+
+            if($file != null){
+                Mail::send('emails.contactuser', $data, function($message) use($req, $pathToFile, $subject){
+                    $message->from($req["correo"], 'Web Modular Top');
+                    $message->to($req["correo"])->subject($subject);
+                    $message->attach($pathToFile);
+                });
+            }else{
+                Mail::send('emails.contactuser', $data, function($message) use($req, $subject){
+                    $message->from($req["correo"], 'Web Modular Top');
+                    $message->to($req["correo"])->subject($subject);
+                });
+            }
 
             //obtener los tres primeros newsletters
-            $newsletter_top3 = Newsletter::select('newsletters.id', 'newsletters.title', 'newsletters.created_at', 'newsletters.isDeleted', 'newsletters.title as url', 'newsletters.name_img')
+            $newsletter_top3 = Newsletter::select('newsletters.id', 'newsletters.title', 'newsletters.created_at', 'newsletters.isDeleted', 'newsletters.title as url', 'newsletters.name_img', 'newsletters.summary')
                 ->orderby("created_at", "desc")
                 ->where("isDeleted", "0")
                 ->limit(3)
