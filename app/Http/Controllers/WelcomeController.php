@@ -14,15 +14,16 @@ class WelcomeController extends Controller
      */
     public function index()
     {
-        $exist = session()->has('showMessage');
+        //comentado temporalmente, para no mostrar mensaje navideño
+        // $exist = session()->has('showMessage');
         // dd($exist);
-        if($exist){
-            $show = "false";
-        } else{
-            session(['showMessage' => 'true']);
-            $show = "true";
-        }
-        
+        // if($exist){
+        //     $show = "false";
+        // } else{
+        //     session(['showMessage' => 'true']);
+        //     $show = "true";
+        // }
+        $show = "false";
         return view('welcome', compact('show'));
     }
 
