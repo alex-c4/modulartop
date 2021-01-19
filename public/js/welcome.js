@@ -60,7 +60,8 @@ $('#form_send_contact4').submit(function(){
     return false;
 });
 
-$('#form_send_contact_info').submit(function(){
+$('#form_send_contact_info_BK').submit(function(){
+    debugger
     blockButton();
 
     var _route = $(this).attr('action');
@@ -94,7 +95,7 @@ $('#form_send_contact_info').submit(function(){
 
     return false;
 });
-$('#form_send_project').submit(function(e){
+$('#form_send_project_bk').submit(function(e){
     e.preventDefault();
     blockButton();
 
@@ -308,10 +309,10 @@ var showAlert = function(msg){
     $('#alertContact').slideDown();
 }
 
-var showAlert = function(msg, divMsg, alert){
-    divMsg.html(msg);
-    alert.slideDown();
-}
+// var showAlert = function(msg, divMsg, alert){
+//     divMsg.html(msg);
+//     alert.slideDown();
+// }
 
 var blockButton = function(){
     $('#btnSendContactInfo').val("Enviando...");

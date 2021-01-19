@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Contact;
+use App\Newsletter;
+
 use Mail;
 use Carbon\Carbon;
 
@@ -30,6 +32,13 @@ class ContactController extends Controller
         //
     }
 
+    public function formContact(Request $request){
+        return $this->store($request);
+    }
+
+    public function formFabricacion(Request $request){
+        return $this->store($request);
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -47,24 +56,24 @@ class ContactController extends Controller
             }
             
             $name = $request->input('fname');
-            $lastName = $request->input('lname');
+            // $lastName = $request->input('lname');
             $email = $request->input('email');
             $subject = $request->input('subject');
             $messageContact = $request->input('message');
+            $form = $request->input('hform');
 
             Contact::create([
                 'nameContact' => $name,
-                'lastNameContact' => $lastName,
                 'emailContact' => $email,
                 'subject' => $subject,
                 'message' => $messageContact,
-                'name_file' => $fileName
+                'name_file' => $fileName,
+                'form' => $form
             ]);
 
             $data = array(
                 'email' => $email,
                 'name' => $name,
-                'lastName' => $lastName,
                 'subject' => $subject,
                 'messageContact' => $messageContact
             );
@@ -79,24 +88,61 @@ class ContactController extends Controller
             
             $pathToFile = public_path('filesContact/files') . '\\' . $fileName;
 
-            if($file != null){
-                Mail::send('emails.contactuser', $data, function($message) use($req, $pathToFile){
-                    $message->from($req["correo"], 'Web Modular Top');
-                    $message->to($req["correo"])->subject('Nuevo Contacto');
-                    $message->attach($pathToFile);
-                });
-            }else{
-                Mail::send('emails.contactuser', $data, function($message) use($req){
-                    $message->from($req["correo"], 'Web Modular Top');
-                    $message->to($req["correo"])->subject('Nuevo Contacto');
-                });
-            }
+            //comentado temporalmente para no enviar emails durante las pruebas
+            // if($file != null){
+            //     Mail::send('emails.contactuser', $data, function($message) use($req, $pathToFile){
+            //         $message->from($req["correo"], 'Web Modular Top');
+            //         $message->to($req["correo"])->subject('Nuevo Contacto');
+            //         $message->attach($pathToFile);
+            //     });
+            // }else{
+            //     Mail::send('emails.contactuser', $data, function($message) use($req){
+            //         $message->from($req["correo"], 'Web Modular Top');
+            //         $message->to($req["correo"])->subject('Nuevo Contacto');
+            //     });
+            // }
 
-            $result = array(
-                "success" => true,
-                "message" => "Su mensaje a sido enviado. Muchas gracias!"
-            );
-            return $result;
+            //obtener los tres primeros newsletters
+            $newsletter_top3 = Newsletter::select('newsletters.id', 'newsletters.title', 'newsletters.created_at', 'newsletters.isDeleted', 'newsletters.title as url', 'newsletters.name_img')
+                ->orderby("created_at", "desc")
+                ->where("isDeleted", "0")
+                ->limit(3)
+                ->get();
+
+            foreach($newsletter_top3 as $row){
+                $row->url =  str_replace(" ", "-", $row->url);
+            }
+            
+            $url_novedades = route('novedades');
+            // dd($form);
+            switch ($form) {
+                case '1':
+                    $result = array(
+                        "success" => true,
+                        "title" => "¡MUCHAS GRACIAS POR CONTACTARNOS!",
+                        "subtitle" => "¡En breve estaremos dando respuesta a tu solicitud!",
+                        "content_arr" => array(
+                            "<div class='mb-'>Aprovechamos esta oportunidad para invitarte a conocer nuestro <a href='". $url_novedades ."'>blog de novedades</a>, donde podrás conseguir publicaciones interesantes y si lo deseas puedes suscribirte a nuestro Newsletter y recibir por correo cuando se publiquen novedades.</div>",
+                            "<div class='contenido'>Visita nuestras últimas publicaciones:</div>"
+                        )
+                    );
+                    return view("contact.messageContact", compact("result", "newsletter_top3"));
+
+                break;
+                case '2':
+                    $result = array(
+                        "success" => true,
+                        "title" => "¡MUCHAS GRACIAS POR HACERNOS PARTE DE TU PROYECTO!",
+                        "subtitle" => "¡En breve te contactaremos desde el departamento de proyectos para que hagamos juntos realidad tu idea!",
+                        "content_arr" => array(
+                            "<div class='mb-'>Aprovechamos esta oportunidad para invitarte a conocer nuestro <a href='". $url_novedades ."'>blog de novedades</a>, donde podrás conseguir publicaciones interesantes que inspiraran aún más tu proyecto. Si lo deseas puedes suscribirte a nuestro Newsletter y recibir por correo las nuevas publicaciones.</div>",
+                            "<div class='contenido'>Inspírate con nuestras últimas publicaciones:</div>"
+                        )
+                    );
+                    return view("fabricacion.messageFabrication", compact("result", "newsletter_top3"));
+                break;
+            };
+            //return $result;
 
         } catch (\Throwable $th) {
             //throw $th;

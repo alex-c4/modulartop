@@ -31,6 +31,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/elastislide.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/custom.css')}}" />
     <script src="{{ asset('js/modernizr.custom.17475.js')}}"></script>
+
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
     <!-- fin del bloque fabricacion --> 
 
     <!--Bloque tracking code de Google Analytics VERSION UA-->

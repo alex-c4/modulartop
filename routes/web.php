@@ -53,8 +53,11 @@ Route::view('/fabricacion', 'fabricacion/fabricacion');
 Route::view('/acabado-tradicional', 'tableros/tableros-tradicional');
 Route::view('/acabado-altobrillo', 'tableros/tableros-altobrillo');
 Route::view('/acabado-supermate', 'tableros/tableros-supermate');
+Route::post('fabricacion/messageFabrication', ['as' => 'fabricacion.messageFabricacion', 'uses' => 'ContactController@formFabricacion']);
+
 
 // Contacts
+Route::post('contact/messageContact', ['as' => 'contact.messageContact', 'uses' => 'ContactController@formContact']);
 Route::post('contact.store', ['as' => 'contact.store', 'uses' => 'ContactController@store']);
 Route::post('contact.contact', ['as' => 'contact.contact', 'uses' => 'ContactController@contact']);
 Route::get('contact/tellus', ['as' => 'contact.tellus', 'uses' => 'ContactController@tellus']);

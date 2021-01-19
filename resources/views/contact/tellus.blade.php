@@ -30,20 +30,16 @@
 
             
 
-            <form action="{{ route('contact.store') }}" method="post" class="p-5 bg-white" id="form_send_project" enctype="multipart/form-data">
+            <form action="{{ route('fabricacion.messageFabricacion') }}" method="post" class="p-5 bg-white" id="form_send_project" name="form_send_project" enctype="multipart/form-data">
               
               {{csrf_field()}}
-              
+              <input type="hidden" name="hform" id="hform" value="2">
               <!-- <h2 class="h4 text-black mb-5">Contactanos</h2>  -->
 
               <div class="row form-group">
-                <div class="col-md-6 mb-3 mb-md-0">
+                <div class="col-md-12 mb-6 mb-md-0">
                   <label class="text-black" for="fname">Nombre</label>
-                  <input type="text" id="fname" name="fname" class="form-control">
-                </div>
-                <div class="col-md-6">
-                  <label class="text-black" for="lname">Apellido</label>
-                  <input type="text" id="lname" name="lname" class="form-control">
+                  <input maxlength="50" type="text" id="fname" name="fname" class="form-control">
                 </div>
               </div>
 
@@ -78,6 +74,17 @@
                 </div>
               </div>
 
+              <div class="alert alert-warning text-center" role="alert" id="alertregister">
+                  Por favor marque la casilla de verificación.
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_KEY') }}"></div>
+                </div>
+              </div>
+
+
               <div class="row form-group">
                 <div class="col-md-12">
 
@@ -88,6 +95,8 @@
 
                 </div>
               </div>
+              
+
 
               
               <div class="row form-group">
@@ -106,4 +115,30 @@
     <!--Fin Seccion seccion Contactanos-->
 
 
+@endsection
+
+@section("script")
+<script>
+   $(function () {
+      $("#alertregister").hide();
+  });
+
+  $("#g-recaptcha-response").on("click", function(){
+      $('#alertregister').slideUp()
+  });
+
+  var recaptchaCallback = function(){
+      $('#alertregister').slideUp()
+  };
+
+  $('#form_send_project').on("submit", function() {
+      var _valrecaptcha = $("#g-recaptcha-response").val();
+      if((_valrecaptcha == "") || (_valrecaptcha == undefined)){
+          $('#alertregister').slideDown();
+          return false;
+      }else{
+          return true;
+      }
+  });
+</script>
 @endsection

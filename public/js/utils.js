@@ -21,7 +21,8 @@ var Utils = {
                     text: data.name,
                     selected: "selected"
                 }));
-                $("#addMessage").html("Categoria agregada correctamente")
+                $('#stadium').selectpicker('refresh');
+                $("#addMessage").html("Estadio agregado correctamente")
             }else{
                 $("#addMessage").html("Hubo un error agregando la categoria")
             }

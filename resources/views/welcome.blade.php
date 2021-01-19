@@ -485,20 +485,17 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
         <div class="row">
           <div class="col-md-7 mb-5">
 
-            <form action="{{ route('contact.store') }}" method="post" class="p-5 bg-white" id="form_send_contact_info">
+            <form action="{{ route('contact.messageContact') }}" method="post" class="p-5 bg-white" id="form_send_contact_info" name="form_send_contact_info">
               
               {{csrf_field()}}
+              <input type="hidden" name="hform" id="hform" value="1">
               
               <h2 class="h4 text-black mb-5">Contáctanos</h2> 
 
               <div class="row form-group">
-                <div class="col-md-6 mb-3 mb-md-0">
+                <div class="col-md-12 mb-6 mb-md-0">
                   <label class="text-black" for="fname">Nombre</label>
-                  <input type="text" id="fname" name="fname" class="form-control">
-                </div>
-                <div class="col-md-6">
-                  <label class="text-black" for="lname">Apellido</label>
-                  <input type="text" id="lname" name="lname" class="form-control">
+                  <input maxlength="50" type="text" id="fname" name="fname" class="form-control">
                 </div>
               </div>
 
@@ -522,6 +519,16 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
                 <div class="col-md-12">
                   <label class="text-black" for="message">Mensaje</label> 
                   <textarea name="message" id="message" name="message" cols="30" rows="7" class="form-control" placeholder="Escriba su nota aqui..."></textarea>
+                </div>
+              </div>
+
+              <div class="alert alert-warning text-center" role="alert" id="alertregister">
+                  Por favor marque la casilla de verificación.
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_KEY') }}"></div>
                 </div>
               </div>
 
@@ -591,4 +598,30 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
     <!--Fin Seccion seccion Contactanos-->
 
 
+@endsection
+
+@section("script")
+<script>
+   $(function () {
+      $("#alertregister").hide();
+  });
+
+  $("#g-recaptcha-response").on("click", function(){
+      $('#alertregister').slideUp()
+  });
+
+  var recaptchaCallback = function(){
+      $('#alertregister').slideUp()
+  };
+
+  $('#form_send_contact_info').submit(function() {
+      var _valrecaptcha = $("#g-recaptcha-response").val();
+      if((_valrecaptcha == "") || (_valrecaptcha == undefined)){
+          $('#alertregister').slideDown();
+          return false;
+      }else{
+          return true;
+      }
+  });
+</script>
 @endsection

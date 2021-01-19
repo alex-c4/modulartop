@@ -7,7 +7,7 @@
 <body>
     <h1>Contacto</h1>
     <p>
-        El usuario <b>{{$name}} {{$lastName}}</b> le quiere contactar, a continuación se detalla la información:
+        El usuario <b>{{$name}}</b> le quiere contactar, a continuación se detalla la información:
     </p>
     <p>
         <b>Correo: </b>{{ $email }}
