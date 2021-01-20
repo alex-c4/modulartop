@@ -31,9 +31,12 @@
     <link rel="stylesheet" type="text/css" href="<?php echo e(asset('css/elastislide.css')); ?>" />
     <link rel="stylesheet" type="text/css" href="<?php echo e(asset('css/custom.css')); ?>" />
     <script src="<?php echo e(asset('js/modernizr.custom.17475.js')); ?>"></script>
+
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
     <!-- fin del bloque fabricacion --> 
 
-<!--Bloque tracking code de Google Analytics VERSION UA-->
+    <!--Bloque tracking code de Google Analytics VERSION UA-->
     <!-- Global site tag (gtag.js) - Google Analytics -->
         <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-183802895-1"></script>
         <script>
@@ -60,7 +63,60 @@
   
     <!-- fin del Bloque tracking code de Google Analytics --> 
 
+<script>
+  
+  var closeMessage = function(){
+        $(".navidad").css("display", "none");
+      }
+      var showMessage = function(){
+        $(".navidad").css("display", "flex");
+      }
 
+      var showWhatsAppContent = function(){
+        var div = $("#whatsAppContent");
+		    div.animate({
+          bottom: '20px',
+          height: '182px',
+          width: '300px',
+          opacity: '1',
+        }, "slow");
+      }
+
+      var showSubcripcionAppContent = function(){
+        var div = $("#subcripcionContent");
+		    div.animate({
+          bottom: '20px',
+          height: '120px',
+          width: '300px',
+          opacity: '1',
+        }, "slow");
+      }
+
+      var closeWhatsApp = function(){
+        var div = $("#whatsAppContent");
+		    div.animate({ 
+          height: '0px',
+          width: '0px',
+          opacity: '0.5',
+        }, "slow");
+
+        div.animate({bottom: '-200px'},  "slow");
+
+      }
+
+      var closeSubcripcion = function(){
+        var div = $("#subcripcionContent");
+        div.animate({ 
+          height: '0px',
+          width: '0px',
+          opacity: '0.5',
+        }, "slow");
+
+        div.animate({bottom: '-200px'},  "slow");
+
+        $("#messageSuscripcion").html("");
+      }
+</script>
   <style>
     .navidad{
       width: 100%;
@@ -143,7 +199,7 @@
       <img  src="<?php echo e(asset('images/navidad/iconClose25x25.png')); ?>" alt="" srcset="">
     </div>
     <div class="imgNavidad">
-      <img src="<?php echo e(asset('images/navidad/Banner-1000.jpg')); ?>" alt="" srcset="">
+      <img src="<?php echo e(asset('images/navidad/Banner-1000.jpg')); ?>?v=<?php echo e(env('APP_VERSION', '1')); ?>" alt="" srcset="">
     </div>
     </div>
     <div class="site-mobile-menu site-navbar-target">
@@ -180,7 +236,7 @@
                 <li><a href="<?php echo e(route('welcome')); ?>#about-section" class="nav-link <?php echo e((Request::is('contact/tellus')) ? 'active' : ''); ?>" >Fabricacion</a></li>
                 <li><a href="<?php echo e(route('welcome')); ?>#services-section" class="nav-link" >Servicios</a></li>
                 <li><a href="<?php echo e(url('/modulartop')); ?>" class="nav-link">Modular Top</a></li>
-                <li><a href="<?php echo e(url('/novedades')); ?>" class="nav-link">Novedades</a></li>
+                <li><a href="<?php echo e(url('/novedades')); ?>" class="nav-link">Novedades <?php if(Utils::getCountNews() > 0): ?><span class="cantNews"><?php echo e(Utils::getCountNews()); ?></span><?php endif; ?></a></li>
                 <li><a href="<?php echo e(route('welcome')); ?>#contact-section" class="nav-link">Contactanos</a></li>
                 <?php if(Auth::check()): ?>
                   <li><a href="<?php echo e(route('logout')); ?>" class="nav-link">Salir</a></li>
@@ -200,7 +256,6 @@
       </div>
       
     </header>
-
   <script src="<?php echo e(asset('js/jquery-3.3.1.min.js')); ?>"></script>
   <script src="<?php echo e(asset('js/jquery-ui.js')); ?>"></script>
   <script src="<?php echo e(asset('js/popper.min.js')); ?>"></script>
@@ -307,10 +362,14 @@
   	<a href="javascript:void(0);" class="whatsapp" >
   	  <img src="<?php echo e(asset('images/WhatsApp2.png')); ?>" alt="" srcset="" onclick="showWhatsAppContent()">
   	</a>
+  	<a href="javascript:void(0);" class="whatsapp newsletterSubc" >
+  	  <img src="<?php echo e(asset('images/email-box-web.png')); ?>" alt="" srcset="" onclick="showSubcripcionAppContent()">
+  	</a>
   </hatsAppCont>
 
   <a href="#top" class="gototop"><span class="icon-angle-double-up"></span></a>
 
+  <!-- whatsApp content -->
     <div id="whatsAppContent">
       <div id="whatsAppHeader">
         <!-- <img src="<?php echo e(asset('images/iconClose25x25.png')); ?>" alt="" srcset="" onclick="closeWhatsApp()"> -->
@@ -330,15 +389,39 @@
       </div>
     </div>
 
+    <!-- subcripcion newletter content bonton flotante -->
+    <div id="subcripcionContent">
+      <form action="<?php echo e(route('contact.contact')); ?>" method="post" class="" id="form_send_contact4">
+        <?php echo e(csrf_field()); ?>
+
+
+        <div id="subcripcionHeader">
+          <div style="margin-right: auto; margin-left: 7px;">Suscribirme a novedades</div>
+          <span class="icon-close2 closeSubcripcion" onclick="closeSubcripcion()"></span>
+        </div>
+
+        <div style="padding: 0px 20px 0px 20px;">
+          <div class="input-group mb-3">
+            <input id="emailnews4" name="emailnews4" type="text" class="form-control border-secondary text-white bg-transparent" placeholder="Ingrese su Email" aria-label="Enter Email" aria-describedby="button-addon2">
+            <div class="input-group-append" style="height: 43px !important;">
+              <button class="btn btn-primary" id="button-addon4" name="button-addon4">Enviar</button>
+            </div>
+          </div>
+          <small id="messageSuscripcion" class="form-text text-muted">&nbsp;</small>
+        </div>
+      </form>
+    </div>
+
   </body>
 </html>
 
-<script src="<?php echo e(asset('js/welcome.js')); ?>"></script>
+<script src="<?php echo e(asset('js/welcome.js')); ?>?v=<?php echo e(env('APP_VERSION', '1')); ?>"></script>
  <!--Bloque incorporado para carrusel fabricacion -->
  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-		<script type="text/javascript" src="js/jquerypp.custom.js"></script>
-		<script type="text/javascript" src="js/jquery.elastislide.js"></script>
-		<script type="text/javascript">
+		<script type="text/javascript" src="<?php echo e(asset('js/jquerypp.custom.js')); ?>"></script>
+		<script type="text/javascript" src="<?php echo e(asset('js/jquery.elastislide.js')); ?>"></script>
+    <script type="text/javascript">
+    
 			
 			$( '#carousel' ).elastislide();
       
@@ -367,34 +450,8 @@
       });
       
 
-      var closeMessage = function(){
-        $(".navidad").css("display", "none");
-      }
-      var showMessage = function(){
-        $(".navidad").css("display", "flex");
-      }
-
-      var showWhatsAppContent = function(){
-        var div = $("#whatsAppContent");
-		    div.animate({
-          bottom: '20px',
-          height: '182px',
-          width: '300px',
-          opacity: '1',
-        }, "slow");
-      }
-
-      var closeWhatsApp = function(){
-        var div = $("#whatsAppContent");
-		    div.animate({ 
-          height: '0px',
-          width: '0px',
-          opacity: '0.5',
-        }, "slow");
-
-        div.animate({bottom: '-200px'},  "slow");
-
-      }
 
 		</script>
-  <!-- fin del bloque fabricacion -->  <?php /**PATH C:\xampp\htdocs\modulartop\modulartop\resources\views/layouts/layout.blade.php ENDPATH**/ ?>
+  <!-- fin del bloque fabricacion -->  
+
+  <?php echo $__env->yieldContent('script'); ?><?php /**PATH C:\xampp\htdocs\modulartop\modulartop\resources\views/layouts/layout.blade.php ENDPATH**/ ?>
