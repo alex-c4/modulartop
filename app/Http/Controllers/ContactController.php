@@ -94,18 +94,18 @@ class ContactController extends Controller
                     break;
             }
 
-            // if($file != null){
-            //     Mail::send('emails.contactuser', $data, function($message) use($req, $pathToFile, $subject){
-            //         $message->from($req["correo"], 'Web Modular Top');
-            //         $message->to($req["correo"])->subject($subject);
-            //         $message->attach($pathToFile);
-            //     });
-            // }else{
-            //     Mail::send('emails.contactuser', $data, function($message) use($req, $subject){
-            //         $message->from($req["correo"], 'Web Modular Top');
-            //         $message->to($req["correo"])->subject($subject);
-            //     });
-            // }
+            if($file != null){
+                Mail::send('emails.contactuser', $data, function($message) use($req, $pathToFile, $subject){
+                    $message->from($req["correo"], 'Web Modular Top');
+                    $message->to($req["correo"])->subject($subject);
+                    $message->attach($pathToFile);
+                });
+            }else{
+                Mail::send('emails.contactuser', $data, function($message) use($req, $subject){
+                    $message->from($req["correo"], 'Web Modular Top');
+                    $message->to($req["correo"])->subject($subject);
+                });
+            }
 
             //obtener los tres primeros newsletters
             $newsletter_top3 = Newsletter::select('newsletters.id', 'newsletters.title', 'newsletters.created_at', 'newsletters.isDeleted', 'newsletters.title as url', 'newsletters.name_img', 'newsletters.summary')
