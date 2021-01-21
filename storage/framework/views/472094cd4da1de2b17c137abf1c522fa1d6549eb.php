@@ -437,13 +437,13 @@
           }
         });
 
-      var Message = function(){
-        
-        <?php if( isset($show) ): ?>
-          if(eval("<?php echo e($show); ?>")){
-            showMessage();
-          }
-        <?php endif; ?>
+        var Message = function(){
+          
+          <?php if( isset($show) ): ?>
+            if(eval("<?php echo e($show); ?>")){
+              showMessage();
+            }
+          <?php endif; ?>
         }
 
         Message();

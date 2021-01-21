@@ -34,7 +34,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Titulo</th>
                 <th scope="col">Categoria</th>
-                <th scope="col" colspan="4">Fecha de publicación</th>
+                <th scope="col" colspan="5">Fecha de publicación</th>
                 <th></th>
             </tr>
         </thead>
@@ -47,8 +47,9 @@
                 <td><?php echo e($news->name); ?></td>
                 <td><?php echo e($news->created_at); ?></td>
                 <td>
-                    <a href="<?php echo e(route('newsletter.edit', $news->id)); ?>"><span class="icon-pencil-square-o"></span></a>
-                    &nbsp;
+                    <a href="<?php echo e(route('newsletter.edit', $news->id)); ?>" title="Editar"><span class="icon-pencil-square-o"></span></a>
+                <td>
+                    <a href="<?php echo e(route('show', [$news->id, $news->url])); ?>" title="Previsualizar"><span class="icon-binoculars"></span></a>
                 </td>
                 <td>
                     <?php if($news->isDeleted == 0): ?>
@@ -57,7 +58,7 @@
 
                             <?php echo e(csrf_field()); ?>
 
-                            <a href="#" title="Ocultar novedad" onclick="document.getElementById('formDestroy_<?php echo e($news->id); ?>').submit()"><span class="icon-trash-o"></span></a>
+                            <a href="#" title="Ocultar novedad" onclick="document.getElementById('formDestroy_<?php echo e($news->id); ?>').submit()"><span class="icon-eye-slash"></span></a>
                         </form>
                     <?php else: ?>
                         <form id="formRestore_<?php echo e($news->id); ?>" action="<?php echo e(route('newsletter.restore', $news->id)); ?>" method="post">

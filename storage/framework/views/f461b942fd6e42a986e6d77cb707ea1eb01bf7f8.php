@@ -7,10 +7,9 @@
 <!-- <meta property="og:url" content="ENLACE PERMANENTE" /> -->
 <meta property="og:site_name" content="MODULAR TOP" />
 
+
 <title>Novedades - Modular Top</title> 
-<meta name="description" 
-content="Noticias y contenido de valor con todo lo relacionado a diseño de interiores, tipos de 
-muebles, historia, servicios de madera y fabricación de mueblería." />
+<meta name="description" content="<?php echo e($newsletter->summary); ?>" />
 
 <!-- 
 <title><?php echo e($newsletter->title); ?></title> 
@@ -32,7 +31,7 @@ async='async'></script>
       <div class="container">
         <div class="row align-items-center justify-content-center">
           <div class="col-md-5 mx-auto mt-lg-5 text-center">
-            <h1>Novedades</h1>
+            <h2 style="color:white;">NOVEDADES</h2>
             <p class="mb-5"><strong class="text-white">de la Industria Mobiliaria.</strong></p>
             
           </div>
@@ -57,8 +56,16 @@ async='async'></script>
               <!-- Botonera compartir redes sociales -->
               <div class="sharethis-inline-share-buttons"></div>
               
-              <h2 class="section-title-modulartop mb-3"><br><?php echo e($newsletter->title); ?></h2> 
-              
+              <h1 class="section-title-modulartop mb-3"><br><?php echo e($newsletter->title); ?></h1> 
+              <?php if(Auth::check()): ?>
+                <?php if(auth()->user()->hasRoles('Administrator') || auth()->user()->hasRoles('Newsletter')): ?> 
+                  <div class="botonesEditList">
+                    <a href="<?php echo e(route('newsletter.edit', $newsletter->id)); ?>" title="Editar"><span class="icon-pencil-square-o"></span></a>
+                    &nbsp;
+                    <a href="<?php echo e(route('newsletter.index')); ?>"><span class="icon-list"></span></a>
+                  </div>
+                <?php endif; ?>
+              <?php endif; ?>
             </p>
             
               
@@ -72,6 +79,34 @@ async='async'></script>
             <div class="pt-5">
               <p>Categorias:  <a href="<?php echo e(route('novedades', $newsletter->category_id)); ?>"><?php echo e($newsletter->category); ?></a> <!-- Tags: <?php $__currentLoopData = $tags_array; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tag): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> <a href="#"><?php echo e($tag); ?></a><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?></p> -->
             </div>
+
+            <div class="divFormSubscribeNewsletter2"> 
+              <div>
+                <img src="<?php echo e(asset('images/email-box-web.png')); ?>" alt="" srcset="">
+              </div>
+              <div class="titleSubcripcion">
+                Si te gusto el articulo suscribete para recibir cuando hayan nuevos
+              </div>
+              <div class="col-sm-12 col-md-9">
+                <form action="<?php echo e(route('contact.contact')); ?>" method="post" class="" id="form_send_contact3">
+                  <?php echo e(csrf_field()); ?>
+
+
+                  <div class="input-group mb-3">
+                    <input id="emailnews3" name="emailnews3" type="text" class="form-control border-secondary bg-transparent" placeholder="Ingrese su Email" aria-label="Enter Email" aria-describedby="button-addon2">
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" style="height: 43px" type="submit" id="button-addon3" name="button-addon3">Enviar</button>
+                    </div>
+                  </div>
+
+                  <div class="alert alert-success" role="alert" id="alertContact3">
+                    <label id="divMessage3" class="text-black"></label> 
+                  </div>
+                  
+                </form>
+              </div>
+            </div>
+            
     
                          
 
@@ -101,12 +136,12 @@ async='async'></script>
                                 </div>
                                 <div class="recent-text">
 
-                                  <h5 class="font-size-regular"><a href="<?php echo e(route('show', $news->id)); ?>"><br><?php echo e($news->title); ?></a></h5>
+                                  <h5 class="font-size-regular"><a href="<?php echo e(route('show', [$news->id, $news->url])); ?>"><br><?php echo e($news->title); ?></a></h5>
                                   <div class="meta mb-4"><!-- <?php echo e($news->author); ?>  -->
                                     <span class="mx-2">&bullet;</span> <?php echo e(explode(' ', $news->created_at)[0]); ?>
 
                                     <span class="mx-2">&bullet;</span> 
-                                    <a href="<?php echo e(route('show', $news->id)); ?>">Leer</a>
+                                    <a href="<?php echo e(route('show', [$news->id, $news->url])); ?>">Leer</a>
                                   </div>
                                                                  
                                 </div>
@@ -114,7 +149,7 @@ async='async'></script>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             
 
-                        </div>
+              </div>
             </div>
 
             
@@ -124,7 +159,11 @@ async='async'></script>
     </section>
     <!-- Blog Section End -->
  
+    <script>
+      $(function(){
+        //ajuste de url
+      })
+    </script>
 
-    
 <?php $__env->stopSection(); ?>    
 <?php echo $__env->make('layouts.layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\modulartop\modulartop\resources\views/post.blade.php ENDPATH**/ ?>

@@ -5,39 +5,44 @@
 <script src="<?php echo e(asset('js/sceditor/minified/icons/monocons.js')); ?> "></script>
 <script src="<?php echo e(asset('js/sceditor/minified/formats/xhtml.js')); ?> "></script>
 
-<div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(<?php echo e(asset('images/novedades/newsletter-novedades.jpg')); ?>);" data-aos="fade">
-    <div class="container">
-        <div class="row align-items-center justify-content-center">
-            <div class="col-md-5 mx-auto mt-lg-5 text-center">
-                <h1>Novedades</h1>
-               <!-- <p class="mb-5"><strong class="text-white">Nuevo Post</strong></p>-->
-        
+<div class="site-block-wrap">
+    <div class="owl-carousel with-dots">
+    <div class="site-blocks-cover overlay overlay-2" style="background-image: url(<?php echo e(asset('images/banner/fabricacion.jpg')); ?>);" data-aos="fade" id="home-section">  
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-md-6 mt-lg-5 text-center">
+                    <h1 class="text-shadow">¡Editar!</h1>
+                    <p class="mb-5 text-shadow">Edición de novedades.</p>
+                </div>
             </div>
-        </div>
-    </div>
-
-    <!-- <a href="#blog" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a> -->
+        </div>        
+    </div> 
+    </div>    
 </div>
 
 <section class="site-section bg-light bg-image" id="contact-section">
     <div class="container">
         <div class="row mb-5">
           <div class="col-12 text-center">
-            <h2 class="section-title mb-3 text-black">Nuevo Post</h2>
+            <h2 class="section-title mb-3 text-black">Novedades</h2>
           </div>
         </div>
 
         <div class="row">
             <div class="col-md-12 mb-5">
-                <form action="<?php echo e(route('newsletter.store')); ?>" method="post" class="p-5 bg-white" id="form_send_newsletter_create" enctype="multipart/form-data">
+                <form action="<?php echo e(route('newsletter.update', $newsletter->id)); ?>" method="post" class="p-5 bg-white" id="form_send_newsletter_edit" enctype="multipart/form-data">
+                    <?php echo e(method_field('PUT')); ?>
+
                     <?php echo e(csrf_field()); ?>
 
+
+                    <input type="hidden" name="hname_img" value="<?php echo e($newsletter->name_img); ?>">
 
                     <!-- titulo -->
                     <div class="row form-group">
                         <div class="col-md-12">
                             <label class="text-black" for="title">Titulo</label> 
-                            <input maxlength="100" type="text" id="title" name="title" class="form-control">
+                            <input maxlength="100" type="text" id="title" name="title" class="form-control" value="<?php echo e($newsletter->title); ?>">
                         </div>
                     </div>
 
@@ -45,7 +50,7 @@
                     <div class="row form-group">
                         <div class="col-md-12">
                             <label class="text-black" for="summary">Descripción</label> 
-                            <textarea maxlength="200" id="summary" name="summary" rows="2" class="form-control"></textarea>
+                            <textarea maxlength="200" id="summary" name="summary" rows="2" class="form-control"><?php echo e($newsletter->summary); ?></textarea>
                         </div>
                     </div>
 
@@ -53,37 +58,44 @@
                     <div class="row form-group">
                         <div class="col-md-12">
                             <label class="text-black" for="content">Contenido</label> 
-                            <textarea id="content" name="content" rows="7" style="height:300px; width: 100%;" class="form-control"></textarea>
+                            <textarea id="content" name="content" rows="7" style="height:300px;" class="form-control"><?php echo e($newsletter->content); ?></textarea>
                         </div>
                     </div>
 
                     <!-- categoria / tags -->
-                    <div class="row form-group" >
+                    <div class="row form-group">
                         <div class="col-md-6 mb-3 mb-md-0">
-                                <label class="text-black" for="category">Categoria</label>
-                            <div class="input-group" >
+                            <label class="text-black" for="category">Categoria</label>
 
+                            <div class="input-group" >
                                 <select class="custom-select" id="category" name="category">
                                     <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <option value="<?php echo e($category->id); ?>"><?php echo e($category->name); ?></option>
+                                        <?php if($category->id == $newsletter->category_id): ?>
+                                            <option selected value="<?php echo e($category->id); ?>"><?php echo e($category->name); ?></option>
+                                        <?php else: ?>
+                                            <option value="<?php echo e($category->id); ?>"><?php echo e($category->name); ?></option>
+                                        <?php endif; ?>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </select>
                                 <div class="input-group-append">
                                     <button style="height: 38px" id="btnAddCategory" data-toggle="modal" data-target="#categoryModal" title="Agregar nueva cartegoria" class="btn btn-primary" type="button"><span class="icon-add"></span></button>
                                 </div>
-                                
-                                
                             </div>
                             <small id="addMessage" name="addMessage" class="form-text text-muted"></small>
                         </div>
 
                         <div class="col-md-6">
                             <label class="text-black" for="tags">Tags</label>
-                            <input type="text" id="tags" name="tags" class="form-control">
+                            <input value="<?php echo e($newsletter->tags); ?>" type="text" id="tags" name="tags" class="form-control">
                         </div>
                     </div>
 
-                    <!-- Image -->
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <img src="<?php echo e(asset('images/newsletters/'.$newsletter->name_img)); ?>" class="img-thumbnail" alt="" srcset="">
+                        </div>
+                    </div>  
+
                     <div class="row form-group">
                         <div class="col-md-12">
                             <label for="name_img">Imagen</label>
@@ -134,8 +146,6 @@
   </div>
 </div>
 
-
-
 <script>
 // $('#form_send_newsletter').submit(function() {debugger
     
@@ -146,14 +156,13 @@
     //     return false;
     // }
 // });
-
-    var textarea = document.getElementById('content');
+    
+var textarea = document.getElementById('content');
     sceditor.create(textarea, {
         format: 'xhtml',
         icons: 'material',
         style: '<?php echo e(asset("js/sceditor/minified/themes/content/square.min.css")); ?>'
     });
-
 </script>
 <?php $__env->stopSection(); ?>
 
@@ -162,5 +171,4 @@
 <script src="<?php echo e(asset('js/utils.js')); ?>"></script>
 
 <?php $__env->stopSection(); ?>
-
-<?php echo $__env->make('layouts.layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\modulartop\modulartop\resources\views/newsletter/create.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\modulartop\modulartop\resources\views/newsletter/edit.blade.php ENDPATH**/ ?>

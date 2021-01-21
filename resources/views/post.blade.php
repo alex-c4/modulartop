@@ -33,7 +33,7 @@ async='async'></script>
       <div class="container">
         <div class="row align-items-center justify-content-center">
           <div class="col-md-5 mx-auto mt-lg-5 text-center">
-            <h1>Novedades</h1>
+            <h2 style="color:white;">NOVEDADES</h2>
             <p class="mb-5"><strong class="text-white">de la Industria Mobiliaria.</strong></p>
             
           </div>
@@ -58,7 +58,7 @@ async='async'></script>
               <!-- Botonera compartir redes sociales -->
               <div class="sharethis-inline-share-buttons"></div>
               
-              <h2 class="section-title-modulartop mb-3"><br>{{ $newsletter->title }}</h2> 
+              <h1 class="section-title-modulartop mb-3"><br>{{ $newsletter->title }}</h1> 
               @if(Auth::check())
                 @if(auth()->user()->hasRoles('Administrator') || auth()->user()->hasRoles('Newsletter')) 
                   <div class="botonesEditList">

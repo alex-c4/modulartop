@@ -16,6 +16,18 @@
 
 <br>
 
+    <!-- mensaje para la creacion de los post -->
+    <?php if(isset($msgPost) != null): ?>
+    <div class="container">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong><?php echo e($msgPost); ?></strong> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+    </div>
+    <?php endif; ?>
+
 <section class="site-section bg-light" id="services-section">
 
     <div class="container">
@@ -33,12 +45,12 @@
                             <p>
                             
                             <?php if(auth()->user()->hasRoles('Administrator') || auth()->user()->hasRoles('Newsletter')): ?> 
-                                <a href="<?php echo e(route('newsletter.create')); ?>"><span class="icon-plus"></span></a>
+                                <a title="Agregar novedades" href="<?php echo e(route('newsletter.create')); ?>"><span class="icon-plus"></span></a>
                                 &nbsp;
-                                <a href="<?php echo e(route('newsletter.index')); ?>"><span class="icon-list"></span></a>
+                                <a title="Listar novedades" href="<?php echo e(route('newsletter.index')); ?>"><span class="icon-list"></span></a>
                                 &nbsp;
                             <?php endif; ?>
-                                <a href="<?php echo e(route('novedades')); ?>"><span class="icon-th-large"></span></a>
+                                <a title="Visualizar novedades" href="<?php echo e(route('novedades')); ?>"><span class="icon-th-large"></span></a>
                             </p>
                         </div>
                     </div>

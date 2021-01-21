@@ -73,13 +73,26 @@ muebles, historia, servicios de madera y fabricación de mueblería." />
                                 <p>
                                     <?php echo e($newsletter->summary); ?>...
                                 </p>
-                                <a href="<?php echo e(route('show', $newsletter->id)); ?>" class="btn btn-primary btn-sm">Leer más</a>
+                                <a href="<?php echo e(route('show', [$newsletter->id, $newsletter->url])); ?>" class="btn btn-primary btn-sm">Leer más</a>
                             </div>
                         </div>
 
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
+                        <div id="contentOtherPost"></div>
+                    
+                        <?php echo e(csrf_field()); ?>
 
+                        <input type="hidden" name="hOtherPost" id="hOtherPost" value="<?php echo e(route('newsletter.otherpostajax')); ?>">
+                        <input type="hidden" name="hRouteImage" id="hRouteImage" value="<?php echo e(url('images/newsletters/')); ?>">
+                        <input type="hidden" name="hRoutePost" id="hRoutePost" value="<?php echo e(url('post/')); ?>">
+
+                        <?php if($total_newsletters > 8): ?>
+                        <!-- boton ver mas novedades -->
+                        <div class="single-blog-post" style="text-align: center" id="divVerOtrosPost">
+                            <a href="javascript:void(0)" id="btnShowOtherPost" class="btn btn-primary btn-sm" onclick="Utils.onclick_VerOtrosPost()"> Ver más</a>
+                        </div>
+                        <?php endif; ?>
                         <!--
                         <div class="blog-pagination">
                             <a class="active" href="#">1</a>
@@ -98,5 +111,12 @@ muebles, historia, servicios de madera y fabricación de mueblería." />
  
 
     
-<?php $__env->stopSection(); ?>    
+<?php $__env->stopSection(); ?> 
+
+<?php $__env->startSection('script'); ?>
+    
+<script src="<?php echo e(asset('js/utils.js')); ?>?v=<?php echo e(env('APP_VERSION', '1')); ?>"></script>
+
+<?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('layouts.layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\modulartop\modulartop\resources\views/novedades.blade.php ENDPATH**/ ?>

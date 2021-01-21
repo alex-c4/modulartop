@@ -28,21 +28,17 @@
 
             
 
-            <form action="<?php echo e(route('contact.store')); ?>" method="post" class="p-5 bg-white" id="form_send_project" enctype="multipart/form-data">
+            <form action="<?php echo e(route('fabricacion.messageFabricacion')); ?>" method="post" class="p-5 bg-white" id="form_send_project" name="form_send_project" enctype="multipart/form-data">
               
               <?php echo e(csrf_field()); ?>
 
-              
+              <input type="hidden" name="hform" id="hform" value="2">
               <!-- <h2 class="h4 text-black mb-5">Contactanos</h2>  -->
 
               <div class="row form-group">
-                <div class="col-md-6 mb-3 mb-md-0">
+                <div class="col-md-12 mb-6 mb-md-0">
                   <label class="text-black" for="fname">Nombre</label>
-                  <input type="text" id="fname" name="fname" class="form-control">
-                </div>
-                <div class="col-md-6">
-                  <label class="text-black" for="lname">Apellido</label>
-                  <input type="text" id="lname" name="lname" class="form-control">
+                  <input maxlength="50" type="text" id="fname" name="fname" class="form-control">
                 </div>
               </div>
 
@@ -77,6 +73,17 @@
                 </div>
               </div>
 
+              <div class="alert alert-warning text-center" role="alert" id="alertregister">
+                  Por favor marque la casilla de verificación.
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <div class="g-recaptcha" data-sitekey="<?php echo e(env('RECAPTCHA_KEY')); ?>"></div>
+                </div>
+              </div>
+
+
               <div class="row form-group">
                 <div class="col-md-12">
 
@@ -87,6 +94,8 @@
 
                 </div>
               </div>
+              
+
 
               
               <div class="row form-group">
@@ -107,4 +116,29 @@
 
 <?php $__env->stopSection(); ?>
 
+<?php $__env->startSection("script"); ?>
+<script>
+   $(function () {
+      $("#alertregister").hide();
+  });
+
+  $("#g-recaptcha-response").on("click", function(){
+      $('#alertregister').slideUp()
+  });
+
+  var recaptchaCallback = function(){
+      $('#alertregister').slideUp()
+  };
+
+  $('#form_send_project').on("submit", function() {
+      var _valrecaptcha = $("#g-recaptcha-response").val();
+      if((_valrecaptcha == "") || (_valrecaptcha == undefined)){
+          $('#alertregister').slideDown();
+          return false;
+      }else{
+          return true;
+      }
+  });
+</script>
+<?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\modulartop\modulartop\resources\views/contact/tellus.blade.php ENDPATH**/ ?>
