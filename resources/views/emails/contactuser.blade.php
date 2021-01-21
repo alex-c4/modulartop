@@ -13,9 +13,6 @@
         <b>Correo: </b>{{ $email }}
     </p>
     <p>
-        <b>Asunto: </b>{{ $subject }}
-    </p>
-    <p>
         <b>Mensaje: </b>{{ $messageContact }}
     </p>
 

@@ -58,14 +58,12 @@ class ContactController extends Controller
             $name = $request->input('fname');
             // $lastName = $request->input('lname');
             $email = $request->input('email');
-            $subject = $request->input('subject');
             $messageContact = $request->input('message');
             $form = $request->input('hform');
 
             Contact::create([
                 'nameContact' => $name,
                 'emailContact' => $email,
-                'subject' => $subject,
                 'message' => $messageContact,
                 'name_file' => $fileName,
                 'form' => $form
@@ -74,7 +72,6 @@ class ContactController extends Controller
             $data = array(
                 'email' => $email,
                 'name' => $name,
-                'subject' => $subject,
                 'messageContact' => $messageContact
             );
             
@@ -97,18 +94,18 @@ class ContactController extends Controller
                     break;
             }
 
-            if($file != null){
-                Mail::send('emails.contactuser', $data, function($message) use($req, $pathToFile, $subject){
-                    $message->from($req["correo"], 'Web Modular Top');
-                    $message->to($req["correo"])->subject($subject);
-                    $message->attach($pathToFile);
-                });
-            }else{
-                Mail::send('emails.contactuser', $data, function($message) use($req, $subject){
-                    $message->from($req["correo"], 'Web Modular Top');
-                    $message->to($req["correo"])->subject($subject);
-                });
-            }
+            // if($file != null){
+            //     Mail::send('emails.contactuser', $data, function($message) use($req, $pathToFile, $subject){
+            //         $message->from($req["correo"], 'Web Modular Top');
+            //         $message->to($req["correo"])->subject($subject);
+            //         $message->attach($pathToFile);
+            //     });
+            // }else{
+            //     Mail::send('emails.contactuser', $data, function($message) use($req, $subject){
+            //         $message->from($req["correo"], 'Web Modular Top');
+            //         $message->to($req["correo"])->subject($subject);
+            //     });
+            // }
 
             //obtener los tres primeros newsletters
             $newsletter_top3 = Newsletter::select('newsletters.id', 'newsletters.title', 'newsletters.created_at', 'newsletters.isDeleted', 'newsletters.title as url', 'newsletters.name_img', 'newsletters.summary')
