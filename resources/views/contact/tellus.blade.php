@@ -133,8 +133,11 @@
 
   $('#form_send_project').on("submit", function() {
       var _valrecaptcha = $("#g-recaptcha-response").val();
+      $("#btnSendContactInfo").prop("disabled", true);
+      $("#btnSendContactInfo").val("Enviando...");
       if((_valrecaptcha == "") || (_valrecaptcha == undefined)){
           $('#alertregister').slideDown();
+          $("#btnSendContactInfo").prop("disabled", false);
           return false;
       }else{
           return true;
