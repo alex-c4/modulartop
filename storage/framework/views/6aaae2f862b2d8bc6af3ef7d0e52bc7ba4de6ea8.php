@@ -50,13 +50,13 @@
                 </div>
               </div>
 
-              <div class="row form-group">
+              <!-- <div class="row form-group">
                 
                 <div class="col-md-12">
                   <label class="text-black" for="subject">Asunto</label> 
                   <input type="subject" id="subject" name="subject" class="form-control">
                 </div>
-              </div>
+              </div> -->
 
               <div class="row form-group">
                 <div class="col-md-12">

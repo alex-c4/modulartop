@@ -2,25 +2,25 @@
 
 @section('content')
 
-<div class="site- blocks-cover inner-page-cover overlay" style="background-image: url(images/banner/fabricacion.jpg);" data-aos="fade">
-    <div class="container">
-    <div class="row align-items-center justify-content-center">
-        <div class="col-md-5 mx-auto mt-lg-5 text-center">
-        <h1>Modular top</h1>
-        <p class="mb-5"><strong class="text-white">¡ Gracias por contactarnos !.</strong></p>
-        
+<div class="site-blocks-cover inner-page-cover overlay" style="background-image: url({{ asset('images/banner/contacto.jpg')}});" data-aos="fade">
+      <div class="container">
+        <div class="row align-items-center justify-content-center">
+          <div class="col-md-8 mx-auto mt-lg-8 text-center">
+            <!-- <h1>¡GRACIAS POR CONTACTARNOS!</h1> -->
+            <h1>{{ $result["title"] }}</h1>
+            
+          </div>
         </div>
-    </div>
-    </div>
+      </div>
 
-    <!-- <a href="#blog" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a> -->
-</div> 
+      <a href="#modular-top" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a>
+    </div>  
 
 <section class="site-section" id="modular-top">
     <div class="container">
         <div class="row large-gutters">
             <div class="col-lg-12 mb-5">
-            <p align="center">{{ $result["title"] }}</p>
+            <!-- <p align="center">{{ $result["title"] }}</p> -->
             <p align="center">{{ $result["subtitle"] }}</p>
             @foreach($result["content_arr"] as $parr)
                 {!! $parr !!}
