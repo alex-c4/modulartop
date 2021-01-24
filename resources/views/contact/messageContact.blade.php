@@ -58,12 +58,3 @@
 
 @endsection
 
-@section('script')
-<script>
-    $(function() { 
-        setTimeout(function(){
-            $('html, body').animate({scrollTop:450}, 'slow')
-        }, 300);
-    })
-</script>
-@endsection

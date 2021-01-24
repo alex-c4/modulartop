@@ -392,7 +392,7 @@
     <div id="subcripcionContent">
       <form action="{{ route('contact.contact') }}" method="post" class="" id="form_send_contact4">
         {{csrf_field()}}
-
+        <input type="hidden" name="hform" id="hform" value="3">
         <div id="subcripcionHeader">
           <div style="margin-right: auto; margin-left: 7px;">Suscribirme a novedades</div>
           <span class="icon-close2 closeSubcripcion" onclick="closeSubcripcion()"></span>

@@ -616,8 +616,13 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
 
   $('#form_send_contact_info').submit(function() {
       var _valrecaptcha = $("#g-recaptcha-response").val();
+      $('#btnSendContactInfo').val("Enviando...");
+      $('#btnSendContactInfo').attr("disabled", true);
+
       if((_valrecaptcha == "") || (_valrecaptcha == undefined)){
           $('#alertregister').slideDown();
+          $('#btnSendContactInfo').attr("disabled", false);
+          $('#btnSendContactInfo').val("Enviar");
           return false;
       }else{
           return true;

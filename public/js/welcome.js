@@ -45,19 +45,26 @@ $('#form_send_contact3').submit(function(){
 });
 
 
-$('#form_send_contact4').submit(function(){
+$('#form_send_contact4').on("submit", function(){
         
     $('#button-addon4').text("Enviando...");
     $('#button-addon4').attr("disabled", true);
+    try {
+        var _route = $(this).attr('action');
+        var _token = $("#token").val();
 
-    var _route = $(this).attr('action');
-    var _token = $("#token").val();
+        var _data = $(this).serialize();
+        
+        sendForm_contact_fromBotonFlotante(_route, _token, _data, "contact");
 
-    var _data = $(this).serialize();
-    
-    sendForm_contact_fromBotonFlotante(_route, _token, _data, "contact");
+        return false;
+        
+    } catch (error) {
+        $('#button-addon4').attr("disabled", false);
+    }finally{
+        return false;
+    }
 
-    return false;
 });
 
 $('#form_send_contact_info_BK').submit(function(){
@@ -95,7 +102,7 @@ $('#form_send_contact_info_BK').submit(function(){
 
     return false;
 });
-$('#form_send_project_bk').submit(function(e){
+$('#form_send_project_bk').on("submit", function(e){
     e.preventDefault();
     blockButton();
 
@@ -314,15 +321,6 @@ var showAlert = function(msg){
 //     alert.slideDown();
 // }
 
-var blockButton = function(){
-    $('#btnSendContactInfo').val("Enviando...");
-    $('#btnSendContactInfo').attr("disabled", true);
-  }
-  
-var enableButton = function(){
-    $('#btnSendContactInfo').attr("disabled", false);
-    $('#btnSendContactInfo').val("Enviar");
-}
 
 // Newsletter
 // $('#form_send_newsletter').submit(function(){
