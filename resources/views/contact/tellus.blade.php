@@ -138,8 +138,10 @@
       if((_valrecaptcha == "") || (_valrecaptcha == undefined)){
           $('#alertregister').slideDown();
           $("#btnSendContactInfo").prop("disabled", false);
+          $("#btnSendContactInfo").val("Enviar");
           return false;
       }else{
+          $('#alertregister').slideUp();
           return true;
       }
   });
