@@ -569,7 +569,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
                 <p class="mb-0"><a href="mailto:info@modulartop.com">info@modulartop.com</a></p>
                 <br>
               <div>
-                <button type="button" class="btn btn-primary btn-sm" id="btnShowContact">Ver teléfono</button>
+                <button type="button" class="btn btn-primary btn-sm" id="btnShowContact" onclick="gtag('event', 'click_ver_telefonos', { 'event_category': 'botones', 'event_label': 'boton_verTelefonos', 'value': '0'})">Ver teléfono</button>
                 
               </div>
               <div id="msgcontact">
@@ -581,7 +581,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
                 </p>
                
 
-                <a href="https://api.whatsapp.com/send?phone=+58 04241854168">
+                <a href="https://api.whatsapp.com/send?phone=+58 04241854168" onclick="gtag('event', 'click_wsapp', { 'event_category': 'botones', 'event_label': 'boton_wsapp_contact', 'value': '0'})">
                 <img src="images/boton-watsapp.webp" alt="Contacto via whatsapp" class="img-fluid"></a>
                 
               </div>
