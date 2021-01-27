@@ -199,7 +199,7 @@
       <img  src="{{ asset('images/navidad/iconClose25x25.png') }}" alt="" srcset="">
     </div>
     <div class="imgNavidad">
-      <img src="{{ asset('images/navidad/Banner-1000.jpg') }}?v={{ env('APP_VERSION', '1') }}" alt="" srcset="">
+      <img src="{{ asset('images/navidad/Pop-Up-Aniversario-4.jpg') }}?v={{ env('APP_VERSION', '1') }}" alt="" srcset="">
     </div>
     </div>
     <div class="site-mobile-menu site-navbar-target">

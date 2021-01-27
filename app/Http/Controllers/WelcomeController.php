@@ -15,15 +15,19 @@ class WelcomeController extends Controller
     public function index()
     {
         //comentado temporalmente, para no mostrar mensaje navideño
-        // $exist = session()->has('showMessage');
-        // dd($exist);
-        // if($exist){
-        //     $show = "false";
-        // } else{
-        //     session(['showMessage' => 'true']);
-        //     $show = "true";
-        // }
+        $show_image = env("SHOW_BANNER", false);
         $show = "false";
+        if($show_image){
+            $exist = session()->has('showMessage');
+            // dd($exist);
+            if($exist){
+                $show = "false";
+            } else{
+                session(['showMessage' => 'true']);
+                $show = "true";
+            }
+            // $show = "false";
+        }
         return view('welcome', compact('show'));
     }
 
