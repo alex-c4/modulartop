@@ -485,7 +485,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
         <div class="row">
           <div class="col-md-7 mb-5">
 
-            <form action="{{ route('contact.messageContact') }}" method="post" class="p-5 bg-white" id="form_send_contact_info" name="form_send_contact_info">
+            <form action="{{ route('contact.messageContact') }}" method="post" class="p-5 bg-white" id="form_send_contact_info" name="form_send_contact_info" onsubmit="gtag('event', 'enviar_form_contacto', { 'event_category': 'formularios', 'event_label': 'form_contacto', 'value': '0'})">
               
               {{csrf_field()}}
               <input type="hidden" name="hform" id="hform" value="1">

@@ -483,7 +483,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
         <div class="row">
           <div class="col-md-7 mb-5">
 
-            <form action="<?php echo e(route('contact.messageContact')); ?>" method="post" class="p-5 bg-white" id="form_send_contact_info" name="form_send_contact_info">
+            <form action="<?php echo e(route('contact.messageContact')); ?>" method="post" class="p-5 bg-white" id="form_send_contact_info" name="form_send_contact_info" onsubmit="gtag('event', 'click_ver_telefonos', { 'event_category': 'botones', 'event_label': 'boton_verTelefonos', 'value': '0'})">
               
               <?php echo e(csrf_field()); ?>
 

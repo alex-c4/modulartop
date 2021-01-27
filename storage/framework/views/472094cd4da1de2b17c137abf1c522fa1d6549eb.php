@@ -38,14 +38,14 @@
 
     <!--Bloque tracking code de Google Analytics VERSION UA-->
     <!-- Global site tag (gtag.js) - Google Analytics -->
-        <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-183802895-1"></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-183802895-1"></script>
         <script>
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
 
           gtag('config', 'UA-183802895-1');
-        </script> -->
+        </script> 
   <!-- fin del Bloque tracking code de Google Analytics --> 
 
   
