@@ -91,7 +91,7 @@ async='async'></script>
               <div class="col-sm-12 col-md-9">
                 <form action="{{ route('contact.contact') }}" method="post" class="" id="form_send_contact3">
                   {{csrf_field()}}
-
+                  <input type="hidden" name="hform" id="hform" value="3">
                   <div class="input-group mb-3">
                     <input id="emailnews3" name="emailnews3" type="text" class="form-control border-secondary bg-transparent" placeholder="Ingrese su Email" aria-label="Enter Email" aria-describedby="button-addon2">
                     <div class="input-group-append">
