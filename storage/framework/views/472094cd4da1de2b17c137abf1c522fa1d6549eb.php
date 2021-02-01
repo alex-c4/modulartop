@@ -38,14 +38,14 @@
 
     <!--Bloque tracking code de Google Analytics VERSION UA-->
     <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-183802895-1"></script>
+        <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-183802895-1"></script>
         <script>
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
 
           gtag('config', 'UA-183802895-1');
-        </script> 
+        </script> -->
   <!-- fin del Bloque tracking code de Google Analytics --> 
 
   
@@ -199,7 +199,7 @@
       <img  src="<?php echo e(asset('images/navidad/iconClose25x25.png')); ?>" alt="" srcset="">
     </div>
     <div class="imgNavidad">
-      <img src="<?php echo e(asset('images/navidad/Banner-1000.jpg')); ?>?v=<?php echo e(env('APP_VERSION', '1')); ?>" alt="" srcset="">
+      <img src="<?php echo e(asset('images/navidad/Pop-Up-Aniversario-4.jpg')); ?>?v=<?php echo e(env('APP_VERSION', '1')); ?>" alt="" srcset="">
     </div>
     </div>
     <div class="site-mobile-menu site-navbar-target">
