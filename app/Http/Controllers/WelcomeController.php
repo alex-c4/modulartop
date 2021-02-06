@@ -14,12 +14,13 @@ class WelcomeController extends Controller
      */
     public function index()
     {
-        //comentado temporalmente, para no mostrar mensaje navideño
+        //comentado temporalmente, para no mostrar mensaje navideño 
         $show_image = env("SHOW_BANNER", false);
         $show = "false";
+        // $exist = session()->has('showMessage');
+            // var_dump($exist);
         if($show_image){
             $exist = session()->has('showMessage');
-            // dd($exist);
             if($exist){
                 $show = "false";
             } else{

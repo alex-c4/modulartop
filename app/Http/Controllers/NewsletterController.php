@@ -104,10 +104,10 @@ class NewsletterController extends Controller
                         ->join('users', 'users.id', '=', 'newsletters.user_id','inner', false)
                         ->select('newsletters.id', 'newsletters.title', 'newsletters.name_img', 'newsletters.created_at', 'users.name as author', 'newsletters.summary', 'newsletters.title as url')
                         ->where('newsletters.isDeleted', '0')
-                        ->orderby('newsletters.created_at', 'desc')
+                        ->orderby('newsletters.published_at', 'desc')
                         ->take(3)
                         ->get();
-
+        
         // $tmp = $newsletter->content;
         // $content_array = explode("\r\n", $tmp);
         $tmp = $newsletter->tags;
@@ -216,6 +216,12 @@ class NewsletterController extends Controller
         $_newsletter = Newsletter::where('id', $id)->first();
 
         $_newsletter->isDeleted = 0;
+        
+        //valida que sea la primera vez que activa para setear la fecha de publicacion
+        if($_newsletter->published_at == null){
+            $_newsletter->published_at = Carbon::now();
+        }
+
         $_newsletter->update();
 
         $newsletters = DB::table('newsletters')
