@@ -47,7 +47,7 @@
                 <th scope="row">{{$news->id}}</th>
                 <td>{{ $news->title }}</td>
                 <td>{{ $news->name }}</td>
-                <td>{{ $news->created_at }}</td>
+                <td>{{ $news->published_at }}</td>
                 <td>
                     <a href="{{ route('newsletter.edit', $news->id) }}" title="Editar"><span class="icon-pencil-square-o"></span></a>
                 <td>

@@ -27,7 +27,7 @@ class NewsletterController extends Controller
     {
         $newsletters = DB::table('newsletters')
                         ->join('categories', 'categories.id', '=', 'newsletters.category_id', 'inner', false)
-                        ->select('newsletters.id', 'newsletters.title', 'newsletters.created_at', 'newsletters.isDeleted', 'categories.name', 'newsletters.title as url')
+                        ->select('newsletters.id', 'newsletters.title', 'newsletters.published_at', 'newsletters.isDeleted', 'categories.name', 'newsletters.title as url')
                         ->orderby('newsletters.created_at', 'desc')
                         ->get();
         

@@ -41,7 +41,8 @@ CREATE PROCEDURE `sp_getNewsletter`(IN `allFields` BOOLEAN) NOT DETERMINISTIC NO
 END
 
 DROP PROCEDURE `sp_getNewsletterFilterByCategory`;
-CREATE PROCEDURE `sp_getNewsletterFilterByCategory`(IN `cat_id` INT) NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER SELECT 
+CREATE PROCEDURE `sp_getNewsletterFilterByCategory`(IN `cat_id` INT) NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER 
+SELECT 
 	ne.id,
     ne.title,
     ne.created_at,
@@ -59,7 +60,7 @@ WHERE
 ORDER BY ne.created_at DESC
 LIMIT 8
 
-
+UPDATE newsletters SET published_at = created_at WHERE isDeleted = 0
 
 
 
