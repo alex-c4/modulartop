@@ -64,7 +64,7 @@ muebles, historia, servicios de madera y fabricación de mueblería." />
                                 <div class="blog-widget">
                                     <div class="blog-info">
                                     <img src="images/clock.png" alt="">
-                                        <span><?php echo e(explode(' ', $newsletter->created_at)[0]); ?></span><span class="mx-2">&bullet;
+                                        <span><?php echo e(explode(' ', $newsletter->published_at)[0]); ?></span><span class="mx-2">&bullet;
                                         <!-- </span><i class="lnr lnr-user"></i> Author Name -->
                                     </div>
                                    

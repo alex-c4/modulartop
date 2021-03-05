@@ -31,10 +31,20 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/elastislide.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/custom.css')}}" />
     <script src="{{ asset('js/modernizr.custom.17475.js')}}"></script>
-
+     <!-- fin del bloque fabricacion -->
+     <!-- Javascript para captcha de formulario -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <!-- Javascript para reproducir los videos youtube -->
+    <!-- <script>
+      let d = new Date();
+      // document.body.innerHTML = "<h1>Time right now is:  " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds()
 
-    <!-- fin del bloque fabricacion --> 
+      alert(+ d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds());
+    </script> -->
+    
+    <script type="text/javascript" src="js/videos.js"></script>
+    <!-- <script src="js/videos.js"></script> -->
+    
 
     <!--Bloque tracking code de Google Analytics VERSION UA-->
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -234,7 +244,8 @@
                 <li><a href="{{ route('welcome') }}" class="nav-link">Inicio</a></li>
                 <li><a href="{{ route('welcome')}}#howitworks-section" class="nav-link" >Materia Prima</a></li>
                 <li><a href="{{ route('welcome')}}#about-section" class="nav-link {{ (Request::is('contact/tellus')) ? 'active' : ''}}" >Fabricacion</a></li>
-                <li><a href="{{ route('welcome')}}#services-section" class="nav-link" >Servicios</a></li>
+                <!-- <li><a href="{{ route('welcome')}}#services-section" class="nav-link" >Servicios</a></li> -->
+                <li><a href="{{ url('/servicios') }}" class="nav-link" >Servicios</a></li>
                 <li><a href="{{ url('/modulartop') }}" class="nav-link">Modular Top</a></li>
                 <li><a href="{{ url('/novedades') }}" class="nav-link">Novedades @if(Utils::getCountNews() > 0)<span class="cantNews">{{ Utils::getCountNews() }}</span>@endif</a></li>
                 <li><a href="{{ route('welcome')}}#contact-section" class="nav-link">Contactanos</a></li>
@@ -388,7 +399,7 @@
       </div>
     </div>
 
-    <!-- subcripcion newletter content bonton flotante -->
+    <!-- suscripcion newletter content bonton flotante -->
     <div id="subcripcionContent">
       <form action="{{ route('contact.contact') }}" method="post" class="" id="form_send_contact4">
         {{csrf_field()}}

@@ -7,7 +7,7 @@ Tendencias, servicio personalizado y tableros melaminicos importados." />
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
-
+<!-- <script src="<?php echo e(asset('js/videos.js')); ?>"></script> -->
 <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(images/modulartop/banner-panoramica.jpg);" data-aos="fade">
       <div class="container">
         <div class="row align-items-center justify-content-center">
@@ -30,12 +30,27 @@ Tendencias, servicio personalizado y tableros melaminicos importados." />
         <div class="row large-gutters">
           <div class="col-lg-6 mb-5">
 
-              <div>
-                  <div><img src="images/modulartop/mt_corporativa.jpg" alt="Comercializadora de Tableros Melaminicos, 
-                  especialistas en la fabricación de muebles y servicios de madera con maquinarias de última generación en Caracas, Venezuela." class="img-fluid"></div>
-                  
-                </div>
+               <div>
+                   <!-- <div><img src="images/modulartop/mt_corporativa.jpg" alt="Comercializadora de Tableros Melaminicos, 
+                  especialistas en la fabricación de muebles y servicios de madera con maquinarias de última generación en Caracas, Venezuela." class="img-fluid"></div> -->
 
+                  <div id="modulartop" class="youtube-player" data-id="MmNnBeLf5Hw"></div>
+
+                  <!-- <video src="ejemplo.mp4" width=320  height=240 controls poster="vistaprevia.jpg">
+                    Lo sentimos. Este vídeo no puede ser reproducido en tu navegador.<br>
+                    La versión descargable está disponible en <a href="URL">Enlace</a>. 
+                  </video> -->
+                  <!-- <video src="images/videos/MT_TablerosV2.0.mp4" width=550  height=312 controls poster="images/modulartop/mt_corporativa.jpg">
+                    Lo sentimos. Este vídeo no puede ser reproducido en tu navegador.<br>
+                    La versión descargable está disponible en <a href="URL">Enlace</a>. 
+                  </video>
+                  <iframe width="560" height="315" src="https://www.youtube.com/embed/G30Pmez2J9Q" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  -->
+                </div>
+                <!-- <div class="video-contenedor">
+                  <div class="reproductor" data-id="G30Pmez2J9Q"></div>
+                </div>         -->
+
+               
           </div>
           <div class="col-lg-6 ml-auto">              
                 <p align="justify">Somos la Generación de Relevo y en 40 años de experiencia acumulada nos hemos dado cuenta de la exigencia, responsabilidad y pasión que dedican todas las personas relacionadas a la industria de la madera y el diseño de interiores.</p>

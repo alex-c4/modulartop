@@ -177,7 +177,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
           <div class="col-md-6 text-center">
             <div class="pr-5">
               <div class="img-contenedor">
-                <a href="http://www.losan.es" target="_blank"><img src="images/aliados/losan-logo.png" alt="Losan diseño y tendencias en melaminas - madera - tablero."><p class="site-aliados">Ver mas<br></p><br><br></a>
+                <a href="http://www.losan.es" target="_blank"><img src="images/aliados/losan-logo.png" alt="Losan diseño y tendencias en melaminas - madera - tablero."><p class="site-aliados">Ver más<br></p><br><br></a>
                 
               </div>  
 
@@ -193,7 +193,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
             <div class="pr-5">
 
               <div class="img-contenedor">
-                <a href="http://www.oneskin.pt" target="_blank"><img src="images/aliados/oneskin-logo.png" alt="Oneskin nace con el propósito de suministrar al mercado internacional con tableros lacados de alta calidad e innovación que abran nuevas oportunidades en la industria del mueble, decoración de interiores, panelación y otros trabajos arquitectónicos."><p class="site-aliados"><br>Ver mas</p></a>
+                <a href="http://www.oneskin.pt" target="_blank"><img src="images/aliados/oneskin-logo.png" alt="Oneskin nace con el propósito de suministrar al mercado internacional con tableros lacados de alta calidad e innovación que abran nuevas oportunidades en la industria del mueble, decoración de interiores, panelación y otros trabajos arquitectónicos."><p class="site-aliados"><br>Ver más</p></a>
                 
               </div>
               

@@ -31,10 +31,20 @@
     <link rel="stylesheet" type="text/css" href="<?php echo e(asset('css/elastislide.css')); ?>" />
     <link rel="stylesheet" type="text/css" href="<?php echo e(asset('css/custom.css')); ?>" />
     <script src="<?php echo e(asset('js/modernizr.custom.17475.js')); ?>"></script>
-
+     <!-- fin del bloque fabricacion -->
+     <!-- Javascript para captcha de formulario -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <!-- Javascript para reproducir los videos youtube -->
+    <!-- <script>
+      let d = new Date();
+      // document.body.innerHTML = "<h1>Time right now is:  " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds()
 
-    <!-- fin del bloque fabricacion --> 
+      alert(+ d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds());
+    </script> -->
+    
+    <script type="text/javascript" src="js/videos.js"></script>
+    <!-- <script src="js/videos.js"></script> -->
+    
 
     <!--Bloque tracking code de Google Analytics VERSION UA-->
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -234,7 +244,8 @@
                 <li><a href="<?php echo e(route('welcome')); ?>" class="nav-link">Inicio</a></li>
                 <li><a href="<?php echo e(route('welcome')); ?>#howitworks-section" class="nav-link" >Materia Prima</a></li>
                 <li><a href="<?php echo e(route('welcome')); ?>#about-section" class="nav-link <?php echo e((Request::is('contact/tellus')) ? 'active' : ''); ?>" >Fabricacion</a></li>
-                <li><a href="<?php echo e(route('welcome')); ?>#services-section" class="nav-link" >Servicios</a></li>
+                <!-- <li><a href="<?php echo e(route('welcome')); ?>#services-section" class="nav-link" >Servicios</a></li> -->
+                <li><a href="<?php echo e(url('/servicios')); ?>" class="nav-link" >Servicios</a></li>
                 <li><a href="<?php echo e(url('/modulartop')); ?>" class="nav-link">Modular Top</a></li>
                 <li><a href="<?php echo e(url('/novedades')); ?>" class="nav-link">Novedades <?php if(Utils::getCountNews() > 0): ?><span class="cantNews"><?php echo e(Utils::getCountNews()); ?></span><?php endif; ?></a></li>
                 <li><a href="<?php echo e(route('welcome')); ?>#contact-section" class="nav-link">Contactanos</a></li>
@@ -389,7 +400,7 @@
       </div>
     </div>
 
-    <!-- subcripcion newletter content bonton flotante -->
+    <!-- suscripcion newletter content bonton flotante -->
     <div id="subcripcionContent">
       <form action="<?php echo e(route('contact.contact')); ?>" method="post" class="" id="form_send_contact4">
         <?php echo e(csrf_field()); ?>

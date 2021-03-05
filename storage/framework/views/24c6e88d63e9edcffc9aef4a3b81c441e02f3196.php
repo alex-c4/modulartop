@@ -8,7 +8,23 @@ de madera, prensado MDP, enchapado de tapa de cantos y más. Fabricamos tus sue�
 
 <?php $__env->startSection('content'); ?>
 
-<div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(images/banner/servicios.jpg);" data-aos="fade">
+<div id="servicio" class="youtube-player" data-id="gsj-QyJ5uc0">
+<div class="site-blocks-cover overlay overlay-2" style="background-image: url(images/banner/servicios.jpg);" data-aos="fade">
+    <!-- <div class="site-blocks-cover overlay overlay-2" style="background-image: url(images/banner/fabricacion.jpg);" data-aos="fade" id="home-section"> -->
+      <div class="container">
+        <div class="row align-items justify-content-center">
+          <div class="col-md-8 mx-auto mt-lg-5 text-center">
+          <br><br><br><br><br><br>
+            <h1>Nuestros servicios</h1>
+            <p class="mb-8"><strong class="text-white">Somos los mejores aliados de fabricantes, carpinterías, mueblerías y arquitectos por contar con maquinaria tecnológica CNC que maximiza la productividad.</strong></p>
+            
+          </div>
+        </div>
+      </div>
+      <a href="#cortes" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a>
+    </div>
+</div> 
+<!-- <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(images/banner/servicios.jpg);" data-aos="fade">
       <div class="container">
         <div class="row align-items-center justify-content-center">
           <div class="col-md-8 mx-auto mt-lg-5 text-center">
@@ -20,9 +36,9 @@ de madera, prensado MDP, enchapado de tapa de cantos y más. Fabricamos tus sue�
       </div>
 
       <a href="#cortes" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a>
-    </div>  
+  </div>   -->
 
-
+    
  <!--Seccion sericios-->
  <section class="section element-animate" id="cortes">
       <div class="container">
