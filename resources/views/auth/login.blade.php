@@ -89,7 +89,12 @@
                                     </a>
 
                                 </div>
-
+                                
+                                @if(isset($message_delete))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message_delete }}</strong>
+                                    </span>
+                                @endif
                             </div>
 
                             

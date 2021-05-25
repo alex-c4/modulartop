@@ -1,10 +1,11 @@
 var Utils = {
+    GLOBAL_TAGS_IDs: new Array(),
     onclick_addCategory: function(){
         var _categoryName = $("#txtCategoryName").val();
         var _token = $("#token").val();
         var _route = $("#routeCurrent").val();
         var _url = _route;
-    
+        
         var _data = {
             categoryName: _categoryName
         }
@@ -21,8 +22,8 @@ var Utils = {
                     text: data.name,
                     selected: "selected"
                 }));
+                $("#addMessage").html("Categoria agregada correctamente")
                 $('#stadium').selectpicker('refresh');
-                $("#addMessage").html("Estadio agregado correctamente")
             }else{
                 $("#addMessage").html("Hubo un error agregando la categoria")
             }
@@ -36,11 +37,15 @@ var Utils = {
         var _url = _route;
         var _token = $("[name='_token']").val();
         $("#contentOtherPost").html("<h4>Cargando...</h4>");
-
+        var _data = {
+            "hOptNewsletter": $("#hOptNewsletter").val(),
+            "hTag_id": $("#hTag_id").val()
+        }
         $.ajax({
             url: _url,
             headers: { 'X-CSRF-TOKEN': _token },
-            type: 'POST'
+            type: 'POST',
+            data: _data
         }).done(function(data){
             if(data.length > 0){
                 var _url = $("#hRouteImage").val();
@@ -75,5 +80,98 @@ var Utils = {
         }).fail(function(jqXHR, textStatus, errorThrown ){
             debugger
         });
+    },
+    onclick_addTag: function(){
+        debugger
+        var _tagName = $("#txtTagName").val();
+        var _token = $("#token").val();
+        var _route = $("#routeCurrent2").val();
+        var _url = _route;
+
+        var _data = {
+            tagName: _tagName
+        }
+
+        $.ajax({
+            url: _url,
+            headers: { 'X-CSRF-TOKEN': _token },
+            type: 'POST',
+            data: _data
+        }).done(function(data){
+            if(data.result == true){
+                var _html = Utils.getHtmlTag(data);
+                Utils.addTag(_html);
+
+                Utils.pushTagId(data.value);            
+
+                $("#addMessage2").html("Tag agregado correctamente");
+            }else{
+                $("#addMessage2").html("El Tag <b>#" + data.text + "</b> ya existe!");
+            }
+        })
+        .fail(function(jqXHR, textStatus, errorThrown ){
+            debugger
+        });
+    },
+    getHtmlTag: function(item){
+        var _html = "<div class='div-tags' id='" + item.value + "' name='" + item.value + "'>#" + item.text +
+                    "<button type='button' onclick=\"Utils.removeDiv(" + item.value + ")\"><span class='icon-close'></span></buttom>" +
+                    "<div>";
+        return _html;
+    },
+    addTag: function(_html){
+        $("#content-div-tags").append(_html);
+        $('.basicAutoComplete').autoComplete('clear');
+    },
+    pushTagId: function(id){
+        Utils.GLOBAL_TAGS_IDs.push(id);
+        Utils.updateHiddenFielTag(Utils.GLOBAL_TAGS_IDs);
+    },
+    removeTagId: function(id){
+        var _idx = Utils.getIndex(id);
+        Utils.GLOBAL_TAGS_IDs.splice(_idx, 1);
+        Utils.updateHiddenFielTag(Utils.GLOBAL_TAGS_IDs);
+    },
+    isAdded: function(id){
+        var _idx = Utils.getIndex(id);
+
+        return _idx >= 0;
+    },
+    getIndex: function(id){
+        return Utils.GLOBAL_TAGS_IDs.findIndex(item => item == id);
+    },
+    updateHiddenFielTag: function(_arrIDs){
+        var _IDs = _arrIDs.reduce(function(prev_val, crr_value){ return prev_val + "," + crr_value })
+        $("#HiddenFielTag").val(_arrIDs);
+    },
+    initTags: function(){
+
+        var _tagsId = JSON.parse($("#HiddenFielTag").val());
+
+        _tagsId.forEach(function(item){
+            var _html = Utils.getHtmlTag(item);
+            Utils.addTag(_html);
+            Utils.pushTagId(item.value);
+        });
+
+    },
+    removeDiv: function(id){
+        $("#" + id).remove();
+        Utils.removeTagId(id);
+    },
+    getData: function(_url, _token, _type, _data){
+        return $.ajax({
+            url: _url,
+            headers: { 'X-CSRF-TOKEN': _token },
+            type: _type,
+            data: _data
+        }).done(function(data){
+
+        })
+        .fail(function(jqXHR, textStatus, errorThrown ){
+            debugger
+        });
     }
+    
+
 }

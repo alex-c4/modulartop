@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Contact;
 use App\Newsletter;
+use Illuminate\Support\Facades\Validator;
 
 use Mail;
 use Carbon\Carbon;
@@ -33,10 +34,24 @@ class ContactController extends Controller
     }
 
     public function formContact(Request $request){
-        return $this->store($request);
+        // $this->validation(request()->all())->validate();
+        $validator = $this->validation(request()->all());
+        if($validator->fails()){
+            return redirect("/#contact-section")
+                ->withErrors($validator)
+                ->withInput();
+        }else{
+            return $this->store($request);
+        }
+
+
     }
 
     public function formFabricacion(Request $request){
+        
+        $this->validation(request()->all())->validate();
+        
+        dd("paso!!!");
         return $this->store($request);
     }
     /**
@@ -256,5 +271,18 @@ class ContactController extends Controller
     }
     public function tellUs2(){
         return view('tellus2');
+    }
+
+    public function validation($data){
+        $messages = [
+            'required' => 'El campo es requerido',
+            'captcha' => 'Debe realizar la selección del captcha'
+        ];
+        return Validator::make($data, [
+            'g-recaptcha-response' => 'captcha',
+            'fname' => 'required',
+            'email' => 'required',
+        ], $messages);
+
     }
 }

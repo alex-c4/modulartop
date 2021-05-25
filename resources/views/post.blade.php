@@ -81,6 +81,14 @@ async='async'></script>
               <p>Categorias:  <a href="{{ route('novedades', $newsletter->category_id) }}">{{ $newsletter->category }}</a> <!-- Tags: @foreach($tags_array as $tag) <a href="#">{{$tag}}</a>@endforeach</p> -->
             </div>
 
+            
+            <div class="pt-1">
+              <p>Tags:  
+              @foreach($tags as $tag)
+                  <a href="{{ route('tags', ['id' => $tag->id, 'tag' => $tag->name]) }}">#{{ $tag->name }}</a>
+              @endforeach
+            </div>
+
             <div class="divFormSubscribeNewsletter2"> 
               <div>
                 <img src="{{ asset('images/email-box-web.png') }}" alt="" srcset="">

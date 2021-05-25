@@ -98,10 +98,12 @@ class RegisterController extends Controller
     {
         $messages = [
             'numeric' => 'El campo debe ser numerico.',
-            'required' => 'El campo es requerido'
+            'required' => 'El campo es requerido',
+            'captcha' => 'Debe realizar la selección del captcha'
         ];
 
         return Validator::make($data, [
+            'g-recaptcha-response' => 'captcha',
             'name' => 'required|string',
             'lastName' => 'required|string',
             'email' => 'required|string|email|max:40|unique:users',
@@ -114,10 +116,12 @@ class RegisterController extends Controller
     {
         $messages = [
             'numeric' => 'El campo debe ser numerico.',
-            'required' => 'El campo es requerido'
+            'required' => 'El campo es requerido',
+            'captcha' => 'Debe realizar la selección del captcha'
         ];
 
         return Validator::make($data, [
+            'g-recaptcha-response' => 'captcha',
             'name' => 'required|string',
             'lastName' => 'required|string',
             'email' => 'required|string|email|max:40|unique:users',
@@ -139,7 +143,7 @@ class RegisterController extends Controller
 
         $avatar = request()->file('avatar');
         $companyLogo = request()->file('companyLogo');
-
+        
         if($isClient == "on"){
             $this->validator_full(request()->all())->validate();
             
@@ -151,11 +155,13 @@ class RegisterController extends Controller
                 'confirmation_code' => $conf_code,
                 'confirmed' => false,
                 'avatar' => '',
+                'phone' => request()->clientPhone,
+                'address' => request()->clientAddress,
                 'rif' => request()->rif,
-                'rasonSocial' => request()->rsocial,
+                'razonSocial' => request()->rsocial,
                 'companyAddress' => request()->companyAddress,
                 'companyPhone' => request()->companyPhone,
-                'companyLogo' => '',
+                'is_client' => true
             ]);
         }else{
             $this->validator_basic(request()->all())->validate();
@@ -167,7 +173,10 @@ class RegisterController extends Controller
                 'password' => bcrypt(request()->password),
                 'confirmation_code' => $conf_code,
                 'confirmed' => false,
-                'avatar' => request()->clientImage
+                'avatar' => request()->clientImage,
+                'phone' => request()->clientPhone,
+                'address' => request()->clientAddress,
+                'is_client' => false
             ]);
         }
 

@@ -36,7 +36,11 @@ class User extends Authenticatable implements MustVerifyEmail
         'razonSocial',
         'companyAddress',
         'companyPhone',
-        'companyLogo'
+        'companyLogo',
+        'validationByAdmin',
+        'email_verified_at',
+        'is_client',
+        'roll_id'
     ];
 
     /**

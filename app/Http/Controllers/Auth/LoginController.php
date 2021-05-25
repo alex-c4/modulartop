@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
+use App\User;
 
 class LoginController extends Controller
 {
@@ -65,6 +66,12 @@ class LoginController extends Controller
      */
     protected function sendLoginResponse(Request $request)
     {
+        // //validar que el usuario no ha sido desactivado
+        // if($request->user()->is_deleted == 1){
+        //     $message_delete = 'Usuario bloqueado, no tiene acceso al sistema';
+        //     return view('auth.login', compact("message_delete"));
+        // }
+
         if($request->user()->hasVerifiedEmail()){
             return redirect($this->redirectPath());
         }else{
@@ -80,4 +87,50 @@ class LoginController extends Controller
         return $this->authenticated($request, $this->guard()->user())
                 ?: redirect()->intended($this->redirectPath());
     }
+
+    /**
+     * Handle a login request to the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Http\JsonResponse
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function login(Request $request)
+    {
+        
+        $this->validateLogin($request);
+
+        // If the class is using the ThrottlesLogins trait, we can automatically throttle
+        // the login attempts for this application. We'll key this by the username and
+        // the IP address of the client making these requests into this application.
+        if (method_exists($this, 'hasTooManyLoginAttempts') &&
+            $this->hasTooManyLoginAttempts($request)) {
+            $this->fireLockoutEvent($request);
+
+            return $this->sendLockoutResponse($request);
+        }
+
+
+        // Valida que el usuario no haya sido desactivado por el Administrador
+        $email = $request->get($this->username());
+        $client = User::where($this->username(), $email)->first();
+        if ($client != null && $client->is_deleted === 1) {
+            return $this->sendFailedLoginResponse($request, 'auth.failed_status');
+        }
+
+
+        if ($this->attemptLogin($request)) {
+            return $this->sendLoginResponse($request);
+        }
+
+        // If the login attempt was unsuccessful we will increment the number of attempts
+        // to login and redirect the user back to the login form. Of course, when this
+        // user surpasses their maximum number of attempts they will get locked out.
+        $this->incrementLoginAttempts($request);
+
+
+        return $this->sendFailedLoginResponse($request);
+    }
+    
 }

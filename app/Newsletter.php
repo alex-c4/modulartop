@@ -10,7 +10,7 @@ class Newsletter extends Model
 	protected $table = 'newsletters';//Puede ser omitido si se sigue las reglas de laravel con los nombres
 	
 	 protected $fillable = [
-        'name', 'title', 'content', 'summary', 'user_id', 'category_id', 'tags', 'name_img'
+        'name', 'title', 'content', 'summary', 'user_id', 'category_id', 'tags', 'name_img', 'published_at'
     ];
 	
 	

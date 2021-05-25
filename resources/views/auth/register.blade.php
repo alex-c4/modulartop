@@ -1,7 +1,10 @@
 @extends('layouts.layout')
 
 @section('header')
-    <link rel="stylesheet" href="{{ asset('/css/user-register.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/user-register.css') }}?v={{ env('APP_VERSION', '1') }}">
+
+    {!! NoCaptcha::renderJs() !!}
+
 @endsection
 
 @section('content')
@@ -65,7 +68,7 @@
                                     <label for="email" class="col-md-4 col-form-label text-md-right">Correo electrónico<span>*</span></label>
 
                                     <div class="col-md-6">
-                                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="off">
 
                                         @error('email')
                                             <span class="invalid-feedback" role="alert">
@@ -90,7 +93,7 @@
                                     </div>
                                 </div>
 
-                                <!-- confirmar clava -->
+                                <!-- confirmar clave -->
                                 <div class="form-group row">
                                     <label for="password_confirmation" class="col-md-4 col-form-label text-md-right">Confirmar clave<span>*</span></label>
 
@@ -113,7 +116,7 @@
                                     <label for="clientPhone" class="col-md-4 col-form-label text-md-right">Teléfono</label>
 
                                     <div class="col-md-6">
-                                        <input id="clientPhone" type="number" class="form-control" name="clientPhone" >
+                                        <input id="clientPhone" type="number" class="form-control" name="clientPhone" value="{{ old('clientPhone') }}">
                                     </div>
                                 </div>
 
@@ -122,14 +125,14 @@
                                     <label for="clientAddress" class="col-md-4 col-form-label text-md-right">Dirección</label>
 
                                     <div class="col-md-6">
-                                        <textarea class="form-control" id="clientAddress" name="clientAddress" rows="3"></textarea>
+                                        <textarea class="form-control" id="clientAddress" name="clientAddress" rows="3">{{ old('clientAddress') }}</textarea>
                                     </div>
                                 </div>
 
                                 <!-- Es cliente -->
                                 <div class="form-group row">
                                     <div class="col-md-4 text-md-right">
-                                        <label class="form-check-label" for="chkClient">Cliente</label>
+                                        <label class="form-check-label" for="chkClient">Compañia</label>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-check">
@@ -221,6 +224,29 @@
                                     </div>
                                 </div>
     
+                                @if ($errors->has('g-recaptcha-response'))
+                                    <div class="row form-group">
+                                    <div class="col-md-3 text-md-right">
+                                        &nbsp;
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="invalid-field">
+                                            {{ $errors->first('g-recaptcha-response') }}
+                                        </div>
+                                    </div>
+                                    </div>
+                                @endif
+                                
+                                <div class="row form-group">
+                                    <div class="col-md-3 text-md-right">
+                                        &nbsp;
+                                    </div>
+                                    <div class="col-md-6">
+                                    {!! NoCaptcha::display() !!}
+                                    <!-- <div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_KEY') }}"></div> -->
+                                    </div>
+                                </div>
+                                
                                 <div class="form-group row mb-0">
                                     <div class="col-md-6 offset-md-4">
                                         <button type="submit" class="btn btn-primary">
@@ -243,6 +269,6 @@
 @endsection
 
 @section('script')
-    <script src="{{ asset('js/user-register.js') }}"></script>
+    <script src="{{ asset('js/user-register.js') }}?v={{ env('APP_VERSION', '1') }}"></script>
 @endsection
 

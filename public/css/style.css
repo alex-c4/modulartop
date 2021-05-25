@@ -2590,3 +2590,11 @@ overflow:hidden;
   background-color: #333333;
   height: 97px;
 }
+
+
+.invalid-field{
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 80%;
+  color: #e81050;
+}

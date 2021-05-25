@@ -58,6 +58,16 @@ return [
             'root' => public_path('filesContact'),
         ],
 
+        'fichaTecnica' => [
+            'driver' => 'local',
+            'root' => public_path('ficha_tecnica'),
+        ],
+
+        'global' => [
+            'driver' => 'local',
+            'root' => public_path(''),
+        ],
+
         'customerLogo' => [
             'driver' => 'local',
             'root' => public_path('images/customers_logos'),

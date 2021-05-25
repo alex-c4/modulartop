@@ -1,6 +1,8 @@
-@extends('layouts.layout')
+@extends('layouts.layoutSidebar')
 
 @section('content')
+
+@section('banner')
 
 <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url({{ asset('images/novedades/newsletter-novedades.jpg') }});" data-aos="fade">
     <div class="container">
@@ -16,6 +18,7 @@
     <!-- <a href="#blog" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a> -->
 </div> 
 
+@endsection
 
 <section class="site-section bg-light bg-image" id="contact-section">
     <div class="container">
@@ -30,13 +33,26 @@
 
 
 <div class="container">
+    <!-- mensaje para la creacion de los post -->
+    @if(isset($msgPost) != null)
+        <div class="container">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>{{$msgPost}}</strong> 
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+        </div>
+    @endif
+
     <table class="table table-hover">
         <thead>
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Titulo</th>
                 <th scope="col">Categoria</th>
-                <th scope="col" colspan="5">Fecha de publicación</th>
+                <th scope="col">Fecha de publicación</th>
+                <th scope="col" colspan="4">Autor</th>
                 <th></th>
             </tr>
         </thead>
@@ -48,6 +64,7 @@
                 <td>{{ $news->title }}</td>
                 <td>{{ $news->name }}</td>
                 <td>{{ $news->published_at }}</td>
+                <td>{{ $news->userName }} {{ $news->userLastName }}</td>
                 <td>
                     <a href="{{ route('newsletter.edit', $news->id) }}" title="Editar"><span class="icon-pencil-square-o"></span></a>
                 <td>

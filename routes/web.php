@@ -23,6 +23,16 @@ Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
+// Validar los usuarios por el Administrador registrados en el sistema
+Route::get('user/validation', ['as' => 'userValidation.index', 'uses' => 'Auth\ValidationUserClientController@index']);
+Route::post('uservalidationUpdate/{id}', ['as' => 'userValidation.update', 'uses' => 'Auth\ValidationUserClientController@update']);
+Route::get('userClient/create', ["as" => "userClient.create", "uses" => "Auth\ValidationUserClientController@create"]);
+Route::post('userCliente/store', ["as" => "userClient.store", "uses" => "Auth\ValidationUserClientController@store"]);
+Route::get('user/showUser', ["as" => "user.showUser", "uses" => "Auth\ValidationUserClientController@showUser"]);
+Route::post('user/read/{id}', ["as" => "user.read", "uses" => "Auth\ValidationUserClientController@read"]);
+Route::get('user/inactive/{id}', ["as" => "user.inactive_form", "uses" => "Auth\ValidationUserClientController@inactive_form"]);
+Route::post('user/inactive', ["as" => "user.inactive", "uses" => "Auth\ValidationUserClientController@inactive"]);
+
 // Registration Routes...
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
@@ -43,6 +53,11 @@ Route::get('email/verify', 'Auth\VerificationController@show')->name('verificati
 Route::get('email/verify/{code}', 'Auth\VerificationController@verify')->name('verification.verify');
 Route::post('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
 
+// Usuario
+Route::get('user/edit/{id}', ["as" => "user.edit", "uses" => "UserController@edit"]);
+Route::post("user/update/{id}", ["as" => "user.update", "uses" => "UserController@update"]);
+
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -51,9 +66,14 @@ Route::view('/modulartop', 'modulartop');
 // Route::view('/post', 'post');
 Route::view('/servicios', 'servicios/servicios');
 Route::view('/fabricacion', 'fabricacion/fabricacion');
-Route::view('/acabado-tradicional', 'tableros/tableros-tradicional');
-Route::view('/acabado-altobrillo', 'tableros/tableros-altobrillo');
-Route::view('/acabado-supermate', 'tableros/tableros-supermate');
+// Route::view('/acabado-tradicional', 'tableros/tableros-tradicional');
+// Route::view('/acabado-altobrillo', 'tableros/tableros-altobrillo');
+// Route::view('/acabado-supermate', 'tableros/tableros-supermate');
+Route::get('tablero/byVisualEfect/{id}', ["as" => "tablero.byVisualEfect", "uses" => "ProductController@ShowViewByVisualEfect"]);
+Route::get("tablero/{id}/description", ["as" => "tablero.description", "uses" => "ProductController@descriptionByProducto"]);
+Route::get("tableros/{id}/showImages", ["as" => "tablero.showImages", "uses" => "ProductController@showImagesByProduct"]);
+Route::get("tablero/ficha/{id}", ["as" => "tablero.fichatecnica", "uses" => "ProductController@fichatecnica"]);
+
 Route::post('fabricacion/messageFabrication', ['as' => 'fabricacion.messageFabricacion', 'uses' => 'ContactController@formFabricacion']);
 
 
@@ -71,19 +91,79 @@ Route::get('newsletter/edit/{id}', ['as' => 'newsletter.edit', 'uses' => 'Newsle
 Route::put('newsletter/update/{id}', ['as' => 'newsletter.update', 'uses' => 'NewsletterController@update']);
 // Route::get('novedades/{id?}', ['as' => 'novedades', 'uses' => 'NewsletterController@novedades']);
 Route::get('novedades/{id?}', ['as' => 'novedades', 'uses' => 'NewsletterController@novedades']);
+Route::get('tags/{id}/{tag}', ['as' => 'tags', 'uses' => 'NewsletterController@tags']);
 Route::get('post/{id}/{name}', ['as' => 'show', 'uses' => 'NewsletterController@show']);
 Route::delete('newsletter/delete/{id}', ['as' => 'newsletter.delete', 'uses' => 'NewsletterController@delete']);
 Route::patch('newsletter/{id}', ['as' => 'newsletter.restore', 'uses' => 'NewsletterController@restore']);
 // Route::get('novedadesFilter/{id}', ['as' => 'novedadesFilter', 'uses' => 'NewsletterController@novedadesFilter']);
 
+// Tags
+Route::post('tag/storeajax', ['as' => 'tag.storeajax', 'uses' => 'TagController@store_ajax']);
+//buscar TAGS
+Route::get('search_tags/{d?}', ['as' => 'search_tags', 'uses' => 'TagController@search_tags']);
+
+
+// Products
+Route::get("product/create", ["as" => "product.create", "uses" => "ProductController@create"]);
+Route::post("product/store", ["as" => "product.store", "uses" => "ProductController@store"]);
+Route::get("product/index", ["as" => "product.index", "uses" => "ProductController@index"]);
+Route::get("product/edit/{id}", ["as" => "product.edit", "uses" => "ProductController@edit"]);
+Route::post("product/update/{id}", ["as" => "product.update", "uses" => "ProductController@update"]);
+Route::get("product/delete/{id}", ["as" => "product.delete", "uses" => "ProductController@delete"]);
+Route::get("product/restore/{id}", ["as" => "product.restore", "uses" => "ProductController@restore"]);
+
+//Compras - Purchase
+Route::get("purchase/create", ["as" => "purchase.create", "uses" => "PurchaseController@create"]);
+Route::post("purchase/store", ["as" => "purchase.store", "uses" => "PurchaseController@store"]);
+
+// Ventas - Sales
+Route::get("sale/create", ["as" => "sale.create", "uses" => "SaleController@create"]);
+Route::post("sale/store", ["as" => "sale.store", "uses" => "SaleController@store"]);
+Route::get("sale/saleslist", ["as" => "sale.saleslist", "uses" => "SaleController@saleslist"]);
+Route::get("sales/downloadsales", ["as" => "sales.downloadsales", "uses" => "SaleController@downloadsales"]);
+
+// Order Sale
+Route::get("ordersale/downloadexcel", ["as" => "ordersale.downloadexcel", "uses" => "OrderSaleController@downloadexcel"]);
+Route::get("ordersale/create", ["as" => "ordersale.create", "uses" => "OrderSaleController@create"]);
+Route::post("ordersale/store", ["as" => "ordersale.store", "uses" => "OrderSaleController@store"]);
+Route::get("ordersale/index", ["as" => "ordersale.index", "uses" => "OrderSaleController@index"]);
+Route::post("ordersale/delete/{id}", ["as" => "ordersale.delete", "uses" => "OrderSaleController@delete"]);
+Route::post("ordersale/attend/{id}", ["as" => "ordersale.attend", "uses" => "OrderSaleController@attend"]);
+Route::post("ordersale/attendFromHome", ["as" => "ordersale.attendFromHome", "uses" => "OrderSaleController@attendFromHome"]);
+Route::get("ordersale/show/{id}", ["as" => "ordersale.show", "uses" => "OrderSaleController@show"]);
+Route::get("ordersale/downloadplanilla/{ordersale_id}", ["as" => "ordersale.downloadplanilla", "uses" => "OrderSaleController@downloadplanilla"]);
+Route::post("ordersale/process/{id}", ["as" => "ordersale.process", "uses" => "OrderSaleController@process"]);
+Route::post("ordersale/processorder", ["as" => "ordersale.processorder", "uses" => "OrderSaleController@processorder"]);
+
+
+// Poyectos - Project
+Route::get("project/create", ["as" => "project.create", "uses" => "ProjectController@create"]);
+
+
+// Inventario - Inventory
+Route::get("inventory/index", ["as" => "inventory.index", "uses" => "InventoryController@index"]);
+
 // AJAX
 //Category
 Route::post('category/storeajax', ['as' => 'category.storeajax', 'uses' => 'CategoryController@store_ajax']);
 
+//Proveedor
+Route::post('provider/storeajax', ['as' => 'provider.storeajax', 'uses' => 'ProviderController@store_ajax']);
+
 //Ver mas post
 Route::post('newsletter/other_post_eajax', ['as' => 'newsletter.otherpostajax', 'uses' => 'NewsletterController@other_post_ajax']);
 
+//Llenar combos de subcategroria y tipo de clasificacion
+Route::post("product/subcategory", ["as" => "product.fillCombo", "uses" => "ProductController@fillCombo"]);
 
+// Borrado de imagenes de productos
+Route::post("product/deleteimg", ["as" => "product.deleteimg", "uses" => "ProductController@deleteimg"]);
+
+// Productos
+Route::post("product/storeajax", ["as" => "product.storeajax", "uses" => "ProductController@storeajax"]);
+
+// Images-link
+Route::post("newsletter/uploadimage", ["as" => "newsletter.uploadimage", "uses" => "NewsletterController@uploadimage"]);
 
 // Temporal
 Route::get("vermensaje", ['as' => 'vermensaje', 'uses' => 'Auth\RegisterController@vermensaje']);
