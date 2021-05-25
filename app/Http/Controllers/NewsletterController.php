@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Validator;
 use DB;
 use Carbon\Carbon;
 use App\Newsletter;
+use App\User;
+use App\Tag;
+
 
 class NewsletterController extends Controller
 {
@@ -27,13 +30,15 @@ class NewsletterController extends Controller
     {
         $newsletters = DB::table('newsletters')
                         ->join('categories', 'categories.id', '=', 'newsletters.category_id', 'inner', false)
-                        ->select('newsletters.id', 'newsletters.title', 'newsletters.published_at', 'newsletters.isDeleted', 'categories.name', 'newsletters.title as url')
+                        ->join('users', 'newsletters.user_id', '=', 'users.id', 'inner', false)
+                        ->select('newsletters.id', 'newsletters.title', 'newsletters.published_at', 'newsletters.isDeleted', 'categories.name', 'newsletters.title as url', 'users.name as userName', 'users.lastName as userLastName')
                         ->orderby('newsletters.created_at', 'desc')
                         ->get();
         
         foreach($newsletters as $row){
             $row->url =  str_replace(" ", "-", $row->url);
         }
+
         return view('newsletter.index', compact('newsletters'));
     }
 
@@ -45,8 +50,10 @@ class NewsletterController extends Controller
     public function create()
     {
         $categories = $this->getCategories(0);
+        
+        $files = $this->getImagesURL();
 
-        return view('newsletter.create', compact('categories'));
+        return view('newsletter.create', compact('categories', 'files'));
     }
 
     /**
@@ -59,7 +66,7 @@ class NewsletterController extends Controller
     {
         $file = $request->file('name_img');
         $fileName = Carbon::now()->format('Y-m-d_Hi') ."_". $file->getClientOriginalName();
-        
+  
         $this->validateNewsletter(request()->all())->validate();
 
         $user_id = auth()->user()->id; 
@@ -67,12 +74,23 @@ class NewsletterController extends Controller
         $newsletter = Newsletter::create([
             'title' => $request->input('title'),
             'summary' => $request->input('summary'),
-            'content' => $request->input('content'),
+            'content' => $request->input('content-wysiwyg'),
             'user_id' => $user_id,
             'category_id' => $request->input('category'),
             'tags' => $request->input('tags'),
             'name_img' => $fileName
         ]);
+
+        $tagIDs = $request->input("HiddenFielTag");
+        if($tagIDs != ""){
+            $arrIDs = explode(",", $tagIDs);
+            foreach ($arrIDs as $value) {
+                DB::table("newsletter_tags")->insert([
+                    "id_newsletter" => $newsletter->id,
+                    "id_tag" => $value
+                ]);
+            }
+        }
 
         // Storage::putFileAs('newsletters/', $file, $fileName);
         $request->file('name_img')->storeAs('newsletters', $fileName, 'newsletter');
@@ -81,7 +99,9 @@ class NewsletterController extends Controller
         
         // return view('newsletter.create', compact('categories'));
         $msgPost = "¡Registro realizado satisfactoriamente!.";
-        return view('home', compact('msgPost'));
+        $files = $this->getImagesURL();
+
+        return view('newsletter.create', compact('categories', 'msgPost', 'files'));
     }
 
     /**
@@ -118,8 +138,10 @@ class NewsletterController extends Controller
         foreach($newsletter_top3 as $row){
             $row->url =  str_replace(" ", "-", $row->url);
         }
+
+        $tags = $this->getTagsByNewsletter($id);
         
-        return view('post', compact('newsletter', 'newsletter_top3', 'tags_array', 'categoryList'));
+        return view('post', compact('newsletter', 'newsletter_top3', 'tags_array', 'categoryList', 'tags'));
     }
 
     /**
@@ -134,7 +156,17 @@ class NewsletterController extends Controller
         
         $categories = $this->getCategories(0);
 
-        return view('newsletter.edit', compact('newsletter', 'categories'));
+        $tags = DB::table("newsletter_tags")
+            ->join("tags", "tags.id", "=", "newsletter_tags.id_tag", "inner", false)
+            ->select("newsletter_tags.id_tag  as value", "tags.name as text")
+            ->where("id_newsletter", "$id")->get();
+        // $_tags = [];
+        // foreach ($tags as $value) {
+        //     array_push($_tags, $value->id_tag);
+        // }
+        // $tags = implode(",", $_tags);
+        // dd($tags);
+        return view('newsletter.edit', compact('newsletter', 'categories', 'tags'));
     }
 
     /**
@@ -159,7 +191,7 @@ class NewsletterController extends Controller
         $newsletter = Newsletter::where('id', $id)->first();
         $newsletter->title = $request->input('title');
         $newsletter->summary = $request->input('summary');
-        $newsletter->content = $request->input('content');
+        $newsletter->content = $request->input('content-wysiwyg');
         $newsletter->category_id = $request->input('category');
         $newsletter->tags = $request->input('tags');
 
@@ -177,7 +209,34 @@ class NewsletterController extends Controller
         $newsletter->updated_by = $user_id;
         $newsletter->update();
 
-        return view('home');
+        $msgPost = "¡Registro actualizado satisfactoriamente!.";
+
+        $newsletters = DB::table('newsletters')
+                        ->join('categories', 'categories.id', '=', 'newsletters.category_id', 'inner', false)
+                        ->join('users', 'newsletters.user_id', '=', 'users.id', 'inner', false)
+                        ->select('newsletters.id', 'newsletters.title', 'newsletters.published_at', 'newsletters.isDeleted', 'categories.name', 'newsletters.title as url', 'users.name as userName', 'users.lastName as userLastName')
+                        ->orderby('newsletters.created_at', 'desc')
+                        ->get();
+        
+        $tagIDs = $request->input("HiddenFielTag");
+        DB::table("newsletter_tags")
+            ->where("id_newsletter", "=", $id)
+            ->delete();
+        if($tagIDs != ""){
+            $arrIDs = explode(",", $tagIDs);
+            foreach ($arrIDs as $value) {
+                DB::table("newsletter_tags")->insert([
+                    "id_newsletter" => $newsletter->id,
+                    "id_tag" => $value
+                ]);
+            }
+        }
+
+        foreach($newsletters as $row){
+            $row->url =  str_replace(" ", "-", $row->url);
+        }
+
+        return view('newsletter.index', compact('newsletters', 'msgPost'));
     }
 
     /**
@@ -195,7 +254,8 @@ class NewsletterController extends Controller
 
         $newsletters = DB::table('newsletters')
                         ->join('categories', 'categories.id', '=', 'newsletters.category_id', 'inner', false)
-                        ->select('newsletters.id', 'newsletters.title', 'newsletters.created_at', 'newsletters.isDeleted', 'categories.name', 'newsletters.title as url')
+                        ->join('users', 'users.id', '=', 'newsletters.user_id','inner', false)
+                        ->select('newsletters.id', 'newsletters.title', 'newsletters.created_at', 'newsletters.isDeleted', 'categories.name', 'newsletters.title as url', 'newsletters.published_at', 'users.name as userName', 'users.lastName as userLastName')
                         ->orderby('newsletters.created_at', 'desc')
                         ->get();
 
@@ -213,8 +273,9 @@ class NewsletterController extends Controller
      */
     public function restore($id)
     {
+        
         $_newsletter = Newsletter::where('id', $id)->first();
-
+        
         $_newsletter->isDeleted = 0;
         
         //valida que sea la primera vez que activa para setear la fecha de publicacion
@@ -226,14 +287,18 @@ class NewsletterController extends Controller
 
         $newsletters = DB::table('newsletters')
                         ->join('categories', 'categories.id', '=', 'newsletters.category_id', 'inner', false)
-                        ->select('newsletters.id', 'newsletters.title', 'newsletters.created_at', 'newsletters.isDeleted', 'categories.name', 'newsletters.title as url')
+                        ->join('users', 'users.id', '=', 'newsletters.user_id','inner', false)
+                        ->select('newsletters.id', 'newsletters.title', 'newsletters.created_at', 'newsletters.isDeleted', 'newsletters.published_at', 'categories.name', 'newsletters.title as url', 'users.name as userName', 'users.lastName as userLastName')
                         ->orderby('newsletters.created_at', 'desc')
                         ->get();
-
+        
         foreach($newsletters as $row){
             $row->url =  str_replace(" ", "-", $row->url);
         }
-        return view('newsletter.index', compact('newsletters'));
+
+        $msgPost = "¡Registro activado satisfactoriamente!.";
+
+        return view('newsletter.index', compact('newsletters', 'msgPost'));
     }
 
     public function validateNewsletter(array $data){
@@ -243,7 +308,7 @@ class NewsletterController extends Controller
 
         return Validator::make($data, [
             'title' => 'required|string',
-            'content' => 'required|string',
+            'content-wysiwyg' => 'required|string',
             'category' => 'required'
         ], $messages);
     }
@@ -266,6 +331,9 @@ class NewsletterController extends Controller
         if($category_id == 0){
             $allFields = false;
             $newsletters = DB::select('CALl sp_getNewsletter(?)', array($allFields));
+
+
+            // dd($tags);  
         }else{
             $newsletters = DB::select('CALl sp_getNewsletterFilterByCategory(?)', array($category_id));
         }
@@ -279,8 +347,12 @@ class NewsletterController extends Controller
             ->count();
         
         $categoryList = $this->getCatagoriesList();
+        
+        $tags = $this->getTags();
 
-        return view('novedades', compact('newsletters', 'categoryList', 'total_newsletters'));
+        $hOptNewsletter = "NEWSLETTER";
+
+        return view('novedades', compact('newsletters', 'categoryList', 'total_newsletters', 'tags', 'hOptNewsletter'));
     }
 
     // public function novedadesFilter($category_id){
@@ -297,9 +369,123 @@ class NewsletterController extends Controller
     }
 
     public function other_post_ajax(Request $request){
-        $allFields = true;
-        $newsletters = DB::select('CALl sp_getNewsletter(?)', array($allFields));
-        return $newsletters;
+        $hOptNewsletter = $request->input("hOptNewsletter");
+        
+        switch ($hOptNewsletter) {
+            case 'NEWSLETTER':
+                $allFields = true;
+                $newsletters = DB::select('CALl sp_getNewsletter(?)', array($allFields));
+                return $newsletters;
+                break;
+            
+            case 'TAGS':
+                $tag_id = $request->input("hTag_id");
+                $allFields = true;
+                $newsletters = DB::select('CALl sp_getNewsletterByTagId(?,?)', array($tag_id, $allFields));
+                return $newsletters;
+                break;
+        }
+    }
+
+    public function tags($tag_id, $tag_name){
+
+        $allFields = false;
+        $newsletters = DB::select('CALL sp_getNewsletterByTagId(?, ?)', array($tag_id, $allFields));
+        
+        foreach($newsletters as $row){
+            $row->url =  str_replace(" ", "-", $row->url);
+        }
+
+        $total_newsletters = DB::table('newsletters')
+            ->join("newsletter_tags", "newsletter_tags.id_newsletter", "=", "newsletters.id", "inner", false)
+            ->where('newsletters.isDeleted', '0')
+            ->where('newsletter_tags.id_tag', $tag_id)
+            ->count();
+        
+        $categoryList = $this->getCatagoriesList();
+        
+        $tags = $this->getTags();
+
+        $hOptNewsletter = "TAGS";
+        $tag_id2 = $tag_id;
+        
+        return view('novedades', compact('newsletters', 'categoryList', 'total_newsletters', 'tags', 'hOptNewsletter', 'tag_id2'));
+        
+    }
+
+    public function getTags(){
+        // return DB::table("newsletter_tags")
+        // ->join("tags", "tags.id", "=", "newsletter_tags.id_tag", "inner", false)
+        // ->select("tags.id", "tags.name")
+        // ->orderby("newsletter_tags.updated_at", "desc")
+        // ->groupby("tags.name", "tags.id")
+        // ->get();
+
+        $tags = DB::select('CALl sp_getTags()');
+
+        return $tags;
+            
+    }
+
+    public function getTagsByNewsletter($id_newsletter){
+        // return DB::table("newsletter_tags")
+        // ->join("tags", "tags.id", "=", "newsletter_tags.id_tag", "inner", false)
+        // ->select("tags.id", "tags.name")
+        // ->orderby("newsletter_tags.updated_at", "desc")
+        // ->where("newsletter_tags.id_newsletter", $id_newsletter)
+        // ->groupby("tags.name", "tags.id")
+        // ->get();
+
+        
+        $tags = DB::select('CALl sp_getTagsByNewsletterId(?)', array($id_newsletter));
+
+        return $tags;
+    }
+
+    public function uploadimage(Request $request){
+        
+        try {
+            $file = $request->file("image_link");
+
+            if($file != null){
+                $file_name = $file->getClientOriginalName();
+                // Validar que no exista el archivo
+                $exist = Storage::disk("newsletter")->exists("newsletters/images_links/" . $file_name);
+                if($exist){
+                    $result = array(
+                        "result" => false,
+                        "message" => "Ya existe un archivo con ese nombre"
+                    );
+                }else{
+                    $file->storeAs("newsletters/images_links", $file_name, "newsletter");
+
+                    $result = array(
+                        "result" => true,
+                        "message" => "Se guardo la imagen correctamente",
+                        "file_name" => $file_name
+                    );
+                }
+
+            }
+            
+        } catch (\Throwable $th) {
+            //throw $th;
+            $result = array(
+                "result" => false,
+                "message" => "Ocurrio un error subiendo la imagen, por favor verifique que la imagen no pesa mas de 2MB.".$th->getmessage()
+            );
+        }
+        // dd($files);
+        return $result;
+
+    }
+
+    public function getImagesURL(){
+
+        $directory = "newsletters/images_links";
+        $files = Storage::files($directory);
+
+        return $files;
     }
 
 }

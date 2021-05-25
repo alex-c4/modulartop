@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.layoutSidebar')
 
 @section('content')
 
@@ -6,6 +6,48 @@
 <script src="{{asset('js/sceditor/minified/sceditor.min.js?v=4')}} "></script>
 <script src="{{asset('js/sceditor/minified/icons/monocons.js')}} "></script>
 <script src="{{asset('js/sceditor/minified/formats/xhtml.js')}} "></script>
+
+<style>
+    .sceditor-container{
+        width: 100% !important;
+    }
+    #content-div-tags{
+        display: flex;
+        background-color: #fffefe;
+        padding: 5px;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .div-tags{
+        background-color: #f4f4f4;
+        width: fit-content;
+        padding: 5px;
+        font-size: small;
+        color: #666666;
+        font-weight: bold;
+        border-radius: 5px;
+        border: 1px solid #ccd2d8;
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        margin: 2px;
+    }
+
+    .div-tags button{
+        border: none;
+        cursor: pointer;
+        color: #8b171a;
+    }
+
+    #tags{
+        height: 38px !important;
+    }
+    
+</style>
+
+@section('banner')
 
 <div class="site-block-wrap">
     <div class="owl-carousel with-dots">
@@ -22,6 +64,8 @@
     </div>    
 </div>
 
+@endsection
+
 <section class="site-section bg-light bg-image" id="contact-section">
     <div class="container">
         <div class="row mb-5">
@@ -30,11 +74,24 @@
           </div>
         </div>
 
+        <!-- mensaje para la creacion de los post -->
+        @if(isset($msgPost) != null)
+            <div class="container">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>{{$msgPost}}</strong> 
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+            </div>
+        @endif
+        
         <div class="row">
             <div class="col-md-12 mb-5">
                 <form action="{{ route('newsletter.update', $newsletter->id) }}" method="post" class="p-5 bg-white" id="form_send_newsletter_edit" enctype="multipart/form-data">
                     {{ method_field('PUT') }}
                     {{csrf_field()}}
+                    <input type="hidden" name="HiddenFielTag" id="HiddenFielTag" value="{{ $tags }}">
 
                     <input type="hidden" name="hname_img" value="{{$newsletter->name_img}}">
 
@@ -58,7 +115,7 @@
                     <div class="row form-group">
                         <div class="col-md-12">
                             <label class="text-black" for="content">Contenido</label> 
-                            <textarea id="content" name="content" rows="7" style="height:300px;" class="form-control">{{ $newsletter->content }}</textarea>
+                            <textarea id="content-wysiwyg" name="content-wysiwyg" rows="7" style="height:300px;" class="form-control">{{ $newsletter->content }}</textarea>
                         </div>
                     </div>
 
@@ -86,8 +143,20 @@
 
                         <div class="col-md-6">
                             <label class="text-black" for="tags">Tags</label>
-                            <input value="{{ $newsletter->tags }}" type="text" id="tags" name="tags" class="form-control">
+                            <div class="input-group" >
+                                <input type="text" id="tags" name="tags" class="form-control basicAutoComplete" autocomplete="off" data-url="{{ route('search_tags') }}" data-noresults-text="No se encontró el Tag">
+                                <div class="input-group-append">
+                                    <button style="height: 38px" id="btnAddTag" data-toggle="modal" data-target="#tagModal" title="Agregar nuevo Tag" class="btn btn-primary" type="button"><span class="icon-add"></span></button>
+                                </div>
+                            </div>
+                            <small id="addMessage2" name="addMessage2" class="form-text text-muted"></small>
                         </div>
+
+                        <div class="col-md-12 mt-3">
+                            <div class="col-12" id="content-div-tags" name="content-div-tags">
+                            </div>
+                        </div>
+
                     </div>
 
                     <div class="row form-group">
@@ -146,6 +215,35 @@
   </div>
 </div>
 
+<!-- modal para agregar nuevo Tag -->
+<div class="modal fade" id="tagModal" name="tagModal" tabindex="-1" aria-labelledby="tagModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Agregar tag</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        <input type="hidden" id="routeCurrent2" value="{{ route('tag.storeajax') }}">
+
+        <div class="form-group">
+            <label for="txtTagName">Nuevo Tag</label>
+                <input type="text" class="form-control" id="txtTagName">
+            </div>
+            
+        </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="Utils.onclick_addTag()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 // $('#form_send_newsletter').submit(function() {debugger
     
@@ -157,12 +255,13 @@
     // }
 // });
     
-var textarea = document.getElementById('content');
+var textarea = document.getElementById('content-wysiwyg');
     sceditor.create(textarea, {
         format: 'xhtml',
         icons: 'material',
         style: '{{ asset("js/sceditor/minified/themes/content/square.min.css") }}'
     });
+
 </script>
 @endsection
 
@@ -170,4 +269,64 @@ var textarea = document.getElementById('content');
     
 <script src="{{ asset('js/utils.js') }}"></script>
 
+<script src="{{ asset('js/bootstrap-autocomplete2-3-7.min.js') }}"></script>
+
+<script>
+    $(function(){
+
+        $('.basicAutoComplete').autoComplete({
+            resolverSettings: {
+                url: '{{ route('search_tags') }}'
+            },
+            bootstrapVersion: "4",
+            autoSelect: true,
+            preventEnter: true,
+            events: {
+                searchPost: function (resultFromServer) {
+                    console.log(resultFromServer)
+                    // var _arr = new Array();
+                    // _arr.push(resultFromServer[0]);
+                    return resultFromServer;
+                }
+            }
+        });
+
+        $('.basicAutoComplete').on("autocomplete.select", function(evt, item){
+            if(item != undefined){
+                var _html = Utils.getHtmlTag(item);
+
+                //validar que ya no exista el tag
+                if(!Utils.isAdded(item.value)){
+                    Utils.addTag(_html);
+    
+                    Utils.pushTagId(item.value);
+
+                }else{
+                    $("#addMessage2").html("El tag ya ha sido agregado previamente");
+                }
+    
+                setTimeout(() => {
+                    window.document.getElementById("tags").focus();
+                    $("#addMessage2").html("");
+                }, 7000);
+            }
+            
+            // console.log("selected", item);
+        });
+
+        $("#tagModal").on('show.bs.modal', function (event) {
+            // limpia informacion previamente cargada
+            $('#txtTagName').val("");
+    
+            var _tagName = $("#tags").val();
+            $('#txtTagName').val(_tagName);
+            
+        });
+
+        Utils.initTags();
+    });
+
+    
+
+</script>
 @endsection

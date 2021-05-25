@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\VerifiesEmails;
+use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+
+use App\User;
 
 class VerificationController extends Controller
 {
@@ -35,8 +39,58 @@ class VerificationController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('signed')->only('verify');
+        // $this->middleware('auth');
+        // $this->middleware('signed')->only('verify');
         $this->middleware('throttle:6,1')->only('verify', 'resend');
     }
+
+    /**
+     * Resend the email verification notification.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function resend(Request $request)
+    {
+        
+        if ($request->user()->hasVerifiedEmail()) {
+            return redirect($this->redirectPath());
+        }
+        
+        $request->user()->user_created = $request;
+        $request->user()->sendEmailVerificationNotification();
+
+        return back()->with('resent', true);
+    }
+
+    public function verify($code){
+        
+        $user = User::where('confirmation_code', $code)->first();
+
+        if(!$user){
+            $data = [
+                'title' => 'Información',
+                'img' => asset('images/mail.png'),
+                'content' => 'Código no válido'
+            ];
+
+            return view("layouts.layoutMessage", $data);
+        }
+
+        $user->confirmed = true;
+        $user->confirmation_code = null;
+        $user->email_verified_at = Carbon::now();
+        $user->save();
+
+        $data = [
+            'title' => 'Información',
+            'img' => asset('images/mail.png'),
+            'content' => 'Su correo electrónico fue validado correctamente, por favor haga click en el siguiente enlace para continuar con el ingreso al sistema <a href="' . url('login') . '">continuar</a>'
+        ];
+
+        return view("layouts.layoutMessage", $data);
+    }
+
+
+
 }

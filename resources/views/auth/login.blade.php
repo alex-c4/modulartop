@@ -84,13 +84,17 @@
                                         </a>
                                     @endif
 
-                                    <!-- comentado temporalmente para evitar registros de usuarios -->
-                                    <!-- <a class="btn btn-link" href="{{ route('register') }}">
+                                    <a class="btn btn-link" href="{{ route('register') }}">
                                         Registrarse
-                                    </a> -->
+                                    </a>
 
                                 </div>
-
+                                
+                                @if(isset($message_delete))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message_delete }}</strong>
+                                    </span>
+                                @endif
                             </div>
 
                             

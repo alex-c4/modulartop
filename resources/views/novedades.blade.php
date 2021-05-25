@@ -39,17 +39,20 @@ muebles, historia, servicios de madera y fabricación de mueblería." />
                             </div>
                         </div>
                         
-                        <!-- <div class="tags-item">
+                        <div class="tags-item">
                             <h4>Tags</h4>
                             <div class="tag-links">
-                                <a href="#">Tableros</a>
-                                <a href="#">Fabricacion</a>
+                            @foreach($tags as $tag)
+                                <a href="{{ route('tags', ['id' => $tag->id, 'tag' => $tag->name]) }}">{{ $tag->name }}</a>
+                            @endforeach
+
+                                <!-- <a href="#">Fabricacion</a>
                                 <a href="#">Maquilado</a>
                                 <a href="#">Corte</a>
                                 <a href="#">Routeado</a>
-                                <a href="#">Pantografiado</a>
+                                <a href="#">Pantografiado</a> -->
                             </div>
-                        </div> -->
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-8 order-1 order-lg-2">
@@ -87,6 +90,8 @@ muebles, historia, servicios de madera y fabricación de mueblería." />
                         <input type="hidden" name="hOtherPost" id="hOtherPost" value="{{ route('newsletter.otherpostajax') }}">
                         <input type="hidden" name="hRouteImage" id="hRouteImage" value="{{ url('images/newsletters/') }}">
                         <input type="hidden" name="hRoutePost" id="hRoutePost" value="{{ url('post/') }}">
+                        <input type="hidden" name="hOptNewsletter" id="hOptNewsletter" value="{{ $hOptNewsletter}}">
+                        <input type="hidden" name="hTag_id" id="hTag_id" value="{{ $tag_id2 ?? ''}}">
 
                         @if($total_newsletters > 8)
                         <!-- boton ver mas novedades -->

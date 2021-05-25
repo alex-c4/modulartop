@@ -1,0 +1,27 @@
+.contendorImages{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.contendorImages img{
+    height: 90px;
+    margin: 4px;
+    cursor: pointer;
+    border: solid 3px white;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px 1px;
+    /* filter: opacity(.5); */
+    filter: grayscale(50%);
+    /* filter: sepia(50%);; */
+    transition:all .3s ease-in-out;
+}
+
+.contendorImages img:hover{
+    transition:all .3s ease-in-out;
+    /* filter: opacity(1); */
+    filter: grayscale(0%);
+    /* filter: sepia(0%); */
+    -webkit-transform:scale(1.1);
+    transform:scale(1.1);
+    overflow:hidden;
+}
