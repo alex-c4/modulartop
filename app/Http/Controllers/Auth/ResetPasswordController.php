@@ -41,4 +41,7 @@ class ResetPasswordController extends Controller
             'password' => 'required|confirmed|min:6',
         ];
     }
+
+
+    
 }

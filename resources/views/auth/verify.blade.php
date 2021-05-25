@@ -1,24 +1,38 @@
-@extends('layouts.app')
+@extends('layouts.layout')
+
+@section('header')
+<style>
+    .margin-top-bottom{
+        margin-top: 100px !important;
+        margin-bottom: 100px !important;
+    }
+</style>
+
+@endsection
+
 
 @section('content')
-<div class="container">
+<div class="separador">
+
+</div>
+
+<div class="container margin-top-bottom">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Verify Your Email Address') }}</div>
+                <div class="card-header">Verifique su dirección de correo electrónico</div>
 
                 <div class="card-body">
                     @if (session('resent'))
                         <div class="alert alert-success" role="alert">
-                            {{ __('A fresh verification link has been sent to your email address.') }}
+                            Se ha enviado un nuevo enlace de verificación a su dirección de correo electrónico.
                         </div>
                     @endif
 
-                    {{ __('Before proceeding, please check your email for a verification link.') }}
-                    {{ __('If you did not receive the email') }},
+                    Antes de continuar, verifique su correo electrónico para ver si hay un enlace de verificación. Si no recibió el correo electrónico,
                     <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                         @csrf
-                        <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('click here to request another') }}</button>.
+                        <button type="submit" class="btn btn-link p-0 m-0 align-baseline">haga clic aquí para solicitar otro.</button>.
                     </form>
                 </div>
             </div>

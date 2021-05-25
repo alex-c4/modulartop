@@ -84,10 +84,9 @@
                                         </a>
                                     @endif
 
-                                    <!-- comentado temporalmente para evitar registros de usuarios -->
-                                    <!-- <a class="btn btn-link" href="{{ route('register') }}">
+                                    <a class="btn btn-link" href="{{ route('register') }}">
                                         Registrarse
-                                    </a> -->
+                                    </a>
 
                                 </div>
 

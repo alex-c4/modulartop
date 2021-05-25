@@ -58,6 +58,11 @@ return [
             'root' => public_path('filesContact'),
         ],
 
+        'customerLogo' => [
+            'driver' => 'local',
+            'root' => public_path('images/customers_logos'),
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

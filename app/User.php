@@ -5,20 +5,38 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Config;
 
+use Mail;
 use DB;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 
+    public $user_created;
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 
+        'lastName', 
+        'email', 
+        'password', 
+        'confirmed', 
+        'confirmation_code', 
+        'avatar',
+        'phone',
+        'address',
+        'rif',
+        'razonSocial',
+        'companyAddress',
+        'companyPhone',
+        'companyLogo'
     ];
 
     /**
@@ -27,7 +45,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token'
     ];
 
     public function hasRoles($roleName){
@@ -49,4 +67,34 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Send the email verification notification.
+     *
+     * @return void
+     */
+    public function sendEmailVerificationNotification()
+    {
+        $subject = "Confirmación de correo electrónico";
+
+        $req = array(
+            "correo" => env('EMAIL_ADMIN')
+        );
+        $_user = $this->user_created->user();
+
+        $userInfo = array(
+            'name' => $_user->name,
+            'lastName' => $_user->lastName,
+            'email' => $_user->email,
+            'confirmation_code' => $_user->confirmation_code
+        );
+
+        Mail::send('emails.registeruser', $userInfo, function($message) use($req, $_user, $subject){
+            $message->from($req["correo"], 'Web Modular Top');
+            $message->to($_user->email)->subject($subject);
+        });
+
+    }
+
+
 }

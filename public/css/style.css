@@ -2584,3 +2584,9 @@ overflow:hidden;
     cursor: pointer;
 }
 /*fin estilos para zoom logos representantes*/
+
+/* Separador del menu en las paginas de mensajes */
+.separador{
+  background-color: #333333;
+  height: 97px;
+}

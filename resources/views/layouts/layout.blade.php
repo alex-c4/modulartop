@@ -187,6 +187,9 @@
   }
 
   </style>
+
+@yield('header')
+
   </head>
 
 

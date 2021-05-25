@@ -39,7 +39,8 @@ Route::post('password/confirm', 'Auth\ConfirmPasswordController@confirm');
 
 // Email Verification Routes...
 Route::get('email/verify', 'Auth\VerificationController@show')->name('verification.notice');
-Route::get('email/verify/{id}/{hash}', 'Auth\VerificationController@verify')->name('verification.verify');
+// Route::get('email/verify/{id}/{hash}', 'Auth\VerificationController@verify')->name('verification.verify');
+Route::get('email/verify/{code}', 'Auth\VerificationController@verify')->name('verification.verify');
 Route::post('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
 
 
@@ -81,5 +82,10 @@ Route::post('category/storeajax', ['as' => 'category.storeajax', 'uses' => 'Cate
 
 //Ver mas post
 Route::post('newsletter/other_post_eajax', ['as' => 'newsletter.otherpostajax', 'uses' => 'NewsletterController@other_post_ajax']);
+
+
+
+// Temporal
+Route::get("vermensaje", ['as' => 'vermensaje', 'uses' => 'Auth\RegisterController@vermensaje']);
 
 
