@@ -211,16 +211,159 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
     <!-- Seccion Fabricacion-->
     <section class="site-section-fabricacion" id="about-section">
       <!-- Elastislide Carousel -->
-      <ul id="carousel" class="elastislide-list">
+      <!-- <ul id="carousel" class="elastislide-list">
         <li><a href="<?php echo e(url('/fabricacion')); ?>"><img src="images/fabricacion/fabricacion-cocina-1.jpg" alt="Asesoría y desarrollo de proyectos de fabricación de mobiliarios para cocina, diseño, interiores, arquitectura, ingeniería civil, construcción, hoteles, restaurantes" /></a></li>
         <li><a href="<?php echo e(url('/fabricacion')); ?>"><img src="images/fabricacion/fabricacion-habitacion-1.jpg" alt="Asesoría y desarrollo de proyectos de fabricación de mobiliarios para habitaciones, diseño, interiores, arquitectura, ingeniería civil, construcción, hoteles, restaurantes" /></a></li>
         <li><a href="<?php echo e(url('/fabricacion')); ?>"><img src="images/fabricacion/fabricacion-cocina-2.jpg" alt="Asesoría y desarrollo de proyectos de fabricación de mobiliarios para cocina, diseño, interiores, arquitectura, ingeniería civil, construcción, hoteles, restaurantes" /></a></li>
         <li><a href="<?php echo e(url('/fabricacion')); ?>"><img src="images/fabricacion/fabricacion-habitacion-2.jpg" alt="Asesoría y desarrollo de proyectos de fabricación de mobiliarios para habitaciones, diseño, interiores, arquitectura, ingeniería civil, construcción, hoteles, restaurantes" /></a></li>
         <li><a href="<?php echo e(url('/fabricacion')); ?>"><img src="images/fabricacion/fabricacion-mobiliario.jpg" alt="Asesoría y desarrollo de proyectos de fabricación de mobiliarios para habitaciones, diseño, interiores, arquitectura, ingeniería civil, construcción, hoteles, restaurantes" /></a></li>
             
-      </ul>
+      </ul> -->
       <!-- End Elastislide Carousel -->
-      <div class="container">
+
+      
+
+      <!-- Projects Start -->
+      <section class="section" id="projects">
+            <div class="container">
+                <!-- <div class="row justify-content-center">
+                    <div class="col-12 text-center">
+                        <div class="section-title">
+                            <div class="titles">
+                                <h4 class="title text-uppercase mb-4 pb-4">My Portfolio</h4>
+                                <span></span>
+                            </div>
+                            <p class="text-muted mx-auto para-desc mb-0">Obviously I'M Web Designer. Experienced with all stages of the development cycle for dynamic web projects.</p>
+                        </div>
+                    </div>!--end col--
+                </div>!--end row-- -->
+
+                <div class="row justify-content-center mt-4 pt-2">
+                    <div class="col-12 text-center">
+                        <ul class="col container-filter portfolioFilter list-unstyled mb-0 text-center" id="filter">
+                            <li class="list-inline-item"><a class="categories rounded pl-3 pr-3 mb-2 active" data-filter="*">Modular Top</a></li>
+                            <li class="list-inline-item"><a class="categories rounded pl-3 pr-3 mb-2" data-filter=".web">Aliados Comerciales</a></li>
+                            <li class="list-inline-item"><a class="categories rounded pl-3 pr-3 mb-2" data-filter=".brand">Proveedores</a></li>
+                            
+                        </ul>
+                    </div><!--end col-->
+                </div><!--end row-->
+            </div><!--end container-->
+
+            <div class="container">
+                <div class="portfolioContainer row pt-2 mt-4">                    
+                    <div class="col-lg-4 col-md-6 p-0 web">
+                        <div class="portfolio-box position-relative ml-0 mr-0">                                
+                            <div class="work-img position-relative overflow-hidden">
+                                <img src="images/proyectos/01.jpg" class="img-fluid" alt="work-image">
+                                <div class="overlay-work">
+                                    <div class="icon text-center">
+                                        <a class="mfp-image" href="images/proyectos/01.jpg" title="Minimal Product"><i class="pe-7s-expand1 text-white"></i></a>
+                                    </div>
+                                    <div class="work-content">
+                                        <h6 class="title mb-0"><a href="javascript:void(0)" class="text-light text-uppercase">Nombre del proyecto</a></h6>
+                                        <small class="text-white-50">Clients</small>
+                                    </div>
+                                </div>
+                            </div>                                
+                        </div>
+                    </div><!--end col-->
+                    
+                    <div class="col-lg-4 col-md-6 p-0 brand">
+                        <div class="portfolio-box position-relative ml-0 mr-0">                                
+                            <div class="work-img position-relative overflow-hidden">
+                                <img src="images/proyectos/02.jpg" class="img-fluid" alt="work-image">
+                                <div class="overlay-work">
+                                    <div class="icon text-center">
+                                        <a class="mfp-image" href="images/proyectos/02.jpg" title="Minimal Product"><i class="pe-7s-expand1 text-white"></i></a>
+                                    </div>
+                                    <div class="work-content">
+                                        <h6 class="title mb-0"><a href="javascript:void(0)" class="text-light text-uppercase">Work Title</a></h6>
+                                        <small class="text-white-50">Clients</small>
+                                    </div>
+                                </div>
+                            </div>                                
+                        </div>
+                    </div><!--end col-->
+                    
+                    <div class="col-lg-4 col-md-6 p-0 studio">
+                        <div class="portfolio-box position-relative ml-0 mr-0">                                
+                            <div class="work-img position-relative overflow-hidden">
+                                <img src="images/proyectos/03.jpg" class="img-fluid" alt="work-image">
+                                <div class="overlay-work">
+                                    <div class="icon text-center">
+                                        <a class="mfp-image" href="images/proyectos/03.jpg" title="Minimal Product"><i class="pe-7s-expand1 text-white"></i></a>
+                                    </div>
+                                    <div class="work-content">
+                                        <h6 class="title mb-0"><a href="javascript:void(0)" class="text-light text-uppercase">Work Title</a></h6>
+                                        <small class="text-white-50">Clients</small>
+                                    </div>
+                                </div>
+                            </div>                                
+                        </div>
+                    </div><!--end col-->
+                    
+                    <div class="col-lg-4 col-md-6 p-0 graphic">
+                        <div class="portfolio-box position-relative ml-0 mr-0">                                
+                            <div class="work-img position-relative overflow-hidden">
+                                <img src="images/proyectos/04.jpg" class="img-fluid" alt="work-image">
+                                <div class="overlay-work">
+                                    <div class="icon text-center">
+                                        <a class="mfp-image" href="images/proyectos/04.jpg" title="Minimal Product"><i class="pe-7s-expand1 text-white"></i></a>
+                                    </div>
+                                    <div class="work-content">
+                                        <h6 class="title mb-0"><a href="javascript:void(0)" class="text-light text-uppercase">Work Title</a></h6>
+                                        <small class="text-white-50">Clients</small>
+                                    </div>
+                                </div>
+                            </div>                                
+                        </div>
+                    </div><!--end col-->
+                    
+                    <div class="col-lg-4 col-md-6 p-0 web">
+                        <div class="portfolio-box position-relative ml-0 mr-0">                                
+                            <div class="work-img position-relative overflow-hidden">
+                                <img src="images/proyectos/05.jpg" class="img-fluid" alt="work-image">
+                                <div class="overlay-work">
+                                    <div class="icon text-center">
+                                        <a class="mfp-image" href="images/proyectos/05.jpg" title="Minimal Product"><i class="pe-7s-expand1 text-white"></i></a>
+                                    </div>
+                                    <div class="work-content">
+                                        <h6 class="title mb-0"><a href="javascript:void(0)" class="text-light text-uppercase">Work Title</a></h6>
+                                        <small class="text-white-50">Clients</small>
+                                    </div>
+                                </div>
+                            </div>                                
+                        </div>
+                    </div><!--end col-->
+                    
+                    <div class="col-lg-4 col-md-6 p-0 brand">
+                        <div class="portfolio-box position-relative ml-0 mr-0">                                
+                            <div class="work-img position-relative overflow-hidden">
+                                <img src="images/proyectos/06.jpg" class="img-fluid" alt="work-image">
+                                <div class="overlay-work">
+                                    <div class="icon text-center">
+                                        <a class="mfp-image" href="images/proyectos/06.jpg" title="Minimal Product"><i class="pe-7s-expand1 text-white"></i></a>
+                                    </div>
+                                    <div class="work-content">
+                                        <h6 class="title mb-0"><a href="javascript:void(0)" class="text-light text-uppercase">Work Title</a></h6>
+                                        <small class="text-white-50">Clients</small>
+                                    </div>
+                                </div>
+                            </div>                                
+                        </div>
+                    </div><!--end col-->
+                </div><!--end row-->
+                <div class="row justify-content-center mt-4 pt-2">
+                    <div class="col-12 text-center">
+                        <a href="javascript:void(0)">Ver más</a>
+                    </div><!--end col-->
+                </div><!--end row-->
+            </div><!--end container-->
+        </section><!--end section-->
+        <!-- Projects End -->
+
+        <div class="container">
         <h2 class="section-title mb-3 text-black"><br> Fabricamos Mobiliarios <br> a la medida de tus sueños</h2>
         
         <div class="row large-gutters">
@@ -252,6 +395,9 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
          
         </div>
       </div>
+
+
+      
     </section>
     <!--Fin  Seccion Fabricacion-->
   

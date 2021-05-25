@@ -32,6 +32,14 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/custom.css')}}" />
     <script src="{{ asset('js/modernizr.custom.17475.js')}}"></script>
      <!-- fin del bloque fabricacion -->
+
+    <!--Bloque incorporado para galeria de proyectos-->
+    <link href="css/proyectos/magnific-popup.css" rel="stylesheet" type="text/css" />
+    <!-- Icon -->
+    <!-- <link href="css/proyectos/materialdesignicons.min.css" rel="stylesheet" type="text/css" /> -->
+    <link href="css/pe-icon-7-stroke.css" rel="stylesheet" type="text/css" />
+    <!-- fin del bloque fabricacion -->
+
      <!-- Javascript para captcha de formulario -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <!-- Javascript para reproducir los videos youtube -->
@@ -462,5 +470,25 @@
 
 		</script>
   <!-- fin del bloque fabricacion -->  
+
+<!-- javascript -->
+<script src="js/galeria/jquery.min.js"></script>
+        <script src="js/galeria/bootstrap.bundle.min.js"></script>
+        <script src="js/galeria/jquery.easing.min.js"></script>
+        <script src="js/galeria/scrollspy.min.js"></script>
+        <!-- SLIDER -->
+        <script src="js/galeria/owl.carousel.min.js"></script>
+        <!-- Magnific Popup -->
+        <script src="js/galeria/jquery.magnific-popup.min.js"></script>
+        <script src="js/galeria/isotope.js"></script>
+        <script src="js/galeria/portfolio-filter.js"></script> 
+        <!-- Contact -->
+        <script src="js/galeria/contact.js"></script>
+        <!-- Counter -->
+        <script src="js/galeria/counter.init.js"></script>
+        <!-- Switcher -->
+        <script src="js/galeria/switcher.js"></script>
+        <!-- Main Js -->
+        <script src="js/galeria/app.js"></script>
 
   @yield('script')
