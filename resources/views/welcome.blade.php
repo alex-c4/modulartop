@@ -265,7 +265,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
                                     </div>
                                     <div class="work-content">
                                         <h6 class="title mb-0"><a href="javascript:void(0)" class="text-light text-uppercase">Nombre del proyecto</a></h6>
-                                        <small class="text-white-50">Clients</small>
+                                        <small class="text-white-50">Ver más</small>
                                     </div>
                                 </div>
                             </div>                                
