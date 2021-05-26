@@ -10,6 +10,8 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
 
 <?php $__env->startSection('content'); ?>
    
+    <?php echo NoCaptcha::renderJs(); ?>
+
     
     <div class="site-block-wrap">
       <div class="owl-carousel with-dots">
@@ -78,7 +80,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
               <div class="hijostm">
                 <div class="ftco-media-1">
                   <div class="ftco-media-1-inner">
-                    <a href="<?php echo e(url('/acabado-altobrillo')); ?>" class=""><img src="images/tableros/tablero-altobrillo.jpg" alt="Tablero melaminico alto brillo MDF importado, acabado premium oneskin" class="img-tm"></a>
+                    <a href="<?php echo e(route('tablero.byVisualEfect', 3)); ?>" class=""><img src="images/tableros/tablero-altobrillo.jpg" alt="Tablero melaminico alto brillo MDF importado, acabado premium oneskin" class="img-tm"></a>
                     <div class="ftco-media-details">
                       <h3><BR>ACABADOS PREMIUM</h3>
                       <p>MDF-ALTO BRILLO-IMPORTADO</p>
@@ -92,7 +94,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
               <div class="hijostm">
                 <div class="ftco-media-1">
                   <div class="ftco-media-1-inner">
-                    <a href="<?php echo e(url('/acabado-supermate')); ?>" class=""><img src="images/tableros/tablero-supermate.jpg" alt="Tablero melaminico super mate MDF importado, acabado premium oneskin" class="img-tm"></a>
+                    <a href="<?php echo e(route('tablero.byVisualEfect', 4)); ?>" class=""><img src="images/tableros/tablero-supermate.jpg" alt="Tablero melaminico super mate MDF importado, acabado premium oneskin" class="img-tm"></a>
                     <div class="ftco-media-details">
                         <h3><BR>ACABADOS PREMIUM</h3>
                         <p>MDF-SUPER MATE-IMPORTADO</p>
@@ -106,7 +108,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
               <div class="hijostm">
                 <div class="ftco-media-1">
                   <div class="ftco-media-1-inner">
-                    <a href="<?php echo e(url('/acabado-tradicional')); ?>" class=""><img src="images/tableros/tablero-cuerpo.jpg" alt="Tablero melaminico hidrófugo y natural MDP importado y nacional, acabado tradicional masisa/losan" class="img-tm"></a>
+                    <a href="<?php echo e(route('tablero.byVisualEfect', 5)); ?>" class=""><img src="images/tableros/tablero-cuerpo.jpg" alt="Tablero melaminico hidrófugo y natural MDP importado y nacional, acabado tradicional masisa/losan" class="img-tm"></a>
                     <div class="ftco-media-details">
                         <h3><BR>Acabados Tradicionales</h3>
                         <p>MDP HR (HIDRÓFUGOS) Y ESTÁNDAR, IMPORTADOS Y NACIONALES</p>
@@ -120,7 +122,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
               <div class="hijostm">
                 <div class="ftco-media-1">
                   <div class="ftco-media-1-inner">
-                    <a href="<?php echo e(url('/acabado-altobrillo')); ?>" class=""><img src="images/tableros/cocina-altobrillo.jpg" alt="Fabricacion de muebles alto brillo MDF importado, acabado premium oneskin" class="img-tm"></a>
+                    <a href="<?php echo e(route('tablero.byVisualEfect', 3)); ?>" class=""><img src="images/tableros/cocina-altobrillo.jpg" alt="Fabricacion de muebles alto brillo MDF importado, acabado premium oneskin" class="img-tm"></a>
                     <br>
                     <div class="ftco-media-details">
                     <h3><BR></h3>    
@@ -134,7 +136,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
               <div class="hijostm">
                 <div class="ftco-media-1">
                   <div class="ftco-media-1-inner">
-                    <a href="<?php echo e(url('/acabado-supermate')); ?>" class=""><img src="images/tableros/cocina-supermate.jpg" alt="Fabricacion de muebles super mate MDF importado, acabado premium oneskin" class="img-tm"></a>
+                    <a href="<?php echo e(route('tablero.byVisualEfect', 4)); ?>" class=""><img src="images/tableros/cocina-supermate.jpg" alt="Fabricacion de muebles super mate MDF importado, acabado premium oneskin" class="img-tm"></a>
                     <div class="ftco-media-details">
                     <h3><BR></h3>        
                      
@@ -147,7 +149,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
               <div class="hijostm">
                 <div class="ftco-media-1">
                   <div class="ftco-media-1-inner">
-                    <a href="<?php echo e(url('/acabado-tradicional')); ?>" class=""><img src="images/tableros/brillo_doblecara.jpg" alt="Fabricacion de muebles hidrófugo y natural MDP importado y nacional, acabado tradicional masisa/losan" class="img-tm"></a>
+                    <a href="<?php echo e(route('tablero.byVisualEfect', 5)); ?>" class=""><img src="images/tableros/brillo_doblecara.jpg" alt="Fabricacion de muebles hidrófugo y natural MDP importado y nacional, acabado tradicional masisa/losan" class="img-tm"></a>
                     <div class="ftco-media-details">
                     <h3><BR></h3>       
                       
@@ -262,7 +264,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
                                     </div>
                                     <div class="work-content">
                                         <h6 class="title mb-0"><a href="javascript:void(0)" class="text-light text-uppercase">Nombre del proyecto</a></h6>
-                                        <small class="text-white-50">Clients</small>
+                                        <small class="text-white-50">Ver más</small>
                                     </div>
                                 </div>
                             </div>                                
@@ -651,7 +653,13 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
               <div class="row form-group">
                 <div class="col-md-12 mb-6 mb-md-0">
                   <label class="text-black" for="fname">Nombre</label>
-                  <input maxlength="50" type="text" id="fname" name="fname" class="form-control">
+                  <input maxlength="50" type="text" id="fname" name="fname" class="form-control" value="<?php echo e(old('fname')); ?>">
+                  <?php if($errors->has('fname')): ?>
+                    <div class="invalid-field">
+                      <?php echo e($errors->first('fname')); ?>
+
+                    </div>
+                  <?php endif; ?>
                 </div>
               </div>
 
@@ -659,7 +667,13 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
                 
                 <div class="col-md-12">
                   <label class="text-black" for="email">Email</label> 
-                  <input type="email" id="email" name="email" class="form-control">
+                  <input type="email" id="email" name="email" class="form-control" value="<?php echo e(old('email')); ?>">
+                  <?php if($errors->has('email')): ?>
+                    <div class="invalid-field">
+                      <?php echo e($errors->first('email')); ?>
+
+                    </div>
+                  <?php endif; ?>
                 </div>
               </div>
 
@@ -674,18 +688,34 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
               <div class="row form-group">
                 <div class="col-md-12">
                   <label class="text-black" for="message">Mensaje</label> 
-                  <textarea name="message" id="message" name="message" cols="30" rows="7" class="form-control" placeholder="Escriba su nota aqui..."></textarea>
+                  <textarea name="message" id="message" name="message" cols="30" rows="7" class="form-control" placeholder="Escriba su nota aqui..."><?php echo e(old('message')); ?></textarea>
                 </div>
               </div>
 
-              <div class="alert alert-warning text-center" role="alert" id="alertregister">
+              <!-- <div class="alert alert-warning text-center" role="alert" id="alertregister">
                   Por favor marque la casilla de verificación.
-              </div>
+              </div> -->
+
+              <?php if($errors->has('g-recaptcha-response')): ?>
+                <div class="row form-group">
+                  <div class="col-md-12">
+                      <div class="invalid-field">
+                        <?php echo e($errors->first('g-recaptcha-response')); ?>
+
+                      </div>
+                  </div>
+                </div>
+              <?php endif; ?>
 
               <div class="row form-group">
                 <div class="col-md-12">
-                  <div class="g-recaptcha" data-sitekey="<?php echo e(env('RECAPTCHA_KEY')); ?>"></div>
+                  <?php echo NoCaptcha::display(); ?>
+
                 </div>
+
+                <!-- <div class="col-md-12">
+                  <div class="g-recaptcha" data-sitekey="<?php echo e(env('RECAPTCHA_KEY')); ?>"></div>
+                </div> -->
               </div>
 
               <div class="row form-group">
@@ -758,31 +788,34 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
 
 <?php $__env->startSection("script"); ?>
 <script>
-   $(function () {
-      $("#alertregister").hide();
-  });
+  // $(function () {
+  //   $("#alertregister").hide();
+  // });
 
-  $("#g-recaptcha-response").on("click", function(){
-      $('#alertregister').slideUp()
-  });
+  // $("#g-recaptcha-response").on("click", function(){
+  //     $('#alertregister').slideUp()
+  // });
 
-  var recaptchaCallback = function(){
-      $('#alertregister').slideUp()
-  };
+  // var recaptchaCallback = function(){
+  //     $('#alertregister').slideUp()
+  // };
 
   $('#form_send_contact_info').submit(function() {
-      var _valrecaptcha = $("#g-recaptcha-response").val();
+      // var _valrecaptcha = $("#g-recaptcha-response").val();
       $('#btnSendContactInfo').val("Enviando...");
       $('#btnSendContactInfo').attr("disabled", true);
 
-      if((_valrecaptcha == "") || (_valrecaptcha == undefined)){
-          $('#alertregister').slideDown();
-          $('#btnSendContactInfo').attr("disabled", false);
-          $('#btnSendContactInfo').val("Enviar");
-          return false;
-      }else{
-          return true;
-      }
+      // if((_valrecaptcha == "") || (_valrecaptcha == undefined)){
+      //     $('#alertregister').slideDown();
+      //     $('#btnSendContactInfo').attr("disabled", false);
+      //     $('#btnSendContactInfo').val("Enviar");
+      //     return false;
+      // }else{
+      //     return true;
+      // }
+
+      return true;
+
   });
 </script>
 <?php $__env->stopSection(); ?>

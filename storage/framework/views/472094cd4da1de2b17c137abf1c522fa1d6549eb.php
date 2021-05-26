@@ -27,6 +27,8 @@
 
     <link rel="stylesheet" href="<?php echo e(asset('css/style.css')); ?>?v=<?php echo e(env('APP_VERSION', '1')); ?>">
 
+
+
     <!--Bloque incorporado para carrusel fabricacion-->
     <link rel="stylesheet" type="text/css" href="<?php echo e(asset('css/elastislide.css')); ?>" />
     <link rel="stylesheet" type="text/css" href="<?php echo e(asset('css/custom.css')); ?>" />
@@ -41,7 +43,8 @@
     <!-- fin del bloque fabricacion -->
 
      <!-- Javascript para captcha de formulario -->
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> -->
+    
     <!-- Javascript para reproducir los videos youtube -->
     <!-- <script>
       let d = new Date();
@@ -195,6 +198,10 @@
   }
 
   </style>
+
+
+<?php echo $__env->yieldContent('header'); ?>
+
   </head>
 
 
@@ -289,6 +296,7 @@
   
   <script src="<?php echo e(asset('js/main.js')); ?>?v=<?php echo e(env('APP_VERSION', '1')); ?>"></script>
   
+
   <?php echo $__env->yieldContent('content'); ?>
 
   <!--Seccion Footer-->    
