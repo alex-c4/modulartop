@@ -2585,7 +2585,6 @@ overflow:hidden;
 }
 /*fin estilos para zoom logos representantes*/
 
-<<<<<<< HEAD
 /*Bloque de estilos para la galeria proyectos*/
 
 .container-filter li a {
@@ -2678,18 +2677,4 @@ overflow:hidden;
   -webkit-transform: scale(1);
           transform: scale(1);
          
-=======
-/* Separador del menu en las paginas de mensajes */
-.separador{
-  background-color: #333333;
-  height: 97px;
-}
-
-
-.invalid-field{
-  width: 100%;
-  margin-top: 0.25rem;
-  font-size: 80%;
-  color: #e81050;
->>>>>>> 0964d6ee8b8afc914d89f2d2e2629c2d45daf96c
 }
