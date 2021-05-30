@@ -13,7 +13,7 @@
     <div class="container">
         <div class="row align-items-center justify-content-center">
             <div class="col-md-5 mx-auto mt-lg-5 text-center">
-                <h1>Productos</h1>
+                <h1>¡Editar!</h1>
                 <p class="mb-5"><strong class="text-white">Edición de producto</strong></p>
         
             </div>
@@ -42,7 +42,7 @@
 
     <div class="row mb-5">
         <div class="col-12 text-center">
-        <h2 class="section-title mb-3 text-black">Nuevo Producto</h2>
+        <h2 class="section-title mb-3 text-black">Producto</h2>
         </div>
     </div>
 

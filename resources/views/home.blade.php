@@ -245,10 +245,7 @@
 
 <script>
 
-    <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
+<script src="{{ asset('js/bootstrap-table.min') }}"></script>
 
-    $(function(){
-        
-    })
 </script>
 @endsection

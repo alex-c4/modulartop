@@ -448,7 +448,7 @@
 
 @section('script')
 
-    <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
+    <script src="{{ asset('bootstrap-table.min') }}"></script>
 
     <script src="{{ asset('js/locale/bootstrap-table-es-ES.min.js') }}"></script>
 

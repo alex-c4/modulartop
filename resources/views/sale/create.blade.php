@@ -230,8 +230,8 @@
 
 @section('script')
 
-    <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
-
+    <script src="{{ asset('bootstrap-table.min') }}"></script>
+    
     <script src="{{ asset('js/sale.js') }}?v={{ env('APP_VERSION', '1') }}"></script>
 
 @endsection

@@ -138,6 +138,15 @@ Route::post("ordersale/processorder", ["as" => "ordersale.processorder", "uses" 
 
 // Poyectos - Project
 Route::get("project/create", ["as" => "project.create", "uses" => "ProjectController@create"]);
+// Route::get("project/create_2", ["as" => "project.create_2", "uses" => "ProjectController@create_2"]);
+Route::post("project/store", ["as" => "project.store", "uses" => "ProjectController@store"]);
+Route::post("project/update/{id}", ["as" => "project.update", "uses" => "ProjectController@update"]);
+Route::post("project/uploadimg", ["as" => "project.uploadimg", "uses" => "ProjectController@uploadimg"]);
+Route::post("project/deleteimg", ["as" => "project.deleteimg", "uses" => "ProjectController@deleteimg"]);
+Route::get("project/index", ["as" => "project.index", "uses" => "ProjectController@index"]);
+Route::get("project/edit/{id}", ["as" => "project.edit", "uses" => "ProjectController@edit"]);
+Route::post("project/searchalttext", ["as" => "project.searchalttext", "uses" => "ProjectController@searchalttext"]);
+Route::post("project/updatetext", ["as" => "project.updatetext", "uses" => "ProjectController@updatetext"]);
 
 
 // Inventario - Inventory

@@ -74,7 +74,8 @@ class Utils
         );
 
         $_project_routes = array(
-            "project.create"
+            "project.create",
+            "project.index"
         );
 
         switch($modulo){
@@ -244,8 +245,7 @@ class Utils
         }
 
         return $result;
-
-
     }
+
 
 }

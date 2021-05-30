@@ -53,7 +53,7 @@
       alert(+ d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds());
     </script> -->
     
-    <script type="text/javascript" src="js/videos.js"></script>
+    <script type="text/javascript" src="{{ asset('js/videos.js') }}"></script>
     <!-- <script src="js/videos.js"></script> -->
     
 
@@ -480,23 +480,13 @@
   <!-- fin del bloque fabricacion -->  
 
 <!-- javascript -->
-<script src="js/galeria/jquery.min.js"></script>
-        <script src="js/galeria/bootstrap.bundle.min.js"></script>
-        <script src="js/galeria/jquery.easing.min.js"></script>
-        <script src="js/galeria/scrollspy.min.js"></script>
         <!-- SLIDER -->
-        <script src="js/galeria/owl.carousel.min.js"></script>
         <!-- Magnific Popup -->
-        <script src="js/galeria/jquery.magnific-popup.min.js"></script>
-        <script src="js/galeria/isotope.js"></script>
-        <script src="js/galeria/portfolio-filter.js"></script> 
+        <script src="{{ asset('js/galeria/jquery.magnific-popup.min.js') }}"></script>
+        <script src="{{ asset('js/galeria/portfolio-filter.js') }}"></script> 
         <!-- Contact -->
-        <script src="js/galeria/contact.js"></script>
         <!-- Counter -->
-        <script src="js/galeria/counter.init.js"></script>
         <!-- Switcher -->
-        <script src="js/galeria/switcher.js"></script>
         <!-- Main Js -->
-        <script src="js/galeria/app.js"></script>
 
   @yield('script')

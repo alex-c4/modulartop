@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-05-2021 a las 00:38:01
+-- Tiempo de generación: 27-05-2021 a las 17:58:37
 -- Versión del servidor: 10.1.30-MariaDB
 -- Versión de PHP: 7.2.1
 
@@ -25,26 +25,14 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `projects`
+-- Estructura de tabla para la tabla `project_photos`
 --
 
-CREATE TABLE `projects` (
+CREATE TABLE `project_photos` (
   `id` int(11) NOT NULL,
-  `proyectista_id` int(11) NOT NULL,
+  `project_id` int(11) NOT NULL,
   `name` varchar(120) NOT NULL,
-  `description` text,
-  `cover_photo` varchar(120) DEFAULT NULL,
-  `cover_photo_alt_text` text,
-  `plane_photo` varchar(120) DEFAULT NULL,
-  `ubication` text,
-  `client_name` varchar(60) DEFAULT NULL,
-  `project_date` date DEFAULT NULL,
-  `partner_company` varchar(60) DEFAULT NULL,
-  `provider_id` int(11) DEFAULT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `created_by` int(11) NOT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL
+  `alt_text` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -52,9 +40,9 @@ CREATE TABLE `projects` (
 --
 
 --
--- Indices de la tabla `projects`
+-- Indices de la tabla `project_photos`
 --
-ALTER TABLE `projects`
+ALTER TABLE `project_photos`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -62,10 +50,10 @@ ALTER TABLE `projects`
 --
 
 --
--- AUTO_INCREMENT de la tabla `projects`
+-- AUTO_INCREMENT de la tabla `project_photos`
 --
-ALTER TABLE `projects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE `project_photos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

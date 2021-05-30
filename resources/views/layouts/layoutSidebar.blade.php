@@ -505,6 +505,12 @@
                             Crear proyecto
                         </a>
                       </li>
+                      <li>
+                        <a href="{{ route('project.index') }}">
+                            <span class="icon-search"></span>
+                            Consultar proyecto
+                        </a>
+                      </li>
                     </ul>
                 </li>
                 @endif

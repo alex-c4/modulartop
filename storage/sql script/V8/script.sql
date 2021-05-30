@@ -381,6 +381,8 @@ DELIMITER ;
 
 
 
+-- Sptint 6
 
+UPDATE `roles` SET `name` = 'Marketing' WHERE `roles`.`id` = 3;
 
 
