@@ -278,13 +278,17 @@ class SaleController extends Controller
     public function getStatisticsData(Request $request){
         $range = intval($request->input("range"));
         $month = intval($request->input("month"));
+        $monthText = $request->input("monthText");
 
         if($range == 1){
             //ultimos 7 dias
+            $title_chart = "Estadística de ventas últimos 7 días";
             $endDate = Carbon::now();
             $startDate = Carbon::now()->subDays(7);
         }
+
         if($range == 2){
+            $title_chart = "Estadística de ventas del mes de ". $monthText;
 
             $dt = Carbon::now();
             
@@ -297,12 +301,13 @@ class SaleController extends Controller
         }
 
         $statistics = DB::select("CALL sp_salesStatistics(?, ?)", array($startDate->format("Y-m-d"), $endDate->format("Y-m-d")));
-        $result = [];
+        $data = [];
+
         foreach ($statistics as $row) {
-            array_push($result, ["label" => $row->name, "y" => intval($row->total)]);
+            array_push($data, ["label" => $row->name, "y" => intval($row->total)]);
         }
 
-        return $result;
+        return collect(["data" => $data, "title" => $title_chart]);
     }
 }
 

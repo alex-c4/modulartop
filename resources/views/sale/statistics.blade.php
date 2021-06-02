@@ -67,11 +67,7 @@
 
         <select class="custom-select mr-sm-2" id="cbMonth" name="cbMonth" disabled>
         @foreach($months as $key => $month)
-            @if($key == 0){
-                <option selected value="{{ $key += 1 }}" >{{ $month }}</option>
-            @else
-                <option value="{{ $key += 1 }}" >{{ $month }}</option>
-            @endif
+            <option value="{{ $key += 1 }}" >{{ $month }}</option>
         @endforeach
         </select>
 
@@ -140,12 +136,14 @@ $("#btnBuscar").on("click", function(){
 
     var _data = {
         range: $("#cbRange").val(),
-        month: $("#cbMonth").val()
+        month: $("#cbMonth").val(),
+        monthText: $("#cbMonth option:selected").text()
     }
     Utils.getData(_url, _token, _type, _data)
     .then(function(result){
         debugger
-        chart.options.data[0].dataPoints = result;
+        chart.options.title.text = result.title;
+        chart.options.data[0].dataPoints = result.data;
         chart.render();
 
         $("#btnBuscar").prop("disabled", false);
