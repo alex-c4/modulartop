@@ -496,7 +496,8 @@ class NewsletterController extends Controller
 
         try {
             $opt = intval($request->input("gridRadios"));
-            
+            $arrayDetalle = [];
+
             switch ($opt) {
                 case 1:
                     $users = DB::table('contacts')
