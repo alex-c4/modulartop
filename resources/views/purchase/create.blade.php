@@ -448,7 +448,7 @@
 
 @section('script')
 
-    <script src="{{ asset('bootstrap-table.min') }}"></script>
+    <script src="{{ asset('js/bootstrap-table.min.js') }}"></script>
 
     <script src="{{ asset('js/locale/bootstrap-table-es-ES.min.js') }}"></script>
 

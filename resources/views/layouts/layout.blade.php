@@ -17,6 +17,10 @@
     <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css')}}">
     <!-- <link rel="stylesheet" href="css/owl.theme.default.min.css"> -->
 
+    
+    <!--Bloque incorporado para galeria de proyectos-->
+    <link href="{{ asset('css/proyectos/magnific-popup.css')}}" rel="stylesheet" type="text/css" />
+
     <link rel="stylesheet" href="{{ asset('css/jquery.fancybox.min.css')}}">
 
     <link rel="stylesheet" href="{{ asset('css/bootstrap-datepicker.css')}}">
@@ -35,11 +39,9 @@
     <script src="{{ asset('js/modernizr.custom.17475.js')}}"></script>
      <!-- fin del bloque fabricacion -->
 
-    <!--Bloque incorporado para galeria de proyectos-->
-    <link href="css/proyectos/magnific-popup.css" rel="stylesheet" type="text/css" />
     <!-- Icon -->
     <!-- <link href="css/proyectos/materialdesignicons.min.css" rel="stylesheet" type="text/css" /> -->
-    <link href="css/pe-icon-7-stroke.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('css/pe-icon-7-stroke.css')}}" rel="stylesheet" type="text/css" />
     <!-- fin del bloque fabricacion -->
 
      <!-- Javascript para captcha de formulario -->
@@ -482,8 +484,11 @@
 <!-- javascript -->
         <!-- SLIDER -->
         <!-- Magnific Popup -->
+        <script src="{{ asset('js/isotope.js') }}"></script>
         <script src="{{ asset('js/galeria/jquery.magnific-popup.min.js') }}"></script>
         <script src="{{ asset('js/galeria/portfolio-filter.js') }}"></script> 
+        <script src="{{ asset('js/scrollspy.min.js') }}"></script> 
+        <script src="{{ asset('js/app-project.js') }}"></script> 
         <!-- Contact -->
         <!-- Counter -->
         <!-- Switcher -->

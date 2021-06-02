@@ -230,7 +230,7 @@
 
 @section('script')
 
-    <script src="{{ asset('bootstrap-table.min') }}"></script>
+    <script src="{{ asset('js/bootstrap-table.min.js') }}"></script>
     
     <script src="{{ asset('js/sale.js') }}?v={{ env('APP_VERSION', '1') }}"></script>
 

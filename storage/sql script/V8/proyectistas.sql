@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-05-2021 a las 00:40:13
+-- Tiempo de generación: 30-05-2021 a las 23:12:53
 -- Versión del servidor: 10.1.30-MariaDB
 -- Versión de PHP: 7.2.1
 
@@ -30,17 +30,18 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `proyectistas` (
   `id` int(11) NOT NULL,
-  `name` varchar(30) NOT NULL
+  `name` varchar(30) NOT NULL,
+  `prefix` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `proyectistas`
 --
 
-INSERT INTO `proyectistas` (`id`, `name`) VALUES
-(1, 'Modular Top'),
-(2, 'Aliado Comercial'),
-(3, 'Proveedor');
+INSERT INTO `proyectistas` (`id`, `name`, `prefix`) VALUES
+(1, 'Modular Top', 'mtop'),
+(2, 'Aliado Comercial', 'partner'),
+(3, 'Proveedor', 'provider');
 
 --
 -- Índices para tablas volcadas

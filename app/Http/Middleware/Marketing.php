@@ -18,6 +18,7 @@ class Marketing
     {
         if(Auth::check()) {
             $rollId = auth()->user()->roll_id;
+            
             if($rollId != 1 && $rollId != 3){
                 return redirect('home');
             }

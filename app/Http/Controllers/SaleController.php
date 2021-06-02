@@ -253,5 +253,56 @@ class SaleController extends Controller
             ->orderby("order_sales.created_at", "asc")
             ->get();
     }
+
+    public function statistics(){
+        $months = array(
+            "Enero",
+            "Febrero",
+            "Marzo",
+            "Abril",
+            "Mayo",
+            "Junio",
+            "Julio",
+            "Agosto",
+            "Septiembre",
+            "Octubre",
+            "Noviembre",
+            "Diciembre"
+        );
+        
+        $title_chart = "Estadísticas de Ventas";
+        
+        return view("sale.statistics", compact("title_chart", "months"));
+    }
+
+    public function getStatisticsData(Request $request){
+        $range = intval($request->input("range"));
+        $month = intval($request->input("month"));
+
+        if($range == 1){
+            //ultimos 7 dias
+            $endDate = Carbon::now();
+            $startDate = Carbon::now()->subDays(7);
+        }
+        if($range == 2){
+
+            $dt = Carbon::now();
+            
+            $year = $dt->year;
+            $fday = 1;
+            $startDate = Carbon::create($year, $month);
+            
+            $lday = $startDate->daysInMonth;
+            $endDate = Carbon::create($year, $month, $lday);
+        }
+
+        $statistics = DB::select("CALL sp_salesStatistics(?, ?)", array($startDate->format("Y-m-d"), $endDate->format("Y-m-d")));
+        $result = [];
+        foreach ($statistics as $row) {
+            array_push($result, ["label" => $row->name, "y" => intval($row->total)]);
+        }
+
+        return $result;
+    }
 }
 

@@ -110,11 +110,12 @@
                     </div>
 
                     <!-- Boton para agregar imagenes link -->
-                    <div class="row form-group mt-3 mb-3">
+                    <!-- comentado temporalmente -->
+                    <!-- <div class="row form-group mt-3 mb-3">
                         <div class="col-md-12">
                             <input type="button" class="btn btn-primary" value="Ver imagenes" data-toggle="modal" data-target="#imagesModal">
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- contenido -->
                     <div class="row form-group">
@@ -163,7 +164,7 @@
                     <!-- Image -->
                     <div class="row form-group">
                         <div class="col-md-12">
-                            <label for="name_img">Imagen</label>
+                            <label for="name_img">Imagen principal</label>
                             <input type="file" accept="image/png, image/jpeg, image/jpg" class="form-control" id="name_img" name="name_img" placeholder="Imagen" value="{{ old('name_img') }}">
                         </div>
                     </div>

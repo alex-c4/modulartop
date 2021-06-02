@@ -16,7 +16,7 @@ class ProjectController extends Controller
     public function __construct()
     {
         // $this->middleware('verified');
-        $this->middleware(['auth', 'marketing']);
+        $this->middleware(['auth', 'marketing'], ['except' => ['showphotos', 'showphotosbyproyectista']]);
     }
 
     /**
@@ -337,7 +337,7 @@ class ProjectController extends Controller
         try {
             $project = Project::create([
                 "proyectista_id" => $request->input("proyectista"),
-                "provider" => $request->input("provider"),
+                "provider_id" => $request->input("provider"),
                 "name" => $request->input("name"),
                 "description" => $request->input("description"),
                 "ubication" => $request->input("ubication"),
@@ -417,7 +417,7 @@ class ProjectController extends Controller
             $project = Project::where("id", $projectId)->first();
 
             $project->proyectista_id = $request->input("proyectista");
-            $project->provider = $request->input("provider");
+            $project->provider_id = $request->input("provider");
             $project->name = $request->input("name");
             $project->cover_photo_alt_text = $request->input("cover_photo_alt_text");
             $project->description = $request->input("description");
@@ -632,4 +632,63 @@ class ProjectController extends Controller
 
         return $result;
     }
+
+    public function showphotos($id){
+        $proyectista_name = "";
+        $project_description = "";
+        $project_name = "";
+
+        $photos = DB::table("project_photos as pp")
+            ->select(
+                "pp.name as photo",
+                "pp.alt_text",
+                "pr.name as project_name",
+                "pr.project_date",
+                "pr.description as project_description",
+                "pro.name as proyectista"
+            )
+            ->join("projects as pr", "pp.project_id", "=", "pr.id", "inner", false)
+            ->join("proyectistas as pro", "pr.proyectista_id", "=", "pro.id", "inner", false)
+            ->where("pp.project_id", $id)->get();
+            
+            if(count($photos) > 0){
+                $proyectista_name = $photos[0]->proyectista;
+                $project_description = $photos[0]->project_description;
+                $project_name = $photos[0]->project_name;
+
+            }
+            
+        return view("project.showphotos", compact("photos", "proyectista_name", "project_description", "project_name"));
+    }
+
+    public function showphotosbyproyectista(){
+
+        $proyectistas = DB::table("proyectistas")->get();
+        $allProjects = array();
+
+        foreach($proyectistas as $proyectista){
+            $projects = DB::table("projects as pr")
+                ->select(
+                    "pr.id as projectId",
+                    "pr.name as project_name",
+                    "pr.cover_photo",
+                    "pr.cover_photo_alt_text",
+                    "pr.proyectista_id",
+                    "pr.project_date",
+                    "p.prefix",
+                    "p.name as proyectista_name",
+                    "p.id"
+                    )
+                ->join("proyectistas as p", "p.id", "=", "pr.proyectista_id", "inner", false)
+                ->where("pr.proyectista_id", "=", $proyectista->id)
+                ->orderby("pr.project_date", "DESC")
+                ->get();
+            
+                array_push($allProjects, $projects);
+        }
+
+        return view("project.showphotosbyproyectista", compact("proyectistas", "allProjects"));
+    }
+    
+
 }

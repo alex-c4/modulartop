@@ -442,6 +442,12 @@
                             Consultar ventas
                         </a>
                       </li>
+                      <li>
+                        <a href="{{ route('sale.statistics') }}">
+                            <span class="icon-bar-chart"></span>
+                            Estadísticas de ventas
+                        </a>
+                      </li>
                     </ul>
                 </li>
                 @endif
@@ -509,6 +515,24 @@
                         <a href="{{ route('project.index') }}">
                             <span class="icon-search"></span>
                             Consultar proyecto
+                        </a>
+                      </li>
+                    </ul>
+                </li>
+                @endif
+
+                
+                @if(Auth::user()->roll_id == 1 || Auth::user()->roll_id == 3)
+                <li {{ Utils::getActiveRouteClass(Route::currentRouteName(), 'leds') }}>
+                    <a href="#leds"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <span class="icon-files-o"></span>
+                        Leds
+                    </a>
+                    <ul class="collapse list-unstyled" id="leds">
+                      <li>
+                        <a href="{{ route('leds.ledsget') }}">
+                            <span class="icon-download"></span>
+                            Descargar Leds
                         </a>
                       </li>
                     </ul>

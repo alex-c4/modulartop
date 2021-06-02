@@ -97,6 +97,13 @@ Route::delete('newsletter/delete/{id}', ['as' => 'newsletter.delete', 'uses' => 
 Route::patch('newsletter/{id}', ['as' => 'newsletter.restore', 'uses' => 'NewsletterController@restore']);
 // Route::get('novedadesFilter/{id}', ['as' => 'novedadesFilter', 'uses' => 'NewsletterController@novedadesFilter']);
 
+// Leds - Marketing
+Route::get("leds/ledsget", ["as" => "leds.ledsget", "uses" => "NewsletterController@ledsget"]);
+Route::post("leds/download", ["as" => "leds.download", "uses" => "NewsletterController@ledsdownload"]);
+
+
+
+
 // Tags
 Route::post('tag/storeajax', ['as' => 'tag.storeajax', 'uses' => 'TagController@store_ajax']);
 //buscar TAGS
@@ -121,6 +128,8 @@ Route::get("sale/create", ["as" => "sale.create", "uses" => "SaleController@crea
 Route::post("sale/store", ["as" => "sale.store", "uses" => "SaleController@store"]);
 Route::get("sale/saleslist", ["as" => "sale.saleslist", "uses" => "SaleController@saleslist"]);
 Route::get("sales/downloadsales", ["as" => "sales.downloadsales", "uses" => "SaleController@downloadsales"]);
+Route::get("sales/statistics", ["as" => "sale.statistics", "uses" => "SaleController@statistics"]);
+Route::post("sales/getStatisticsData", ["as" => "sale.getStatisticsData", "uses" => "SaleController@getStatisticsData"]);
 
 // Order Sale
 Route::get("ordersale/downloadexcel", ["as" => "ordersale.downloadexcel", "uses" => "OrderSaleController@downloadexcel"]);
@@ -147,6 +156,8 @@ Route::get("project/index", ["as" => "project.index", "uses" => "ProjectControll
 Route::get("project/edit/{id}", ["as" => "project.edit", "uses" => "ProjectController@edit"]);
 Route::post("project/searchalttext", ["as" => "project.searchalttext", "uses" => "ProjectController@searchalttext"]);
 Route::post("project/updatetext", ["as" => "project.updatetext", "uses" => "ProjectController@updatetext"]);
+Route::get("project/showphotos/{id}", ["as" => "project.showphotos", "uses" => "ProjectController@showphotos"]);
+Route::get("project/showphotosbyproyectista", ["as" => "project.showphotosbyproyectista", "uses" => "ProjectController@showphotosbyproyectista"]);
 
 
 // Inventario - Inventory

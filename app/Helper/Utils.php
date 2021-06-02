@@ -57,7 +57,8 @@ class Utils
         $_venta_routes = array(
             "sale.create",
             "sale.store",
-            "sale.saleslist"
+            "sale.saleslist",
+            "sale.statistics"
         );
 
         $_order_sale_routes = array(
@@ -76,6 +77,10 @@ class Utils
         $_project_routes = array(
             "project.create",
             "project.index"
+        );
+
+        $_leds_routes = array(
+            "leds.ledsget"
         );
 
         switch($modulo){
@@ -119,7 +124,9 @@ class Utils
             case "project":
                 $class  = Utils::getClass($_project_routes, $route);
                 break;
-
+            case "leds":
+                $class  = Utils::getClass($_leds_routes, $route);
+                break;
         }
 
         return $class;
