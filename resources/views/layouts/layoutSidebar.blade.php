@@ -423,13 +423,16 @@
                       </li>
                     </ul>
                 </li>
+                @endif
 
+                @if(Auth::user()->roll_id == 1 || Auth::user()->roll_id == 5 || Auth::user()->roll_id == 3)  
                 <li {{ Utils::getActiveRouteClass(Route::currentRouteName(), 'venta') }}>
                     <a href="#venta"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <span class="icon-file-text"></span>
                         Venta
                     </a>
                     <ul class="collapse list-unstyled" id="venta">
+                      @if(Auth::user()->roll_id == 1 || Auth::user()->roll_id == 5)
                       <li>
                         <a href="{{ route('sale.create') }}">
                             <span class="icon-plus"></span>
@@ -442,6 +445,7 @@
                             Consultar ventas
                         </a>
                       </li>
+                      @endif
                       <li>
                         <a href="{{ route('sale.statistics') }}">
                             <span class="icon-bar-chart"></span>

@@ -24,7 +24,7 @@ class SaleController extends Controller
     public function __construct()
     {
         // $this->middleware('verified');
-        $this->middleware(['auth', 'administrative']);
+        $this->middleware(['auth', 'administrative'], ["except" => ["getStatisticsData", "statistics"]]);
     }
     
     /**
@@ -253,7 +253,7 @@ class SaleController extends Controller
             ->orderby("order_sales.created_at", "asc")
             ->get();
     }
-
+    
     public function statistics(){
         $months = array(
             "Enero",
