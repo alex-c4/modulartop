@@ -10,23 +10,18 @@
 
 @section('content')
 
-@section('banner')
-
-<div class="site-blocks-cover inner-page-cover overlay" style="background-image: url({{ asset('images/novedades/newsletter-novedades.jpg') }});" data-aos="fade">
-    <div class="container">
-        <div class="row align-items-center justify-content-center">
-            <div class="col-md-5 mx-auto mt-lg-5 text-center">
-                <h1>Compras</h1>
-                <p class="mb-5"><strong class="text-white">Creacion de una nueva compra</strong></p>
-        
-            </div>
-        </div>
-    </div>
-
-    <!-- <a href="#blog" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a> -->
-</div> 
-
+@section('imgBanner')
+{{ Utils::getBanner(auth()->user()->roll_id) }}
 @endsection
+
+@section('title')
+Compras
+@endsection
+
+@section('subtitle')
+Creacion de una nueva compra
+@endsection
+
 
 <section class="blog-section spad" id="blog">
 <div class="container">
@@ -43,11 +38,6 @@
         </div>
     </nav>
 
-    <div class="row mb-5">
-        <div class="col-12 text-center">
-        <h2 class="section-title mb-3 text-black">Nueva compra</h2>
-        </div>
-    </div>
 
     <!-- mensaje para la creacion de las compras -->
     @if(isset($msgPost) != null)

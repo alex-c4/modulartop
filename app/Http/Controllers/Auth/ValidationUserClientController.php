@@ -57,10 +57,13 @@ class ValidationUserClientController extends Controller
      */
     public function store(Request $request)
     {
+
         $isClient = request()->chkClient;
         $password = Str::random(15);
 
         if($isClient == "on"){
+            $this->validator_full(request()->all())->validate();
+
             $user_created = User::create([
                 'name' => request()->name,
                 'lastName' => request()->lastName,
@@ -68,13 +71,12 @@ class ValidationUserClientController extends Controller
                 'password' => bcrypt($password),
                 'phone' => request()->clientPhone,
                 'roll_id' => request()->rolId,
-                'addres' => request()->clientAddress,
+                'address' => request()->clientAddress,
                 'rif' => request()->rif,
                 'razonSocial' => request()->rsocial,
                 'companyAddress' => request()->companyAddress,
                 'companyPhone' => request()->companyPhone,
                 'company_type_id' => request()->company_type,
-                'company_phone2' => request()->companyPhone2,
                 'confirmed' => true,
                 'validationByAdmin' => true,
                 'email_verified_at' => Carbon::now(),
@@ -82,6 +84,8 @@ class ValidationUserClientController extends Controller
             ]);
 
         }else{
+            $this->validator_basic(request()->all())->validate();
+
             $user_created = User::create([
                 'name' => request()->name,
                 'lastName' => request()->lastName,
@@ -218,9 +222,42 @@ class ValidationUserClientController extends Controller
      * Consultar los usuarios registrados en el sistema
      */
     public function showUser(){
-        $users = User::where("confirmed", "1")->get();
+        $users_admin = DB::table("users")
+            ->select(
+                "users.id",
+                "users.name",
+                "users.lastName",
+                "users.email",
+                "users.is_deleted",
+                "users.created_at",
+                "roles.nombre as rolName"
+            )
+            ->join("roles", "users.roll_id", "=", "roles.id", "inner", false)
+            ->where("roll_id", "1")
+            ->where("confirmed", "1")
+            ->orWhere("roll_id", "3")
+            ->orWhere("roll_id", "5")
+            ->get();
+
+        $users = DB::table("users")
+            ->select(
+                "users.id",
+                "users.name",
+                "users.lastName",
+                "users.email",
+                "users.is_deleted",
+                "users.created_at",
+                "roles.nombre as rolName",
+                "company_types.name as typeClientName"
+            )
+            ->join("roles", "users.roll_id", "=", "roles.id", "inner", false)
+            ->join("company_types", "users.company_type_id", "=", "company_types.id", "left", false)
+            ->where("roll_id", "2")
+            ->where("confirmed", "1")
+            ->orWhere("roll_id", "4")
+            ->get();
         
-        return view("auth.showuser", compact('users'));
+        return view("auth.showuser", compact('users_admin', 'users'));
         
     }
 
@@ -266,8 +303,8 @@ class ValidationUserClientController extends Controller
             'name' => 'required|string',
             'lastName' => 'required|string',
             'email' => 'required|string|email|max:40|unique:users',
-            'clientPhone' => 'required|string',
-            'clientAddress' => 'required|string'
+            'clientPhone' => 'required',
+            'rolId' => 'required',
         ], $messages);
     }
 
@@ -282,12 +319,28 @@ class ValidationUserClientController extends Controller
             'name' => 'required|string',
             'lastName' => 'required|string',
             'email' => 'required|string|email|max:40|unique:users',
-            'clientPhone' => 'required|string',
-            'clientAddress' => 'required|string',
+            'clientPhone' => 'required',
+            'rolId' => 'required',
             'rif' => 'required|string',
             'rsocial' => 'required|string',
             'companyAddress' => 'required|string',
-            'companyPhone' => 'required|string'
+            'companyPhone' => 'required',
+            'company_type' => 'required'
+
+        ], $messages);
+    }
+
+    protected function validatorUser(array $data)
+    {
+        $messages = [
+            'required' => 'El campo es requerido',
+            'unique' => 'El correo ya existe',
+            'email' => 'Debe escribir un correo válido'
+        ];
+
+        return Validator::make($data, [
+            'email' => 'required|email|max:40|unique:users',
+            
         ], $messages);
     }
 

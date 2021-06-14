@@ -39,6 +39,7 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
+
                                 </div>
                             </div>
 
@@ -67,13 +68,24 @@
                                     </div>
                                 </div>
                             </div> -->
+                            <div class="form-group row mb-0 text-center">
+                                <div class="col-12">
+                                    @if(isset($resent) != null)
+                                    <span class="" role="alert">
+                                        <strong>Correo reenviado</strong>
+                                    </span>
+                                    @endif
 
+                                </div>
+
+                            </div>
+                            
                             <div class="form-group row mb-0 text-center">
                                 <div class="col-12">
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('Login') }}
                                     </button>
-
+                                    
 
                                 </div>
                                 <div class="col-12">

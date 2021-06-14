@@ -2,23 +2,18 @@
 
 @section('content')
 
-@section('banner')
-
-
-<div class="site-blocks-cover inner-page-cover overlay" style="background-image: url({{ asset('images/novedades/newsletter-novedades.jpg') }});" data-aos="fade">
-    <div class="container">
-        <div class="row align-items-center justify-content-center">
-            <div class="col-md-5 mx-auto mt-lg-5 text-center">
-                <h1>Leds</h1>
-                <p class="mb-5"><strong class="text-white">Descargar leds</strong></p>
-            </div>
-        </div>
-    </div>
-
-    <!-- <a href="#blog" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a> -->
-</div>
-
+@section('imgBanner')
+{{ Utils::getBanner(auth()->user()->roll_id) }}
 @endsection
+
+@section('title')
+Leds
+@endsection
+
+@section('subtitle')
+Descargar leds
+@endsection
+
 
 <div class="container">
 

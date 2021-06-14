@@ -14,7 +14,9 @@ use DB;
 class ProductController extends Controller
 {
     public function __construct(){
-        $this->middleware(['auth', 'administrative'], ['except' => ['ShowViewByVisualEfect', 'descriptionByProducto']]);
+        $this->middleware(['auth', 'administrative'], ['except' => ['ShowViewByVisualEfect', 'descriptionByProducto', 'showImagesByProduct', 'fichatecnica']]);
+        // , 'showImagesByProduct', 'fichatecnica'
+        // $this->middleware(['administrative'])->except('ShowViewByVisualEfect', 'descriptionByProducto');
         // $this->middleware('auth');
         // $this->middleware('administrative');
 

@@ -268,9 +268,12 @@
                 <li><a href="{{ route('welcome')}}#contact-section" class="nav-link">Contactanos</a></li>
                 @if(Auth::check())
                   <li><a href="{{ route('logout')}}" class="nav-link">Salir</a></li>
-                  <li><a href="{{ route('home')}}" class="nav-link"><span class="icon-home"></span></a></li>
+                  <li><a href="{{ route('home')}}" class="nav-link"><span class="icon-home"></span> Mi Sesión</a></li>
                 @else
-                  <li><a href="{{ route('login')}}" class="nav-link"><span class="icon-user"></span></a></li>
+                  <li>
+                    <a href="{{ route('login')}}" class="nav-link"><span class="icon-user"></span> Ingresar / Registrarse</a>
+                    <!-- <a href="{{ route('login')}}#contact-section" class="nav-link">Ingresar / Registrarse</a> -->
+                  </li>
                 @endif
 
               </ul>

@@ -28,13 +28,18 @@ class HomeController extends Controller
     public function index()
     {
         // Búsqueda de nuevos usuarios por validar
-        $usersToValidate = Utils::getUsersToValidate();
+        $usersToValidate = Utils::getUsersToValidate(); 
         $total = count($usersToValidate);
 
         // Búsqueda de nuevas ordedes de compra donde el status sea 2=inicial
         $orders = OrderSale::where("status", 2)->get();
         $totalOrders = count($orders);
 
-        return view('home', compact("usersToValidate", "total", "orders", "totalOrders"));
+        $userName = ucfirst(auth()->user()->name);
+        $userLastName = ucfirst(auth()->user()->lastName);
+        $roll = Utils::getRollName(auth()->user()->id);
+        $avatar = Utils::getAvatar(auth()->user()->id);
+
+        return view('home', compact("usersToValidate", "total", "orders", "totalOrders", "userName", "userLastName", "roll", "avatar"));
     }
 }

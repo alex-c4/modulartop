@@ -47,33 +47,22 @@
     
 </style>
 
+@section('title')
+¡Editar!
+@endsection
+
+@section('subtitle')
+Edición de novedades
+@endsection
+
 @section('banner')
 
-<div class="site-block-wrap">
-    <div class="owl-carousel with-dots">
-    <div class="site-blocks-cover overlay overlay-2" style="background-image: url({{ asset('images/banner/fabricacion.jpg')}});" data-aos="fade" id="home-section">  
-        <div class="container">
-            <div class="row align-items-center justify-content-center">
-                <div class="col-md-6 mt-lg-5 text-center">
-                    <h1 class="text-shadow">¡Editar!</h1>
-                    <p class="mb-5 text-shadow">Edición de novedades.</p>
-                </div>
-            </div>
-        </div>        
-    </div> 
-    </div>    
-</div>
 
 @endsection
 
 <section class="site-section bg-light bg-image" id="contact-section">
     <div class="container">
-        <div class="row mb-5">
-          <div class="col-12 text-center">
-            <h2 class="section-title mb-3 text-black">Novedades</h2>
-          </div>
-        </div>
-
+       
         <!-- mensaje para la creacion de los post -->
         @if(isset($msgPost) != null)
             <div class="container">

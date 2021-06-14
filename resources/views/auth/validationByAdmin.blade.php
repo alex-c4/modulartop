@@ -2,24 +2,18 @@
 
 @section('content')
 
-@section('banner')
-
-
-<div class="site-blocks-cover inner-page-cover overlay" style="background-image: url({{ asset('images/novedades/newsletter-novedades.jpg') }});" data-aos="fade">
-    <div class="container">
-        <div class="row align-items-center justify-content-center">
-            <div class="col-md-5 mx-auto mt-lg-5 text-center">
-                <h1>Validacion de usuarios</h1>
-                <p class="mb-5"><strong class="text-white">Lista de usuarios a validar</strong></p>
-        
-            </div>
-        </div>
-    </div>
-
-    <!-- <a href="#blog" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a> -->
-</div> 
-
+@section('imgBanner')
+{{ Utils::getBanner(auth()->user()->roll_id) }}
 @endsection
+
+@section('title')
+Validacion de usuarios
+@endsection
+
+@section('subtitle')
+Lista de usuarios a validar
+@endsection
+
 
 <div class="container">
 <!-- mensaje para la creacion de los post -->
@@ -40,8 +34,8 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Cliente</th>
-                <th scope="col">Correo</th>
-                <th scope="col">Fecha de registro</th>
+                <th scope="col">Razón social</th>
+                <th scope="col">Tipo de cliente</th>
                 <th scope="col"></th>
             </tr>
         </thead>
@@ -50,8 +44,8 @@
             <tr>
                 <th>{{ $key += 1 }}</th>
                 <td>{{ ucfirst($user->name) }} {{ ucfirst($user->lastName) }}</td>
-                <td>{{ $user->email }}</td>
-                <td>{{ $user->created_at }}</td>
+                <td>{{ $user->razonSocial }}</td>
+                <td>{{ $user->client_type_name }}</td>
                 <td style="display: flex; justify-content: space-around;">
                     <form id="formValidationUserValidate" action="{{ route('userValidation.update', $user->id ) }}" method="post">
                         {{ csrf_field() }}

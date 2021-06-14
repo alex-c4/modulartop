@@ -48,31 +48,22 @@
     
 </style>
 
-@section('banner')
-
-    <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url({{ asset('images/novedades/newsletter-novedades.jpg') }});" data-aos="fade">
-        <div class="container">
-            <div class="row align-items-center justify-content-center">
-                <div class="col-md-5 mx-auto mt-lg-5 text-center">
-                    <h1>Novedades</h1>
-                <!-- <p class="mb-5"><strong class="text-white">Nuevo Post</strong></p>-->
-            
-                </div>
-            </div>
-        </div>
-
-        <!-- <a href="#blog" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a> -->
-    </div>
-
+@section('imgBanner')
+{{ Utils::getBanner(auth()->user()->roll_id) }}
 @endsection
+
+@section('title')
+Novedades
+@endsection
+
+@section('subtitle')
+Nuevo Post
+@endsection
+
 
 <section class="site-section bg-light bg-image" id="contact-section">
     <div class="container">
-        <div class="row mb-5">
-          <div class="col-12 text-center">
-            <h2 class="section-title mb-3 text-black">Nuevo Post</h2>
-          </div>
-        </div>
+        
 
         <!-- mensaje para la creacion de los post -->
         @if(isset($msgPost) != null)

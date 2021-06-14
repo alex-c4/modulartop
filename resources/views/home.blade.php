@@ -14,28 +14,31 @@
 
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.css">
 
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}?v={{ env('APP_VERSION') }}">
+
+    <style>
+        .text-sm{
+            font-size: smaller;
+        }
+    </style>
+
 
 @endsection
 
 @section('content')
 
-@section('banner')
-
-<div class="site-blocks-cover inner-page-cover overlay" style="background-image: url({{ asset('images/banner/fabricacion.jpg') }});" data-aos="fade">
-    <div class="container">
-    <div class="row align-items-center justify-content-center">
-        <div class="col-md-5 mx-auto mt-lg-5 text-center">
-        <h1>Bienvenido</h1>
-        <p class="mb-5"><strong class="text-white">home</strong></p>
-        
-        </div>
-    </div>
-    </div>
-
-    <!-- <a href="#blog" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a> -->
-</div> 
-
+@section('imgBanner')
+{{ Utils::getBanner(auth()->user()->roll_id) }}
 @endsection
+
+@section('title')
+Bienvenido
+@endsection
+
+@section('subtitle')
+home
+@endsection
+
 
 <div class="wrapper">
         
@@ -73,11 +76,53 @@
                         </ul>
                     </div> -->
 
+                    @if(Auth::user()->is_client == 0)
+                    <div class="ml-auto pr-4">
+                        <a href="{{ route('user.edit', auth()->user()->id) }}" >Soy o quiero ser cliente</a>
+                    </div>
+                    @endif
+
+                    <div class="" id="navbarSupportedContent">
+
+                        <div class="dropdown ml-auto">
+                            <button class="btn dropdown-toggle menu-boton" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <div class="contenedor-menu">
+                                    <div class="menu-img">
+                                        <img src="{{ asset('images/customers_logos/avatars') }}/{{ $avatar }}" width="40px" height="40px" alt="" srcset="">
+                                    </div>
+                                    <div class="contendor-name">
+                                        <div class="menu-name">{{ $userName }} {{ $userLastName }}</div>
+                                        <div class="menu-roll">{{ $roll }}</div>
+                                    </div>
+                                </div>
+                            </button>
+                            <div class="dropdown-menu menu-dropdown" aria-labelledby="dropdownMenuButton" id="menuDropdown">
+                                <a class="dropdown-item" href="{{ route('user.edit', auth()->user()->id) }}">
+                                    <span class="icon-pencil"></span>
+                                    Mis datos
+                                </a>
+                                <a class="dropdown-item" href="{{ route('password.showFormResetPassw') }}">
+                                    <span class="icon-lock"></span>
+                                    Cambio de clave
+                                </a>
+                                <a class="dropdown-item" href="{{ route('user.delete.confirm') }}">
+                                    <span class="icon-trash"></span>
+                                    Eliminar mi cuenta
+                                </a>
+                                <a class="dropdown-item" href="{{ route('logout') }}">
+                                    <span class="icon-close"></span>
+                                    Salir
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </nav>
 
             <div class="container">
                 <div class="row">
+                    @if(Auth::user()->roll_id != 5) 
                     <div class="col-lg-6">
 
                         <div class="container-dash">
@@ -129,30 +174,34 @@
                         </div>
 
                     </div>
-                    @if(Auth::user()->roll_id == 1)  
+                    @endif
+
+                    @if(Auth::user()->roll_id == 1 || Auth::user()->roll_id == 5)  
 
                     <div class="col-lg-6">
                         <div class="container-dash">
                             <div class="nodo">
                                 <div class="nodo-title">
                                     <span class="icon-users"></span>
-                                    Nuevos usuarios @if($total > 0)<span class="cantNews">{{ $total }}</span> @endif
+                                    Clientes por confirmar @if($total > 0)<span class="cantNews">{{ $total }}</span> @endif
                                 </div>
                                 <div class="nodo-content">
-                                    <table class="table table-sm">
+                                    <table class="table table-sm text-sm">
                                         <thead>
                                             <tr>
                                                 <th scope="col">#</th>
-                                                <th scope="col">Name</th>
-                                                <th scope="col">Apellido</th>
+                                                <th scope="col">Cliente</th>
+                                                <th scope="col">Razón social</th>
+                                                <th scope="col">Tipo de cliente</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                         @foreach($usersToValidate as $key => $user)
                                             <tr>
                                                 <th scope="row">{{ $key += 1 }}</th>
-                                                <td>{{ $user->name }}</td>
-                                                <td>{{ $user->lastName }}</td>
+                                                <td>{{ $user->name }} {{ $user->lastName }}</td>
+                                                <td>{{ $user->razonSocial }}</td>
+                                                <td>{{ $user->client_type_name }}</td>
                                             <tr>
                                         @endforeach
                                         </tbody>
@@ -243,9 +292,6 @@
     <script src="{{ asset('js/utils.js') }}"></script>
     <script src="{{ asset('js/home.js') }}"></script>
 
-<script>
+    <script src="{{ asset('js/bootstrap-table.min.js') }}"></script>
 
-<script src="{{ asset('js/bootstrap-table.min') }}"></script>
-
-</script>
 @endsection

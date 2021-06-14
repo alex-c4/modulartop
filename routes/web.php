@@ -42,6 +42,8 @@ Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm'
 Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
+Route::get('password/showFormResetPassw', ["as" => "password.showFormResetPassw", "uses" => "Auth\ResetPasswordController@showFormResetPassw"])->middleware('auth');;
+Route::post('password/updateFromSession', ["as" => "password.updateFromSession", "uses" => "Auth\ResetPasswordController@passwordUpdateFromSession"]);
 
 // Password Confirmation Routes...
 Route::get('password/confirm', 'Auth\ConfirmPasswordController@showConfirmForm')->name('password.confirm');
@@ -56,6 +58,8 @@ Route::post('email/resend', 'Auth\VerificationController@resend')->name('verific
 // Usuario
 Route::get('user/edit/{id}', ["as" => "user.edit", "uses" => "UserController@edit"]);
 Route::post("user/update/{id}", ["as" => "user.update", "uses" => "UserController@update"]);
+Route::get('user/delete/confirm', ["as" => "user.delete.confirm", "uses" => "UserController@deleteConfirm"]);
+Route::post('user/delete', ["as" => "user.delete", "uses" => "UserController@delete"]);
 
 
 
@@ -71,8 +75,8 @@ Route::view('/fabricacion', 'fabricacion/fabricacion');
 // Route::view('/acabado-supermate', 'tableros/tableros-supermate');
 Route::get('tablero/byVisualEfect/{id}', ["as" => "tablero.byVisualEfect", "uses" => "ProductController@ShowViewByVisualEfect"]);
 Route::get("tablero/{id}/description", ["as" => "tablero.description", "uses" => "ProductController@descriptionByProducto"]);
-Route::get("tableros/{id}/showImages", ["as" => "tablero.showImages", "uses" => "ProductController@showImagesByProduct"]);
-Route::get("tablero/ficha/{id}", ["as" => "tablero.fichatecnica", "uses" => "ProductController@fichatecnica"]);
+Route::get("tableros/{id}/showImages", ["as" => "tablero.showImages", "uses" => "ProductController@showImagesByProduct"])->middleware('auth');
+Route::get("tablero/ficha/{id}", ["as" => "tablero.fichatecnica", "uses" => "ProductController@fichatecnica"])->middleware('auth');
 
 Route::post('fabricacion/messageFabrication', ['as' => 'fabricacion.messageFabricacion', 'uses' => 'ContactController@formFabricacion']);
 
@@ -133,14 +137,14 @@ Route::post("sales/getStatisticsData", ["as" => "sale.getStatisticsData", "uses"
 
 // Order Sale
 Route::get("ordersale/downloadexcel", ["as" => "ordersale.downloadexcel", "uses" => "OrderSaleController@downloadexcel"]);
-Route::get("ordersale/create", ["as" => "ordersale.create", "uses" => "OrderSaleController@create"]);
+Route::get("ordersale/create", ["as" => "ordersale.create", "uses" => "OrderSaleController@create"])->middleware('checkIfAreClient');
 Route::post("ordersale/store", ["as" => "ordersale.store", "uses" => "OrderSaleController@store"]);
-Route::get("ordersale/index", ["as" => "ordersale.index", "uses" => "OrderSaleController@index"]);
+Route::get("ordersale/index", ["as" => "ordersale.index", "uses" => "OrderSaleController@index"])->middleware('checkIfAreClient');
 Route::post("ordersale/delete/{id}", ["as" => "ordersale.delete", "uses" => "OrderSaleController@delete"]);
 Route::post("ordersale/attend/{id}", ["as" => "ordersale.attend", "uses" => "OrderSaleController@attend"]);
 Route::post("ordersale/attendFromHome", ["as" => "ordersale.attendFromHome", "uses" => "OrderSaleController@attendFromHome"]);
-Route::get("ordersale/show/{id}", ["as" => "ordersale.show", "uses" => "OrderSaleController@show"]);
-Route::get("ordersale/downloadplanilla/{ordersale_id}", ["as" => "ordersale.downloadplanilla", "uses" => "OrderSaleController@downloadplanilla"]);
+Route::get("ordersale/show/{id}", ["as" => "ordersale.show", "uses" => "OrderSaleController@show"])->middleware('checkIfAreClient');
+Route::get("ordersale/downloadplanilla/{ordersale_id}", ["as" => "ordersale.downloadplanilla", "uses" => "OrderSaleController@downloadplanilla"])->middleware('checkIfAreClient');
 Route::post("ordersale/process/{id}", ["as" => "ordersale.process", "uses" => "OrderSaleController@process"]);
 Route::post("ordersale/processorder", ["as" => "ordersale.processorder", "uses" => "OrderSaleController@processorder"]);
 

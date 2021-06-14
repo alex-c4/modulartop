@@ -4,25 +4,20 @@
 
 @endsection
 
-
 @section('content')
 
-@section('banner')
-
-<div class="site-blocks-cover inner-page-cover overlay" style="background-image: url({{ asset('images/novedades/newsletter-novedades.jpg') }});" data-aos="fade">
-    <div class="container">
-        <div class="row align-items-center justify-content-center">
-            <div class="col-md-5 mx-auto mt-lg-5 text-center">
-                <h1>Orden de compra</h1>
-                <p class="mb-5"><strong class="text-white">Listado ordenes de compra</strong></p>
-            </div>
-        </div>
-    </div>
-
-    <!-- <a href="#blog" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a> -->
-</div> 
-
+@section('imgBanner')
+{{ Utils::getBanner(auth()->user()->roll_id) }}
 @endsection
+
+@section('title')
+Orden de compra
+@endsection
+
+@section('subtitle')
+Listado ordenes de compra
+@endsection
+
 
 <section class="blog-section spad" id="blog">
 <div class="container">
@@ -76,7 +71,11 @@
 
                     
                     @if($order->status == 1) <!-- Procesado -->
-                        <a href="#" title="Procesada" ><span class="icon-check-square-o"></span></a>
+                        <a href="javascript:void(0)" title="Procesada" ><span class="icon-check-square-o icon-green"></span></a>
+                    @endif
+
+                    @if($order->status == 0)
+                        <a href="javascript:void(0)" title="Cancelada" ><span class="icon-ban icon-red"></span></a>
                     @endif
 
                     @if($order->status == 2 && (Auth::user()->roll_id == 5 || Auth::user()->roll_id == 1) ) <!-- Inicial -->
@@ -87,7 +86,7 @@
                     @endif
                     
                     @if($order->status == 3) <!-- En proceso -->
-                        <a href="#" title="En proceso" ><span class="icon-hourglass-start"></span></a>
+                        <a href="javascript:void(0)" title="En proceso" ><span class="icon-hourglass-start"></span></a>
                         
                         @if(Auth::user()->roll_id == 5 || Auth::user()->roll_id == 1)
                             <form id="formOrderProcess_{{ $order->id}}" action="{{ route('ordersale.process', $order->id) }}" method="post">
@@ -102,7 +101,7 @@
                     @if($order->status == 2)
                         <form id="formOrderCancel_{{ $order->id}}" action="{{ route('ordersale.delete', $order->id) }}" method="post">
                             {{ csrf_field() }}
-                            <a href="#" title="Cancelar orden" onclick="document.getElementById('formOrderCancel_{{ $order->id}}').submit()"><span class="icon-remove"></span></a>
+                            <a href="#" title="Cancelar orden" onclick="document.getElementById('formOrderCancel_{{ $order->id}}').submit()"><span class="icon-remove icon-gray"></span></a>
                         </form>
                     @else
                         @if($order->status == 3 && (Auth::user()->roll_id == 5 || Auth::user()->roll_id == 1))

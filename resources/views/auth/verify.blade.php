@@ -20,7 +20,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Verifique su dirección de correo electrónico</div>
+                <div class="card-header">Debe validar su cuenta de correo antes de ingresar al sistema</div>
 
                 <div class="card-body">
                     @if (session('resent'))
@@ -29,7 +29,7 @@
                         </div>
                     @endif
 
-                    Antes de continuar, verifique su correo electrónico para ver si hay un enlace de verificación. Si no recibió el correo electrónico,
+                    Ubique el correo de validación en la bandeja de entrada de su cuenta de correo. De no haber recibido ninguno,
                     <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                         @csrf
                         <button type="submit" class="btn btn-link p-0 m-0 align-baseline">haga clic aquí para solicitar otro.</button>.

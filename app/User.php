@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Auth\CanResetPassword;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\URL;
@@ -12,7 +14,7 @@ use Illuminate\Support\Facades\Config;
 use Mail;
 use DB;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail, CanResetPasswordContract
 {
     use Notifiable;
 
@@ -33,6 +35,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'phone',
         'address',
         'rif',
+        'company_type_id',
         'razonSocial',
         'companyAddress',
         'companyPhone',
@@ -98,6 +101,30 @@ class User extends Authenticatable implements MustVerifyEmail
             $message->to($_user->email)->subject($subject);
         });
 
+    }
+
+    public function hasVerifiedEmail()
+    {
+        return ! is_null($this->email_verified_at);
+    }
+
+    public function sendPasswordResetNotification($token){
+        $subject = "Reestablecimiento de contraseña";
+
+        $req = array(
+            "correo" => env('EMAIL_ADMIN')
+        );
+        // $_user = $this->user_created->user();
+        $_user = collect($this->attributes);
+        $_user_email = $_user["email"];
+        $userInfo = array(
+            'token' => $token."?email=".$_user_email
+        );
+
+        Mail::send('emails.resetpassworduser2', $userInfo, function($message) use($req, $_user_email, $subject){
+            $message->from($req["correo"], 'Web Modular Top');
+            $message->to($_user_email)->subject($subject);
+        });
     }
 
 

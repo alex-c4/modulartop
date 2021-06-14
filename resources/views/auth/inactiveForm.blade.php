@@ -2,22 +2,16 @@
 
 @section('content')
 
-@section('banner')
+@section('imgBanner')
+{{ Utils::getBanner(auth()->user()->roll_id) }}
+@endsection
 
-<div class="site-blocks-cover inner-page-cover overlay" style="background-image: url({{ asset('images/novedades/newsletter-novedades.jpg') }});" data-aos="fade">
-    <div class="container">
-        <div class="row align-items-center justify-content-center">
-            <div class="col-md-5 mx-auto mt-lg-5 text-center">
-                <h1>Usuario</h1>
-                <p class="mb-5"><strong class="text-white">Inactivar usuario</strong></p>
-        
-            </div>
-        </div>
-    </div>
+@section('title')
+Usuario
+@endsection
 
-    <!-- <a href="#blog" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a> -->
-</div> 
-
+@section('subtitle')
+Inactivar usuario
 @endsection
 
 <div class="container">

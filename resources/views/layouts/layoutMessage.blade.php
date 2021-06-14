@@ -25,6 +25,15 @@
                     </div>
                     <div class="contentContainer">
                         {!! $content !!}
+
+                        @if(isset($fromLogin) != null)
+                            Ubique el correo de validación en la bandeja de entrada de su cuenta de correo. De no haber recibido ninguno,
+                            <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
+                                @csrf
+                                <input type="hidden" name="email" id="email" value="{{ $email }}">
+                                <button type="submit" class="btn btn-link p-0 m-0 align-baseline">haga clic aquí para solicitar otro.</button>.
+                            </form>
+                        @endif
                     </div>
                 </div>
             </div>

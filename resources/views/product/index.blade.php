@@ -3,23 +3,18 @@
 
 @section('content')
 
-@section('banner')
-
-<div class="site-blocks-cover inner-page-cover overlay" style="background-image: url({{ asset('images/novedades/newsletter-novedades.jpg') }});" data-aos="fade">
-    <div class="container">
-        <div class="row align-items-center justify-content-center">
-            <div class="col-md-5 mx-auto mt-lg-5 text-center">
-                <h1>Productos</h1>
-                <p class="mb-5"><strong class="text-white">Lista de productos registrados</strong></p>
-        
-            </div>
-        </div>
-    </div>
-
-    <!-- <a href="#blog" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a> -->
-</div> 
-
+@section('imgBanner')
+{{ Utils::getBanner(auth()->user()->roll_id) }}
 @endsection
+
+@section('title')
+Productos
+@endsection
+
+@section('subtitle')
+Lista de productos registrados
+@endsection
+
 
 <section class="blog-section spad" id="blog">
 <div class="container">
@@ -70,11 +65,11 @@
                 <td>{{ $product->category_product_name }}</td>
                 <td>{{ $product->product_type_name }}</td>
                 <td>
-                    <a href="{{ route('product.edit', $product->id) }}" title="Editar" ><span class="icon-pencil p-1"></span></a>
+                    <a href="{{ route('product.edit', $product->id) }}" title="Editar" ><span class="icon-pencil p-1 icon-gray"></span></a>
                     @if($product->product_isdeleted == 1)
-                        <a href="{{ route('product.restore', $product->id) }}" title="Restaurar" ><span class="icon-check p-1"></span></a>
+                        <a href="{{ route('product.restore', $product->id) }}" title="Restaurar" ><span class="icon-check p-1 icon-green"></span></a>
                     @else
-                        <a href="{{ route('product.delete', $product->id) }}" title="Inactivar" ><span class="icon-close p-1"></span></a>
+                        <a href="{{ route('product.delete', $product->id) }}" title="Inactivar" ><span class="icon-close p-1 icon-red"></span></a>
                     @endif
                 </td>
             </tr>
