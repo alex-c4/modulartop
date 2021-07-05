@@ -75,7 +75,6 @@ class LoginController extends Controller
         if($request->user()->hasVerifiedEmail()){
             return redirect($this->redirectPath());
         }else{
-
             return view('auth.verify'); 
         }
 
@@ -98,7 +97,6 @@ class LoginController extends Controller
      */
     public function login(Request $request)
     {
-
         $this->validateLogin($request);
 
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
@@ -115,7 +113,7 @@ class LoginController extends Controller
         $client = User::where($this->username(), $email)->first();
 
         // Valida que el usuario haya confirmado el correo
-        if($client != null && $client->confirmed === 0){
+        if($client != null && $client->confirmed == 0){
             $title = "Información";
             $content = "Debe validar su cuenta de correo antes de ingresar al sistema<br>";
             $fromLogin = true;
@@ -124,7 +122,7 @@ class LoginController extends Controller
         }
 
         // Valida que el usuario no haya sido desactivado por el Administrador
-        if ($client != null && $client->is_deleted === 1) {
+        if ($client != null && $client->is_deleted == 1) {
             return $this->sendFailedLoginResponse($request, 'auth.failed_status');
         }
 

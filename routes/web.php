@@ -26,6 +26,7 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 // Validar los usuarios por el Administrador registrados en el sistema
 Route::get('user/validation', ['as' => 'userValidation.index', 'uses' => 'Auth\ValidationUserClientController@index']);
 Route::post('uservalidationUpdate/{id}', ['as' => 'userValidation.update', 'uses' => 'Auth\ValidationUserClientController@update']);
+Route::post('userValidationUpdateFromHome', ['as' => 'userValidation.updateFromHome', 'uses' => 'Auth\ValidationUserClientController@updateFromHome']);
 Route::get('userClient/create', ["as" => "userClient.create", "uses" => "Auth\ValidationUserClientController@create"]);
 Route::post('userCliente/store', ["as" => "userClient.store", "uses" => "Auth\ValidationUserClientController@store"]);
 Route::get('user/showUser', ["as" => "user.showUser", "uses" => "Auth\ValidationUserClientController@showUser"]);
@@ -42,7 +43,7 @@ Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm'
 Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
-Route::get('password/showFormResetPassw', ["as" => "password.showFormResetPassw", "uses" => "Auth\ResetPasswordController@showFormResetPassw"])->middleware('auth');;
+Route::get('password/showFormResetPassw', ["as" => "password.showFormResetPassw", "uses" => "Auth\ResetPasswordController@showFormResetPassw"])->middleware('auth');
 Route::post('password/updateFromSession', ["as" => "password.updateFromSession", "uses" => "Auth\ResetPasswordController@passwordUpdateFromSession"]);
 
 // Password Confirmation Routes...
@@ -56,10 +57,11 @@ Route::get('email/verify/{code}', 'Auth\VerificationController@verify')->name('v
 Route::post('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
 
 // Usuario
-Route::get('user/edit/{id}', ["as" => "user.edit", "uses" => "UserController@edit"]);
+Route::get('user/edit/', ["as" => "user.edit", "uses" => "UserController@edit"]);
 Route::post("user/update/{id}", ["as" => "user.update", "uses" => "UserController@update"]);
 Route::get('user/delete/confirm', ["as" => "user.delete.confirm", "uses" => "UserController@deleteConfirm"]);
 Route::post('user/delete', ["as" => "user.delete", "uses" => "UserController@delete"]);
+Route::post('user/edit_from_table/{id}', ["as" => "user.edit_from_table", "uses" => "UserController@edit_from_table"])->middleware('checkOnlyAdmin');
 
 
 
@@ -122,6 +124,8 @@ Route::get("product/edit/{id}", ["as" => "product.edit", "uses" => "ProductContr
 Route::post("product/update/{id}", ["as" => "product.update", "uses" => "ProductController@update"]);
 Route::get("product/delete/{id}", ["as" => "product.delete", "uses" => "ProductController@delete"]);
 Route::get("product/restore/{id}", ["as" => "product.restore", "uses" => "ProductController@restore"]);
+Route::get("product/downloadFichaTecnica/{id}", ["as" => "product.downloadFichaTecnica", "uses" => "ProductController@downloadFichaTecnica"])->middleware("auth");
+Route::get("product/deleteFichaTecnica/{id}", ["as" => "product.deleteFichaTecnica", "uses" => "ProductController@deleteFichaTecnica"]);
 
 //Compras - Purchase
 Route::get("purchase/create", ["as" => "purchase.create", "uses" => "PurchaseController@create"]);
@@ -143,10 +147,12 @@ Route::get("ordersale/index", ["as" => "ordersale.index", "uses" => "OrderSaleCo
 Route::post("ordersale/delete/{id}", ["as" => "ordersale.delete", "uses" => "OrderSaleController@delete"]);
 Route::post("ordersale/attend/{id}", ["as" => "ordersale.attend", "uses" => "OrderSaleController@attend"]);
 Route::post("ordersale/attendFromHome", ["as" => "ordersale.attendFromHome", "uses" => "OrderSaleController@attendFromHome"]);
+Route::post("ordersale/cancelFromHome", ["as" => "ordersale.cancelFromHome", "uses" => "OrderSaleController@cancelFromHome"]);
 Route::get("ordersale/show/{id}", ["as" => "ordersale.show", "uses" => "OrderSaleController@show"])->middleware('checkIfAreClient');
 Route::get("ordersale/downloadplanilla/{ordersale_id}", ["as" => "ordersale.downloadplanilla", "uses" => "OrderSaleController@downloadplanilla"])->middleware('checkIfAreClient');
 Route::post("ordersale/process/{id}", ["as" => "ordersale.process", "uses" => "OrderSaleController@process"]);
 Route::post("ordersale/processorder", ["as" => "ordersale.processorder", "uses" => "OrderSaleController@processorder"]);
+Route::post("ordersale/processFromHome", ["as" => "ordersale.processFromHome", "uses" => "OrderSaleController@processFromHome"]);
 
 
 // Poyectos - Project
@@ -185,6 +191,14 @@ Route::post("product/deleteimg", ["as" => "product.deleteimg", "uses" => "Produc
 
 // Productos
 Route::post("product/storeajax", ["as" => "product.storeajax", "uses" => "ProductController@storeajax"]);
+Route::post("product/addSubType", ["as" => "product.addSubType", "uses" => "ProductController@addSubType"]);
+Route::post("product/addAcabado", ["as" => "product.addAcabado", "uses" => "ProductController@addAcabado"]);
+Route::post("product/addSubacabado", ["as" => "product.addSubacabado", "uses" => "ProductController@addSubacabado"]);
+Route::post("product/addMaterial", ["as" => "product.addMaterial", "uses" => "ProductController@addMaterial"]);
+Route::post("product/addSustrato", ["as" => "product.addSustrato", "uses" => "ProductController@addSustrato"]);
+Route::post("product/addColor", ["as" => "product.addColor", "uses" => "ProductController@addColor"]);
+Route::get("product/uploadFichaTecnica", ["as" => "product.uploadFichaTecnica", "uses" => "ProductController@showFormFichaTecnica"]);
+Route::post("product/storeFichaTecnica", ["as" => "product.storeFichaTecnica", "uses" => "ProductController@storeFichaTecnica"]);
 
 // Images-link
 Route::post("newsletter/uploadimage", ["as" => "newsletter.uploadimage", "uses" => "NewsletterController@uploadimage"]);

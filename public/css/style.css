@@ -2692,3 +2692,7 @@ overflow:hidden;
   color: darkslategray;
 }
 
+.small-register-user{
+  text-transform: none !important; 
+  color: #989898 !important;
+}

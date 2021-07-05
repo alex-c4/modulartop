@@ -45,7 +45,7 @@ Edición de información
                                     <label for="name" class="col-md-4 col-form-label text-md-right">Nombre<span>*</span></label>
 
                                     <div class="col-md-6">
-                                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}" required autofocus>
+                                        <input id="name" type="text" maxlength="20" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}" required autofocus>
 
                                         @error('name')
                                             <span class="invalid-feedback" role="alert">
@@ -60,7 +60,7 @@ Edición de información
                                     <label for="lastName" class="col-md-4 col-form-label text-md-right">Apellido<span>*</span></label>
 
                                     <div class="col-md-6">
-                                        <input id="lastName" name="lastName" type="text" class="form-control @error('lastName') is-invalid @enderror" value="{{ $user->lastName }}" required>
+                                        <input id="lastName" name="lastName" type="text" maxlength="20" class="form-control @error('lastName') is-invalid @enderror" value="{{ $user->lastName }}" required>
 
                                         @error('lastName')
                                             <span class="invalid-feedback" role="alert">
@@ -75,7 +75,7 @@ Edición de información
                                     <label for="email" class="col-md-4 col-form-label text-md-right">Correo electrónico<span>*</span></label>
 
                                     <div class="col-md-6">
-                                        <input id="email" disabled type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" required autocomplete="off">
+                                        <input id="email" disabled type="email" maxlength="60" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" required autocomplete="off">
 
                                         @error('email')
                                             <span class="invalid-feedback" role="alert">
@@ -96,7 +96,8 @@ Edición de información
                                     <label for="avatar" class="col-md-4 col-form-label text-md-right">Imagen</label>
 
                                     <div class="col-md-6">
-                                        <input id="avatar" type="file" class="form-control" name="avatar" accept="image/png,image/jpeg,image/jpg">
+                                        <input id="avatar" type="file" maxlength="60" class="form-control" name="avatar" accept="image/png,image/jpeg,image/jpg">
+                                        <small id="emailHelp" class="form-text text-muted small-register-user" >Se recomienda imagen de tamaño (200 x 200 pixeles)</small>
                                     </div>
                                 </div>
 
@@ -105,7 +106,7 @@ Edición de información
                                     <label for="clientPhone" class="col-md-4 col-form-label text-md-right">Teléfono</label>
 
                                     <div class="col-md-6">
-                                        <input id="clientPhone" type="number" class="form-control" name="clientPhone" value="{{ $user->phone }}">
+                                        <input id="clientPhone" type="number" maxlength="15" class="form-control" name="clientPhone" value="{{ $user->phone }}">
                                     </div>
                                 </div>
 
@@ -157,7 +158,7 @@ Edición de información
                                         <label for="rif" class="col-md-4 col-form-label text-md-right">Rif<span>*</span></label>
 
                                         <div class="col-md-6">
-                                            <input id="rif" type="text" class="form-control @error('rif') is-invalid @enderror uppercase-field" name="rif" value="{{ $user->rif }}" >
+                                            <input maxlength="20" id="rif" type="text" class="form-control @error('rif') is-invalid @enderror uppercase-field" name="rif" value="{{ $user->rif }}" >
 
                                             @error('rif')
                                                 <span class="invalid-feedback" role="alert">
@@ -173,7 +174,7 @@ Edición de información
                                         <label for="rsocial" class="col-md-4 col-form-label text-md-right">Razón social<span>*</span></label>
 
                                         <div class="col-md-6">
-                                            <input id="rsocial" name="rsocial" type="text" class="form-control @error('rsocial') is-invalid @enderror" value="{{ $user->razonSocial }}">
+                                            <input maxlength="50" id="rsocial" name="rsocial" type="text" class="form-control @error('rsocial') is-invalid @enderror" value="{{ $user->razonSocial }}">
 
                                             @error('rsocial')
                                                 <span class="invalid-feedback" role="alert">

@@ -49,17 +49,17 @@ Lista de usuarios registrados en el sistema
                 <td style="display: flex; justify-content: space-around;" >
                     <form id="formUserRead_{{ $user->id}}" action="{{ route('user.read', $user->id) }}" method="post">
                         {{ csrf_field() }}
-                        <a href="#" title="Consultar" onclick="document.getElementById('formUserRead_{{ $user->id}}').submit()"><span class="icon-eye"></span></a>
+                        <a href="#" title="Consultar" onclick="document.getElementById('formUserRead_{{ $user->id}}').submit()" class="m-1"><span class="icon-eye"></span></a>
                     </form>
                 
                     @if($user->is_deleted == 0)
-                        <form id="formUserEdit_{{ $user->id}}" action="{{ route('user.edit', $user->id) }}" method="get">
+                        <form id="formUserEdit_{{ $user->id}}" action="{{ route('user.edit_from_table', $user->id) }}" method="post">
                             {{ csrf_field() }}
-                            <a href="#" title="Editar" onclick="document.getElementById('formUserEdit_{{ $user->id}}').submit()"><span class="icon-pencil"></span></a>
+                            <a href="#" title="Editar" onclick="document.getElementById('formUserEdit_{{ $user->id}}').submit()" class="m-1"><span class="icon-pencil"></span></a>
                         </form>
                         <form id="formUserInactive_{{ $user->id}}" action="{{ route('user.inactive_form', $user->id) }}" method="get">
                             {{ csrf_field() }}
-                            <a href="#" title="Inactivar" onclick="document.getElementById('formUserInactive_{{ $user->id}}').submit()"><span class="icon-trash"></span></a>
+                            <a href="#" title="Inactivar" onclick="document.getElementById('formUserInactive_{{ $user->id}}').submit()" class="m-1"><span class="icon-trash"></span></a>
                         </form>
                     @endif
                 </td>
@@ -96,17 +96,17 @@ Lista de usuarios registrados en el sistema
                 <td style="display: flex; justify-content: space-around;" >
                     <form id="formUserRead_{{ $user->id}}" action="{{ route('user.read', $user->id) }}" method="post">
                         {{ csrf_field() }}
-                        <a href="#" title="Consultar" onclick="document.getElementById('formUserRead_{{ $user->id}}').submit()"><span class="icon-eye"></span></a>
+                        <a href="#" title="Consultar" onclick="document.getElementById('formUserRead_{{ $user->id}}').submit()" class="m-3"><span class="icon-eye"></span></a>
                     </form>
                 
                     @if($user->is_deleted == 0)
-                        <form id="formUserEdit_{{ $user->id}}" action="{{ route('user.edit', $user->id) }}" method="get">
+                        <form id="formUserEdit_{{ $user->id}}" action="{{ route('user.edit_from_table', $user->id) }}" method="post">
                             {{ csrf_field() }}
-                            <a href="#" title="Editar" onclick="document.getElementById('formUserEdit_{{ $user->id}}').submit()"><span class="icon-pencil"></span></a>
+                            <a href="#" title="Editar" onclick="document.getElementById('formUserEdit_{{ $user->id}}').submit()" class="m-3"><span class="icon-pencil"></span></a>
                         </form>
                         <form id="formUserInactive_{{ $user->id}}" action="{{ route('user.inactive_form', $user->id) }}" method="get">
                             {{ csrf_field() }}
-                            <a href="#" title="Inactivar" onclick="document.getElementById('formUserInactive_{{ $user->id}}').submit()"><span class="icon-trash"></span></a>
+                            <a href="#" title="Inactivar" onclick="document.getElementById('formUserInactive_{{ $user->id}}').submit()" class="m-3"><span class="icon-trash"></span></a>
                         </form>
                     @endif
                 </td>

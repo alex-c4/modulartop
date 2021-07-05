@@ -121,7 +121,7 @@ Creacion de venta
                         <div class="form-group row">
                             <label for="invoice_sale" class="col-lg-4 col-form-label text-lg-right">Id factura<span>*</span></label>
                             <div class="col-lg-6">
-                                <input id="invoice_sale" name="invoice_sale" autocomplete="off" type="text" class="form-control @error('invoice_sale') is-invalid @enderror" value="{{ old('invoice_sale') }}" required>
+                                <input maxlength="30" id="invoice_sale" name="invoice_sale" autocomplete="off" type="text" class="form-control @error('invoice_sale') is-invalid @enderror" value="{{ old('invoice_sale') }}" required>
 
                                 @error('invoice_sale')
                                     <span class="invalid-field" role="alert">

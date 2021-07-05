@@ -20,6 +20,28 @@
         .text-sm{
             font-size: smaller;
         }
+
+        .soy-cliente{
+            color: blue !important;
+            text-decoration: underline !important;
+            font-size: smaller;
+        }
+
+        .icons-orders{
+            display: flex; 
+            justify-content: space-around;
+        }
+
+        .icon-check:hover{
+            color: green;
+        }
+
+        .icon-close:hover{
+            color: red;
+        }
+        .icon-remove:hover{
+            color: red;
+        }
     </style>
 
 
@@ -76,9 +98,9 @@ home
                         </ul>
                     </div> -->
 
-                    @if(Auth::user()->is_client == 0)
+                    @if(Auth::user()->roll_id == 2)
                     <div class="ml-auto pr-4">
-                        <a href="{{ route('user.edit', auth()->user()->id) }}" >Soy o quiero ser cliente</a>
+                        <a href="{{ route('user.edit') }}" class="soy-cliente" >Soy o quiero ser cliente</a>
                     </div>
                     @endif
 
@@ -97,7 +119,7 @@ home
                                 </div>
                             </button>
                             <div class="dropdown-menu menu-dropdown" aria-labelledby="dropdownMenuButton" id="menuDropdown">
-                                <a class="dropdown-item" href="{{ route('user.edit', auth()->user()->id) }}">
+                                <a class="dropdown-item" href="{{ route('user.edit') }}">
                                     <span class="icon-pencil"></span>
                                     Mis datos
                                 </a>
@@ -178,6 +200,7 @@ home
 
                     @if(Auth::user()->roll_id == 1 || Auth::user()->roll_id == 5)  
 
+                    <input type="hidden" name="hRouteUserUpdateFromHome" id="hRouteUserUpdateFromHome" value="{{ route('userValidation.updateFromHome') }}">
                     <div class="col-lg-6">
                         <div class="container-dash">
                             <div class="nodo">
@@ -186,26 +209,46 @@ home
                                     Clientes por confirmar @if($total > 0)<span class="cantNews">{{ $total }}</span> @endif
                                 </div>
                                 <div class="nodo-content">
-                                    <table class="table table-sm text-sm">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">#</th>
-                                                <th scope="col">Cliente</th>
-                                                <th scope="col">Razón social</th>
-                                                <th scope="col">Tipo de cliente</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        @foreach($usersToValidate as $key => $user)
-                                            <tr>
-                                                <th scope="row">{{ $key += 1 }}</th>
-                                                <td>{{ $user->name }} {{ $user->lastName }}</td>
-                                                <td>{{ $user->razonSocial }}</td>
-                                                <td>{{ $user->client_type_name }}</td>
-                                            <tr>
-                                        @endforeach
-                                        </tbody>
-                                    </table>
+                                    <div id="divTableUsers" style="width: 100%;">
+                                        <table class="table table-sm text-sm">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Cliente</th>
+                                                    <th scope="col">Razón social</th>
+                                                    <th scope="col">Tipo de cliente</th>
+                                                    <th scope="col"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($usersToValidate as $key => $user)
+                                                <tr>
+                                                    <th scope="row">{{ $key += 1 }}</th>
+                                                    <td>{{ $user->name }} {{ $user->lastName }}</td>
+                                                    <td>{{ $user->razonSocial }}</td>
+                                                    <td>{{ $user->client_type_name }}</td>
+                                                    <td class="icons-orders">
+
+                                                        <a href="#" title="Validar usuario" onclick="update_usuario(event, {{ $user->id }}, 1)"><span class="icon-check"></span></a>
+                                                        <a href="#" title="Rechazar usuario" onclick="update_usuario(event, {{ $user->id }}, 0)"><span class="icon-close"></span></a>
+
+                                                        <!-- <form id="formValidationUserValidate" action="{{ route('userValidation.update', $user->id ) }}" method="post">
+                                                            {{ csrf_field() }}
+                                                            <input type="hidden" name="hOption" id="hOption" value="1">
+                                                            <a href="#" title="Validar usuario" onclick="document.getElementById('formValidationUserValidate').submit()"><span class="icon-check"></span></a>
+                                                        </form>
+                                                        
+                                                        <form id="formValidationUserInvalidate" action="{{ route('userValidation.update', $user->id) }}" method="post">
+                                                            {{ csrf_field() }}
+                                                            <input type="hidden" name="hOption" id="hOption" value="0">
+                                                            <a href="#" title="Rechazar usuario" onclick="document.getElementById('formValidationUserInvalidate').submit()"><span class="icon-close"></span></a>
+                                                        </form> -->
+                                                    </td>
+                                                <tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -217,7 +260,9 @@ home
 
                     <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
                     <input type="hidden" name="hRouteAttendFromHome" id="hRouteAttendFromHome" value="{{ route('ordersale.attendFromHome') }}">
-                    
+                    <input type="hidden" name="hRouteWelcome" id="hRouteWelcome" value="{{ route('welcome') }}">
+                    <input type="hidden" name="hRouteCancelFromHome" id="hRouteCancelFromHome" value="{{ route('ordersale.cancelFromHome') }}">
+
                     <div class="col-lg-6">
                         <div class="container-dash">
                             <div class="nodo">
@@ -241,8 +286,17 @@ home
                                                 <tr>
                                                     <th scope="row">{{ $order->id }}</th>
                                                     <td>{{ $order->created_at }}</td>
-                                                    <th>
-                                                        <a href="#" title="Atender" onclick="attend_order(event, {{ $order->id }})"><span class="icon-square-o"></span></a>
+                                                    <th class="icons-orders">
+                                                        @if($order->status == 2)
+                                                            <a href="#" title="Atender" onclick="attend_order(event, {{ $order->id }})"><span class="icon-square-o"></span></a>
+                                                        @elseif($order->status == 3)
+                                                            <form id="formOrderProcess_{{ $order->id}}" action="{{ route('ordersale.process', $order->id) }}" method="post">
+                                                                {{ csrf_field() }}
+                                                                <a href="#" title="Procesar" onclick="document.getElementById('formOrderProcess_{{ $order->id}}').submit()"><span class="icon-check m-1"></span></a>
+                                                            </form>
+                                                            
+                                                            <a href="#" title="Cancelar orden" onclick="cancel_order(event, {{ $order->id }})"><span class="icon-remove"></span></a>
+                                                        @endif
                                                     </th>
                                                 <tr>
                                             @endforeach

@@ -47,3 +47,20 @@
 .image-trash{
     margin: 7px;
 }
+#sizeImage{    
+    text-transform: none !important;
+}
+
+label.error{
+    color: crimson !important;
+    font-weight: bolder;
+    /* font-size: 10px !important; */
+}
+
+input.error{
+    border: 1px solid crimson !important;
+}
+
+select.error{
+    border: 1px solid crimson !important;
+}

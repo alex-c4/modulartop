@@ -37,20 +37,24 @@ class Utils
             "user.showUser",
             "userClient.index",
             "userClient.create",
-            "userClient.store"
+            "userClient.store",
+            "user.edit_from_table",
         );
 
         $_user_routes = array(
             "user.edit",
             "user.update",
             "password.showFormResetPassw",
-            "user.delete.confirm",
+            "user.delete.confirm"
         );
 
         $_products_routes = array(
             "product.create",
             "product.index",
-            "product.edit"
+            "product.edit",
+            "product.uploadFichaTecnica",
+            "product.storeFichaTecnica",
+            "product.store"
         );
 
         $_compra_routes = array(
@@ -81,7 +85,9 @@ class Utils
         $_project_routes = array(
             "project.create",
             "project.index",
-            "project.edit"
+            "project.edit",
+            "project.store",
+            "project.update"
         );
 
         $_leds_routes = array(

@@ -12,7 +12,7 @@
 @endsection
 
 @section('title')
-Reestablecer clave
+Restablecer clave
 @endsection
 
 @section('subtitle')
@@ -70,7 +70,7 @@ Cambio de clave
                             <label for="currentPassword" class="col-md-4 col-form-label text-md-right">Clave actual</label>
                             
                             <div class="col-md-6">
-                                <input type="password" class="form-control @error('currentPassword') is-invalid @enderror" name="currentPassword"  id="currentPassword" required autocomplete="off">
+                                <input maxlength="20" type="password" class="form-control @error('currentPassword') is-invalid @enderror" name="currentPassword"  id="currentPassword" required autocomplete="off">
                                 @error('currentPassword')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -83,7 +83,7 @@ Cambio de clave
                             <label for="password" class="col-md-4 col-form-label text-md-right">Clave</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input maxlength="20" id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -97,7 +97,7 @@ Cambio de clave
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirmar clave</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <input maxlength="20" id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
 

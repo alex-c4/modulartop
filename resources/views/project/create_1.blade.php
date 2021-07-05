@@ -57,7 +57,7 @@ Creación proyecto
 
                         <!-- Proyectistas -->
                         <div class="row form-group" >
-                            <label class="col-lg-4 col-form-label text-md-right" for="proyectista">Proyectista<span>*</span></label>
+                            <label class="col-md-4 col-form-label text-md-right" for="proyectista">Proyectista<span>*</span></label>
                             <div class="col-md-6">
                                 <select class="custom-select @error('proyectista') is-invalid @enderror" id="proyectista" name="proyectista">
                                     <option value>Seleccione...</option>
@@ -77,7 +77,7 @@ Creación proyecto
                         <div class="form-group row">
                             <label for="code" class="col-md-4 col-form-label text-md-right">Nombre<span>*</span></label>
                             <div class="col-md-6">
-                                <input id="name" name="name" type="text" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" autofocus>
+                                <input maxlength="120" id="name" name="name" type="text" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" autofocus>
                                 @error('name')
                                     <span class="invalid-field" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -105,7 +105,7 @@ Creación proyecto
                         <div class="row form-group">
                             <label for="cover_photo_alt_text" class="col-md-4 col-form-label text-md-right">Texto alternativo<span>*</span></label>
                             <div class="col-md-6">
-                                <textarea id="cover_photo_alt_text" name="cover_photo_alt_text" rows="2" class="form-control @error('cover_photo_alt_text') is-invalid @enderror" >{{ old('cover_photo_alt_text') }}</textarea>
+                                <textarea maxlength="60" id="cover_photo_alt_text" name="cover_photo_alt_text" rows="2" class="form-control @error('cover_photo_alt_text') is-invalid @enderror" >{{ old('cover_photo_alt_text') }}</textarea>
                                 @error('cover_photo_alt_text')
                                     <span class="invalid-field" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -148,7 +148,7 @@ Creación proyecto
                         <div class="form-group row d-none" id="div_client_name">
                             <label for="client_name" class="col-md-4 col-form-label text-md-right">Nombre del cliente<span>*</span></label>
                             <div class="col-md-6">
-                                <input id="client_name" name="client_name" type="text" class="form-control @error('client_name') is-invalid @enderror" value="{{ old('client_name') }}" >
+                                <input maxlength="60" id="client_name" name="client_name" type="text" class="form-control @error('client_name') is-invalid @enderror" value="{{ old('client_name') }}" >
                                 @error('client_name')
                                     <span class="invalid-field" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -159,8 +159,8 @@ Creación proyecto
 
                         <!-- Fecha -->
                         <div class="form-group row d-none" id="div_project_date">
-                            <label for="project_date" class="col-lg-4 col-form-label text-lg-right">Fecha<span>*</span></label>
-                            <div class="col-lg-6">
+                            <label for="project_date" class="col-md-4 col-form-label text-md-right">Fecha<span>*</span></label>
+                            <div class="col-md-6">
                                 <input id="project_date" name="project_date" autocomplete="off" type="text" class="form-control @error('project_date') is-invalid @enderror" value="{{ old('project_date') }}" >
 
                                 @error('project_date')
@@ -175,7 +175,7 @@ Creación proyecto
                         <div class="form-group row d-none" id="div_partner_company">
                             <label for="partner_company" class="col-md-4 col-form-label text-md-right">Empresa aliada<span>*</span></label>
                             <div class="col-md-6">
-                                <input id="partner_company" name="partner_company" type="text" class="form-control @error('partner_company') is-invalid @enderror" value="{{ old('partner_company') }}" >
+                                <input maxlength="60" id="partner_company" name="partner_company" type="text" class="form-control @error('partner_company') is-invalid @enderror" value="{{ old('partner_company') }}" >
                                 @error('partner_company')
                                     <span class="invalid-field" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -186,7 +186,7 @@ Creación proyecto
 
                         <!-- Proveedores -->
                         <div class="row form-group d-none" id="div_provider">
-                            <label class="col-lg-4 col-form-label text-md-right" for="provider">Proveedor<span>*</span></label>
+                            <label class="col-md-4 col-form-label text-md-right" for="provider">Proveedor<span>*</span></label>
                             <div class="col-md-6">
                                 <select class="custom-select" id="provider" name="provider">
                                     <option value="0">Seleccione...</option>
@@ -223,8 +223,9 @@ Creación proyecto
 
 @section('script')
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script> -->
 
+    <script src="{{ asset('js/jquery-validate-1_19.js') }}"></script>
     <script src="{{ asset('js/project.js') }}?v={{ env('APP_VERSION') }}"></script>
 
 @endsection

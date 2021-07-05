@@ -32,7 +32,9 @@ class HomeController extends Controller
         $total = count($usersToValidate);
 
         // Búsqueda de nuevas ordedes de compra donde el status sea 2=inicial
-        $orders = OrderSale::where("status", 2)->get();
+        $orders = OrderSale::where("status", 2)
+            ->orWhere("status", 3)
+            ->get();
         $totalOrders = count($orders);
 
         $userName = ucfirst(auth()->user()->name);

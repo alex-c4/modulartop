@@ -57,14 +57,26 @@ class UserController extends Controller
         //
     }
 
+    public function edit(){
+        $id = auth()->user()->id;
+        return $this->editar($id);
+    }
+
+    public function edit_from_table($id){
+
+        return $this->editar($id);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    private function editar($id)
     {
+        // $id = auth()->user()->id;
+
         $user = User::where("id", $id)->get();
 
         $roles = DB::table("roles")->get();
@@ -145,6 +157,12 @@ class UserController extends Controller
                 $user->companyAddress = "";
                 $user->companyPhone = "";
                 $user->is_client = false;
+
+                // si el usuario cliente decide dejar de ser cliente, se colocará como estandard
+                if($user->roll_id == 4){
+                    $user->roll_id = 2;
+                    $user->validationByAdmin = 0;
+                }
             }
 
             // Seccion de las imagenes

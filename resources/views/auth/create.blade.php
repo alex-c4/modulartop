@@ -20,6 +20,18 @@ Crear nuevo usuario
 
 
 <section class="blog-section spad" id="blog">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+
+            <button type="button" id="sidebarCollapse" class="btn btn-info ">
+                <!-- <i class="fas fa-align-left"></i> -->
+                <span class="icon-align-left"></span>
+                <!-- <span>Toggle Sidebar</span> -->
+            </button>
+
+        </div>
+    </nav>
+
         @if(isset($msg) != null)
             <div class="container">
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -45,7 +57,7 @@ Crear nuevo usuario
                                     <label for="name" class="col-md-4 col-form-label text-md-right">Nombre<span>*</span></label>
 
                                     <div class="col-md-6">
-                                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autofocus>
+                                        <input maxlength="20" id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autofocus>
 
                                         @error('name')
                                             <span class="invalid-feedback" role="alert">
@@ -60,7 +72,7 @@ Crear nuevo usuario
                                     <label for="lastName" class="col-md-4 col-form-label text-md-right">Apellido<span>*</span></label>
 
                                     <div class="col-md-6">
-                                        <input id="lastName" name="lastName" type="text" class="form-control @error('lastName') is-invalid @enderror" value="{{ old('lastName') }}" required>
+                                        <input maxlength="20" id="lastName" name="lastName" type="text" class="form-control @error('lastName') is-invalid @enderror" value="{{ old('lastName') }}" required>
 
                                         @error('lastName')
                                             <span class="invalid-feedback" role="alert">
@@ -75,7 +87,7 @@ Crear nuevo usuario
                                     <label for="email" class="col-md-4 col-form-label text-md-right">Correo electrónico<span>*</span></label>
 
                                     <div class="col-md-6">
-                                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="off">
+                                        <input maxlength="60" id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="off">
 
                                         @error('email')
                                             <span class="invalid-feedback" role="alert">
@@ -141,7 +153,7 @@ Crear nuevo usuario
                                         <label for="rif" class="col-md-4 col-form-label text-md-right">Rif<span>*</span></label>
 
                                         <div class="col-md-6">
-                                            <input id="rif" type="text" class="form-control @error('rif') is-invalid @enderror uppercase-field" name="rif" >
+                                            <input maxlength="20" id="rif" type="text" class="form-control @error('rif') is-invalid @enderror uppercase-field" name="rif" >
 
                                             @error('rif')
                                                 <span class="invalid-feedback" role="alert">
@@ -157,7 +169,7 @@ Crear nuevo usuario
                                         <label for="rsocial" class="col-md-4 col-form-label text-md-right">Razón social<span>*</span></label>
 
                                         <div class="col-md-6">
-                                            <input id="rsocial" name="rsocial" type="text" class="form-control @error('rsocial') is-invalid @enderror">
+                                            <input maxlength="50" id="rsocial" name="rsocial" type="text" class="form-control @error('rsocial') is-invalid @enderror">
 
                                             @error('rsocial')
                                                 <span class="invalid-feedback" role="alert">

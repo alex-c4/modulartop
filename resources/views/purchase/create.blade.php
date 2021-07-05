@@ -96,7 +96,7 @@ Creacion de una nueva compra
                         <div class="form-group row">
                             <label for="id_invoice" class="col-lg-4 col-form-label text-lg-right">Id de factura<span>*</span></label>
                             <div class="col-lg-6">
-                                <input id="id_invoice" name="id_invoice" type="text" class="form-control @error('id_invoice') is-invalid @enderror" value="{{ old('id_invoice') }}" required>
+                                <input maxlength="30" id="id_invoice" name="id_invoice" type="text" class="form-control @error('id_invoice') is-invalid @enderror" value="{{ old('id_invoice') }}" required>
                                 @error('id_invoice')
                                     <span class="invalid-field" role="alert">
                                         <strong>{{ $message }}</strong>

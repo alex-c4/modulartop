@@ -136,7 +136,7 @@ content="Tablero melaminico hidrófugo y natural MDP importado y nacional, acaba
                                     Ver más imagenes
                                 </a>
 
-                                @if($product->pdffile_product != "")
+                                @if(isset($product->pdffile_product) != "")
                                 <a href="{{ route('tablero.fichatecnica', $product->id_product) }}" target="_blank" alt="Ver precio" class="p-2">
                                     <span class="icon-circle-o"></span>
                                     Ficha técnica

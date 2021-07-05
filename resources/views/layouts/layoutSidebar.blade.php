@@ -406,19 +406,26 @@
                     <ul class="collapse list-unstyled" id="product">
                       @if(Auth::user()->roll_id == 1 || Auth::user()->roll_id == 5)  
 
-                      <li>
-                        <a href="{{ route('product.create') }}">
-                            <span class="icon-plus"></span>
-                            Registrar producto
-                        </a>
-                      </li>
-                      
-                      <li>
-                        <a href="{{ route('product.index') }}">
-                            <span class="icon-search"></span>
-                            Consultar productos
-                        </a>
-                      </li>
+                        <li>
+                          <a href="{{ route('product.create') }}">
+                              <span class="icon-plus"></span>
+                              Registrar producto
+                          </a>
+                        </li>
+                        
+                        <li>
+                          <a href="{{ route('product.index') }}">
+                              <span class="icon-search"></span>
+                              Consultar productos
+                          </a>
+                        </li>
+                        
+                        <li>
+                          <a href="{{ route('product.uploadFichaTecnica') }}">
+                              <span class="icon-file-text-o"></span>
+                              Ficha técnica
+                          </a>
+                        </li>
                       @endif
 
                       <li>
@@ -579,7 +586,7 @@
                     </a>
                     <ul class="collapse list-unstyled" id="user">
                       <li>
-                        <a href="{{ route('user.edit', auth()->user()->id) }}">
+                        <a href="{{ route('user.edit') }}">
                             <span class="icon-pencil"></span>
                             Mis datos
                         </a>

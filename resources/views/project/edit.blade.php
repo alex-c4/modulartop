@@ -86,7 +86,7 @@ Edición proyecto
                         <div class="form-group row">
                             <label for="code" class="col-md-4 col-form-label text-md-right">Nombre<span>*</span></label>
                             <div class="col-md-6">
-                                <input id="name" name="name" type="text" class="form-control @error('name') is-invalid @enderror" value="{{ $project->name }}" autofocus>
+                                <input maxlength="120" id="name" name="name" type="text" class="form-control @error('name') is-invalid @enderror" value="{{ $project->name }}" autofocus>
                                 @error('name')
                                     <span class="invalid-field" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -165,7 +165,7 @@ Edición proyecto
                         <div class="form-group row d-none" id="div_client_name">
                             <label for="client_name" class="col-md-4 col-form-label text-md-right">Nombre del cliente<span>*</span></label>
                             <div class="col-md-6">
-                                <input id="client_name" name="client_name" type="text" class="form-control @error('client_name') is-invalid @enderror" value="{{ $project->client_name }}" >
+                                <input maxlength="60" id="client_name" name="client_name" type="text" class="form-control @error('client_name') is-invalid @enderror" value="{{ $project->client_name }}" >
                                 @error('client_name')
                                     <span class="invalid-field" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -192,7 +192,7 @@ Edición proyecto
                         <div class="form-group row d-none" id="div_partner_company">
                             <label for="partner_company" class="col-md-4 col-form-label text-md-right">Empresa aliada<span>*</span></label>
                             <div class="col-md-6">
-                                <input id="partner_company" name="partner_company" type="text" class="form-control @error('partner_company') is-invalid @enderror" value="{{ $project->partner_company }}" >
+                                <input maxlength="60" id="partner_company" name="partner_company" type="text" class="form-control @error('partner_company') is-invalid @enderror" value="{{ $project->partner_company }}" >
                                 @error('partner_company')
                                     <span class="invalid-field" role="alert">
                                         <strong>{{ $message }}</strong>

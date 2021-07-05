@@ -133,7 +133,7 @@ Edición de novedades
                         <div class="col-md-6">
                             <label class="text-black" for="tags">Tags</label>
                             <div class="input-group" >
-                                <input type="text" id="tags" name="tags" class="form-control basicAutoComplete" autocomplete="off" data-url="{{ route('search_tags') }}" data-noresults-text="No se encontró el Tag">
+                                <input maxlength="20" type="text" id="tags" name="tags" class="form-control basicAutoComplete" autocomplete="off" data-url="{{ route('search_tags') }}" data-noresults-text="No se encontró el Tag">
                                 <div class="input-group-append">
                                     <button style="height: 38px" id="btnAddTag" data-toggle="modal" data-target="#tagModal" title="Agregar nuevo Tag" class="btn btn-primary" type="button"><span class="icon-add"></span></button>
                                 </div>
@@ -220,7 +220,7 @@ Edición de novedades
 
         <div class="form-group">
             <label for="txtTagName">Nuevo Tag</label>
-                <input type="text" class="form-control" id="txtTagName">
+                <input maxlength="20" type="text" class="form-control" id="txtTagName">
             </div>
             
         </div>
