@@ -112,13 +112,17 @@ unset($__errorArgs, $__bag); ?>
                                         </a>
                                     <?php endif; ?>
 
-                                    <!-- comentado temporalmente para evitar registros de usuarios -->
-                                    <!-- <a class="btn btn-link" href="<?php echo e(route('register')); ?>">
+                                    <a class="btn btn-link" href="<?php echo e(route('register')); ?>">
                                         Registrarse
-                                    </a> -->
+                                    </a>
 
                                 </div>
-
+                                
+                                <?php if(isset($message_delete)): ?>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong><?php echo e($message_delete); ?></strong>
+                                    </span>
+                                <?php endif; ?>
                             </div>
 
                             
