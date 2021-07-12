@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-05-2021 a las 00:45:38
+-- Tiempo de generación: 06-07-2021 a las 02:57:59
 -- Versión del servidor: 10.1.30-MariaDB
 -- Versión de PHP: 7.2.1
 
@@ -31,12 +31,9 @@ SET time_zone = "+00:00";
 CREATE TABLE `image_products` (
   `id` int(11) NOT NULL,
   `id_product` int(11) NOT NULL,
-  `name` varchar(120) NOT NULL
+  `name` varchar(120) NOT NULL,
+  `text_alt` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Índices para tablas volcadas
---
 
 --
 -- Indices de la tabla `image_products`
@@ -52,7 +49,7 @@ ALTER TABLE `image_products`
 -- AUTO_INCREMENT de la tabla `image_products`
 --
 ALTER TABLE `image_products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

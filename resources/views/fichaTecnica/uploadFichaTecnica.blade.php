@@ -49,7 +49,7 @@ Carga de ficha técnica
             <div class="col-lg-8">
                 <div class="card">
                     <div class="card-body">
-                        <form id="form_ficha_tecnica" method="POST" action="{{ route('product.storeFichaTecnica') }}" enctype="multipart/form-data">
+                        <form id="form_ficha_tecnica" method="POST" action="{{ route('fichaTecnica.storeFichaTecnica') }}" enctype="multipart/form-data">
                             
                             <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
 
@@ -107,8 +107,8 @@ Carga de ficha técnica
                                     <td>{{ $ficha->name }}</td>
                                     <td>{{ explode(' ', $ficha->created_at)[0] }}</td>
                                     <td>
-                                        <a class="mr-3" href="{{ route('product.downloadFichaTecnica', $ficha->id) }}" target="_blank" title="Descargar {{ $ficha->name }}"><span class="icon-download"></span></a>
-                                        <a href="{{ route('product.deleteFichaTecnica', $ficha->id) }}" title="Borrar {{ $ficha->name }}"><span class="icon-trash"></span></a> 
+                                        <a class="mr-3" href="{{ route('fichaTecnica.downloadFichaTecnica', $ficha->id) }}" target="_blank" title="Descargar {{ $ficha->name }}"><span class="icon-download"></span></a>
+                                        <a href="{{ route('fichaTecnica.deleteFichaTecnica', $ficha->id) }}" title="Borrar {{ $ficha->name }}"><span class="icon-trash"></span></a> 
                                     </td>
                                 </tr>
                                 @endforeach

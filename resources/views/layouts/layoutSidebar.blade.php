@@ -421,7 +421,7 @@
                         </li>
                         
                         <li>
-                          <a href="{{ route('product.uploadFichaTecnica') }}">
+                          <a href="{{ route('fichaTecnica.uploadFichaTecnica') }}">
                               <span class="icon-file-text-o"></span>
                               Ficha técnica
                           </a>
@@ -432,6 +432,13 @@
                         <a href="{{ route('welcome') }}/#howitworks-section">
                           <span class="icon-square"></span>
                           Productos
+                        </a>
+                      </li>
+
+                      <li>
+                        <a href="{{ route('fichaTecnica.showFichaTecnica') }}">
+                          <span class="icon-download"></span>
+                          Descargar ficha técnica
                         </a>
                       </li>
 
@@ -502,13 +509,22 @@
                             Descargar planilla
                         </a>
                       </li>
+
+                      @if(Auth::user()->roll_id == 1 || Auth::user()->roll_id == 5)
+                        <li>
+                          <a href="javascript:void(0)" data-toggle="modal" data-target="#planillaModal">
+                              <span class="icon-upload"></span>
+                              Actualizar planilla
+                          </a>
+                        </li>
+                      @endif
                       <li>
                         <a href="{{ route('ordersale.create') }}">
                             <span class="icon-plus"></span>
                             Crear orden de compra
                         </a>
                       </li>
-                      @if(Auth::user()->roll_id == 1 || Auth::user()->roll_id == 5)
+                      @if(Auth::user()->roll_id == 1 || Auth::user()->roll_id == 4 || Auth::user()->roll_id == 5)
                       <li>
                         <a href="{{ route('ordersale.index') }}">
                             <span class="icon-search"></span>
@@ -767,6 +783,43 @@
       </form>
     </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="planillaModal" tabindex="-1" aria-labelledby="planillaModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Actualizar planilla</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <form id="form_updloadexcel" action="{{ route('ordersale.uploadexcel') }}" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+
+            <div class="modal-body">
+              
+                <div id="message_alert">
+                </div>
+
+                <div class="form-group">
+                    <label for="txtSubType">Nueva planilla de orden de compra</label>
+                    <input type="file" class="form-control" id="planilla" name="planilla">
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+              <button type="submit" class="btn btn-primary" id="btnUpload">Subir planilla</button>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+    <!-- Fin Modal -->
   </body>
 </html>
 

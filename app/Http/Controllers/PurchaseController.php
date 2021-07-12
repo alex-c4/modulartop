@@ -45,13 +45,35 @@ class PurchaseController extends Controller
 
         $products = Product::where("is_deleted", 0)->get();
 
+        // $product_categories = DB::table("product_categories")->get();
+        // $product_types = DB::table("product_types")->get();
+        // $product_subcategory = DB::table("product_subcategory")->where("id_product_type", 1)->get();
+        // $product_subcategory_classification = DB::table("product_subcategory_classification")->get();
+
         $product_categories = DB::table("product_categories")->get();
         $product_types = DB::table("product_types")->get();
-        $product_subcategory = DB::table("product_subcategory")->where("id_product_type", 1)->get();
-        $product_subcategory_classification = DB::table("product_subcategory_classification")->get();
+        $product_subtypes = DB::table("product_subtypes")->get();
+        $product_acabados = DB::table("product_acabados")->get();
+        $product_subacabados = DB::table("product_subacabados")->get();
+        $product_materials = DB::table("product_materials")->get();
+        $product_sustrato = DB::table("product_sustratos")->get();
+        $product_colors = DB::table("product_colors")->get();
+        $product_origen = DB::table("product_origen")->get();
 
+        return view("purchase.create", compact(
+            "providers", 
+            "products", 
+            "product_categories", 
+            "product_types", 
+            "product_subtypes", 
+            "product_acabados",
+            "product_subacabados",
+            "product_materials",
+            "product_sustrato",
+            "product_colors",
+            "product_origen"
+        ));
 
-        return view("purchase.create", compact("providers", "products", "product_categories", "product_types", "product_subcategory", "product_subcategory_classification"));
     }
 
     /**
@@ -84,9 +106,17 @@ class PurchaseController extends Controller
                     $temp = [
                         "id_purchase" => $purchase->id,
                         "id_product" => $product->id,
-                        "quantity" => intval($product->quantity)
+                        "quantity" => intval($product->quantity),
+                        "cost" => intval($product->cost)
                     ];
                     array_push($items, $temp);
+
+                    // Actualiza el precio del producto en la tabla de producto
+                    Product::where("id", $product->id)
+                        ->update([
+                            "price" => $product->cost
+                        ]);
+
                 }
                 DB::table("purchase_items")->insert($items);
 

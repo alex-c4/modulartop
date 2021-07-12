@@ -406,3 +406,117 @@ UPDATE `product_subcategory_classification` SET `name` = 'Tradicionales' WHERE `
 
 
 
+DROP procedure IF EXISTS `sp_getProductBy_product_subcategory_classification`;
+
+DELIMITER $$
+
+CREATE PROCEDURE `sp_getProductBy_product_subcategory_classification`(IN `id` INT)
+    NO SQL
+BEGIN
+	SELECT 
+    	p.id AS id_product,
+    	p.name AS name_product,
+        p.id_product_color AS id_subcategory_color,
+        p.description AS description_product,
+        p.img_product AS img_product,
+        (SELECT name FROM product_colors AS pc WHERE pc.id = p.id_product_color  ) AS name_subcategory_color
+        
+    FROM 
+    	products as p 
+   	WHERE 
+    	p.id_product_subacabado = id AND
+        p.is_deleted = 0
+	ORDER BY
+		name_subcategory_color ASC;
+END$$
+
+DELIMITER ;
+
+
+
+
+
+
+
+
+DROP procedure IF EXISTS `sp_getInformationProduct`;
+
+DELIMITER $$
+
+CREATE PROCEDURE `sp_getInformationProduct`(IN `id_product` INT)
+BEGIN
+	SELECT 
+    	p.id AS id_product,
+        p.code AS code_product,
+        p.price AS price_product,
+    	p.name AS name_product,
+        p.description AS description_product,
+        -- p.pdf_file AS pdffile_product,
+        p.img_product AS img_product,
+        pc.name AS name_product_category,
+        pt.name AS name_product_type,
+        pa.name AS name_subcategory_acabado,
+        psa.name AS name_subcategory_efecto_v,
+        pm.name AS name_subcategory_material,
+        ps.name AS name_subcategory_sustrato,
+        pco.name AS name_subcategory_color
+    FROM 
+    	products as p 
+        INNER JOIN product_categories AS pc ON p.id_product_category = pc.id
+        INNER JOIN product_types AS pt ON p.id_product_type = pt.id
+        INNER JOIN product_acabados AS pa ON p.id_product_acabado = pa.id
+        INNER JOIN product_subacabados AS psa ON p.id_product_subacabado = psa.id
+        INNER JOIN product_materials AS pm ON p.id_product_material = pm.id
+        INNER JOIN product_sustratos AS ps ON p.id_product_sustrato = ps.id
+        INNER JOIN product_colors AS pco ON p.id_product_color = pco.id
+   	WHERE 
+    	p.id = id_product;
+END$$
+
+DELIMITER ;
+
+
+
+DROP procedure IF EXISTS `sp_getInventory`;
+
+DELIMITER $$
+
+CREATE PROCEDURE `sp_getInventory`()
+    NO SQL
+BEGIN
+
+	SELECT 
+    	i.quantity AS invQuantity,
+    	p.name AS productName,
+        p.code,
+        p.width,
+        p.thickness,
+        p.length,
+        p.price,
+        pc.name AS productColor,
+        pt.name AS productType,
+        pa.name AS productAcabado,
+        pm.name AS productMaterial,
+        ps.name AS productSustrato
+    FROM 
+    	inventory AS i 
+        INNER JOIN products as p ON i.id_product = p.id 
+        INNER JOIN product_colors AS pc ON pc.id = p.id_product_color
+        INNER JOIN product_types AS pt ON pt.id = p.id_product_type
+        INNER JOIN product_acabados AS pa ON pa.id = p.id_product_acabado
+        INNER JOIN product_materials AS pm ON pm.id = p.id_product_material
+        INNER JOIN product_sustratos AS ps ON ps.id = p.id_product_sustrato
+    WHERE
+		p.is_deleted = 0
+   	ORDER BY
+    	pc.name ASC;
+
+END$$
+
+DELIMITER ;
+
+
+
+
+
+

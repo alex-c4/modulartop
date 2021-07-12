@@ -1,7 +1,10 @@
 var $table = "";
 var _idProduct = 0;
 var _nameProduct = "";
-var arr = ["code", "name", "description", "image_0", "price"];
+// var arr = ["code", "name", "description", "image_0", "price"];
+var arr_tablero = ["category", "type", "subtype", "code", "name", "origen", "acabado", "sub_acabado", "width", "thickness", "length", "material", "sustrato", "color", "description", "image_0", "image_alt"];
+var arr_tapacanto = ["category", "type", "subtype", "code", "name", "origen", "width", "thickness", "image_0", "image_alt"];
+var arr_default = ["category", "type"];
 
 $(function(){
     $('#purchase_date').datepicker({
@@ -39,8 +42,9 @@ var onclick_addProvider = function(){
 }
 
 var onclick_addProduct = function(){
-    debugger
+    
     var _quantity = $("#quantity").val();
+    var _cost = $("#cost").val();
     var _row = new Array();
     var _data = $table.bootstrapTable('getData');
 
@@ -50,7 +54,8 @@ var onclick_addProduct = function(){
         _row.push({
             id: _idProduct,
             name: _nameProduct,
-            quantity: _quantity
+            quantity: _quantity,
+            cost: _cost
         });
         $table.bootstrapTable('append', _row);
 
@@ -62,6 +67,38 @@ var onclick_addProduct = function(){
 
     }
 
+}
+
+var onclick_closeModal = function(type, manual_closing){
+    
+    if(manual_closing){
+        switch(type){
+            case "subtype":
+                $("#subtypeModal").modal("hide");
+                break;
+            case "acabado":
+                $("#acabadoModal").modal("hide");
+                break;
+            case "subacabado":
+                $("#subacabadoModal").modal("hide");
+                break;
+            case "material":
+                $("#materialModal").modal("hide");
+                break;
+            case "sustrato":
+                $("#sustratoModal").modal("hide");
+                break;
+            case "color":
+                $("#colorModal").modal("hide");
+                break;
+        }
+    
+    }
+
+    $('#productModal').modal('hide');
+    setTimeout(() => {
+        $('#productModal').modal('show');
+    }, 800);
 }
 
 var onchage_product = function(obj){
@@ -115,7 +152,7 @@ $("#btnSave").on("click", function(){
 
 
 $("#form_create_product").on("submit", function(ev){
-    debugger
+    
     ev.preventDefault();
     $("#btnSaveProduct").prop("disabled", true);
 
@@ -124,8 +161,9 @@ $("#form_create_product").on("submit", function(ev){
     var _route = $(this).attr('action');
 
     var _token = $("#token").val();
+    var _type = ($("#type").val() != "") ? parseInt($("#type").val()) : $("#type").val();
 
-    if(validationFormAddProduct()){
+    if(validationFormAddProduct(_type)){
         $.ajax({
             url: _route,
             dataType: "html",
@@ -140,8 +178,8 @@ $("#form_create_product").on("submit", function(ev){
 
             data = JSON.parse(result);
             if(data[0].result){
-                $("#productList").append("<option value='" + data[0].data[0].id + "'>" + data[0].data[0].name + "</option>")
-                resetField();
+                $("#productList").append("<option value='" + data[0].data[0].id + "'>(" + data[0].data[0].code + ") " + data[0].data[0].name + " " + data[0].data[0].width + "/" + data[0].data[0].thickness + "/" + data[0].data[0].length + "</option>")
+                resetField(_type);
             }
             
             showAlert(data[0].result, data[0].msgPost);
@@ -157,11 +195,14 @@ $("#form_create_product").on("submit", function(ev){
     }
 })
 
-var validationFormAddProduct = function(){
-    clearFields();
+var validationFormAddProduct = function(type){
+
+    clearFields(type);
     isValid = true;
 
-    arr.forEach(function(item){
+    var crr_arr = getArray(type);
+
+    crr_arr.forEach(function(item){
         if($("#" + item).val() == ""){
             // isValid = false;
             $("#" + item).addClass("is-invalid");
@@ -174,12 +215,31 @@ var validationFormAddProduct = function(){
     return isValid;
 }
 
-var clearFields = function(){
-    arr.forEach(function(item){
+var clearFields = function(type){
+    
+    var crr_arr = getArray(type);
+
+    crr_arr.forEach(function(item){
         $("#" + item).removeClass("is-invalid");
         $("#" + item + "-msg").css("display", "none");
     });
 
+}
+
+var getArray = function(type){
+    var crr_arr;
+
+    if(type == ""){
+        var crr_arr = JSON.parse( JSON.stringify( arr_default ) );
+    }
+    if(type == 1){
+        var crr_arr = JSON.parse( JSON.stringify( arr_tablero ) );
+    }
+    if(type == 2){
+        var crr_arr = JSON.parse( JSON.stringify( arr_tapacanto ) );
+    }
+
+    return crr_arr; 
 }
 
 var showAlert = function(status, message){
@@ -189,7 +249,7 @@ var showAlert = function(status, message){
         _class = 'success'
     }else{
         _msg = 'Hubo un error';
-        _class = 'success'
+        _class = 'warning'
 
     }
     $("#message_alert").html("");
@@ -204,12 +264,14 @@ var showAlert = function(status, message){
     
 }
 
-var resetField = function(){
-    arr.forEach(function(item){
+var resetField = function(type){
+    var crr_arr = getArray(type);
+
+    crr_arr.forEach(function(item){
         $("#" + item).val("");
     });
 
-    $("#pdf_file").val("");
+    $("#cantinit").val("0");
 
     $("#container-img").html("");
     var _inputFile = '<input type="file" id="image_1" name="image_1" accept="image/png, image/jpeg, image/jpg" class="form-control mt-2" placeholder="Imagen">';
@@ -237,4 +299,26 @@ $("#btnAddImage").on("click", function(){
 
 });
 
+$("#subtypeModal").on("hide.bs.modal", function(event){
+    onclick_closeModal("", false);
+});
 
+$("#acabadoModal").on("hide.bs.modal", function(event){
+    onclick_closeModal("", false);
+});
+
+$("#subacabadoModal").on("hide.bs.modal", function(event){
+    onclick_closeModal("", false);
+});
+
+$("#materialModal").on("hide.bs.modal", function(event){
+    onclick_closeModal("", false);
+});
+
+$("#sustratoModal").on("hide.bs.modal", function(event){
+    onclick_closeModal("", false);
+});
+
+$("#colorModal").on("hide.bs.modal", function(event){
+    onclick_closeModal("", false);
+});

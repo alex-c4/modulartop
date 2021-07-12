@@ -61,3 +61,48 @@
     }
 
 }
+
+#divTableros{
+    background-color: black;
+    display: flex;
+    justify-content: space-around;
+    padding: 5px;
+}
+
+#divTableros img{
+    width: 100px;
+    height: 100px;
+}
+
+.div-subacabado{
+    padding: 5px;
+    z-index: 2;
+}
+
+.div-subacabado:hover{
+    padding: 5px;
+    color: white;
+}
+.div-{
+    padding: 5px;
+}
+.div-{
+    padding: 5px;
+}
+
+.title-tableros{
+    height: 70px;
+}
+.title-tableros a{
+    font-size: 8px;
+}
+.title-tableros p{
+    font-size: 6px;
+}
+
+.fondo-rojo{
+    background-color: #8B171A;
+    width: 57%;
+    height: 50%;
+    position: absolute;
+}

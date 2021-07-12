@@ -50,7 +50,12 @@ class SaleController extends Controller
             ->orderby("name", "asc")
             ->get();
         
-        $products = Product::where("is_deleted", 0)->get();
+        // $products = Product::where("is_deleted", 0)->get();
+        $products = DB::table("products")
+            ->join("inventory", "inventory.id_product", "=", "products.id", "inner", false)
+            ->where("is_deleted", 0)
+            ->where("inventory.quantity", ">", 0)
+            ->get();
 
         $orders = $this->getOrderByEstatus(3);
 
@@ -59,7 +64,11 @@ class SaleController extends Controller
             $value->orderSaleCreatedAt = $_arr[0];  
         }
 
-        return view("sale.create", compact("clients", "orders", "products"));
+        $roles = DB::table("roles")->get();
+
+        $company_types = DB::table("company_types")->get();
+
+        return view("sale.create", compact("clients", "orders", "products", "roles", "company_types"));
     }
 
     /**
@@ -163,7 +172,11 @@ class SaleController extends Controller
 
         $lowInventoryProducts = Utils::getLowInventoryProducts($products_req);
         
-        return view("sale.create", compact("clients", "orders", "products", "msgPost", "lowInventoryProducts"));
+        $roles = DB::table("roles")->get();
+
+        $company_types = DB::table("company_types")->get();
+
+        return view("sale.create", compact("clients", "orders", "products", "msgPost", "lowInventoryProducts", "roles", "company_types"));
     }
 
     /**
@@ -174,7 +187,24 @@ class SaleController extends Controller
      */
     public function show($id)
     {
-        //
+        $sale = DB::table("sales as s")
+            ->select(
+                "s.*",
+                "u.name as clientName",
+                "u.lastName as clientLastName"
+            )
+            ->join("users as u", "u.id", "=", "s.id_client")
+            ->where("s.id", $id)->first();
+
+        $sale_items = DB::table('sale_items as s')
+            ->select(
+                's.*',
+                'p.name'
+                )
+            ->join('products as p', 'p.id', '=', 's.id_product')
+            ->where('s.id_sale', $id)->get();
+        
+        return view("sale.show", compact("sale", "sale_items"));
     }
 
     /**
@@ -225,6 +255,7 @@ class SaleController extends Controller
 
     public function saleslist(){
         $sales = DB::select("CALL sp_getSales()");
+
         return view("sale.saleslist", compact("sales"));
     }
 
@@ -245,6 +276,7 @@ class SaleController extends Controller
             ->select(
                     "users.name as userName",
                     "users.lastName as userLastName",
+                    "users.id as userId",
                     "order_sales.id as orderSaleId",
                     "order_sales.created_at as orderSaleCreatedAt"
                     )
@@ -309,5 +341,15 @@ class SaleController extends Controller
 
         return collect(["data" => $data, "title" => $title_chart]);
     }
+
+    public function validarExistencia(Request $request){
+        $productId = $request->input("product_id");
+        $quantity = $request->input("quantity");
+        $resp = Utils::validar_existencia_inventario_porProducto($productId, $quantity);
+
+        return $resp;
+
+    }
+
 }
 

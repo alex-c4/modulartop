@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-05-2021 a las 01:59:25
+-- Tiempo de generación: 07-07-2021 a las 01:32:44
 -- Versión del servidor: 10.1.30-MariaDB
 -- Versión de PHP: 7.2.1
 
@@ -32,12 +32,10 @@ CREATE TABLE `purchase_items` (
   `id` int(11) NOT NULL,
   `id_purchase` int(11) NOT NULL,
   `id_product` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL
+  `quantity` int(11) NOT NULL,
+  `cost` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Índices para tablas volcadas
---
 
 --
 -- Indices de la tabla `purchase_items`
@@ -53,7 +51,7 @@ ALTER TABLE `purchase_items`
 -- AUTO_INCREMENT de la tabla `purchase_items`
 --
 ALTER TABLE `purchase_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

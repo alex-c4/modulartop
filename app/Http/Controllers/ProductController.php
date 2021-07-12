@@ -14,7 +14,7 @@ use DB;
 class ProductController extends Controller
 {
     public function __construct(){
-        $this->middleware(['auth', 'administrative'], ['except' => ['ShowViewByVisualEfect', 'descriptionByProducto', 'showImagesByProduct', 'downloadFichaTecnica']]);
+        $this->middleware(['auth', 'administrative'], ['except' => ['ShowViewByVisualEfect', 'descriptionByProducto', 'showImagesByProduct']]);
         // , 'showImagesByProduct', 'fichatecnica'
         // $this->middleware(['administrative'])->except('ShowViewByVisualEfect', 'descriptionByProducto');
         // $this->middleware('auth');
@@ -81,11 +81,6 @@ class ProductController extends Controller
 
         $product_categories = DB::table("product_categories")->get();
         $product_types = DB::table("product_types")->get();
-        $product_subcategory = DB::table("product_subcategory")->where("id_product_type", 1)->get();
-        $product_subcategory_classification = DB::table("product_subcategory_classification")->get();
-
-        $product_categories = DB::table("product_categories")->get();
-        $product_types = DB::table("product_types")->get();
         $product_subtypes = DB::table("product_subtypes")->get();
         $product_acabados = DB::table("product_acabados")->get();
         $product_subacabados = DB::table("product_subacabados")->get();
@@ -106,7 +101,6 @@ class ProductController extends Controller
             "product_origen",
             "msgPost"
         ));
-
     }
 
     public function storeajax(Request $request){
@@ -119,14 +113,18 @@ class ProductController extends Controller
                 "msgPost" => $resultProduct[0]["msg"],
                 "data" => array([
                     "id" => $resultProduct[0]["id"],
-                    "name" => $request->input("name")
+                    "name" => $request->input("name"),
+                    "width" => $resultProduct[0]["width"],
+                    "thickness" => $resultProduct[0]["thickness"],
+                    "length" => $resultProduct[0]["length"],
+                    "code" => $resultProduct[0]["code"]
                 ])
             ]);
             return $result;
         } catch (\Throwable $th) {
             $result = array([
                 "result" => false,
-                "msgPost" => "Hubo un error en la operacion." . $th->getmessage()
+                "msgPost" => "Hubo un error en la operación." . $th->getmessage()
             ]);
             return $result;
         }
@@ -156,12 +154,11 @@ class ProductController extends Controller
                     "code" => $request->input("code"),
                     "name" => $request->input("name"),
                     "id_product_origen" => $request->input("origen"),
-                    "caninit" => $request->input("caninit"),
                     "id_product_acabado" => $request->input("acabado"),
                     "id_product_subacabado" => $request->input("sub_acabado"),
                     "width" => $request->input("width"),
                     "thickness" => $request->input("thickness"),
-                    "length" => $request->input("width"),
+                    "length" => $request->input("length"),
                     "id_product_material" => $request->input("material"),
                     "id_product_sustrato" => $request->input("sustrato"),
                     "id_product_color" => $request->input("color"),
@@ -183,7 +180,6 @@ class ProductController extends Controller
                     "code" => $request->input("code"),
                     "name" => $request->input("name"),
                     "id_product_origen" => $request->input("origen"),
-                    "caninit" => $request->input("caninit"),
                     "width" => $request->input("width"),
                     "thickness" => $request->input("thickness"),
                     "img_product" => "",
@@ -204,10 +200,12 @@ class ProductController extends Controller
                     $fileName = $product->id."_". $file->getClientOriginalName();
     
                     $file->storeAs('image_products', $fileName, 'local');
+                    $textAlt = $request->input("image_alt_".$i);
     
                     DB::table('image_products')->insert([
                         "id_product" => $product->id,
-                        "name" => $fileName
+                        "name" => $fileName,
+                        "text_alt" => $textAlt
                     ]);
                 }
             }
@@ -229,16 +227,45 @@ class ProductController extends Controller
             // }
             
             $product->save();
+
+            /**
+             * Si existe cantidad inicial, se debe sumar al inventario
+             */
+            $cantinit = intval($request->input("cantinit"));
+            $this->aumentarInventario($cantinit, $product->id);
             
             $result = array([
                 "msg" => "¡Registro realizado satisfactoriamente!.",
-                "id" => $product->id
-                ]);
+                "id" => $product->id,
+                "width" => $product->width,
+                "thickness" => $product->thickness,
+                "length" => $product->length,
+                "code" => $product->code
+            ]);
 
             return $result;
         });
 
         return $result;
+    }
+
+    public function aumentarInventario($cantinit, $id_product){
+        if($cantinit > 0 || $cantinit != ""){
+            $inventory = DB::table("inventory")->where("id_product", $id_product)->first();
+            if($inventory == null){
+                DB::table("inventory")->insert([
+                    "id_product" => $id_product,
+                    "quantity" => $cantinit
+                ]);
+            }
+
+            if($inventory != null){
+                $crr_quantity = $inventory->quantity;
+                $crr_quantity += $cantinit;
+                DB::table("inventory")->where("id_product", $id_product)->update(["quantity" => $crr_quantity]);
+            }
+        }
+
     }
 
     /**
@@ -249,7 +276,32 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::find($id);
+        $product_categories = DB::table("product_categories")->get();
+        $product_types = DB::table("product_types")->get();
+        $product_subtypes = DB::table("product_subtypes")->get();
+        $product_acabados = DB::table("product_acabados")->get();
+        $product_subacabados = DB::table("product_subacabados")->get();
+        $product_materials = DB::table("product_materials")->get();
+        $product_sustrato = DB::table("product_sustratos")->get();
+        $product_colors = DB::table("product_colors")->get();
+        $product_origen = DB::table("product_origen")->get();
+
+        $product_images = DB::table("image_products")->where("id_product", $id)->get();
+        
+        return view("product.show", compact(
+            "product", 
+            "product_categories", 
+            "product_types", 
+            "product_subtypes", 
+            "product_acabados",
+            "product_subacabados",
+            "product_materials",
+            "product_sustrato",
+            "product_colors",
+            "product_origen",
+            "product_images"
+        ));
     }
 
     /**
@@ -307,9 +359,9 @@ class ProductController extends Controller
         if($type == 1) {
             $this->validateTablero_update(request()->all())->validate();
         }else{
-            $this->validateTapacanto(request()->all())->validate();
+            $this->validateTapacanto_update(request()->all())->validate();
         }
-
+        
         $result = DB::transaction(function() use($request, $type, $id){
             $product = Product::find($id);
 
@@ -342,7 +394,6 @@ class ProductController extends Controller
                 $product->code = $request->input("code");
                 $product->name = $request->input("name");
                 $product->id_product_origen = $request->input("origen");
-                $product->caninit = $request->input("caninit");
                 $product->width = $request->input("width");
                 $product->thickness = $request->input("thickness");
                 $product->img_alt = $request->input("image_alt");
@@ -372,10 +423,12 @@ class ProductController extends Controller
                     $fileName = $product->id."_". $file->getClientOriginalName();
                     
                     $file->storeAs('image_products', $fileName, 'local');
+                    $textAlt = $request->input("image_alt_".$i);
 
                     DB::table('image_products')->insert([
                         "id_product" => $product->id,
-                        "name" => $fileName
+                        "name" => $fileName,
+                        "text_alt" => $textAlt
                     ]);
                 }
             }
@@ -525,7 +578,7 @@ class ProductController extends Controller
             'code' => 'required',
             'name' => 'required',
             'origen' => 'required',
-            'sub_acabado' => 'required',
+            'acabado' => 'required',
             "width" => 'required',
             "thickness" => 'required',
             "length" => 'required',
@@ -549,7 +602,7 @@ class ProductController extends Controller
             'code' => 'required',
             'name' => 'required',
             'origen' => 'required',
-            'sub_acabado' => 'required',
+            'acabado' => 'required',
             "width" => 'required',
             "thickness" => 'required',
             "length" => 'required',
@@ -579,6 +632,23 @@ class ProductController extends Controller
             'image_alt' => 'required'
         ], $messages);
     }
+    public function validateTapacanto_update(array $data){
+        $messages = [
+            'required' => 'El campo es requerido.'
+        ];
+
+        return Validator::make($data, [
+            'category' => 'required',
+            'type' => 'required',
+            'subtype' => 'required',
+            'code' => 'required',
+            'name' => 'required',
+            'origen' => 'required',
+            "width" => 'required',
+            "thickness" => 'required',
+            'image_alt' => 'required'
+        ], $messages);
+    }
 
     
 
@@ -587,11 +657,22 @@ class ProductController extends Controller
             ->select("p.id", 
                     "p.code",
                     "p.name as product_name",
+                    "p.width",
+                    "p.thickness",
+                    "p.length",
+                    "p.price",
                     "pc.name as category_product_name",
                     "pt.name as product_type_name",
-                    "p.is_deleted as product_isdeleted")
+                    "p.is_deleted as product_isdeleted",
+                    "pa.name as acabado",
+                    "pm.name as material",
+                    "ps.name as sustrato"
+                    )
             ->join("product_categories as pc", "pc.id", "=", "p.id_product_category", "inner", false)
             ->join("product_types as pt", "pt.id", "=", "p.id_product_type", "inner", false)
+            ->leftjoin("product_acabados as pa", "pa.id", "=", "p.id_product_acabado", "inner", false)
+            ->leftjoin("product_materials as pm", "pm.id", "=", "p.id_product_material", "inner", false)
+            ->leftjoin("product_sustratos as ps", "ps.id", "=", "p.id_product_sustrato", "inner", false)
             ->get();
     }
 
@@ -609,7 +690,6 @@ class ProductController extends Controller
 
         // dd($IDsToGroup);
 
-        
         $bannerBySubcategoryColor = $this->getBannerBySubcategoryColor($id);
         $imgToBanner = $bannerBySubcategoryColor["name"];
         $title = $bannerBySubcategoryColor["title"];
@@ -660,22 +740,17 @@ class ProductController extends Controller
             return view("tableros.description", compact("product"));
         }else{
             $title = "Información";
-            $content = "Se requiere estar registrado en el sistema para poder ver todas las caracteristicas del producto.<br>";
-            $content .= "Acá podrá encontrar las siguientes caracteristicas:<br>";
+            $content = "Se requiere tener una cuenta de usuario en nuestro sitio web para poder consultar y descargar todas las características de nuestros productos.<br>";
+            $content .= "Beneficios de tener una cuenta en <strong>modulartop.com</strong>:<br>";
+            $content .= "<br>";
             $content .= "<ul>";
-            $content .= "<li>Precio.</li>";
-            $content .= "<li>Categoría.</li>";
-            $content .= "<li>Acabado.</li>";
-            $content .= "<li>Efecto visual.</li>";
-            $content .= "<li>Material.</li>";
-            $content .= "<li>Tipo de sustrato.</li>";
-            $content .= "<li>Color.</li>";
-            $content .= "<li>Descargar ficha técnica.</li>";
-            $content .= "<li>Acceso a la galería de imágenes del producto.</li>";
-            $content .= "<li>Descripción completa del producto.</li>";
+            $content .= "<li>Acceso y descarga de características, descripción y ficha técnica de productos.</li>";
+            $content .= "<li>Acceso a precios e inventario actualizado de productos.</li>";
+            $content .= "<li>Consultar galería de imágenes de los productos.</li>";
+            $content .= "<li>Generar orden de compra y seguimiento online de mi compra.</li>";
             $content .= "</ul>";
             $content .= "<br>";
-            $content .= "Haga click <a href='" . asset("login") . "'><strong>aqui</strong></a> para realizar el ingreso al sistema, de lo contrario lo invitamos a registrarse en el sistema a través del siguiente enlace <a href='" . asset("register") . "'><strong>registrarse</strong></a>.";
+            $content .= "Haga click <a href='" . asset("login") . "'><strong>aqui</strong></a> para ingresar con su cuenta de usuario, de lo contrario créela en pocos segundos a través del siguiente enlace <a href='" . asset("register") . "'><strong>registrarse</strong></a>.";
 
             $img = asset('images/information.png');
 
@@ -686,19 +761,19 @@ class ProductController extends Controller
 
     public function getBannerBySubcategoryColor($id){
         $bannerBySubcategoryColor = array([
-            "id" => 5, 
+            "id" => 3, 
             "name" => "banner-tradicional.png",
             "title" => "Acabados Tradicionales",
             "sub_title" => "Tableros melamínicos hidrófugos y natural MDP importados y nacionales."
         ],
         [
-            "id" => 4, 
+            "id" => 2, 
             "name" => "banner-premium.jpg",
             "title" => "Acabados Premium",
             "sub_title" => "Tableros melamínicos MDF en Super Mate Importados."
         ],
         [
-            "id" => 3, 
+            "id" => 1, 
             "name" => "banner-premium.jpg",
             "title" => "Acabados Premium",
             "sub_title" => "Tableros melamínicos MDF en Alto Brillo Importados."
@@ -891,86 +966,6 @@ class ProductController extends Controller
         return $result;
     }
 
-    public function showFormFichaTecnica(){
-        $fichas = DB::table("fichas_tecnicas")->get();
-        
-        return view("product.uploadFichaTecnica", compact("fichas"));
-    }
-
-    public function storeFichaTecnica(Request $request){
-
-        $this->validateFichaTecnica(request()->all())->validate();
-
-        try {
-            $name = $request->input("name");
-            $file = $request->file("ficha");
-
-            $file_name = $file->getClientOriginalName();
-            $file->storeAs('', $file_name, 'fichaTecnica');
-
-            DB::table("fichas_tecnicas")->insert([
-                "name" => $name,
-                "file_name" => $file_name,
-                "created_at" => Carbon::now(),
-                "created_by" => auth()->user()->id
-            ]);
-
-            $msgPost = "¡Registro realizado satisfactoriamente!.";
-            
-
-        } catch (\Throwable $th) {
-            //throw $th;
-            $msgPost = "Ocurrio un error, por favor intente nuevamente.".$th->getMessage();
-        }
-
-        $fichas = DB::table("fichas_tecnicas")->get();
-
-        return view("product.uploadFichaTecnica", compact("msgPost", "fichas"));
-
-    }
-
-    public function validateFichaTecnica(array $data){
-        $messages = [
-            'required' => 'El campo es requerido.'
-        ];
-
-        return Validator::make($data, [
-            'name' => 'required',
-            'ficha' => 'required',
-        ], $messages);
-    }
-
-    public function downloadFichaTecnica($id){
-
-        $ficha = DB::table("fichas_tecnicas")->where("id", $id)->first();
-
-        return Storage::disk("fichaTecnica")->download($ficha->file_name);
-
-    }
-
-    public function deleteFichaTecnica($id){
-
-        try {
-            $ficha = DB::table("fichas_tecnicas")
-                ->where("id", "=", $id)
-                ->first();
-            
-            Storage::disk('fichaTecnica')->delete($ficha->file_name);
-            
-            DB::table("fichas_tecnicas")
-                ->where("id", "=", $ficha->id)
-                ->delete();
-
-            $msgPost = "¡Ficha técnica borrada satisfactoriamente!.";
-
-        } catch (\Throwable $th) {
-            //throw $th;
-            $msgPost = "¡Hubo un error la Ficha técnica no pudo ser borrada!.";
-        }
-
-        $fichas = DB::table("fichas_tecnicas")->get();
-
-        return view("product.uploadFichaTecnica", compact("msgPost", "fichas"));
-    }
+    
 }
 

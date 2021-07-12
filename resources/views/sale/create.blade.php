@@ -84,6 +84,7 @@ Creacion de venta
                     
                         <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
                         <input type="hidden" name="hProducts" id="hProducts">
+                        <input type="hidden" name="hRouteValidateInventory" id="hRouteValidateInventory" value="{{ route('sale.validarExistencia') }}">
 
                         <!-- Fecha de venta -->
                         <div class="form-group row">
@@ -103,17 +104,23 @@ Creacion de venta
                         <div class="form-group row">
                             <label for="client" class="col-md-4 col-form-label text-md-right">Cliente<span>*</span></label>
                             <div class="col-md-6">
-                                <select class="form-control @error('client') is-invalid @enderror" id="client" name="client" required>
-                                @foreach($clients as $client)
-                                    <option value="{{ $client->id }}">{{ $client->name }} {{ $client->lastName }}</option>
-                                @endforeach
-                                </select>
+                                <div class="input-group" >
+                                    <select class="custom-select @error('client') is-invalid @enderror" id="client" name="client" required>
+                                        <option value="0">-Seleccione-</option>
+                                        @foreach($clients as $client)
+                                        <option value="{{ $client->id }}">{{ $client->name }} {{ $client->lastName }}</option>
+                                        @endforeach
+                                    </select>
+                                    <div class="input-group-append">
+                                        <button style="height: 38px" id="btnAddSubtype" data-toggle="modal" data-target="#clientModal" title="Agregar nuevo cliente" class="btn btn-primary" type="button"><span class="icon-add" style="color: white !important;"></span></button>
+                                    </div>
 
-                                @error('client')
-                                    <span class="invalid-field" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                    @error('client')
+                                        <span class="invalid-field" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
                         
@@ -137,9 +144,7 @@ Creacion de venta
                             <div class="col-md-6">
                                 <select class="form-control" id="id_order_sale" name="id_order_sale" >
                                     <option value="0">Seleccione...</option>
-                                @foreach($orders as $order)
-                                    <option value="{{ $order->orderSaleId }}">{{ $order->orderSaleId }} - {{ $order->orderSaleCreatedAt }} - {{ $order->userName }} {{ $order->userLastName }}</option>
-                                @endforeach
+                                    
                                 </select>
 
                             </div>
@@ -162,27 +167,31 @@ Creacion de venta
                         </div>
 
                         <div class="form-row">
+
+                            <!-- Cantidad -->
                             <div class="form-group col-md-2">
                                 <label for="quantity">Cantidad</label>
                                 <input type="number" class="form-control" id="quantity" name="quantity" min="1">
                             </div>
 
-
+                            <!-- Productos -->
                             <div class="form-group col-md-10">
                                 <label for="productList">Producto</label>
                                 <select class="custom-select" id="productList" name="productList" onchange="onchage_product(this)">
                                     <option value="0" selected>Seleccione...</option>
                                     @foreach($products as $product)
-                                        <option value="{{ $product->id }}">{{ $product->name}}</option>
+                                        <option value="{{ $product->id }}">({{ $product->code }}) {{ $product->name}} - {{ $product->width }}/{{ $product->thickness }}/@if($product->length != "") {{ $product->length }} @else 0 @endif</option>
                                     @endforeach
                                 </select>
+                                <small class="form-text text-muted">(Código) Nombre - Ancho/Espesor/Largo</small>
                             </div>
                         </div>
 
                         <div class="form-row col-12 mb-3">
                             <label>&nbsp;</label>
-                            <input type="button" value="Agregar" class="btn btn-primary" onclick="onclick_addProduct()">
+                            <input type="button" value="Agregar" id="btnAddProduct" class="btn btn-primary" onclick="onclick_addProduct()">
                         </div>
+                        <small class="form-text text-muted text-center" id="smallInfo"></small>
 
                         <table 
                             id="product_table"
@@ -215,14 +224,230 @@ Creacion de venta
     </div>
 </div>
 
+<!-- Modal section -->
+
+<!-- modal Clientes -->
+<div class="modal fade" id="clientModal" tabindex="-1" aria-labelledby="clientModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+      
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar Cliente</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form id="form_client" action="{{ route('userClient.storeAjax') }}" method="post">
+
+                    <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+                    <input type="hidden" id="hClientAddRoute" value="{{ route('userClient.storeAjax') }}">
+                
+                    <!-- Nombre -->
+                    <div class="form-group row">
+                        <label for="name" class="col-md-4 col-form-label text-md-right">Nombre<span>*</span></label>
+
+                        <div class="col-md-6">
+                            <input maxlength="20" id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autofocus>
+
+                            @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <!-- Apellido -->
+                    <div class="form-group row">
+                        <label for="lastName" class="col-md-4 col-form-label text-md-right">Apellido<span>*</span></label>
+
+                        <div class="col-md-6">
+                            <input maxlength="20" id="lastName" name="lastName" type="text" class="form-control @error('lastName') is-invalid @enderror" value="{{ old('lastName') }}" required>
+
+                            @error('lastName')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-group row">
+                        <label for="email" class="col-md-4 col-form-label text-md-right">Correo electrónico<span>*</span></label>
+
+                        <div class="col-md-6">
+                            <input maxlength="60" id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="off">
+
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <!-- Telefono del cliente -->
+                    <div class="form-group row">
+                        <label for="clientPhone" class="col-md-4 col-form-label text-md-right">Teléfono<span>*</span></label>
+
+                        <div class="col-md-6">
+                            <input id="clientPhone" type="number" class="form-control" name="clientPhone" value="{{ old('clientPhone') }}" required>
+                            @error('clientPhone')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <!-- Rol en el sistema  -->
+                    <div class="form-group row">
+                        <label for="rolId" class="col-md-4 col-form-label text-md-right">Rol<span>*</span></label>
+                        <div class="col-md-6">
+                            <select class="form-control" id="rolId" name="rolId">
+                            @foreach($roles as $rol)
+                                @if($rol->nombre == 'Cliente')
+                                <option value="{{ $rol->id }}">{{ $rol->nombre }}</option>
+                                @endif
+                            @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Direccion del cilente -->
+                    <div class="form-group row">
+                        <label for="clientAddress" class="col-md-4 col-form-label text-md-right">Dirección<span>*</span></label>
+
+                        <div class="col-md-6">
+                            <textarea class="form-control" id="clientAddress" name="clientAddress" rows="3" required>{{ old('clientAddress') }}</textarea>
+                        </div>
+                    </div>
+
+                    <!-- Es cliente -->
+                    <div class="form-group row">
+                        <div class="col-md-4 text-md-right">
+                            <label class="form-check-label" for="chkClient" >Cliente</label>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-check">
+                                <input type="checkbox" checked="checked" disabled="disabled" class="form-check-input" id="chkClient" name="chkClient">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- contenedor cliente -->
+                    <div class="container-hidden" id="divContainer">
+
+                        <!-- RIF -->
+                        <div class="form-group row">
+
+                            <label for="rif" class="col-md-4 col-form-label text-md-right">Rif<span>*</span></label>
+
+                            <div class="col-md-6">
+                                <input maxlength="20" id="rif" type="text" class="form-control @error('rif') is-invalid @enderror uppercase-field" name="rif" >
+
+                                @error('rif')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <!-- Razon social -->
+                        <div class="form-group row">
+
+                            <label for="rsocial" class="col-md-4 col-form-label text-md-right">Razón social<span>*</span></label>
+
+                            <div class="col-md-6">
+                                <input maxlength="50" id="rsocial" name="rsocial" type="text" class="form-control @error('rsocial') is-invalid @enderror">
+
+                                @error('rsocial')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <!-- Direccion del cliente -->
+                        <div class="form-group row">
+                            <label for="companyAddress" class="col-md-4 col-form-label text-md-right">Dirección fiscal<span>*</span></label>
+
+                            <div class="col-md-6">
+                                <textarea class="form-control @error('companyAddress') is-invalid @enderror" id="companyAddress" name="companyAddress" rows="3"></textarea>
+                                @error('companyAddress')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <!-- Telefono -->
+                        <div class="form-group row">
+                            <label for="companyPhone" class="col-md-4 col-form-label text-md-right">Teléfono<span>*</span></label>
+
+                            <div class="col-md-6">
+                                <input id="companyPhone" type="number" class="form-control @error('companyPhone') is-invalid @enderror" name="companyPhone" >
+                                @error('companyPhone')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <!-- Tipo de empresa  -->
+                        <div class="form-group row">
+                            <label for="company_type" class="col-md-4 col-form-label text-md-right">Tipo de empresa<span>*</span></label>
+                            <div class="col-md-6">
+                                <select class="form-control" id="company_type" name="company_type">
+                                @foreach($company_types as $type)
+                                    <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Mensaje de respuesta de la operación -->
+                    <div id="message_alert" class="m-1">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary" id="btnSaveClient">Guardar</button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- End Modal section -->
+
 </section>
 
 @endsection
 
 @section('script')
+    <script src="{{ asset('js/jquery-validate-1_19.js') }}"></script>
+
+    <script src="{{ asset('js/utils.js') }}?v={{ env('APP_VERSION', '1') }}"></script>
 
     <script src="{{ asset('js/bootstrap-table.min.js') }}"></script>
     
     <script src="{{ asset('js/sale.js') }}?v={{ env('APP_VERSION', '1') }}"></script>
+
+    <script>
+        var order_sales = @json($orders);
+    </script>
 
 @endsection

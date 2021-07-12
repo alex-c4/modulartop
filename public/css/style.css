@@ -1887,7 +1887,7 @@ h1, h2, h3, h4, h5,
   -o-transition: .3s all ease;
   transition: .3s all ease; }
 
-.ftco-media-1 h3 {
+.ftco-media-1 h3 a {
   font-size: 20px;
   color: #808080;
   margin-bottom: 0; }
@@ -1918,7 +1918,7 @@ h1, h2, h3, h4, h5,
       -ms-transform: translateX(25px);
       transform: translateX(25px); } }
 
-.ftco-media-1:hover h3, .ftco-media-1:focus h3 {
+.ftco-media-1:hover h3, .ftco-media-1:focus h3, .ftco-media-1:hover a, .ftco-media-1:focus a {
   color: #fff; }
 
 .ftco-media-1:hover p, .ftco-media-1:hover strong, .ftco-media-1:focus p, .ftco-media-1:focus strong {
@@ -2695,4 +2695,8 @@ overflow:hidden;
 .small-register-user{
   text-transform: none !important; 
   color: #989898 !important;
+}
+
+input.error{
+  border: 1px solid crimson !important;
 }
