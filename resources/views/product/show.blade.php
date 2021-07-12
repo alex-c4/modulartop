@@ -341,6 +341,8 @@ Ver producto
 
 @section('script')
 
+    <script src="{{ asset('js/product/product-update.js') }}?v={{ env('APP_VERSION', '1') }}"></script>
+    
     <script>
         var produc_types = @json($product_types);
         var produc_subtypes = @json($product_subtypes);
