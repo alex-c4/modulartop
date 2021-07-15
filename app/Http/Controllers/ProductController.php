@@ -142,8 +142,7 @@ class ProductController extends Controller
         }else{
             $this->validateTapacanto(request()->all())->validate();
         }
-
-
+        
         $result = DB::transaction(function() use($request, $type){
             // Tableros
             if($type == 1) {

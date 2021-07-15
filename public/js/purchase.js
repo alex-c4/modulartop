@@ -5,6 +5,7 @@ var _nameProduct = "";
 var arr_tablero = ["category", "type", "subtype", "code", "name", "origen", "acabado", "sub_acabado", "width", "thickness", "length", "material", "sustrato", "color", "description", "image_0", "image_alt"];
 var arr_tapacanto = ["category", "type", "subtype", "code", "name", "origen", "width", "thickness", "image_0", "image_alt"];
 var arr_default = ["category", "type"];
+var GLOBAL_VALIDATOR_PURCHASE = "";
 
 $(function(){
     $('#purchase_date').datepicker({
@@ -19,7 +20,40 @@ $(function(){
         locale: "es-ES"
     });
 
+    // validacion de campo
+    validator_purchase();
+
 });
+
+var validator_purchase = function(){
+    var validator = $("#form_savepurchase").validate({
+        rules:{
+            purchase_date:{
+                required: true
+            },
+            provider:{
+                required: true
+            },
+            id_invoice:{
+                required: true
+            }
+        },
+        messages: {
+            purchase_date: "Por favor seleccione la fecha de compra",
+            provider: "Por favor seleccione el proveedor",
+            id_invoice: "Por favor coloque el Id de factura"
+        },
+        errorPlacement: function(error, element) {
+            FLAG_SEND = false;
+        },
+        submitHandler: function(form) {
+            $("#btnSave").prop("disabled", false);
+            form.submit();
+        }
+    });
+
+    GLOBAL_VALIDATOR_PURCHASE = validator;
+}
 
 var onclick_addProvider = function(){
     var _url = $("#hRouteProvider").val();
@@ -42,15 +76,20 @@ var onclick_addProvider = function(){
 }
 
 var onclick_addProduct = function(){
-    
+    debugger
     var _quantity = $("#quantity").val();
     var _cost = $("#cost").val();
     var _row = new Array();
     var _data = $table.bootstrapTable('getData');
 
+    $("#productList").removeClass("error");
+    $("#quantity").removeClass("error");
+    $("#cost").removeClass("error");
+    
+
     if(isRepeated(_idProduct, _data)){
         alert("Producto Repetido!")
-    }else if(_idProduct != 0 || _nameProduct != ""){
+    }else if(_idProduct != 0 && _nameProduct != "" && _cost != "" && _quantity != ""){
         _row.push({
             id: _idProduct,
             name: _nameProduct,
@@ -65,6 +104,18 @@ var onclick_addProduct = function(){
         // _nameProduct = "";
         // $("#amount").val("");
 
+    }else{
+        
+        if(_idProduct == 0 && _nameProduct == ""){
+            $("#productList").addClass("error");
+        } 
+        
+        if(_quantity == ""){
+            $("#quantity").addClass("error");
+        }
+        if(_cost == ""){
+            $("#cost").addClass("error");
+        }
     }
 
 }
@@ -136,14 +187,20 @@ var isRepeated = function(id, _data){
 
 var FLAG_SEND = false;
 $("#btnSave").on("click", function(){
+        debugger
     if(!FLAG_SEND){
         FLAG_SEND = true;
-        $("#btnSave").prop("disabled", true);
+        // $("#btnSave").prop("disabled", true);
     
         var _data = $table.bootstrapTable('getData');
         var cadena = JSON.stringify(_data);
         $("#hProducts").val(cadena);
         debugger
+        if(_data.length <= 0){
+            showAlert(false, "Aun no ha incluido productos a la compra.", "message_alert-2");
+            FLAG_SEND = false;
+            return false;
+        }
         $("#form_savepurchase").trigger("submit");
 
     }
@@ -242,17 +299,19 @@ var getArray = function(type){
     return crr_arr; 
 }
 
-var showAlert = function(status, message){
+var showAlert = function(status, message, div){
+    var _div = (div != undefined) ? div : "message_alert";
+
     var _msg = "", _class = "";
     if(status){
         _msg = message;
         _class = 'success'
     }else{
-        _msg = 'Hubo un error';
+        _msg = message;
         _class = 'warning'
 
     }
-    $("#message_alert").html("");
+    $("#"+_div).html("");
     var _html = '<div class="alert alert-' + _class + ' alert-dismissible fade show" role="alert">' +
                 _msg +
                 '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
@@ -260,7 +319,7 @@ var showAlert = function(status, message){
                 '</button>' +
                 '</div>';
     
-    $("#message_alert").html(_html);
+    $("#" + _div).html(_html);
     
 }
 

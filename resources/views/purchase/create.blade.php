@@ -55,7 +55,7 @@ Creacion de una nueva compra
         <div class="col-lg-8">
             <div class="card">
                 <div class="card-body">
-                    <form id="form_savepurchase" method="POST" action="{{ route('purchase.store') }}">
+                    <form id="form_savepurchase" name="form_savepurchase" method="POST" action="{{ route('purchase.store') }}">
                     
                         <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
                         <input type="hidden" name="hProducts" id="hProducts">
@@ -168,8 +168,9 @@ Creacion de una nueva compra
                         <!-- </div> -->
 
                         
-                        <br>
-                        
+                        <div id="message_alert-2" class="m-2">
+                        </div>
+
                         <div class="form-group row mb-3">
                             <div class="col-md-6 offset-md-4">
                                 <button type="button" class="btn btn-primary" id="btnSave" name="btnSave">

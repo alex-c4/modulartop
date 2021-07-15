@@ -259,7 +259,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
                                             <a class="mfp-image" href="{{ asset('images/proyectos/') }}/{{ $project->cover_photo }}" title="{{ $project->project_name }}"><i class="pe-7s-expand1 text-white"></i></a>
                                         </div>
                                         <div class="work-content">
-                                            <h6 class="title mb-0"><a href="javascript:void(0)" class="text-light text-uppercase">{{ $project->project_name }}</a></h6>
+                                            <h6 class="title mb-0"><a href="{{ route('project.showphotos', $project->projectId) }}" class="text-light text-uppercase">{{ $project->project_name }}</a></h6>
                                             <small class="text-white-50"><a href="{{ route('project.showphotos', $project->projectId) }}" style="color: white !important">Ver más</a></small>
                                         </div>
                                     </div>
@@ -273,7 +273,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
                    
                 <div class="row justify-content-center mt-4 pt-2">
                   <div class="col-12 text-center">
-                    <a href="{{ route('project.showphotosbyproyectista') }}" class="btn btn-primary">Ver más proyectos <i class="mdi mdi-chevron-right"></i></a>
+                    <a href="{{ route('project.showphotosbyproyectista') }}" >Ver más proyectos <i class="mdi mdi-chevron-right"></i></a>
                   </div><!--end col-->
                 </div><!--end row-->
 

@@ -110,7 +110,7 @@ class PurchaseController extends Controller
                         "cost" => intval($product->cost)
                     ];
                     array_push($items, $temp);
-
+                    
                     // Actualiza el precio del producto en la tabla de producto
                     Product::where("id", $product->id)
                         ->update([
@@ -118,6 +118,7 @@ class PurchaseController extends Controller
                         ]);
 
                 }
+                
                 DB::table("purchase_items")->insert($items);
 
                 // Actualización de inventario
@@ -129,6 +130,7 @@ class PurchaseController extends Controller
                             "id_product" => $item["id_product"],
                             "quantity" => intval($item["quantity"])
                         ]);
+                        
                     }else{
                         $qty = $row->quantity;
                         $row = DB::table("inventory")
@@ -136,6 +138,7 @@ class PurchaseController extends Controller
                             ->update([
                                 "quantity" => $qty + intval($item["quantity"])
                             ]);
+                            
                     }
                 }
 
@@ -150,7 +153,6 @@ class PurchaseController extends Controller
 
                     // se realiza el ingreso a la auditoria
                     Utils::addToInventoryAudit($idPurchase, $idSale, $idProduct, $qty, $oper, $createdBy);
-                    
                     
                     // DB::select("CALL sp_addInventoryAuditory(?,?,?,?,?,?)", array($idPurchase, $idProduct, $qty, $oper, $createdAt, $createdBy));
                 }
@@ -169,12 +171,38 @@ class PurchaseController extends Controller
 
         $products = Product::get();
 
+
         $product_categories = DB::table("product_categories")->get();
         $product_types = DB::table("product_types")->get();
-        $product_subcategory = DB::table("product_subcategory")->where("id_product_type", 1)->get();
-        $product_subcategory_classification = DB::table("product_subcategory_classification")->get();
+        $product_subtypes = DB::table("product_subtypes")->get();
+        $product_acabados = DB::table("product_acabados")->get();
+        $product_subacabados = DB::table("product_subacabados")->get();
+        $product_materials = DB::table("product_materials")->get();
+        $product_sustrato = DB::table("product_sustratos")->get();
+        $product_colors = DB::table("product_colors")->get();
+        $product_origen = DB::table("product_origen")->get();
 
-        return view("purchase.create", compact("providers", "products", "product_categories", "product_types", "product_subcategory", "product_subcategory_classification", "msgPost"));
+
+
+        // $product_categories = DB::table("product_categories")->get();
+        // $product_types = DB::table("product_types")->get();
+        // $product_subcategory = DB::table("product_subcategory")->where("id_product_type", 1)->get();
+        // $product_subcategory_classification = DB::table("product_subcategory_classification")->get();
+
+        return view("purchase.create", compact(
+            "providers", 
+            "products", 
+            "product_categories", 
+            "product_types", 
+            "product_subtypes", 
+            "product_acabados",
+            "product_subacabados",
+            "product_materials",
+            "product_sustrato",
+            "product_colors",
+            "product_origen",
+            "msgPost"
+        ));
     }
 
     /**

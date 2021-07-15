@@ -4,6 +4,13 @@
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.css">
 
     <link rel="stylesheet" href="{{ asset('css/sale.css') }}?v={{ env('APP_VERSION', '1') }}">
+
+    <style>
+        #smallInfo{
+            color: black !important;
+            text-decoration: underline;
+        }
+    </style>
 @endsection
 
 
@@ -138,9 +145,9 @@ Creacion de venta
                             </div>
                         </div>
 
-                        <!-- Id de orden de vanta -->
+                        <!-- Id de orden de compra -->
                         <div class="form-group row">
-                            <label for="id_order_sale" class="col-md-4 col-form-label text-md-right">Id orden de compra<span>*</span></label>
+                            <label for="id_order_sale" class="col-md-4 col-form-label text-md-right">Id orden de compra</label>
                             <div class="col-md-6">
                                 <select class="form-control" id="id_order_sale" name="id_order_sale" >
                                     <option value="0">Seleccione...</option>

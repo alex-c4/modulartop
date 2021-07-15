@@ -430,3 +430,7 @@ var showAlert = function(status, message){
     
 }
 
+var goToProject = function(projectId){
+    console.log(projectId);
+}
+

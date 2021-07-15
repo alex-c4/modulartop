@@ -59,6 +59,9 @@ Imágenes del proyecto
                             <input type="hidden" name="hrouteUploadImage" id="hrouteUploadImage" value="{{ route('project.uploadimg') }}">
                             <input type="hidden" name="hrouteDeleteImage" id="hrouteDeleteImage" value="{{ route('project.deleteimg') }}">
 
+                            <h5 class="card-title mt-2 mb-4">
+                                Galería de imágenes del Proyecto
+                            </h5>
                             <!-- Nombre -->
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">Proyecto</label>
@@ -90,7 +93,7 @@ Imágenes del proyecto
                             <div class="form-group row mb-1 mt-3">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="button" class="btn btn-primary" id="btnUpload" name="btnUpload">
-                                        Subir
+                                        Agregar
                                     </button>
                                 </div>
                             </div>
@@ -104,6 +107,14 @@ Imágenes del proyecto
                         <div class="col-12 text-center mt-3 img_container">
                             
 
+                        </div>
+
+                        <hr>
+                        
+                        <div class="form-group row mb-1 mt-3">
+                            <div class="col-md-6 offset-md-4">
+                                <a href="{{ route('project.create') }}" class="btn btn-primary">Aceptar</a>
+                            </div>
                         </div>
 
                     </div>

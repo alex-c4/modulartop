@@ -25,7 +25,7 @@
               <div class="col-12 text-center">
                   <ul class="col container-filter portfolioFilter list-unstyled mb-0 text-center" id="filter">
                       <!-- <li class="list-inline-item"><a class="categories rounded pl-3 pr-3 mb-2 active" data-filter="*">Todos</a></li> -->
-                      <li class="list-inline-item"><a class="categories rounded pl-3 pr-3 mb-2 active" data-filter="*">{{ $proyectista_name }}</a></li>
+                      <li class="list-inline-item"><a class="categories rounded pl-3 pr-3 mb-2 active d-none" data-filter="*">{{ $proyectista_name }}</a></li>
                   </ul>
               </div><!--end col-->
           </div><!--end row-->
@@ -39,13 +39,15 @@
         
         <!-- aqui va la descripcion -->
         <div class="m-4">
-            <h1>{{$project_name}}</h1>
+            <div class="text-center">
+                <h1>{{$project_name}}</h1>
+            </div>
+
             <h5>Descripción</h5>
             {{ $project_description }}
         </div>
 
         <div style="display: flex; justify-content: center">
-            <a href="{{ route('contact.tellus') }}#contact-section" class="btn btn-primary px-5 py-3 m-3">Fabricar mi proyecto</a>
             <a href="{{ route('welcome') }}#contact-section" class="btn btn-primary px-5 py-3 m-3">Contactar</a>
         </div>
 
@@ -71,10 +73,8 @@
                         </div><!--end col-->
 
                     @endforeach
-                
-                
+                    
             </div><!--end row-->
-
 
             <!-- <div class="row justify-content-center mt-4 pt-2">
                 <div class="col-12 text-center">
@@ -84,6 +84,10 @@
             <!--end row-->
 
         </div><!--end container-->
+                
+        <div style="display: flex; justify-content: center">
+            <a href="{{ route('contact.tellus') }}#contact-section" class="btn btn-primary px-5 py-3 m-3">Fabricar mi proyecto</a>
+        </div>
       @endif
 
   </section><!--end section-->

@@ -34,6 +34,7 @@ class ProjectController extends Controller
                         "pr.name as proyectista"
                         )
                     ->join("proyectistas as pr", "pr.id", "p.proyectista_id", "=", "inner", false)
+                    ->orderby("p.project_date", "DESC")
                     ->get();
 
         return view("project.index", compact("projects"));

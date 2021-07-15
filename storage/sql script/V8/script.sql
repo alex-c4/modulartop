@@ -517,6 +517,157 @@ DELIMITER ;
 
 
 
+DROP procedure IF EXISTS `sp_getInventory`;
+
+DELIMITER $$
+
+CREATE PROCEDURE `sp_getInventory`()
+    NO SQL
+BEGIN
+
+	SELECT 
+    	i.quantity AS invQuantity,
+    	p.name AS productName,
+        p.code,
+        p.width,
+        p.thickness,
+        p.length,
+        p.price,
+        pc.name AS productColor,
+        pt.name AS productType,
+        pa.name AS productAcabado,
+        pm.name AS productMaterial,
+        ps.name AS productSustrato
+    FROM 
+    	inventory AS i 
+        INNER JOIN products as p ON i.id_product = p.id 
+        LEFT JOIN product_colors AS pc ON pc.id = p.id_product_color
+        INNER JOIN product_types AS pt ON pt.id = p.id_product_type
+        LEFT JOIN product_acabados AS pa ON pa.id = p.id_product_acabado
+        LEFT JOIN product_materials AS pm ON pm.id = p.id_product_material
+        LEFT JOIN product_sustratos AS ps ON ps.id = p.id_product_sustrato
+	WHERE
+		p.is_deleted = 0 AND
+        i.quantity > 0
+   	ORDER BY
+    	pc.name ASC;
+END$$
+
+DELIMITER ;
+
+
+
+
+DROP procedure IF EXISTS `sp_getTags`;
+
+DELIMITER $$
+
+CREATE PROCEDURE `sp_getTags`()
+    NO SQL
+BEGIN
+    SELECT 
+        `tags`.`id`, 
+        `tags`.`name`, 
+        `newsletter_tags`.`updated_at` 
+    FROM 
+        `newsletter_tags` 
+    INNER JOIN `tags` on `tags`.`id` = `newsletter_tags`.`id_tag` 
+    INNER JOIN `newsletters` ON `newsletters`.`id` =  `newsletter_tags`.`id_newsletter`
+    WHERE
+		`newsletters`.`isDeleted` = 0
+    GROUP BY 
+        `tags`.`name`, 
+        `tags`.`id` 
+    ORDER BY 
+        `newsletter_tags`.`updated_at` DESC;
+END$$
+
+DELIMITER ;
+
+
+
+
+DROP procedure IF EXISTS `sp_getNewsletter`;
+
+DELIMITER $$
+
+CREATE PROCEDURE `sp_getNewsletter`(IN `allFields` BOOLEAN)
+    NO SQL
+BEGIN
+
+	IF allFields = 0 THEN
+		SELECT 
+			ne.id,
+			ne.title,
+			ne.created_at,
+            ne.published_at,
+			ne.name_img,
+			ne.content,
+			ne.summary,
+			cat.name,
+			ne.title AS url,
+            u.name AS userName,
+            u.lastName AS userLastName
+		FROM newsletters AS ne 
+			INNER JOIN categories AS cat ON ne.category_id=cat.id
+            INNER JOIN users as u ON u.id=ne.user_id
+		WHERE 
+			ne.isDeleted = 0 
+		ORDER BY ne.published_at DESC
+		LIMIT 8;
+	ELSE
+		SELECT 
+			ne.id,
+			ne.title,
+			ne.created_at,
+			ne.name_img,
+			ne.content,
+			ne.summary,
+			cat.name,
+			ne.title AS url
+		FROM newsletters AS ne 
+			INNER JOIN categories AS cat ON ne.category_id=cat.id
+		WHERE 
+			ne.isDeleted = 0 
+		ORDER BY ne.published_at DESC
+		LIMIT 8, 1000;
+	END IF;
+END$$
+
+DELIMITER ;
+
+
+
+DROP procedure IF EXISTS `sp_getNewsletterFilterByCategory`;
+
+DELIMITER $$
+
+CREATE PROCEDURE `sp_getNewsletterFilterByCategory`(IN `cat_id` INT)
+    NO SQL
+SELECT 
+	ne.id,
+    ne.title,
+    ne.created_at,
+    ne.published_at,
+    ne.name_img,
+    ne.content,
+    ne.summary,
+    cat.name,
+    ne.title AS url,
+	u.name AS userName,
+	u.lastName AS userLastName
+FROM newsletters AS ne 
+	INNER JOIN categories AS cat ON ne.category_id=cat.id
+	INNER JOIN users as u ON u.id=ne.user_id
+WHERE 
+	ne.isDeleted = 0 AND
+	ne.category_id = cat_id
+ORDER BY ne.created_at DESC
+LIMIT 8$$
+
+DELIMITER ;
+
+
 
 
 

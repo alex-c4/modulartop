@@ -2700,3 +2700,7 @@ overflow:hidden;
 input.error{
   border: 1px solid crimson !important;
 }
+
+select.error{
+  border: 1px solid crimson !important;
+}

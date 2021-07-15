@@ -7,6 +7,8 @@
 <script src="{{asset('js/sceditor/minified/icons/monocons.js')}} "></script>
 <script src="{{asset('js/sceditor/minified/formats/xhtml.js')}} "></script>
 
+<link rel="stylesheet" href="{{ asset('css/newsletter.css') }}">
+
 <style>
     .sceditor-container{
         width: 100% !important;
@@ -47,17 +49,16 @@
     
 </style>
 
+@section('imgBanner')
+{{ Utils::getBanner(auth()->user()->roll_id) }}
+@endsection
+
 @section('title')
-¡Editar!
+Novedades
 @endsection
 
 @section('subtitle')
 Edición de novedades
-@endsection
-
-@section('banner')
-
-
 @endsection
 
 <section class="site-section bg-light bg-image" id="contact-section">
@@ -74,6 +75,17 @@ Edición de novedades
                 </div>
             </div>
         @endif
+
+        @if($newsletter == null)
+            <div class="container">
+                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                <strong>No hay información</strong> 
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+            </div>
+        @else
         
         <div class="row">
             <div class="col-md-12 mb-5">
@@ -171,6 +183,8 @@ Edición de novedades
             </div>
 
         </div>
+
+        @endif
     </div>
 </section>
 

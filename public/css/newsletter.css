@@ -25,3 +25,12 @@
     transform:scale(1.1);
     overflow:hidden;
 }
+.form-group span {
+    color: crimson;
+    margin-left: 3px;
+    font-weight: bolder;
+    vertical-align: top;
+}
+
+
+
