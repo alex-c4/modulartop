@@ -12,6 +12,7 @@ ALTER TABLE `users`  ADD `lastName` VARCHAR(20) NOT NULL  AFTER `name`,
 
 
 
+
 DROP procedure IF EXISTS `sp_getNewsletterByTagId`;
 
 DELIMITER $$
@@ -29,10 +30,13 @@ BEGIN
 			nw.content,
 			nw.summary,
 			cat.name,
-			nw.title AS url
+			nw.title AS url,
+            u.name AS userName,
+            u.lastName AS userLastName
 		FROM newsletters AS nw 
 			INNER JOIN newsletter_tags AS nwt ON nw.id=nwt.id_newsletter 
 			INNER JOIN categories AS cat ON nw.category_id=cat.id
+            INNER JOIN users AS u ON u.id = nw.user_id
 		WHERE 
 			nwt.id_tag=id_tag AND
 			nw.isDeleted = 0 
@@ -48,10 +52,13 @@ BEGIN
 			nw.content,
 			nw.summary,
 			cat.name,
-			nw.title AS url
+			nw.title AS url,
+            u.name AS userName,
+            u.lastName AS userLastName
 		FROM newsletters AS nw 
 			INNER JOIN newsletter_tags AS nwt ON nw.id=nwt.id_newsletter 
 			INNER JOIN categories AS cat ON nw.category_id=cat.id
+            INNER JOIN users AS u ON u.id = nw.user_id
 		WHERE 
 			nwt.id_tag=id_tag AND
 			nw.isDeleted = 0 
@@ -62,6 +69,8 @@ BEGIN
 END$$
 
 DELIMITER ;
+
+
 
 
 INSERT INTO `roles` (`id`, `name`) VALUES (NULL, 'Client');
@@ -475,45 +484,6 @@ END$$
 
 DELIMITER ;
 
-
-
-DROP procedure IF EXISTS `sp_getInventory`;
-
-DELIMITER $$
-
-CREATE PROCEDURE `sp_getInventory`()
-    NO SQL
-BEGIN
-
-	SELECT 
-    	i.quantity AS invQuantity,
-    	p.name AS productName,
-        p.code,
-        p.width,
-        p.thickness,
-        p.length,
-        p.price,
-        pc.name AS productColor,
-        pt.name AS productType,
-        pa.name AS productAcabado,
-        pm.name AS productMaterial,
-        ps.name AS productSustrato
-    FROM 
-    	inventory AS i 
-        INNER JOIN products as p ON i.id_product = p.id 
-        INNER JOIN product_colors AS pc ON pc.id = p.id_product_color
-        INNER JOIN product_types AS pt ON pt.id = p.id_product_type
-        INNER JOIN product_acabados AS pa ON pa.id = p.id_product_acabado
-        INNER JOIN product_materials AS pm ON pm.id = p.id_product_material
-        INNER JOIN product_sustratos AS ps ON ps.id = p.id_product_sustrato
-    WHERE
-		p.is_deleted = 0
-   	ORDER BY
-    	pc.name ASC;
-
-END$$
-
-DELIMITER ;
 
 
 

@@ -30,24 +30,7 @@ class NewsletterController extends Controller
     {
         $rollId = auth()->user()->roll_id;
         $userId = auth()->user()->id;
-
-        if($rollId == 1){ // Administrativo ve todos los newsletter
-            $newsletters = DB::table('newsletters')
-                            ->join('categories', 'categories.id', '=', 'newsletters.category_id', 'inner', false)
-                            ->join('users', 'newsletters.user_id', '=', 'users.id', 'inner', false)
-                            ->select('newsletters.id', 'newsletters.title', 'newsletters.published_at', 'newsletters.isDeleted', 'categories.name', 'newsletters.title as url', 'users.name as userName', 'users.lastName as userLastName')
-                            ->orderby('newsletters.created_at', 'desc')
-                            ->get();
-        }else{
-
-            $newsletters = DB::table('newsletters')
-                            ->join('categories', 'categories.id', '=', 'newsletters.category_id', 'inner', false)
-                            ->join('users', 'newsletters.user_id', '=', 'users.id', 'inner', false)
-                            ->select('newsletters.id', 'newsletters.title', 'newsletters.published_at', 'newsletters.isDeleted', 'categories.name', 'newsletters.title as url', 'users.name as userName', 'users.lastName as userLastName')
-                            ->where("user_id", $userId)
-                            ->orderby('newsletters.created_at', 'desc')
-                            ->get();
-        }
+        $newsletters = $this->getNewslettersByUser($rollId, $userId);
         
         foreach($newsletters as $row){
             $row->url =  str_replace(" ", "-", $row->url);
@@ -55,6 +38,8 @@ class NewsletterController extends Controller
 
         return view('newsletter.index', compact('newsletters'));
     }
+
+    
 
     /**
      * Show the form for creating a new resource.
@@ -78,43 +63,50 @@ class NewsletterController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validateNewsletter(true, request()->all())->validate();
-        
-        $file = $request->file('name_img');
-        $fileName = Carbon::now()->format('Y-m-d_Hi') ."_". $file->getClientOriginalName();
-
-        $user_id = auth()->user()->id; 
-
-        $newsletter = Newsletter::create([
-            'title' => $request->input('title'),
-            'summary' => $request->input('summary'),
-            'content' => $request->input('content-wysiwyg'),
-            'user_id' => $user_id,
-            'category_id' => $request->input('category'),
-            'tags' => $request->input('tags'),
-            'name_img' => $fileName
-        ]);
-
-        $tagIDs = $request->input("HiddenFielTag");
-        if($tagIDs != ""){
-            $arrIDs = explode(",", $tagIDs);
-            foreach ($arrIDs as $value) {
-                DB::table("newsletter_tags")->insert([
-                    "id_newsletter" => $newsletter->id,
-                    "id_tag" => $value
-                ]);
+        try {
+            $this->validateNewsletter(true, request()->all())->validate();
+            
+            $file = $request->file('name_img');
+            $fileName = Carbon::now()->format('Y-m-d_Hi') ."_". $file->getClientOriginalName();
+    
+            $user_id = auth()->user()->id; 
+    
+            $newsletter = Newsletter::create([
+                'title' => $request->input('title'),
+                'summary' => $request->input('summary'),
+                'content' => $request->input('content-wysiwyg'),
+                'user_id' => $user_id,
+                'category_id' => $request->input('category'),
+                'tags' => $request->input('tags'),
+                'name_img' => $fileName
+            ]);
+    
+            $tagIDs = $request->input("HiddenFielTag");
+            if($tagIDs != ""){
+                $arrIDs = explode(",", $tagIDs);
+                foreach ($arrIDs as $value) {
+                    DB::table("newsletter_tags")->insert([
+                        "id_newsletter" => $newsletter->id,
+                        "id_tag" => $value
+                    ]);
+                }
             }
+    
+            // Storage::putFileAs('newsletters/', $file, $fileName);
+            $request->file('name_img')->storeAs('newsletters', $fileName, 'newsletter');
+    
+            $msgPost = "¡Registro realizado satisfactoriamente!.";
+            
+        } catch (\Throwable $th) {
+            //throw $th;
+            $msgPost = "Ha ocurrido un error, no pudo registrarse la información.";
         }
-
-        // Storage::putFileAs('newsletters/', $file, $fileName);
-        $request->file('name_img')->storeAs('newsletters', $fileName, 'newsletter');
 
         $categories = $this->getCategories(0);
         
         // return view('newsletter.create', compact('categories'));
-        $msgPost = "¡Registro realizado satisfactoriamente!.";
         $files = $this->getImagesURL();
-
+        
         return view('newsletter.create', compact('categories', 'msgPost', 'files'));
     }
 
@@ -234,12 +226,9 @@ class NewsletterController extends Controller
 
         $msgPost = "¡Registro actualizado satisfactoriamente!.";
 
-        $newsletters = DB::table('newsletters')
-                        ->join('categories', 'categories.id', '=', 'newsletters.category_id', 'inner', false)
-                        ->join('users', 'newsletters.user_id', '=', 'users.id', 'inner', false)
-                        ->select('newsletters.id', 'newsletters.title', 'newsletters.published_at', 'newsletters.isDeleted', 'categories.name', 'newsletters.title as url', 'users.name as userName', 'users.lastName as userLastName')
-                        ->orderby('newsletters.created_at', 'desc')
-                        ->get();
+        $rollId = auth()->user()->roll_id;
+        $userId = auth()->user()->id;
+        $newsletters = $this->getNewslettersByUser($rollId, $userId);
         
         $tagIDs = $request->input("HiddenFielTag");
         DB::table("newsletter_tags")
@@ -432,7 +421,7 @@ class NewsletterController extends Controller
         foreach($newsletters as $row){
             $row->url =  str_replace(" ", "-", $row->url);
         }
-
+        
         $total_newsletters = DB::table('newsletters')
             ->join("newsletter_tags", "newsletter_tags.id_newsletter", "=", "newsletters.id", "inner", false)
             ->where('newsletters.isDeleted', '0')
@@ -648,6 +637,28 @@ class NewsletterController extends Controller
         }
 
         return $result;
+    }
+
+    public function getNewslettersByUser($rollId, $userId){
+        if($rollId == 1){ // Administrativo ve todos los newsletter
+            $newsletters = DB::table('newsletters')
+                            ->join('categories', 'categories.id', '=', 'newsletters.category_id', 'inner', false)
+                            ->join('users', 'newsletters.user_id', '=', 'users.id', 'inner', false)
+                            ->select('newsletters.id', 'newsletters.title', 'newsletters.published_at', 'newsletters.isDeleted', 'categories.name', 'newsletters.title as url', 'users.name as userName', 'users.lastName as userLastName')
+                            ->orderby('newsletters.created_at', 'desc')
+                            ->get();
+        }else{
+
+            $newsletters = DB::table('newsletters')
+                            ->join('categories', 'categories.id', '=', 'newsletters.category_id', 'inner', false)
+                            ->join('users', 'newsletters.user_id', '=', 'users.id', 'inner', false)
+                            ->select('newsletters.id', 'newsletters.title', 'newsletters.published_at', 'newsletters.isDeleted', 'categories.name', 'newsletters.title as url', 'users.name as userName', 'users.lastName as userLastName')
+                            ->where("user_id", $userId)
+                            ->orderby('newsletters.created_at', 'desc')
+                            ->get();
+        }
+
+        return $newsletters;
     }
 
 }
