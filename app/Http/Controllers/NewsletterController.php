@@ -264,12 +264,9 @@ class NewsletterController extends Controller
         $_newsletter->isDeleted = 1;
         $_newsletter->update();
 
-        $newsletters = DB::table('newsletters')
-                        ->join('categories', 'categories.id', '=', 'newsletters.category_id', 'inner', false)
-                        ->join('users', 'users.id', '=', 'newsletters.user_id','inner', false)
-                        ->select('newsletters.id', 'newsletters.title', 'newsletters.created_at', 'newsletters.isDeleted', 'categories.name', 'newsletters.title as url', 'newsletters.published_at', 'users.name as userName', 'users.lastName as userLastName')
-                        ->orderby('newsletters.created_at', 'desc')
-                        ->get();
+        $rollId = auth()->user()->roll_id;
+        $userId = auth()->user()->id;
+        $newsletters = $this->getNewslettersByUser($rollId, $userId);
 
         foreach($newsletters as $row){
             $row->url =  str_replace(" ", "-", $row->url);
@@ -303,6 +300,10 @@ class NewsletterController extends Controller
                         ->select('newsletters.id', 'newsletters.title', 'newsletters.created_at', 'newsletters.isDeleted', 'newsletters.published_at', 'categories.name', 'newsletters.title as url', 'users.name as userName', 'users.lastName as userLastName')
                         ->orderby('newsletters.created_at', 'desc')
                         ->get();
+
+        $rollId = auth()->user()->roll_id;
+        $userId = auth()->user()->id;
+        $newsletters = $this->getNewslettersByUser($rollId, $userId);
         
         foreach($newsletters as $row){
             $row->url =  str_replace(" ", "-", $row->url);

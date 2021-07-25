@@ -24,7 +24,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
                 <h1 class="text-shadow">¡Fabricamos tus sueños!</h1>
                 <p class="mb-5 text-shadow">Hacemos realidad el mobiliario que tienes en mente. 
                 Muebles ideales para hoteles, cocinas, oficina, dormitorios, baños y más.</p>
-                <p><a href="{{ route('contact.tellus') }}#contact-section" class="btn btn-primary px-5 py-3">Cuéntanos</a></p>
+                <!-- <p><a href="{{ route('contact.tellus') }}#contact-section" class="btn btn-primary px-5 py-3">Cuéntanos</a></p> -->
                 
               </div>
             </div>
@@ -312,8 +312,8 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
             <a href="{{ url('/fabricacion') }}">Leer más</a>
             </p>
             <p>
-              ¡Cuéntanos tu proyecto y lo fabricamos!
-             <br> <br><a href="{{ route('contact.tellus') }}#contact-section" class="btn btn-primary mr-2 mb-2">Cuéntanos</a>
+              <!-- ¡Cuéntanos tu proyecto y lo fabricamos! -->
+             <!-- <br> <br><a href="{{ route('contact.tellus') }}#contact-section" class="btn btn-primary mr-2 mb-2">Cuéntanos</a> -->
             </p>
             
              
@@ -557,7 +557,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
      <!-- Fin Seccion Aliados-->
 
     <!--Seccion contactanos-->
-    <section class="site-section bg-light bg-image" id="contact-section">
+    <section class="site-section bg-light bg-image" id="contact-section" name="contact-section-bk">
       <div class="container">
         <div class="row mb-5">
           <div class="col-12 text-center">
@@ -701,6 +701,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
         </div>
       </div>
     </section>
+
     <!--Fin Seccion seccion Contactanos-->
 
 

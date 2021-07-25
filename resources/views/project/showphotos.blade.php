@@ -73,7 +73,7 @@
                                             <a class="mfp-image" href="{{ asset('images/proyectos/') }}/{{ $item->photo }}" title="{{ $item->project_name }}"><i class="pe-7s-expand1 text-white"></i></a>
                                         </div>
                                         <div class="work-content">
-                                            <h6 class="title mb-0"><a onclick="onclick_image('{{ asset('images/proyectos/') }}/{{ $item->photo }}', '{{ $item->project_name }}', '{{ $item->alt_text }}')" data-toggle="modal" data-target="#imageModal" href="javascript:void(0)" class="text-light text-uppercase">{{ $item->project_name }}</a></h6>
+                                            <h6 class="title mb-0"><a onclick="onclick_image('{{ asset('images/proyectos/') }}/{{ $item->photo }}', '{{ $item->project_name }}', '{{ $item->alt_text }}')" data-toggle="modal" data-target="#imageModal" href="javascript:void(0)" class="text-light text-uppercase">Ver detalles</a></h6>
                                         </div>
                                     </div>
                                 </div>                                
