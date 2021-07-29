@@ -116,10 +116,19 @@ Edición de novedades
                     <div class="row form-group">
                         <div class="col-md-12">
                             <label class="text-black" for="content">Contenido</label> 
-                            <textarea id="content-wysiwyg" name="content-wysiwyg" rows="7" style="height:300px;" class="form-control">{{ $newsletter->content }}</textarea>
+                            <textarea id="content-wysiwyg" name="content-wysiwyg" rows="7" style="height:600px; width: 100%;" class="form-control">{{ $newsletter->content }}</textarea>
                         </div>
                     </div>
 
+                    
+                    <!-- Boton para agregar imagenes link -->
+                    <!-- comentado temporalmente -->
+                    <div class="row form-group mt-3 mb-3 text-center">
+                        <div class="col-md-12">
+                            <input type="button" class="btn btn-primary" value="Ver imagenes" data-toggle="modal" data-target="#imagesModal">
+                        </div>
+                    </div>
+                    
                     <!-- categoria / tags -->
                     <div class="row form-group">
                         <div class="col-md-6 mb-3 mb-md-0">
@@ -159,6 +168,7 @@ Edición de novedades
                         </div>
 
                     </div>
+
 
                     <div class="row form-group">
                         <div class="col-md-12">
@@ -247,6 +257,57 @@ Edición de novedades
   </div>
 </div>
 
+<!-- modal para imagenes-link -->
+<div class="modal fade" id="imagesModal" aria-labelledby="imagesModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="imagesModalLabel">Imagenes link</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        <div class="contendorImages" id="divContendorImages">
+            @foreach($files as $file)
+                <img src="{{ asset('images') }}/{{ $file }}" onclick="onclick_image(this)" title="Haga click para copiar url">
+            @endforeach
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-12">
+                <form id="form_updloadimage" action="{{ route('newsletter.uploadimage') }}" method="post" enctype="multipart/form-data">
+
+                    <div id="divMessageUploadImg">
+                    
+                    </div>
+                    <!-- Image -->
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <label for="image_link">Cargar imagen</label>
+                            <input type="file" accept="image/png, image/jpeg, image/jpg" class="form-control" id="image_link" name="image_link" placeholder="Imagen" >
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-12 text-right">
+                            <button type="submit" class="btn btn-primary" id="btnUploadImage">
+                                Subir imagen
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 // $('#form_send_newsletter').submit(function() {debugger
     
@@ -274,7 +335,12 @@ var textarea = document.getElementById('content-wysiwyg');
 
 <script src="{{ asset('js/bootstrap-autocomplete2-3-7.min.js') }}"></script>
 
+<script src="{{ asset('js/utils.js') }}?v={{ env('APP_VERSION') }}"></script>
+
 <script>
+
+    var GLOBAL_URL = '{{ asset("images/newsletters/images_links/") }}';
+
     $(function(){
 
         $('.basicAutoComplete').autoComplete({
@@ -329,7 +395,78 @@ var textarea = document.getElementById('content-wysiwyg');
         Utils.initTags();
     });
 
-    
+    var onclick_image = function(obj){
+
+        var $temp = $("<input>");
+        $("body").append($temp);
+        var contenido = obj.src;
+        $temp.val(contenido).select();
+        var res = document.execCommand('copy');
+        $temp.remove();
+        if(res){
+            showAlert("URL de la imagen <strong>copiada!</strong>");
+
+        }
+
+    }
+
+    $("#form_updloadimage").on("submit", function(ev){
+        ev.preventDefault();
+
+        $("#image_link").removeClass("is-invalid");
+        if($("#image_link").val() == ""){
+            $("#image_link").addClass("is-invalid");
+            return false
+        }
+
+        $("#btnUploadImage").prop("disabled", true);
+        $("#btnUploadImage").html("Cargando");
+        var formData = new FormData(document.getElementById("form_updloadimage"));
+        var _route = $(this).attr('action');
+        var _token = $("#token").val();
+        $.ajax({
+            url: _route,
+            dataType: "html",
+            contentType: false,
+            headers: { 'X-CSRF-TOKEN': _token },
+            type: 'POST',
+            data: formData,
+            processData: false
+        })
+        .done(function(result){
+            $("#btnUploadImage").prop("disabled", false);
+            $("#btnUploadImage").html("Subir imagen");
+            data = JSON.parse(result);
+
+            if(data.result){
+                var _html = '<img src="' + GLOBAL_URL + '/' + data.file_name + '" onclick="onclick_image(this)" title="Haga click para copiar url">';
+                $("#divContendorImages").append(_html);
+                $("#image_link").val("");
+                showAlert(data.message);
+            }else{
+                showAlert(data.message);
+            }
+
+        })
+        .fail(function(jqXHR, textStatus, errorThrown ){  
+            $("#btnUploadImage").prop("disabled", false);
+            $("#btnUploadImage").html("Subir imagen");
+            console.log(jqXHR.responseJSON.errors);
+        })
+
+    });
+
+    var showAlert = function(message){
+
+        _html = '<div class="alert alert-info alert-dismissible fade show" role="alert">' +
+                 message +
+                 '   <button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+                 '       <span aria-hidden="true">&times;</span>' +
+                 '   </button>' +
+                 '   </div>';
+        $("#divMessageUploadImg").html(_html);
+
+    }
 
 </script>
 @endsection

@@ -181,7 +181,10 @@ class NewsletterController extends Controller
         // }
         // $tags = implode(",", $_tags);
         // dd($tags);
-        return view('newsletter.edit', compact('newsletter', 'categories', 'tags'));
+
+        $files = $this->getImagesURL();
+
+        return view('newsletter.edit', compact('newsletter', 'categories', 'tags', 'files'));
     }
 
     /**
