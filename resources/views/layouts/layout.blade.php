@@ -17,6 +17,10 @@
     <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css')}}">
     <!-- <link rel="stylesheet" href="css/owl.theme.default.min.css"> -->
 
+    
+    <!--Bloque incorporado para galeria de proyectos-->
+    <link href="{{ asset('css/proyectos/magnific-popup.css')}}" rel="stylesheet" type="text/css" />
+
     <link rel="stylesheet" href="{{ asset('css/jquery.fancybox.min.css')}}">
 
     <link rel="stylesheet" href="{{ asset('css/bootstrap-datepicker.css')}}">
@@ -35,11 +39,9 @@
     <script src="{{ asset('js/modernizr.custom.17475.js')}}"></script>
      <!-- fin del bloque fabricacion -->
 
-    <!--Bloque incorporado para galeria de proyectos-->
-    <link href="css/proyectos/magnific-popup.css" rel="stylesheet" type="text/css" />
     <!-- Icon -->
     <!-- <link href="css/proyectos/materialdesignicons.min.css" rel="stylesheet" type="text/css" /> -->
-    <link href="css/pe-icon-7-stroke.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('css/pe-icon-7-stroke.css')}}" rel="stylesheet" type="text/css" />
     <!-- fin del bloque fabricacion -->
 
      <!-- Javascript para captcha de formulario -->
@@ -53,7 +55,7 @@
       alert(+ d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds());
     </script> -->
     
-    <script type="text/javascript" src="js/videos.js"></script>
+    <script type="text/javascript" src="{{ asset('js/videos.js') }}"></script>
     <!-- <script src="js/videos.js"></script> -->
     
 
@@ -266,9 +268,12 @@
                 <li><a href="{{ route('welcome')}}#contact-section" class="nav-link">Contactanos</a></li>
                 @if(Auth::check())
                   <li><a href="{{ route('logout')}}" class="nav-link">Salir</a></li>
-                  <li><a href="{{ route('home')}}" class="nav-link"><span class="icon-home"></span></a></li>
+                  <li><a href="{{ route('home')}}" class="nav-link"><span class="icon-home"></span> Mi Sesión</a></li>
                 @else
-                  <li><a href="{{ route('login')}}" class="nav-link"><span class="icon-user"></span></a></li>
+                  <li>
+                    <a href="{{ route('login')}}" class="nav-link"><span class="icon-user"></span> Ingresar / Registrarse</a>
+                    <!-- <a href="{{ route('login')}}#contact-section" class="nav-link">Ingresar / Registrarse</a> -->
+                  </li>
                 @endif
 
               </ul>
@@ -480,23 +485,16 @@
   <!-- fin del bloque fabricacion -->  
 
 <!-- javascript -->
-<script src="js/galeria/jquery.min.js"></script>
-        <script src="js/galeria/bootstrap.bundle.min.js"></script>
-        <script src="js/galeria/jquery.easing.min.js"></script>
-        <script src="js/galeria/scrollspy.min.js"></script>
         <!-- SLIDER -->
-        <script src="js/galeria/owl.carousel.min.js"></script>
         <!-- Magnific Popup -->
-        <script src="js/galeria/jquery.magnific-popup.min.js"></script>
-        <script src="js/galeria/isotope.js"></script>
-        <script src="js/galeria/portfolio-filter.js"></script> 
+        <script src="{{ asset('js/isotope.js') }}"></script>
+        <script src="{{ asset('js/galeria/jquery.magnific-popup.min.js') }}"></script>
+        <script src="{{ asset('js/galeria/portfolio-filter.js') }}"></script> 
+        <script src="{{ asset('js/scrollspy.min.js') }}"></script> 
+        <script src="{{ asset('js/app-project.js') }}"></script> 
         <!-- Contact -->
-        <script src="js/galeria/contact.js"></script>
         <!-- Counter -->
-        <script src="js/galeria/counter.init.js"></script>
         <!-- Switcher -->
-        <script src="js/galeria/switcher.js"></script>
         <!-- Main Js -->
-        <script src="js/galeria/app.js"></script>
 
   @yield('script')

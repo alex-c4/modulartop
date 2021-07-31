@@ -4,25 +4,20 @@
     <link rel="stylesheet" href="{{ asset('css/project.css')}}?v={{ env('APP_VERSION') }}">
 @endsection
 
-
 @section('content')
 
-@section('banner')
-
-<div class="site-blocks-cover inner-page-cover overlay" style="background-image: url({{ asset('images/novedades/newsletter-novedades.jpg') }});" data-aos="fade">
-    <div class="container">
-        <div class="row align-items-center justify-content-center">
-            <div class="col-md-5 mx-auto mt-lg-5 text-center">
-                <h1>Proyecto</h1>
-                <p class="mb-5"><strong class="text-white">Creación proyecto</strong></p>
-            </div>
-        </div>
-    </div>
-
-    <!-- <a href="#blog" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a> -->
-</div> 
-
+@section('imgBanner')
+{{ Utils::getBanner(auth()->user()->roll_id) }}
 @endsection
+
+@section('title')
+Proyecto
+@endsection
+
+@section('subtitle')
+Creación proyecto
+@endsection
+
 
 <section class="blog-section spad" id="blog">
 <div class="container">
@@ -39,11 +34,6 @@
         </div>
     </nav>
 
-    <div class="row mb-5">
-        <div class="col-12 text-center">
-        <h2 class="section-title mb-3 text-black">Nuevo proyeto</h2>
-        </div>
-    </div>
 
     <!-- mensaje para la creacion de los post -->
     @if(isset($msgPost) != null)
@@ -61,20 +51,25 @@
         <div class="col-lg-8">
             <div class="card">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('ordersale.store') }}" enctype="multipart/form-data">
+                    <form id="form_project" method="POST" action="{{ route('project.store') }}" enctype="multipart/form-data">
                     
                         <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
 
                         <!-- Proyectistas -->
                         <div class="row form-group" >
-                            <label class="col-lg-4 col-form-label text-md-right" for="proyectista">Proyectista<span>*</span></label>
+                            <label class="col-md-4 col-form-label text-md-right" for="proyectista">Proyectista<span>*</span></label>
                             <div class="col-md-6">
-                                <select class="custom-select" id="proyectista" name="proyectista">
-                                    <option value="0">Seleccione...</option>
-                                    <option value="1">Modular Top</option>
-                                    <option value="2">Aliado Comercial</option>
-                                    <option value="3">Proveedor</option>
+                                <select class="custom-select @error('proyectista') is-invalid @enderror" id="proyectista" name="proyectista">
+                                    <option value>Seleccione...</option>
+                                    @foreach($proyectistas as $proyectista)
+                                        <option value="{{ $proyectista->id }}">{{ $proyectista->name }}</option>
+                                    @endforeach
                                 </select>
+                                @error('proyectista')
+                                    <span class="invalid-field text-center" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 
@@ -82,12 +77,40 @@
                         <div class="form-group row">
                             <label for="code" class="col-md-4 col-form-label text-md-right">Nombre<span>*</span></label>
                             <div class="col-md-6">
-                                <input id="name" name="name" type="text" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" required autofocus>
+                                <input maxlength="120" id="name" name="name" type="text" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" autofocus>
                                 @error('name')
                                     <span class="invalid-field" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                            </div>
+                        </div>
+
+                        <!-- Cover photo -->
+                        <div class="row form-group">
+                            <label for="cover_photo" class="col-md-4 col-form-label text-md-right">Foto portada<span>*</span></label>
+                            <div class="col-md-6">
+                                <input type="file" id="cover_photo" name="cover_photo" accept="image/png, image/jpeg, image/jpg" class="form-control @error('cover_photo') is-invalid @enderror" placeholder="Imagen"> 
+                            </div>
+                            
+                            @error('cover_photo')
+                                <span class="invalid-field text-center" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+
+                        <!-- cover photo alt_text -->
+                        <div class="row form-group">
+                            <label for="cover_photo_alt_text" class="col-md-4 col-form-label text-md-right">Texto alternativo<span>*</span></label>
+                            <div class="col-md-6">
+                                <textarea maxlength="60" id="cover_photo_alt_text" name="cover_photo_alt_text" rows="2" class="form-control @error('cover_photo_alt_text') is-invalid @enderror" >{{ old('cover_photo_alt_text') }}</textarea>
+                                @error('cover_photo_alt_text')
+                                    <span class="invalid-field" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror    
                             </div>
                         </div>
 
@@ -105,25 +128,11 @@
                             </div>
                         </div>
 
-                        <!-- Cover photo -->
-                        <div class="row form-group">
-                            <label for="cover_photo" class="col-md-4 col-form-label text-md-right">Foto portada<span>*</span></label>
-                            <div class="col-md-6">
-                                <input type="file" id="cover_photo" name="cover_foto" accept="image/png, image/jpeg, image/jpg" class="form-control @error('cover_photo') is-invalid @enderror" placeholder="Imagen" required> 
-                            </div>
-                            
-                            @error('cover_photo')
-                                <span class="invalid-field text-center" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-
                         <!-- Plane photo -->
                         <div class="row form-group">
                             <label for="plane_photo" class="col-md-4 col-form-label text-md-right">Foto del plano</label>
                             <div class="col-md-6">
-                                <input type="file" id="plane_photo" name="plane_foto" accept="image/png, image/jpeg, image/jpg" class="form-control @error('cover_photo') is-invalid @enderror" placeholder="Imagen"> 
+                                <input type="file" id="plane_photo" name="plane_photo" accept="image/png, image/jpeg, image/jpg" class="form-control @error('plane_photo') is-invalid @enderror" placeholder="Imagen"> 
                             </div>
                         </div>
 
@@ -139,7 +148,7 @@
                         <div class="form-group row d-none" id="div_client_name">
                             <label for="client_name" class="col-md-4 col-form-label text-md-right">Nombre del cliente<span>*</span></label>
                             <div class="col-md-6">
-                                <input id="client_name" name="client_name" type="text" class="form-control @error('client_name') is-invalid @enderror" value="{{ old('client_name') }}" >
+                                <input maxlength="60" id="client_name" name="client_name" type="text" class="form-control @error('client_name') is-invalid @enderror" value="{{ old('client_name') }}" >
                                 @error('client_name')
                                     <span class="invalid-field" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -150,8 +159,8 @@
 
                         <!-- Fecha -->
                         <div class="form-group row d-none" id="div_project_date">
-                            <label for="project_date" class="col-lg-4 col-form-label text-lg-right">Fecha<span>*</span></label>
-                            <div class="col-lg-6">
+                            <label for="project_date" class="col-md-4 col-form-label text-md-right">Fecha<span>*</span></label>
+                            <div class="col-md-6">
                                 <input id="project_date" name="project_date" autocomplete="off" type="text" class="form-control @error('project_date') is-invalid @enderror" value="{{ old('project_date') }}" >
 
                                 @error('project_date')
@@ -166,7 +175,7 @@
                         <div class="form-group row d-none" id="div_partner_company">
                             <label for="partner_company" class="col-md-4 col-form-label text-md-right">Empresa aliada<span>*</span></label>
                             <div class="col-md-6">
-                                <input id="partner_company" name="partner_company" type="text" class="form-control @error('partner_company') is-invalid @enderror" value="{{ old('partner_company') }}" >
+                                <input maxlength="60" id="partner_company" name="partner_company" type="text" class="form-control @error('partner_company') is-invalid @enderror" value="{{ old('partner_company') }}" >
                                 @error('partner_company')
                                     <span class="invalid-field" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -177,7 +186,7 @@
 
                         <!-- Proveedores -->
                         <div class="row form-group d-none" id="div_provider">
-                            <label class="col-lg-4 col-form-label text-md-right" for="provider">Proveedor<span>*</span></label>
+                            <label class="col-md-4 col-form-label text-md-right" for="provider">Proveedor<span>*</span></label>
                             <div class="col-md-6">
                                 <select class="custom-select" id="provider" name="provider">
                                     <option value="0">Seleccione...</option>
@@ -214,6 +223,9 @@
 
 @section('script')
 
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script> -->
+
+    <script src="{{ asset('js/jquery-validate-1_19.js') }}"></script>
     <script src="{{ asset('js/project.js') }}?v={{ env('APP_VERSION') }}"></script>
 
 @endsection

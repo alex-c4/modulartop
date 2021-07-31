@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-05-2021 a las 00:16:11
+-- Tiempo de generación: 03-07-2021 a las 16:40:15
 -- Versión del servidor: 10.1.30-MariaDB
 -- Versión de PHP: 7.2.1
 
@@ -34,16 +34,20 @@ CREATE TABLE `products` (
   `name` varchar(60) NOT NULL,
   `id_product_category` int(11) NOT NULL,
   `id_product_type` int(11) NOT NULL,
-  `id_subcategory_acabado` int(11) NOT NULL,
-  `id_subcategory_efecto_v` int(11) NOT NULL,
-  `id_subcategory_material` int(11) NOT NULL,
-  `id_subcategory_origen` int(11) NOT NULL,
-  `id_subcategory_sustrato` int(11) NOT NULL,
-  `id_subcategory_color` int(11) NOT NULL,
-  `description` text NOT NULL,
-  `price` float(11,2) NOT NULL,
+  `id_product_subtype` int(11) NOT NULL,
+  `id_product_origen` int(11) NOT NULL,
+  `cantinit` int(11) DEFAULT '0',
+  `id_product_acabado` int(11) DEFAULT NULL,
+  `id_product_subacabado` int(11) DEFAULT NULL,
+  `width` decimal(6,2) NOT NULL,
+  `thickness` decimal(6,2) NOT NULL,
+  `length` decimal(6,2) DEFAULT NULL,
+  `id_product_material` int(11) DEFAULT NULL,
+  `id_product_sustrato` int(11) DEFAULT NULL,
+  `id_product_color` int(11) DEFAULT NULL,
+  `description` text,
   `img_product` varchar(120) NOT NULL,
-  `pdf_file` varchar(120) DEFAULT NULL,
+  `img_alt` varchar(60) NOT NULL,
   `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `created_by` int(11) NOT NULL,
@@ -68,7 +72,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT de la tabla `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

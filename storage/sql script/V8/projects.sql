@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-05-2021 a las 23:52:25
+-- Tiempo de generación: 28-05-2021 a las 00:38:01
 -- Versión del servidor: 10.1.30-MariaDB
 -- Versión de PHP: 7.2.1
 
@@ -30,16 +30,18 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `projects` (
   `id` int(11) NOT NULL,
+  `proyectista_id` int(11) NOT NULL,
   `name` varchar(120) NOT NULL,
-  `description` text NOT NULL,
-  `cover_photo` varchar(120) NOT NULL,
+  `description` text,
+  `cover_photo` varchar(120) DEFAULT NULL,
+  `cover_photo_alt_text` text,
   `plane_photo` varchar(120) DEFAULT NULL,
   `ubication` text,
   `client_name` varchar(60) DEFAULT NULL,
   `project_date` date DEFAULT NULL,
   `partner_company` varchar(60) DEFAULT NULL,
   `provider_id` int(11) DEFAULT NULL,
-  `created_at` datetime NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `created_by` int(11) NOT NULL,
   `updated_at` datetime DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL
@@ -63,7 +65,7 @@ ALTER TABLE `projects`
 -- AUTO_INCREMENT de la tabla `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

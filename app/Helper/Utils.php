@@ -36,17 +36,25 @@ class Utils
             "user.create",
             "user.showUser",
             "userClient.index",
-            "userClient.create"
+            "userClient.create",
+            "userClient.store",
+            "user.edit_from_table",
         );
 
         $_user_routes = array(
             "user.edit",
-            "user.update"
+            "user.update",
+            "password.showFormResetPassw",
+            "user.delete.confirm"
         );
 
         $_products_routes = array(
             "product.create",
-            "product.index"
+            "product.index",
+            "product.edit",
+            "product.uploadFichaTecnica",
+            "product.storeFichaTecnica",
+            "product.store"
         );
 
         $_compra_routes = array(
@@ -57,7 +65,8 @@ class Utils
         $_venta_routes = array(
             "sale.create",
             "sale.store",
-            "sale.saleslist"
+            "sale.saleslist",
+            "sale.statistics"
         );
 
         $_order_sale_routes = array(
@@ -74,7 +83,15 @@ class Utils
         );
 
         $_project_routes = array(
-            "project.create"
+            "project.create",
+            "project.index",
+            "project.edit",
+            "project.store",
+            "project.update"
+        );
+
+        $_leds_routes = array(
+            "leds.ledsget"
         );
 
         switch($modulo){
@@ -118,7 +135,9 @@ class Utils
             case "project":
                 $class  = Utils::getClass($_project_routes, $route);
                 break;
-
+            case "leds":
+                $class  = Utils::getClass($_leds_routes, $route);
+                break;
         }
 
         return $class;
@@ -135,11 +154,13 @@ class Utils
     }
 
     public static function getUsersToValidate(){
-        $users = User::where("validationByAdmin", "0")
-            ->where("confirmed", "1")
-            ->where("roll_id", "2")
-            ->where("is_client", "1")
-            ->where("is_deleted", "0")
+        $users = DB::table("users as u")->where("u.validationByAdmin", "0")
+            ->join("company_types as c", "u.company_type_id", "=", "c.id", "left", false)
+            ->select("u.id", "u.name", "u.lastName", "u.razonSocial", "c.name as client_type_name")
+            ->where("u.confirmed", "1")
+            ->where("u.roll_id", "2")
+            ->where("u.is_client", "1")
+            ->where("u.is_deleted", "0")
             ->get();
 
         return $users;
@@ -244,8 +265,59 @@ class Utils
         }
 
         return $result;
+    }
 
+    static public function getRollName($userId){
+
+        $roll = DB::table("users")->select("roles.nombre")
+            ->where("users.id", $userId)
+            ->join("roles", "users.roll_id", "=", "roles.id", "inner", false)
+            ->first();
+
+        return $roll->nombre;
 
     }
+
+    static public function getAvatar($userId){
+        
+        $avatar = "no_image.png";
+
+        $user = DB::table("users")->select("users.avatar")
+            ->where("users.id", $userId)
+            ->first();
+        
+        if($user->avatar != null){
+            $avatar = $user->avatar;
+        }
+
+        return $avatar;
+    }
+
+    static public function getBanner($userRoll){
+        $userRoll = intval($userRoll);
+        switch ($userRoll) {
+            case 1:
+                $banner = "super.jpg";
+                break;
+            case 2:
+                $banner = "estandar.jpg";
+                break;
+            case 3:
+                $banner = "marketing.jpg";
+                break;
+            case 4:
+                $banner = "cliente.jpg";
+                break;
+            case 5:
+                $banner = "admin.jpg";
+                break;
+            default:
+                $banner = "estandar.jpg";
+                break;
+        }
+
+        return $banner;
+    }
+
 
 }

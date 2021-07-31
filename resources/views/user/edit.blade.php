@@ -6,28 +6,23 @@
 
 @section('content')
 
-@section('banner')
-
-<div class="site-blocks-cover inner-page-cover overlay" style="background-image: url({{ asset('images/novedades/newsletter-novedades.jpg') }});" data-aos="fade">
-    <div class="container">
-        <div class="row align-items-center justify-content-center">
-            <div class="col-md-5 mx-auto mt-lg-5 text-center">
-                <h1>Usuario</h1>
-                <p class="mb-5"><strong class="text-white">Edición de información</strong></p>
-        
-            </div>
-        </div>
-    </div>
-
-    <!-- <a href="#blog" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a> -->
-</div> 
-
+@section('imgBanner')
+{{ Utils::getBanner(auth()->user()->roll_id) }}
 @endsection
+
+@section('title')
+Usuario
+@endsection
+
+@section('subtitle')
+Edición de información
+@endsection
+
 
 <section class="blog-section spad" id="blog">
         @if(isset($msg) != null)
             <div class="container">
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <div class="alert alert-info alert-dismissible fade show" role="alert">
                 <strong>{{$msg}}</strong> 
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -39,7 +34,7 @@
         <div class="container">
         <br>
             <div class="row justify-content-center">
-                <div class="col-md-8">
+                <div class="col-md-9">
                     <div class="card">
 
                         <div class="card-body">
@@ -50,7 +45,7 @@
                                     <label for="name" class="col-md-4 col-form-label text-md-right">Nombre<span>*</span></label>
 
                                     <div class="col-md-6">
-                                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}" required autofocus>
+                                        <input id="name" type="text" maxlength="20" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}" required autofocus>
 
                                         @error('name')
                                             <span class="invalid-feedback" role="alert">
@@ -65,7 +60,7 @@
                                     <label for="lastName" class="col-md-4 col-form-label text-md-right">Apellido<span>*</span></label>
 
                                     <div class="col-md-6">
-                                        <input id="lastName" name="lastName" type="text" class="form-control @error('lastName') is-invalid @enderror" value="{{ $user->lastName }}" required>
+                                        <input id="lastName" name="lastName" type="text" maxlength="20" class="form-control @error('lastName') is-invalid @enderror" value="{{ $user->lastName }}" required>
 
                                         @error('lastName')
                                             <span class="invalid-feedback" role="alert">
@@ -80,7 +75,7 @@
                                     <label for="email" class="col-md-4 col-form-label text-md-right">Correo electrónico<span>*</span></label>
 
                                     <div class="col-md-6">
-                                        <input id="email" disabled type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" required autocomplete="off">
+                                        <input id="email" disabled type="email" maxlength="60" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" required autocomplete="off">
 
                                         @error('email')
                                             <span class="invalid-feedback" role="alert">
@@ -101,7 +96,8 @@
                                     <label for="avatar" class="col-md-4 col-form-label text-md-right">Imagen</label>
 
                                     <div class="col-md-6">
-                                        <input id="avatar" type="file" class="form-control" name="avatar" accept="image/png,image/jpeg,image/jpg">
+                                        <input id="avatar" type="file" maxlength="60" class="form-control" name="avatar" accept="image/png,image/jpeg,image/jpg">
+                                        <small id="emailHelp" class="form-text text-muted small-register-user" >Se recomienda imagen de tamaño (200 x 200 pixeles)</small>
                                     </div>
                                 </div>
 
@@ -110,9 +106,27 @@
                                     <label for="clientPhone" class="col-md-4 col-form-label text-md-right">Teléfono</label>
 
                                     <div class="col-md-6">
-                                        <input id="clientPhone" type="number" class="form-control" name="clientPhone" value="{{ $user->phone }}">
+                                        <input id="clientPhone" type="number" maxlength="15" class="form-control" name="clientPhone" value="{{ $user->phone }}">
                                     </div>
                                 </div>
+
+                                @if(auth()->user()->roll_id == 1 || auth()->user()->roll_id == 5)
+                                <!-- Rol en el sistema  -->
+                                <div class="form-group row">
+                                    <label for="rolId" class="col-md-4 col-form-label text-md-right">Rol<span>*</span></label>
+                                    <div class="col-md-6">
+                                        <select class="form-control" id="rolId" name="rolId">
+                                        @foreach($roles as $rol)
+                                            @if($user->roll_id == $rol->id)
+                                                <option selected value="{{ $rol->id }}">{{ $rol->nombre }}</option>
+                                            @else
+                                                <option value="{{ $rol->id }}">{{ $rol->nombre }}</option>
+                                            @endif
+                                        @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                @endif
 
                                 <!-- Direccion del cilente -->
                                 <div class="form-group row">
@@ -126,7 +140,7 @@
                                 <!-- Es cliente -->
                                 <div class="form-group row">
                                     <div class="col-md-4 text-md-right">
-                                        <label class="form-check-label" for="chkClient">Compañia</label>
+                                        <label class="form-check-label" for="chkClient"><strong>Soy o quiero ser cliente</strong> </label>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-check">
@@ -144,7 +158,7 @@
                                         <label for="rif" class="col-md-4 col-form-label text-md-right">Rif<span>*</span></label>
 
                                         <div class="col-md-6">
-                                            <input id="rif" type="text" class="form-control @error('rif') is-invalid @enderror uppercase-field" name="rif" value="{{ $user->rif }}" >
+                                            <input maxlength="20" id="rif" type="text" class="form-control @error('rif') is-invalid @enderror uppercase-field" name="rif" value="{{ $user->rif }}" >
 
                                             @error('rif')
                                                 <span class="invalid-feedback" role="alert">
@@ -160,7 +174,7 @@
                                         <label for="rsocial" class="col-md-4 col-form-label text-md-right">Razón social<span>*</span></label>
 
                                         <div class="col-md-6">
-                                            <input id="rsocial" name="rsocial" type="text" class="form-control @error('rsocial') is-invalid @enderror" value="{{ $user->razonSocial }}">
+                                            <input maxlength="50" id="rsocial" name="rsocial" type="text" class="form-control @error('rsocial') is-invalid @enderror" value="{{ $user->razonSocial }}">
 
                                             @error('rsocial')
                                                 <span class="invalid-feedback" role="alert">
@@ -198,20 +212,36 @@
                                         @enderror
                                     </div>
 
-                                    <div class="form-group row" style="display: flex; justify-content: center;">
+                                    <!-- Tipo de empresa  -->
+                                    <div class="form-group row">
+                                        <label for="company_type" class="col-md-4 col-form-label text-md-right">Tipo de empresa<span>*</span></label>
+                                        <div class="col-md-6">
+                                            <select class="form-control" id="company_type" name="company_type">
+                                            @foreach($company_types as $type)
+                                                @if($user->company_type_id == $type->id)
+                                                    <option selected value="{{ $type->id }}">{{ $type->name }}</option>
+                                                @else
+                                                    <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                                @endif
+                                            @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- <div class="form-group row" style="display: flex; justify-content: center;">
                                         <div class="text-center">
                                             <img src="{{ asset('images/customers_logos/companyLogo') }}/@if($user->companyLogo == '')no_image.png @else{{ $user->companyLogo }}@endif" width="100px" class="rounded" alt="...">
                                         </div>
-                                    </div>
+                                    </div> -->
                                 
                                     <!-- Imagen de la compañia -->
-                                    <div class="form-group row">
+                                    <!-- <div class="form-group row">
                                         <label for="companyLogo" class="col-md-4 col-form-label text-md-right">Logo</label>
 
                                         <div class="col-md-6">
                                             <input id="companyLogo" type="file" class="form-control" name="companyLogo" accept="image/png,image/jpeg,image/jpg">
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                 </div><!-- fin contenedor cliente -->
 

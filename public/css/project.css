@@ -4,3 +4,38 @@
     font-weight: bolder;
     vertical-align: top;
 }
+
+label.error{
+    color: crimson !important;
+    font-weight: bolder;
+    /* font-size: 10px !important; */
+}
+
+input.error{
+    border: 1px solid crimson !important;
+}
+
+.img_container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.img_div{
+    background-color: #323232;
+    border: 3px solid #191717;
+    margin: 2px;
+    color: white;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+}
+.img_div img{
+    height: 110px;
+}
+.img_div span{
+    cursor: pointer;
+}
+.img_div span:hover{
+    color: #ff0007;
+}

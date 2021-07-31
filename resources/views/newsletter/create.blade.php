@@ -48,31 +48,22 @@
     
 </style>
 
-@section('banner')
-
-    <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url({{ asset('images/novedades/newsletter-novedades.jpg') }});" data-aos="fade">
-        <div class="container">
-            <div class="row align-items-center justify-content-center">
-                <div class="col-md-5 mx-auto mt-lg-5 text-center">
-                    <h1>Novedades</h1>
-                <!-- <p class="mb-5"><strong class="text-white">Nuevo Post</strong></p>-->
-            
-                </div>
-            </div>
-        </div>
-
-        <!-- <a href="#blog" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a> -->
-    </div>
-
+@section('imgBanner')
+{{ Utils::getBanner(auth()->user()->roll_id) }}
 @endsection
+
+@section('title')
+Novedades
+@endsection
+
+@section('subtitle')
+Nuevo Post
+@endsection
+
 
 <section class="site-section bg-light bg-image" id="contact-section">
     <div class="container">
-        <div class="row mb-5">
-          <div class="col-12 text-center">
-            <h2 class="section-title mb-3 text-black">Nuevo Post</h2>
-          </div>
-        </div>
+        
 
         <!-- mensaje para la creacion de los post -->
         @if(isset($msgPost) != null)
@@ -110,11 +101,12 @@
                     </div>
 
                     <!-- Boton para agregar imagenes link -->
-                    <div class="row form-group mt-3 mb-3">
+                    <!-- comentado temporalmente -->
+                    <!-- <div class="row form-group mt-3 mb-3">
                         <div class="col-md-12">
                             <input type="button" class="btn btn-primary" value="Ver imagenes" data-toggle="modal" data-target="#imagesModal">
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- contenido -->
                     <div class="row form-group">
@@ -144,7 +136,7 @@
                         <div class="col-md-6">
                             <label class="text-black" for="tags">Tags</label>
                             <div class="input-group" >
-                                <input type="text" id="tags" name="tags" class="form-control basicAutoComplete" autocomplete="off" data-url="{{ route('search_tags') }}" data-noresults-text="No se encontró el Tag">
+                                <input maxlength="20" type="text" id="tags" name="tags" class="form-control basicAutoComplete" autocomplete="off" data-url="{{ route('search_tags') }}" data-noresults-text="No se encontró el Tag">
                                 <div class="input-group-append">
                                     <button style="height: 38px" id="btnAddTag" data-toggle="modal" data-target="#tagModal" title="Agregar nuevo Tag" class="btn btn-primary" type="button"><span class="icon-add"></span></button>
                                 </div>
@@ -163,7 +155,7 @@
                     <!-- Image -->
                     <div class="row form-group">
                         <div class="col-md-12">
-                            <label for="name_img">Imagen</label>
+                            <label for="name_img">Imagen principal</label>
                             <input type="file" accept="image/png, image/jpeg, image/jpg" class="form-control" id="name_img" name="name_img" placeholder="Imagen" value="{{ old('name_img') }}">
                         </div>
                     </div>
@@ -228,7 +220,7 @@
 
         <div class="form-group">
             <label for="txtTagName">Nuevo Tag</label>
-                <input type="text" class="form-control" id="txtTagName">
+                <input maxlength="20" type="text" class="form-control" id="txtTagName">
             </div>
             
         </div>

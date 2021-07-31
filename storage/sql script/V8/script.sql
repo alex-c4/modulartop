@@ -381,6 +381,28 @@ DELIMITER ;
 
 
 
+-- Sptint 6
+
+UPDATE `roles` SET `name` = 'Marketing' WHERE `roles`.`id` = 3;
+
+-- Sprint 7
+
+ALTER TABLE `users` CHANGE `name` `name` VARCHAR(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL;
+ALTER TABLE `users` CHANGE `email` `email` VARCHAR(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL;
+ALTER TABLE `users` CHANGE `avatar` `avatar` VARCHAR(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL;
+ALTER TABLE `purchases` CHANGE `id_invoice` `id_invoice` VARCHAR(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;
+ALTER TABLE `projects` CHANGE `cover_photo_alt_text` `cover_photo_alt_text` VARCHAR(60) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;
+
+
+-- Sprint 8
+UPDATE `roles` SET `name` = 'Standard', `nombre` = 'Estandar' WHERE `roles`.`id` = 2;
+UPDATE `product_categories` SET `name` = 'Producto Terminado' WHERE `product_categories`.`id` = 2;
+
+ALTER TABLE `product_types`  ADD `category_id` INT NOT NULL  AFTER `id`;
+UPDATE `product_types` SET `category_id` = '1', `name` = 'Tableros' WHERE `product_types`.`id` = 1;
+INSERT INTO `product_types` (`id`, `category_id`, `name`) VALUES (NULL, '1', 'Tapacanto');
+DELETE FROM `product_categories` WHERE `product_categories`.`id` = 2
+UPDATE `product_subcategory_classification` SET `name` = 'Tradicionales' WHERE `product_subcategory_classification`.`id` = 2;
 
 
 

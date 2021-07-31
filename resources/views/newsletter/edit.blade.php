@@ -47,33 +47,22 @@
     
 </style>
 
+@section('title')
+¡Editar!
+@endsection
+
+@section('subtitle')
+Edición de novedades
+@endsection
+
 @section('banner')
 
-<div class="site-block-wrap">
-    <div class="owl-carousel with-dots">
-    <div class="site-blocks-cover overlay overlay-2" style="background-image: url({{ asset('images/banner/fabricacion.jpg')}});" data-aos="fade" id="home-section">  
-        <div class="container">
-            <div class="row align-items-center justify-content-center">
-                <div class="col-md-6 mt-lg-5 text-center">
-                    <h1 class="text-shadow">¡Editar!</h1>
-                    <p class="mb-5 text-shadow">Edición de novedades.</p>
-                </div>
-            </div>
-        </div>        
-    </div> 
-    </div>    
-</div>
 
 @endsection
 
 <section class="site-section bg-light bg-image" id="contact-section">
     <div class="container">
-        <div class="row mb-5">
-          <div class="col-12 text-center">
-            <h2 class="section-title mb-3 text-black">Novedades</h2>
-          </div>
-        </div>
-
+       
         <!-- mensaje para la creacion de los post -->
         @if(isset($msgPost) != null)
             <div class="container">
@@ -144,7 +133,7 @@
                         <div class="col-md-6">
                             <label class="text-black" for="tags">Tags</label>
                             <div class="input-group" >
-                                <input type="text" id="tags" name="tags" class="form-control basicAutoComplete" autocomplete="off" data-url="{{ route('search_tags') }}" data-noresults-text="No se encontró el Tag">
+                                <input maxlength="20" type="text" id="tags" name="tags" class="form-control basicAutoComplete" autocomplete="off" data-url="{{ route('search_tags') }}" data-noresults-text="No se encontró el Tag">
                                 <div class="input-group-append">
                                     <button style="height: 38px" id="btnAddTag" data-toggle="modal" data-target="#tagModal" title="Agregar nuevo Tag" class="btn btn-primary" type="button"><span class="icon-add"></span></button>
                                 </div>
@@ -231,7 +220,7 @@
 
         <div class="form-group">
             <label for="txtTagName">Nuevo Tag</label>
-                <input type="text" class="form-control" id="txtTagName">
+                <input maxlength="20" type="text" class="form-control" id="txtTagName">
             </div>
             
         </div>

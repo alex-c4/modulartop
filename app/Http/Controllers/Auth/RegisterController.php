@@ -17,6 +17,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Config;
 
 use Mail;
+use DB;
 
 class RegisterController extends Controller
 {
@@ -90,7 +91,8 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm()
     {
-        return view('auth.register');
+        $company_types = DB::table("company_types")->get();
+        return view('auth.register', compact('company_types'));
         // return view('auth.login');
     }
     
@@ -129,6 +131,7 @@ class RegisterController extends Controller
             'rif' => 'required|string',
             'rsocial' => 'required|string',
             'companyAddress' => 'required|string',
+            'company_type' => 'required',
             
         ], $messages);
     }
@@ -161,6 +164,7 @@ class RegisterController extends Controller
                 'razonSocial' => request()->rsocial,
                 'companyAddress' => request()->companyAddress,
                 'companyPhone' => request()->companyPhone,
+                'company_type_id' => request()->company_type,
                 'is_client' => true
             ]);
         }else{
@@ -180,15 +184,15 @@ class RegisterController extends Controller
             ]);
         }
 
-        if($avatar != null){
-            $fileName = $user_created->id."_". $avatar->getClientOriginalName();
+        // if($avatar != null){
+        //     $fileName = $user_created->id."_". $avatar->getClientOriginalName();
             
-            $avatar->storeAs('avatars', $fileName, 'customerLogo');
+        //     $avatar->storeAs('avatars', $fileName, 'customerLogo');
 
-            $user_created->avatar = $fileName;
+        //     $user_created->avatar = $fileName;
             
-            $user_created->save();
-        }
+        //     $user_created->save();
+        // }
 
         if($companyLogo != null){
             $fileName = $user_created->id."_". $companyLogo->getClientOriginalName();
@@ -222,7 +226,7 @@ class RegisterController extends Controller
         $data = [
             'title' => 'Información',
             'img' => asset('images/mail.png'),
-            'content' => 'Su registro fue llevado a cabo de manera satisfactoria, le hemos enviado un correo electrónico para la confirmación. <br>Recuerde tambien revisar en los correos de spam.'
+            'content' => 'Debe validar su cuenta de correo antes de ingresar al sistema <br>Ubique el correo de validación en la bandeja de entrada de su cuenta de correo.'
         ];
 
         return view("layouts.layoutMessage", $data);

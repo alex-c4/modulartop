@@ -60,7 +60,7 @@ async='async'></script>
               
               <h1 class="section-title-modulartop mb-3"><br>{{ $newsletter->title }}</h1> 
               @if(Auth::check())
-                @if(auth()->user()->hasRoles('Administrator') || auth()->user()->hasRoles('Newsletter')) 
+                @if(auth()->user()->hasRoles('Administrator') || auth()->user()->hasRoles('Marketing')) 
                   <div class="botonesEditList">
                     <a href="{{ route('newsletter.edit', $newsletter->id) }}" title="Editar"><span class="icon-pencil-square-o"></span></a>
                     &nbsp;

@@ -14,7 +14,9 @@ use DB;
 class ProductController extends Controller
 {
     public function __construct(){
-        $this->middleware(['auth', 'administrative'], ['except' => ['ShowViewByVisualEfect', 'descriptionByProducto']]);
+        $this->middleware(['auth', 'administrative'], ['except' => ['ShowViewByVisualEfect', 'descriptionByProducto', 'showImagesByProduct', 'downloadFichaTecnica']]);
+        // , 'showImagesByProduct', 'fichatecnica'
+        // $this->middleware(['administrative'])->except('ShowViewByVisualEfect', 'descriptionByProducto');
         // $this->middleware('auth');
         // $this->middleware('administrative');
 
@@ -41,10 +43,29 @@ class ProductController extends Controller
     {
         $product_categories = DB::table("product_categories")->get();
         $product_types = DB::table("product_types")->get();
-        $product_subcategory = DB::table("product_subcategory")->where("id_product_type", 1)->get();
-        $product_subcategory_classification = DB::table("product_subcategory_classification")->get();
+        $product_subtypes = DB::table("product_subtypes")->get();
+        $product_acabados = DB::table("product_acabados")->get();
+        $product_subacabados = DB::table("product_subacabados")->get();
+        $product_materials = DB::table("product_materials")->get();
+        $product_sustrato = DB::table("product_sustratos")->get();
+        $product_colors = DB::table("product_colors")->get();
+        $product_origen = DB::table("product_origen")->get();
+
+        //temporal
+        // $product_subcategory = DB::table("product_subcategory")->where("id_product_type", 1)->get();
+        // $product_subcategory_classification = DB::table("product_subcategory_classification")->get();
         
-        return view('product.create', compact("product_categories", "product_types", "product_subcategory", "product_subcategory_classification"));
+        return view('product.create', compact(
+                "product_categories", 
+                "product_types", 
+                "product_subtypes", 
+                "product_acabados",
+                "product_subacabados",
+                "product_materials",
+                "product_sustrato",
+                "product_colors",
+                "product_origen"
+            ));
     }
 
     /**
@@ -55,7 +76,6 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        
         $resultProduct = $this->addProduct($request);
         $msgPost = $resultProduct[0]["msg"];
 
@@ -64,7 +84,28 @@ class ProductController extends Controller
         $product_subcategory = DB::table("product_subcategory")->where("id_product_type", 1)->get();
         $product_subcategory_classification = DB::table("product_subcategory_classification")->get();
 
-        return view('product.create', compact("product_categories", "product_types", "product_subcategory", "product_subcategory_classification", "msgPost"));
+        $product_categories = DB::table("product_categories")->get();
+        $product_types = DB::table("product_types")->get();
+        $product_subtypes = DB::table("product_subtypes")->get();
+        $product_acabados = DB::table("product_acabados")->get();
+        $product_subacabados = DB::table("product_subacabados")->get();
+        $product_materials = DB::table("product_materials")->get();
+        $product_sustrato = DB::table("product_sustratos")->get();
+        $product_colors = DB::table("product_colors")->get();
+        $product_origen = DB::table("product_origen")->get();
+
+        return view('product.create', compact(
+            "product_categories", 
+            "product_types", 
+            "product_subtypes", 
+            "product_acabados",
+            "product_subacabados",
+            "product_materials",
+            "product_sustrato",
+            "product_colors",
+            "product_origen",
+            "msgPost"
+        ));
 
     }
 
@@ -92,28 +133,67 @@ class ProductController extends Controller
     }
 
     public function addProduct($request){
-        $this->validateProduct(request()->all())->validate();
+        $type = $request->input("type");
+        /* 
+            1 - tableros; 
+            2 - tapacanto
+        */ 
 
-        $result = DB::transaction(function() use($request){
-            $product = Product::create([
-                "code" => $request->input("code"),
-                "name" => $request->input("name"),
-                "id_product_category" => $request->input("category"),
-                "id_product_type" => $request->input("type"),
-                "id_subcategory_acabado" => $request->input("sub_acabado"),
-                "id_subcategory_efecto_v" => $request->input("sub_efectov"),
-                "id_subcategory_material" => $request->input("sub_material"),
-                "id_subcategory_origen" => $request->input("sub_origen"),
-                "id_subcategory_sustrato" => $request->input("sub_sustrato"),
-                "id_subcategory_color" => $request->input("sub_color"),
-                "description" => $request->input("description"),
-                "price" => $request->input("price"),
-                "img_product" => "",
-                "pdf_file" => $request->input("pdf_file"),
-                "created_at" => Carbon::now(),
-                "created_by" => auth()->user()->id,
-                "updated_at" => Carbon::now()
-            ]);
+        if($type == 1) {
+            $this->validateTablero(request()->all())->validate();
+        }else{
+            $this->validateTapacanto(request()->all())->validate();
+        }
+
+
+        $result = DB::transaction(function() use($request, $type){
+            // Tableros
+            if($type == 1) {
+                $product = Product::create([
+                    "id_product_category" => $request->input("category"),
+                    "id_product_type" => $request->input("type"),
+                    "id_product_subtype" => $request->input("subtype"),
+                    "code" => $request->input("code"),
+                    "name" => $request->input("name"),
+                    "id_product_origen" => $request->input("origen"),
+                    "caninit" => $request->input("caninit"),
+                    "id_product_acabado" => $request->input("acabado"),
+                    "id_product_subacabado" => $request->input("sub_acabado"),
+                    "width" => $request->input("width"),
+                    "thickness" => $request->input("thickness"),
+                    "length" => $request->input("width"),
+                    "id_product_material" => $request->input("material"),
+                    "id_product_sustrato" => $request->input("sustrato"),
+                    "id_product_color" => $request->input("color"),
+                    "description" => $request->input("description"),
+                    "img_product" => "",
+                    "img_alt" => $request->input("image_alt"),
+                    "created_at" => Carbon::now(),
+                    "created_by" => auth()->user()->id,
+                    "updated_at" => Carbon::now()
+                ]);
+            }
+
+            // Tapacanto
+            if($type == 2){
+                $product = Product::create([
+                    "id_product_category" => $request->input("category"),
+                    "id_product_type" => $request->input("type"),
+                    "id_product_subtype" => $request->input("subtype"),
+                    "code" => $request->input("code"),
+                    "name" => $request->input("name"),
+                    "id_product_origen" => $request->input("origen"),
+                    "caninit" => $request->input("caninit"),
+                    "width" => $request->input("width"),
+                    "thickness" => $request->input("thickness"),
+                    "img_product" => "",
+                    "img_alt" => $request->input("image_alt"),
+                    "created_at" => Carbon::now(),
+                    "created_by" => auth()->user()->id,
+                    "updated_at" => Carbon::now()
+                ]);
+            }
+
     
             // Registro de imagenes subidas
             $cycles = 50;
@@ -141,12 +221,12 @@ class ProductController extends Controller
             }
     
             // Registro de PDF
-            $pdf_file = request()->file('pdf_file');
-            if($pdf_file != null){
-                $fileName = $product->id."_". $pdf_file->getClientOriginalName();
-                $file->storeAs('', $fileName, 'fichaTecnica');
-                $product->pdf_file = $fileName;
-            }
+            // $pdf_file = request()->file('pdf_file');
+            // if($pdf_file != null){
+            //     $fileName = $product->id."_". $pdf_file->getClientOriginalName();
+            //     $file->storeAs('', $fileName, 'fichaTecnica');
+            //     $product->pdf_file = $fileName;
+            // }
             
             $product->save();
             
@@ -181,15 +261,31 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::find($id);
-
         $product_categories = DB::table("product_categories")->get();
         $product_types = DB::table("product_types")->get();
-        $product_subcategory = DB::table("product_subcategory")->where("id_product_type", 1)->get();
-        $product_subcategory_classification = DB::table("product_subcategory_classification")->get();
+        $product_subtypes = DB::table("product_subtypes")->get();
+        $product_acabados = DB::table("product_acabados")->get();
+        $product_subacabados = DB::table("product_subacabados")->get();
+        $product_materials = DB::table("product_materials")->get();
+        $product_sustrato = DB::table("product_sustratos")->get();
+        $product_colors = DB::table("product_colors")->get();
+        $product_origen = DB::table("product_origen")->get();
 
         $product_images = DB::table("image_products")->where("id_product", $id)->get();
         
-        return view("product.edit", compact("product", "product_categories", "product_types", "product_subcategory", "product_subcategory_classification", "product_images"));
+        return view("product.edit", compact(
+            "product", 
+            "product_categories", 
+            "product_types", 
+            "product_subtypes", 
+            "product_acabados",
+            "product_subacabados",
+            "product_materials",
+            "product_sustrato",
+            "product_colors",
+            "product_origen",
+            "product_images"
+        ));
     }
 
     /**
@@ -201,71 +297,114 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validateProduct_update(request()->all())->validate();
+        // $this->validateProduct_update(request()->all())->validate();
+        $type = $request->input("type");
+        /* 
+            1 - tableros; 
+            2 - tapacanto
+        */ 
 
-        $product = Product::find($id);
-
-        $product->code = $request->input("code");
-        $product->name = $request->input("name");
-        $product->id_product_category = $request->input("category");
-        $product->id_product_type = $request->input("type");
-        $product->id_subcategory_acabado = $request->input("sub_acabado");
-        $product->id_subcategory_efecto_v = $request->input("sub_efectov");
-        $product->id_subcategory_material = $request->input("sub_material");
-        $product->id_subcategory_origen = $request->input("sub_origen");
-        $product->id_subcategory_sustrato = $request->input("sub_sustrato");
-        $product->id_subcategory_color = $request->input("sub_color");
-        $product->description = $request->input("description");
-        $product->price = $request->input("price");
-        $product->updated_at = Carbon::now();
-
-        // Registro de imagenes subidas
-        $cycles = 50;
-
-        //se actualiza imagen del producto
-        $img_0 = $request->file('image_0');
-        if($img_0 != null){
-            $old_name = $product->img_product;
-            if($old_name != ""){
-                Storage::disk('local')->delete('image_products/' . $old_name);
-            }
-            $fileName = $product->id."_". $img_0->getClientOriginalName();
-            $img_0->storeAs('image_products', $fileName, 'local');
-            $product->img_product = $fileName;
+        if($type == 1) {
+            $this->validateTablero_update(request()->all())->validate();
+        }else{
+            $this->validateTapacanto(request()->all())->validate();
         }
+
+        $result = DB::transaction(function() use($request, $type, $id){
+            $product = Product::find($id);
+
+            // Tableros
+            if($type == 1) {
+                $product->id_product_category = $request->input("category");
+                $product->id_product_type = $request->input("type");
+                $product->id_product_subtype = $request->input("subtype");
+                $product->code = $request->input("code");
+                $product->name = $request->input("name");
+                $product->id_product_origen = $request->input("origen");
+                $product->id_product_acabado = $request->input("acabado");
+                $product->id_product_subacabado = $request->input("sub_acabado");
+                $product->width = $request->input("width");
+                $product->thickness = $request->input("thickness");
+                $product->length = $request->input("length");
+                $product->id_product_material = $request->input("material");
+                $product->id_product_sustrato = $request->input("sustrato");
+                $product->id_product_color = $request->input("color");
+                $product->description = $request->input("description");
+                $product->img_alt = $request->input("image_alt");
+                $product->updated_at = Carbon::now();
+            }
+
+            // Tapacanto
+            if($type == 2){
+                $product->id_product_category = $request->input("category");
+                $product->id_product_type = $request->input("type");
+                $product->id_product_subtype = $request->input("subtype");
+                $product->code = $request->input("code");
+                $product->name = $request->input("name");
+                $product->id_product_origen = $request->input("origen");
+                $product->caninit = $request->input("caninit");
+                $product->width = $request->input("width");
+                $product->thickness = $request->input("thickness");
+                $product->img_alt = $request->input("image_alt");
+                $product->updated_at = Carbon::now();
+            }
+
+            // Registro de imagenes subidas
+            $cycles = 50;
+
+            //se actualiza imagen del producto
+            $img_0 = $request->file('image_0');
+            if($img_0 != null){
+                $old_name = $product->img_product;
+                if($old_name != ""){
+                    Storage::disk('local')->delete('image_products/' . $old_name);
+                }
+                $fileName = $product->id."_". $img_0->getClientOriginalName();
+                $img_0->storeAs('image_products', $fileName, 'local');
+                $product->img_product = $fileName;
+            }
+            
+            for ($i=1; $i < $cycles; $i++) { 
+                $image_file = $request->file('image_'.$i);
+                if($image_file != null){
+                    $file = $image_file;
+
+                    $fileName = $product->id."_". $file->getClientOriginalName();
+                    
+                    $file->storeAs('image_products', $fileName, 'local');
+
+                    DB::table('image_products')->insert([
+                        "id_product" => $product->id,
+                        "name" => $fileName
+                    ]);
+                }
+            }
+
+            $product->save();
+
+            return "¡Registro actualizado satisfactoriamente!.";
+
+        });
+
+
+
         
-        for ($i=1; $i < $cycles; $i++) { 
-            $image_file = $request->file('image_'.$i);
-            if($image_file != null){
-                $file = $image_file;
-
-                $fileName = $product->id."_". $file->getClientOriginalName();
-                
-                $file->storeAs('image_products', $fileName, 'local');
-
-                DB::table('image_products')->insert([
-                    "id_product" => $product->id,
-                    "name" => $fileName
-                ]);
-            }
-        }
 
         // Registro de PDF
-        $pdf_file = $request->file('pdf_file');
-        if($pdf_file != null){
-            if($product->pdf_file != ""){
-                $f_delete = $product->pdf_file;
-                Storage::disk('fichaTecnica')->delete($f_delete);
-            }
+        // $pdf_file = $request->file('pdf_file');
+        // if($pdf_file != null){
+        //     if($product->pdf_file != ""){
+        //         $f_delete = $product->pdf_file;
+        //         Storage::disk('fichaTecnica')->delete($f_delete);
+        //     }
 
-            $fileName = $product->id."_". $pdf_file->getClientOriginalName();
-            $pdf_file->storeAs('', $fileName, 'fichaTecnica');
-            $product->pdf_file = $fileName;
-        }
+        //     $fileName = $product->id."_". $pdf_file->getClientOriginalName();
+        //     $pdf_file->storeAs('', $fileName, 'fichaTecnica');
+        //     $product->pdf_file = $fileName;
+        // }
 
-        $product->save();
 
-        $msgPost = "¡Registro actualizado satisfactoriamente!.";
+        $msgPost = $result;
 
         $products = $this->getProducts();
 
@@ -374,60 +513,86 @@ class ProductController extends Controller
         return $result;
     }
 
-    public function validateProduct(array $data){
+    public function validateTablero(array $data){
         $messages = [
             'required' => 'El campo es requerido.'
         ];
 
         return Validator::make($data, [
-            'code' => 'required',
-            'name' => 'required',
             'category' => 'required',
             'type' => 'required',
+            'subtype' => 'required',
+            'code' => 'required',
+            'name' => 'required',
+            'origen' => 'required',
             'sub_acabado' => 'required',
-            'sub_efectov' => 'required',
-            'sub_material' => 'required',
-            'sub_origen' => 'required',
-            'sub_sustrato' => 'required',
-            'sub_color' => 'required',
+            "width" => 'required',
+            "thickness" => 'required',
+            "length" => 'required',
+            'material' => 'required',
+            'sustrato' => 'required',
+            'color' => 'required',
             'description' => 'required',
             'image_0' => 'required',
-            'price' => 'required'
+            'image_alt' => 'required'
         ], $messages);
     }
-
-    public function validateProduct_update(array $data){
+    public function validateTablero_update(array $data){
         $messages = [
             'required' => 'El campo es requerido.'
         ];
-    
+
         return Validator::make($data, [
-            'code' => 'required',
-            'name' => 'required',
             'category' => 'required',
             'type' => 'required',
+            'subtype' => 'required',
+            'code' => 'required',
+            'name' => 'required',
+            'origen' => 'required',
             'sub_acabado' => 'required',
-            'sub_efectov' => 'required',
-            'sub_material' => 'required',
-            'sub_origen' => 'required',
-            'sub_sustrato' => 'required',
-            'sub_color' => 'required',
+            "width" => 'required',
+            "thickness" => 'required',
+            "length" => 'required',
+            'material' => 'required',
+            'sustrato' => 'required',
+            'color' => 'required',
             'description' => 'required',
-            'price' => 'required'
+            'image_alt' => 'required'
         ], $messages);
     }
+
+    public function validateTapacanto(array $data){
+        $messages = [
+            'required' => 'El campo es requerido.'
+        ];
+
+        return Validator::make($data, [
+            'category' => 'required',
+            'type' => 'required',
+            'subtype' => 'required',
+            'code' => 'required',
+            'name' => 'required',
+            'origen' => 'required',
+            "width" => 'required',
+            "thickness" => 'required',
+            'image_0' => 'required',
+            'image_alt' => 'required'
+        ], $messages);
+    }
+
+    
 
     public function getProducts(){
         return DB::table("products as p")
-        ->select("p.id", 
-                "p.code",
-                "p.name as product_name",
-                "pc.name as category_product_name",
-                "pt.name as product_type_name",
-                "p.is_deleted as product_isdeleted")
-        ->join("product_categories as pc", "pc.id", "=", "p.id_product_category", "inner", false)
-        ->join("product_types as pt", "pt.id", "=", "p.id_product_type", "inner", false)
-        ->get();
+            ->select("p.id", 
+                    "p.code",
+                    "p.name as product_name",
+                    "pc.name as category_product_name",
+                    "pt.name as product_type_name",
+                    "p.is_deleted as product_isdeleted")
+            ->join("product_categories as pc", "pc.id", "=", "p.id_product_category", "inner", false)
+            ->join("product_types as pt", "pt.id", "=", "p.id_product_type", "inner", false)
+            ->get();
     }
 
     public function ShowViewByVisualEfect($id){
@@ -560,12 +725,252 @@ class ProductController extends Controller
         return view("tableros.showImageByProduct", compact("product", "images"));
     }
 
-    public function fichatecnica($id){
-        $product = Product::find($id);
-        $name = "Ficha tecnica " . $product->name .".pdf";
-        return Storage::disk("fichaTecnica")->download($product->pdf_file, $name);
-        // $publicPath = public_path('ficha_tecnica');
-        // return Storage::download($product->pdf_file, $name);
+    // public function fichatecnica($id){
+    //     $product = Product::find($id);
+    //     $name = "Ficha tecnica " . $product->name .".pdf";
+    //     return Storage::disk("fichaTecnica")->download($product->pdf_file, $name);
+    //     // $publicPath = public_path('ficha_tecnica');
+    //     // return Storage::download($product->pdf_file, $name);
+    // }
+
+    public function addSubType(Request $request){
+        try {
+            $type_id = $request->input("modal_type");
+            $name = $request->input("subtype");
+            
+            DB::table("product_subtypes")->insert([
+                "type_id" => $type_id,
+                "name" => $name
+            ]);
+
+            $product_subtypes = DB::table("product_subtypes")->get();
+            
+
+            $result = [
+                "result" => true,
+                "data" => $product_subtypes
+            ];
+
+        } catch (\Throwable $th) {
+            //throw $th;
+            $result = [
+                "result" => false,
+                "message" => "No se pudo agregar el sub-tipo al sistema, por favor intente nuevamente."
+            ];
+        }
+
+        return $result;
+    }
+
+    public function addAcabado(Request $request){
+        try {
+            $name = $request->input("name");
+            DB::table("product_acabados")->insert([
+                "name" => $name
+            ]);
+
+            $product_acabados = DB::table("product_acabados")->get();
+
+            $result = [
+                "result" => true,
+                "data" => $product_acabados
+            ];
+
+        } catch (\Throwable $th) {
+            //throw $th;
+            $result = [
+                "result" => false,
+                "message" => "No se pudo agregar el Acabado al sistema, por favor intente nuevamente."
+            ];
+        }
+
+        return $result;
+
+    }
+
+    public function addSubacabado(Request $request){
+        try {
+            $id_acabado = $request->input("id_acabado");
+            $name = $request->input("name");
+
+            DB::table("product_subacabados")->insert([
+                "id_acabado" => $id_acabado,
+                "name" => $name
+            ]);
+
+            $product_subacabados = DB::table("product_subacabados")->get();
+
+            $result = [
+                "result" => true,
+                "data" => $product_subacabados
+            ];
+
+        } catch (\Throwable $th) {
+            //throw $th;
+            $result = [
+                "result" => false,
+                "message" => "No se pudo agregar el Sub-acabado al sistema, por favor intente nuevamente."
+            ];
+        }
+
+        return $result;
+    }
+
+    public function addMaterial(Request $request){
+        try {
+            $name = $request->input("name");
+
+            DB::table("product_materials")->insert([
+                "name" => $name
+            ]);
+
+            $product_materials = DB::table("product_materials")->get();
+
+            $result = [
+                "result" => true,
+                "data" => $product_materials
+            ];
+        } catch (\Throwable $th) {
+            //throw $th;
+            $result = [
+                "result" => false,
+                "message" => "No se pudo agregar el Material al sistema, por favor intente nuevamente."
+            ];
+        }
+
+        return $result;
+    }
+
+    public function addSustrato(Request $request){
+        try {
+            $name = $request->input("name");
+
+            DB::table("product_sustratos")->insert([
+                "name" => $name
+            ]);
+
+            $product_sustratos = DB::table("product_sustratos")->get();
+
+            $result = [
+                "result" => true,
+                "data" => $product_sustratos
+            ];
+        } catch (\Throwable $th) {
+            //throw $th;
+            $result = [
+                "result" => false,
+                "message" => "No se pudo agregar el Tipo de Sustrato al sistema, por favor intente nuevamente."
+            ];
+        }
+
+        return $result;
+    }
+
+    public function addColor(Request $request){
+        try {
+            $name = $request->input("name");
+
+            DB::table("product_colors")->insert([
+                "name" => $name
+            ]);
+
+            $product_colors = DB::table("product_colors")->get();
+
+            $result = [
+                "result" => true,
+                "data" => $product_colors
+            ];
+        } catch (\Throwable $th) {
+            //throw $th;
+            $result = [
+                "result" => false,
+                "message" => "No se pudo agregar el Color al sistema, por favor intente nuevamente."
+            ];
+        }
+
+        return $result;
+    }
+
+    public function showFormFichaTecnica(){
+        $fichas = DB::table("fichas_tecnicas")->get();
+        
+        return view("product.uploadFichaTecnica", compact("fichas"));
+    }
+
+    public function storeFichaTecnica(Request $request){
+
+        $this->validateFichaTecnica(request()->all())->validate();
+
+        try {
+            $name = $request->input("name");
+            $file = $request->file("ficha");
+
+            $file_name = $file->getClientOriginalName();
+            $file->storeAs('', $file_name, 'fichaTecnica');
+
+            DB::table("fichas_tecnicas")->insert([
+                "name" => $name,
+                "file_name" => $file_name,
+                "created_at" => Carbon::now(),
+                "created_by" => auth()->user()->id
+            ]);
+
+            $msgPost = "¡Registro realizado satisfactoriamente!.";
+            
+
+        } catch (\Throwable $th) {
+            //throw $th;
+            $msgPost = "Ocurrio un error, por favor intente nuevamente.".$th->getMessage();
+        }
+
+        $fichas = DB::table("fichas_tecnicas")->get();
+
+        return view("product.uploadFichaTecnica", compact("msgPost", "fichas"));
+
+    }
+
+    public function validateFichaTecnica(array $data){
+        $messages = [
+            'required' => 'El campo es requerido.'
+        ];
+
+        return Validator::make($data, [
+            'name' => 'required',
+            'ficha' => 'required',
+        ], $messages);
+    }
+
+    public function downloadFichaTecnica($id){
+
+        $ficha = DB::table("fichas_tecnicas")->where("id", $id)->first();
+
+        return Storage::disk("fichaTecnica")->download($ficha->file_name);
+
+    }
+
+    public function deleteFichaTecnica($id){
+
+        try {
+            $ficha = DB::table("fichas_tecnicas")
+                ->where("id", "=", $id)
+                ->first();
+            
+            Storage::disk('fichaTecnica')->delete($ficha->file_name);
+            
+            DB::table("fichas_tecnicas")
+                ->where("id", "=", $ficha->id)
+                ->delete();
+
+            $msgPost = "¡Ficha técnica borrada satisfactoriamente!.";
+
+        } catch (\Throwable $th) {
+            //throw $th;
+            $msgPost = "¡Hubo un error la Ficha técnica no pudo ser borrada!.";
+        }
+
+        $fichas = DB::table("fichas_tecnicas")->get();
+
+        return view("product.uploadFichaTecnica", compact("msgPost", "fichas"));
     }
 }
 

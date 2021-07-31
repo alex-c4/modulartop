@@ -355,7 +355,7 @@ h1, h2, h3, h4, h5,
     .site-navbar .site-navigation .site-menu > li {
       display: inline-block; }
       .site-navbar .site-navigation .site-menu > li > a {
-        padding: 5px 20px;
+        padding: 5px 12px;
         color: rgba(255, 255, 255, 0.8);
         display: inline-block;
         text-decoration: none !important; }
@@ -2677,4 +2677,22 @@ overflow:hidden;
   -webkit-transform: scale(1);
           transform: scale(1);
          
+}
+
+/* Colores para los iconos de los grids */
+.icon-red{
+  color: #f03a00;
+}
+
+.icon-green{
+  color: rgb(125, 177, 22);
+}
+
+.icon-gray{
+  color: darkslategray;
+}
+
+.small-register-user{
+  text-transform: none !important; 
+  color: #989898 !important;
 }

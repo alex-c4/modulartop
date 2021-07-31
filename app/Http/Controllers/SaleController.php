@@ -24,7 +24,7 @@ class SaleController extends Controller
     public function __construct()
     {
         // $this->middleware('verified');
-        $this->middleware(['auth', 'administrative']);
+        $this->middleware(['auth', 'administrative'], ["except" => ["getStatisticsData", "statistics"]]);
     }
     
     /**
@@ -252,6 +252,62 @@ class SaleController extends Controller
             ->join("users", "users.id", "=", "order_sales.id_user", "inner", false)
             ->orderby("order_sales.created_at", "asc")
             ->get();
+    }
+    
+    public function statistics(){
+        $months = array(
+            "Enero",
+            "Febrero",
+            "Marzo",
+            "Abril",
+            "Mayo",
+            "Junio",
+            "Julio",
+            "Agosto",
+            "Septiembre",
+            "Octubre",
+            "Noviembre",
+            "Diciembre"
+        );
+        
+        $title_chart = "Estadísticas de Ventas";
+        
+        return view("sale.statistics", compact("title_chart", "months"));
+    }
+
+    public function getStatisticsData(Request $request){
+        $range = intval($request->input("range"));
+        $month = intval($request->input("month"));
+        $monthText = $request->input("monthText");
+
+        if($range == 1){
+            //ultimos 7 dias
+            $title_chart = "Estadística de ventas últimos 7 días";
+            $endDate = Carbon::now();
+            $startDate = Carbon::now()->subDays(7);
+        }
+
+        if($range == 2){
+            $title_chart = "Estadística de ventas del mes de ". $monthText;
+
+            $dt = Carbon::now();
+            
+            $year = $dt->year;
+            $fday = 1;
+            $startDate = Carbon::create($year, $month);
+            
+            $lday = $startDate->daysInMonth;
+            $endDate = Carbon::create($year, $month, $lday);
+        }
+
+        $statistics = DB::select("CALL sp_salesStatistics(?, ?)", array($startDate->format("Y-m-d"), $endDate->format("Y-m-d")));
+        $data = [];
+
+        foreach ($statistics as $row) {
+            array_push($data, ["label" => $row->name, "y" => intval($row->total)]);
+        }
+
+        return collect(["data" => $data, "title" => $title_chart]);
     }
 }
 

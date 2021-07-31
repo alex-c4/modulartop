@@ -46,7 +46,7 @@
                             <p>Novedades y noticias</p>
                             <p>
                             
-                            @if(auth()->user()->hasRoles('Administrator') || auth()->user()->hasRoles('Newsletter')) 
+                            @if(auth()->user()->hasRoles('Administrator') || auth()->user()->hasRoles('Marketing')) 
                                 <a title="Agregar novedades" href="{{ route('newsletter.create') }}"><span class="icon-plus"></span></a>
                                 &nbsp;
                                 <a title="Listar novedades" href="{{ route('newsletter.index') }}"><span class="icon-list"></span></a>

@@ -2,34 +2,18 @@
 
 @section('content')
 
-@section('banner')
-
-<div class="site-blocks-cover inner-page-cover overlay" style="background-image: url({{ asset('images/novedades/newsletter-novedades.jpg') }});" data-aos="fade">
-    <div class="container">
-        <div class="row align-items-center justify-content-center">
-            <div class="col-md-5 mx-auto mt-lg-5 text-center">
-                <h1>Novedades</h1>
-                <p class="mb-5"><strong class="text-white">Lista de novedades</strong></p>
-        
-            </div>
-        </div>
-    </div>
-
-    <!-- <a href="#blog" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a> -->
-</div> 
-
+@section('imgBanner')
+{{ Utils::getBanner(auth()->user()->roll_id) }}
 @endsection
 
-<section class="site-section bg-light bg-image" id="contact-section">
-    <div class="container">
-        <div class="row mb-5">
-          <div class="col-12 text-center">
-            <h2 class="section-title mb-3 text-black">Novedades</h2>
-          </div>
-        </div>
-    </div>    
+@section('title')
+Novedades
+@endsection
 
-</section>
+@section('subtitle')
+Lista de novedades
+@endsection
+
 
 
 <div class="container">
@@ -53,7 +37,6 @@
                 <th scope="col">Categoria</th>
                 <th scope="col">Fecha de publicación</th>
                 <th scope="col" colspan="4">Autor</th>
-                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -67,6 +50,7 @@
                 <td>{{ $news->userName }} {{ $news->userLastName }}</td>
                 <td>
                     <a href="{{ route('newsletter.edit', $news->id) }}" title="Editar"><span class="icon-pencil-square-o"></span></a>
+                </td>
                 <td>
                     <a href="{{ route('show', [$news->id, $news->url]) }}" title="Previsualizar"><span class="icon-binoculars"></span></a>
                 </td>

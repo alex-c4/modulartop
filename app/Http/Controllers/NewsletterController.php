@@ -17,7 +17,7 @@ use App\Tag;
 class NewsletterController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth', ['except' => ['novedades', 'show', 'other_post_ajax'] ]);
+        $this->middleware(['auth', 'marketing'], ['except' => ['novedades', 'show', 'other_post_ajax'] ]);
 
     }
 
@@ -486,6 +486,128 @@ class NewsletterController extends Controller
         $files = Storage::files($directory);
 
         return $files;
+    }
+
+    public function ledsget(){
+        return view("led.getleds");
+    }
+
+    public function ledsdownload(Request $request){
+
+        try {
+            $opt = intval($request->input("gridRadios"));
+            $arrayDetalle = [];
+
+            switch ($opt) {
+                case 1:
+                    $users = DB::table('contacts')
+                        ->where("form", 3)
+                        ->get();
+                    $fileName = "leds-newsletter.csv";
+    
+                    foreach ($users as $item){
+                        // 'name' => ucfirst(strtolower(trim($item->nameContact)))." ". ucfirst(strtolower(trim($item->lastNameContact))),
+                        $arrayDetalle[] = array(
+                            'email' => $item->emailContact,
+                            'created_at' => $item->created_at
+                        );
+                    }
+    
+                    //construyamos un arreglo para la información de las columnas
+                    $columns = array('email', 'created_at');
+                break;
+                case 2:
+                    $users = User::where("is_client", 1)->get();
+                    $fileName = "leds-clients.csv";
+                    foreach ($users as $item){
+                        $fecha = Carbon::createFromFormat('Y-m-d H:i:s', $item->created_at);
+                        $arrayDetalle[] = array(
+                            'name' => ucfirst($item->name)." ". ucfirst($item->lastName),
+                            'email' => $item->email,
+                            'created_at' => $fecha->toDateString()
+                        );
+                    }
+                    $columns = array('name', 'email', 'created_at');
+
+                    break;
+
+                case  3:
+                    $users = User::where("is_client", 0)
+                        ->where("confirmed", 1)
+                        ->get();
+                        $fileName = "leds-estandar.csv";
+                        foreach ($users as $item){
+                            $fecha = Carbon::createFromFormat('Y-m-d H:i:s', $item->created_at);
+                            $arrayDetalle[] = array(
+                                'name' => ucfirst($item->name)." ". ucfirst($item->lastName),
+                                'email' => $item->email,
+                                'created_at' => $fecha->toDateString()
+                            );
+                        }
+                        $columns = array('name', 'email', 'created_at');
+
+                    break;
+                case  4:
+                    $users = User::where("confirmed", 1)->get();
+                    $fileName = "leds-all.csv";
+                    foreach ($users as $item){
+                        $fecha = Carbon::createFromFormat('Y-m-d H:i:s', $item->created_at);
+                        $arrayDetalle[] = array(
+                            'name' => ucfirst($item->name)." ". ucfirst($item->lastName),
+                            'email' => $item->email,
+                            'created_at' => $fecha->toDateString()
+                        );
+                    }
+                    $columns = array('name', 'email', 'created_at');
+                    break;
+
+            }
+    
+            //El encabezado que le dice al explorador el tipo de archivo que estamos generando
+            $headers = array(
+                "Content-type"        => "text/csv",
+                "Content-Disposition" => "attachment; filename=$fileName",
+                "Pragma"              => "no-cache",
+                "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+                "Expires"             => "0"
+            );
+    
+            
+            $callback = function() use($arrayDetalle, $columns) {
+                $BOM = "\xEF\xBB\xBF"; // UTF-8 BOM
+                $file = fopen('php://output', 'w');
+                
+                fwrite($file, $BOM);
+                fputcsv($file, $columns);
+                foreach ($arrayDetalle as $item) {
+                    fputcsv($file, $item);
+                }
+    
+                fclose($file);
+            };
+            
+            return response()->stream($callback, 200, $headers);
+
+        } catch (\Throwable $th) {
+            //throw $th;
+            dd($th->getmessage());
+        }
+
+    }
+
+    public function getTypeContact($typeId){
+        $result = "";
+
+        switch ($typeId) {
+            case 1:
+                $result = "Contacto";
+                break;
+            case 2:
+                $result = "Fabricacion";
+                break;
+        }
+
+        return $result;
     }
 
 }

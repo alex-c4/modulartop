@@ -6,23 +6,18 @@
 
 @section('content')
 
-@section('banner')
-
-<div class="site-blocks-cover inner-page-cover overlay" style="background-image: url({{ asset('images/novedades/newsletter-novedades.jpg') }});" data-aos="fade">
-    <div class="container">
-        <div class="row align-items-center justify-content-center">
-            <div class="col-md-5 mx-auto mt-lg-5 text-center">
-                <h1>Informacion</h1>
-                <p class="mb-5"><strong class="text-white">Información registrada del usuario</strong></p>
-        
-            </div>
-        </div>
-    </div>
-
-    <!-- <a href="#blog" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a> -->
-</div> 
-
+@section('imgBanner')
+{{ Utils::getBanner(auth()->user()->roll_id) }}
 @endsection
+
+@section('title')
+Informacion
+@endsection
+
+@section('subtitle')
+Información registrada del usuario
+@endsection
+
 
 <section class="blog-section spad" id="blog">
 
@@ -89,7 +84,7 @@
                                 <!-- Es cliente -->
                                 <div class="form-group row">
                                     <div class="col-md-4 text-md-right">
-                                        <label class="form-check-label" for="chkClient">Compañia</label>
+                                        <label class="form-check-label" for="chkClient">Cliente</label>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-check">
@@ -139,11 +134,11 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group row" style="display: flex; justify-content: center;">
+                                    <!-- <div class="form-group row" style="display: flex; justify-content: center;">
                                         <div class="text-center">
                                             <img src="{{ asset('images/customers_logos/companyLogo') }}/{{ $user->companyLogo }}" width="100px" class="rounded" alt="...">
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                 </div><!-- fin contenedor cliente -->
     

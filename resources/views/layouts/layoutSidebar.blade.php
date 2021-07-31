@@ -265,7 +265,7 @@
                 <li><a href="{{ route('welcome')}}#contact-section" class="nav-link">Contactanos</a></li>
                 @if(Auth::check())
                   <li><a href="{{ route('logout')}}" class="nav-link">Salir</a></li>
-                  <li><a href="{{ route('home')}}" class="nav-link"><span class="icon-home"></span></a></li>
+                  <!-- <li><a href="{{ route('home')}}" class="nav-link"><span class="icon-home"></span> Mi Sesión</a></li> -->
                 @else
                   <li><a href="{{ route('login')}}" class="nav-link"><span class="icon-user"></span></a></li>
                 @endif
@@ -286,7 +286,20 @@
   
 
 
-@yield('banner') 
+  <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url({{ asset('images/banner/') }}/@yield('imgBanner'));" data-aos="fade">
+    <div class="container">
+    <div class="row align-items-center justify-content-center">
+        <div class="col-md-5 mx-auto mt-lg-5 text-center">
+        <h1>@yield('title') </h1>
+        <p class="mb-5"><strong class="text-white">@yield('subtitle') </strong></p>
+        
+        </div>
+    </div>
+    </div>
+
+    <!-- <a href="#blog" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a> -->
+  </div> 
+
 
 <div class="wrapper">
         <!-- Sidebar  -->
@@ -384,30 +397,50 @@
    
                @endif
                
-               @if(Auth::user()->roll_id == 1 || Auth::user()->roll_id == 5)  
+               @if(Auth::user()->roll_id == 1 || Auth::user()->roll_id == 2 || Auth::user()->roll_id == 4 || Auth::user()->roll_id == 5)  
                <li {{ Utils::getActiveRouteClass(Route::currentRouteName(), 'product') }}>
                     <a href="#product"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <span class="icon-square"></span>
                         Productos
                     </a>
                     <ul class="collapse list-unstyled" id="product">
+                      @if(Auth::user()->roll_id == 1 || Auth::user()->roll_id == 5)  
+
+                        <li>
+                          <a href="{{ route('product.create') }}">
+                              <span class="icon-plus"></span>
+                              Registrar producto
+                          </a>
+                        </li>
+                        
+                        <li>
+                          <a href="{{ route('product.index') }}">
+                              <span class="icon-search"></span>
+                              Consultar productos
+                          </a>
+                        </li>
+                        
+                        <li>
+                          <a href="{{ route('product.uploadFichaTecnica') }}">
+                              <span class="icon-file-text-o"></span>
+                              Ficha técnica
+                          </a>
+                        </li>
+                      @endif
+
                       <li>
-                        <a href="{{ route('product.create') }}">
-                            <span class="icon-plus"></span>
-                            Registrar producto
-                        </a>
-                      </li>
-                      
-                      <li>
-                        <a href="{{ route('product.index') }}">
-                            <span class="icon-search"></span>
-                            Consultar productos
+                        <a href="{{ route('welcome') }}/#howitworks-section">
+                          <span class="icon-square"></span>
+                          Productos
                         </a>
                       </li>
 
                     </ul>
                     
                 </li>
+                @endif
+
+                @if(Auth::user()->roll_id == 1 || Auth::user()->roll_id == 5)  
 
                 <li {{ Utils::getActiveRouteClass(Route::currentRouteName(), 'compra') }}>
                     <a href="#compra"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
@@ -423,13 +456,16 @@
                       </li>
                     </ul>
                 </li>
+                @endif
 
+                @if(Auth::user()->roll_id == 1 || Auth::user()->roll_id == 5 || Auth::user()->roll_id == 3)  
                 <li {{ Utils::getActiveRouteClass(Route::currentRouteName(), 'venta') }}>
                     <a href="#venta"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <span class="icon-file-text"></span>
                         Venta
                     </a>
                     <ul class="collapse list-unstyled" id="venta">
+                      @if(Auth::user()->roll_id == 1 || Auth::user()->roll_id == 5)
                       <li>
                         <a href="{{ route('sale.create') }}">
                             <span class="icon-plus"></span>
@@ -442,11 +478,18 @@
                             Consultar ventas
                         </a>
                       </li>
+                      @endif
+                      <li>
+                        <a href="{{ route('sale.statistics') }}">
+                            <span class="icon-bar-chart"></span>
+                            Estadísticas de ventas
+                        </a>
+                      </li>
                     </ul>
                 </li>
                 @endif
 
-                @if(Auth::user()->is_client == 1 || Auth::user()->roll_id == 1 || Auth::user()->roll_id == 5)
+                @if((Auth::user()->is_client == 1 && Auth::user()->validationByAdmin == 1) || Auth::user()->roll_id == 1 || Auth::user()->roll_id == 5)
                 <li {{ Utils::getActiveRouteClass(Route::currentRouteName(), 'order_sale') }}>
                     <a href="#order_sale"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <span class="icon-file"></span>
@@ -477,6 +520,7 @@
                 </li>
                 @endif
 
+                @if((Auth::user()->is_client == 1 && Auth::user()->validationByAdmin == 1) || Auth::user()->roll_id == 1 || Auth::user()->roll_id == 3 || Auth::user()->roll_id == 5)
                 <li {{ Utils::getActiveRouteClass(Route::currentRouteName(), 'inventory') }}>
                     <a href="#inventory"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <span class="icon-archive"></span>
@@ -491,6 +535,7 @@
                       </li>
                     </ul>
                 </li>
+                @endif
 
                 @if(Auth::user()->roll_id == 1 || Auth::user()->roll_id == 3)
                 <li {{ Utils::getActiveRouteClass(Route::currentRouteName(), 'project') }}>
@@ -505,6 +550,30 @@
                             Crear proyecto
                         </a>
                       </li>
+                      <li>
+                        <a href="{{ route('project.index') }}">
+                            <span class="icon-search"></span>
+                            Consultar proyecto
+                        </a>
+                      </li>
+                    </ul>
+                </li>
+                @endif
+
+                
+                @if(Auth::user()->roll_id == 1 || Auth::user()->roll_id == 3)
+                <li {{ Utils::getActiveRouteClass(Route::currentRouteName(), 'leds') }}>
+                    <a href="#leds"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <span class="icon-files-o"></span>
+                        Leds
+                    </a>
+                    <ul class="collapse list-unstyled" id="leds">
+                      <li>
+                        <a href="{{ route('leds.ledsget') }}">
+                            <span class="icon-download"></span>
+                            Descargar Leds
+                        </a>
+                      </li>
                     </ul>
                 </li>
                 @endif
@@ -517,9 +586,21 @@
                     </a>
                     <ul class="collapse list-unstyled" id="user">
                       <li>
-                        <a href="{{ route('user.edit', auth()->user()->id) }}">
+                        <a href="{{ route('user.edit') }}">
                             <span class="icon-pencil"></span>
                             Mis datos
+                        </a>
+                      </li>
+                      <li>
+                        <a href="{{ route('password.showFormResetPassw') }}">
+                            <span class="icon-lock"></span>
+                            Cambio de clave
+                        </a>
+                      </li>
+                      <li>
+                        <a href="{{ route('user.delete.confirm') }}">
+                            <span class="icon-trash"></span>
+                            Elminar mi cuenta
                         </a>
                       </li>
                       <li>

@@ -173,7 +173,9 @@ class OrderSaleController extends Controller
             $order = $this->changeStatus($idOrderSale, 3);
     
             // Búsqueda de nuevas ordedes de compra donde el status sea 2=inicial
-            $orders = OrderSale::where("status", 2)->get();
+            $orders = OrderSale::where("status", 2)
+                ->orWhere("status", 3)
+                ->get();
             $totalOrders = count($orders);
     
             $result = array(
@@ -325,4 +327,34 @@ class OrderSaleController extends Controller
         return Storage::disk("global")->download("file_user_excel/" . $order->file_name, $order->file_name);
         
     }
+
+    public function cancelFromHome(Request $request){
+        try {
+            $id = $request->input("idOrderSale");
+            
+            $order = $this->changeStatus($id, 0);
+
+            // Búsqueda de nuevas ordedes de compra donde el status sea 2=inicial
+            $orders = OrderSale::where("status", 2)
+                ->orWhere("status", 3)
+                ->get();
+            $totalOrders = count($orders);
+    
+            $result = array(
+                "result" => true,
+                "orders" => $orders,
+                "totalOrders" => $totalOrders
+            );
+            
+        } catch (\Throwable $th) {
+            $result = array(
+                "result" => false,
+                "message" => "Ocurrio un error durante la actualización de la orden de compra."
+            );
+        }
+
+        return $result;
+
+    }
+
 }

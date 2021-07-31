@@ -6,11 +6,16 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 use App\User;
+use DB;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
+    use AuthenticatesUsers;
+
     /**
      * Display a listing of the resource.
      *
@@ -52,15 +57,29 @@ class UserController extends Controller
         //
     }
 
+    public function edit(){
+        $id = auth()->user()->id;
+        return $this->editar($id);
+    }
+
+    public function edit_from_table($id){
+
+        return $this->editar($id);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    private function editar($id)
     {
+        // $id = auth()->user()->id;
+
         $user = User::where("id", $id)->get();
+
+        $roles = DB::table("roles")->get();
 
         $isCompanyClient = false;
 
@@ -79,7 +98,9 @@ class UserController extends Controller
             }
         }
         $user = $user[0];
-        return view("user.edit", compact("user", "isCompanyClient"));
+
+        $company_types = DB::table("company_types")->get();
+        return view("user.edit", compact("user", "isCompanyClient", "company_types", "roles"));
         
     }
 
@@ -92,21 +113,28 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $roles = DB::table("roles")->get();
         try {
             
             $isClient = request()->chkClient;
-
+            
             $isCompanyClient = $isClient;
             
             $avatar = request()->file('avatar');
-            $companyLogo = request()->file('companyLogo');
+            // $companyLogo = request()->file('companyLogo');
             
+            $company_types = DB::table("company_types")->get();
+
             $user = User::where("id", $id)->first();
-            
+
+            if($request->input("rolId") != null){
+                $user->roll_id = $request->input("rolId");
+            }
+
             if($isClient == "on"){
                 
                 $this->validator_full(request()->all())->validate();
-    
+                
                 $user->name = $request->input('name');
                 $user->lastName = $request->input('lastName');
                 $user->phone = $request->input('clientPhone');
@@ -115,6 +143,7 @@ class UserController extends Controller
                 $user->razonSocial = $request->input('rsocial');
                 $user->companyAddress = $request->input('companyAddress');
                 $user->companyPhone = $request->input('companyPhone');
+                $user->company_type_id = $request->input('company_type');
                 $user->is_client = true;
             }else{
                 $this->validator_basic(request()->all())->validate();
@@ -128,6 +157,12 @@ class UserController extends Controller
                 $user->companyAddress = "";
                 $user->companyPhone = "";
                 $user->is_client = false;
+
+                // si el usuario cliente decide dejar de ser cliente, se colocará como estandard
+                if($user->roll_id == 4){
+                    $user->roll_id = 2;
+                    $user->validationByAdmin = 0;
+                }
             }
 
             // Seccion de las imagenes
@@ -146,18 +181,18 @@ class UserController extends Controller
                     $user->avatar = $fileName;
                 }
                 
-                if($companyLogo != null){
-                    $userCompanyLogo = $user->companyLogo;
-                    if($userCompanyLogo != ""){
-                        $crrImg = "companyLogo/" . $userCompanyLogo;
-                        Storage::disk('customerLogo')->delete($crrImg);
-                    }
+                // if($companyLogo != null){
+                //     $userCompanyLogo = $user->companyLogo;
+                //     if($userCompanyLogo != ""){
+                //         $crrImg = "companyLogo/" . $userCompanyLogo;
+                //         Storage::disk('customerLogo')->delete($crrImg);
+                //     }
         
-                    $fileName = $user->id."_". $companyLogo->getClientOriginalName();
-                    $companyLogo->storeAs('companyLogo', $fileName, 'customerLogo');
+                //     $fileName = $user->id."_". $companyLogo->getClientOriginalName();
+                //     $companyLogo->storeAs('companyLogo', $fileName, 'customerLogo');
                     
-                    $user->companyLogo = $fileName;
-                }
+                //     $user->companyLogo = $fileName;
+                // }
 
             }else{
                 if($avatar != null){
@@ -171,22 +206,23 @@ class UserController extends Controller
                     $user->avatar = $fileName;
                 }
                 
-                $userCompanyLogo = $user->companyLogo;
-                if($userCompanyLogo != ""){
-                    $crrImg = "companyLogo/" . $userCompanyLogo;
-                    Storage::disk('customerLogo')->delete($crrImg);
-                    $user->companyLogo = "";
-                }
+                // $userCompanyLogo = $user->companyLogo;
+                // if($userCompanyLogo != ""){
+                //     $crrImg = "companyLogo/" . $userCompanyLogo;
+                //     Storage::disk('customerLogo')->delete($crrImg);
+                //     $user->companyLogo = "";
+                // }
             }
     
             $user->save();
 
+
             $msg = "La actualización de los datos se llevaron a cabo satisfactoriamente";
-            return view("user.edit", compact("user", "isCompanyClient", "msg"));
+            return view("user.edit", compact("user", "isCompanyClient", "msg", "company_types", "roles"));
 
         } catch (\Throwable $th) {
             $msg = "La actualización de los datos no se pudo realizar.";
-            return view("user.edit", compact("user", "isCompanyClient", "msg"));
+            return view("user.edit", compact("user", "isCompanyClient", "msg", "company_types", "roles"));
         }
     }
 
@@ -230,5 +266,26 @@ class UserController extends Controller
             'companyAddress' => 'required|string'
             
         ], $messages);
+    }
+
+    public function deleteConfirm(){
+        return view("auth.deleteConfirm");
+    }
+
+    public function delete(Request $request){
+        $id = auth()->user()->id;
+        User::where("id", "=", $id)
+            ->update([
+                "is_deleted" => 1
+            ]);
+        
+            DB::table("user_inactive")->insert([
+                "id_user" => $id,
+                "cause" => "desactivado por el usario",
+                "created_by" => $id,
+                "created_at" => Carbon::now()
+            ]);
+
+        return $this->logout($request);
     }
 }

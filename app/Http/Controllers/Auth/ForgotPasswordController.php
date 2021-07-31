@@ -46,8 +46,11 @@ class ForgotPasswordController extends Controller
         // We will send the password reset link to this user. Once we have attempted
         // to send the link, we will examine the response then see the message we
         // need to show to the user. Finally, we'll send out a proper response.
-        $response = $this->sendResetLink(
-            $this->credentials($request)
+        // $response = $this->sendResetLink(
+        //     $this->credentials($request)
+        // );
+        $response = $this->broker()->sendResetLink(
+            $request->only('email')
         );
         
         return $response == Password::RESET_LINK_SENT
@@ -66,18 +69,23 @@ class ForgotPasswordController extends Controller
             return Password::INVALID_USER;
         }
         
-        $newPassw = $this->generateRandomString();
-        $newPasswCryp = bcrypt($newPassw);
+        // $newPassw = $this->generateRandomString();
+        // $newPasswCryp = bcrypt($newPassw);
 
-        $user->password = $newPasswCryp;
-        $user->save();
+        // $user->password = $newPasswCryp;
+        // $user->save();
         
         // Once we have the reset token, we are ready to send the message out to this
         // user with a link to reset their password. We will then redirect back to
         // the current URI having nothing set in the session to indicate errors.
-        $this->sendPasswordResetNotification(
-            $user,
-            $newPassw
+
+        // dd($user);
+        // $this->sendPasswordResetNotification(
+        //     $user,
+        //     $newPassw
+        // );
+        $user->sendPasswordResetNotification(
+            $this->tokens->create($user)
         );
 
         return Password::RESET_LINK_SENT;
@@ -89,7 +97,7 @@ class ForgotPasswordController extends Controller
      * @param  string  $token
      * @return void
      */
-    public function sendPasswordResetNotification(User $user, $newPassw)
+    public function sendPasswordResetNotification_bk(User $user, $newPassw)
     {
         $req = array(
             "correo" => env('EMAIL_ADMIN')
