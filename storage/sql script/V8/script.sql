@@ -12,6 +12,7 @@ ALTER TABLE `users`  ADD `lastName` VARCHAR(20) NOT NULL  AFTER `name`,
 
 
 
+
 DROP procedure IF EXISTS `sp_getNewsletterByTagId`;
 
 DELIMITER $$
@@ -29,10 +30,13 @@ BEGIN
 			nw.content,
 			nw.summary,
 			cat.name,
-			nw.title AS url
+			nw.title AS url,
+            u.name AS userName,
+            u.lastName AS userLastName
 		FROM newsletters AS nw 
 			INNER JOIN newsletter_tags AS nwt ON nw.id=nwt.id_newsletter 
 			INNER JOIN categories AS cat ON nw.category_id=cat.id
+            INNER JOIN users AS u ON u.id = nw.user_id
 		WHERE 
 			nwt.id_tag=id_tag AND
 			nw.isDeleted = 0 
@@ -48,10 +52,13 @@ BEGIN
 			nw.content,
 			nw.summary,
 			cat.name,
-			nw.title AS url
+			nw.title AS url,
+            u.name AS userName,
+            u.lastName AS userLastName
 		FROM newsletters AS nw 
 			INNER JOIN newsletter_tags AS nwt ON nw.id=nwt.id_newsletter 
 			INNER JOIN categories AS cat ON nw.category_id=cat.id
+            INNER JOIN users AS u ON u.id = nw.user_id
 		WHERE 
 			nwt.id_tag=id_tag AND
 			nw.isDeleted = 0 
@@ -62,6 +69,8 @@ BEGIN
 END$$
 
 DELIMITER ;
+
+
 
 
 INSERT INTO `roles` (`id`, `name`) VALUES (NULL, 'Client');
@@ -403,6 +412,232 @@ UPDATE `product_types` SET `category_id` = '1', `name` = 'Tableros' WHERE `produ
 INSERT INTO `product_types` (`id`, `category_id`, `name`) VALUES (NULL, '1', 'Tapacanto');
 DELETE FROM `product_categories` WHERE `product_categories`.`id` = 2
 UPDATE `product_subcategory_classification` SET `name` = 'Tradicionales' WHERE `product_subcategory_classification`.`id` = 2;
+
+
+
+DROP procedure IF EXISTS `sp_getProductBy_product_subcategory_classification`;
+
+DELIMITER $$
+
+CREATE PROCEDURE `sp_getProductBy_product_subcategory_classification`(IN `id` INT)
+    NO SQL
+BEGIN
+	SELECT 
+    	p.id AS id_product,
+    	p.name AS name_product,
+        p.id_product_color AS id_subcategory_color,
+        p.description AS description_product,
+        p.img_product AS img_product,
+        (SELECT name FROM product_colors AS pc WHERE pc.id = p.id_product_color  ) AS name_subcategory_color
+        
+    FROM 
+    	products as p 
+   	WHERE 
+    	p.id_product_subacabado = id AND
+        p.is_deleted = 0
+	ORDER BY
+		name_subcategory_color ASC;
+END$$
+
+DELIMITER ;
+
+
+
+
+
+
+
+
+DROP procedure IF EXISTS `sp_getInformationProduct`;
+
+DELIMITER $$
+
+CREATE PROCEDURE `sp_getInformationProduct`(IN `id_product` INT)
+BEGIN
+	SELECT 
+    	p.id AS id_product,
+        p.code AS code_product,
+        p.price AS price_product,
+    	p.name AS name_product,
+        p.description AS description_product,
+        -- p.pdf_file AS pdffile_product,
+        p.img_product AS img_product,
+        pc.name AS name_product_category,
+        pt.name AS name_product_type,
+        pa.name AS name_subcategory_acabado,
+        psa.name AS name_subcategory_efecto_v,
+        pm.name AS name_subcategory_material,
+        ps.name AS name_subcategory_sustrato,
+        pco.name AS name_subcategory_color
+    FROM 
+    	products as p 
+        INNER JOIN product_categories AS pc ON p.id_product_category = pc.id
+        INNER JOIN product_types AS pt ON p.id_product_type = pt.id
+        INNER JOIN product_acabados AS pa ON p.id_product_acabado = pa.id
+        INNER JOIN product_subacabados AS psa ON p.id_product_subacabado = psa.id
+        INNER JOIN product_materials AS pm ON p.id_product_material = pm.id
+        INNER JOIN product_sustratos AS ps ON p.id_product_sustrato = ps.id
+        INNER JOIN product_colors AS pco ON p.id_product_color = pco.id
+   	WHERE 
+    	p.id = id_product;
+END$$
+
+DELIMITER ;
+
+
+
+
+DROP procedure IF EXISTS `sp_getInventory`;
+
+DELIMITER $$
+
+CREATE PROCEDURE `sp_getInventory`()
+    NO SQL
+BEGIN
+
+	SELECT 
+    	i.quantity AS invQuantity,
+    	p.name AS productName,
+        p.code,
+        p.width,
+        p.thickness,
+        p.length,
+        p.price,
+        pc.name AS productColor,
+        pt.name AS productType,
+        pa.name AS productAcabado,
+        pm.name AS productMaterial,
+        ps.name AS productSustrato
+    FROM 
+    	inventory AS i 
+        INNER JOIN products as p ON i.id_product = p.id 
+        LEFT JOIN product_colors AS pc ON pc.id = p.id_product_color
+        INNER JOIN product_types AS pt ON pt.id = p.id_product_type
+        LEFT JOIN product_acabados AS pa ON pa.id = p.id_product_acabado
+        LEFT JOIN product_materials AS pm ON pm.id = p.id_product_material
+        LEFT JOIN product_sustratos AS ps ON ps.id = p.id_product_sustrato
+	WHERE
+		p.is_deleted = 0 AND
+        i.quantity > 0
+   	ORDER BY
+    	pc.name ASC;
+END$$
+
+DELIMITER ;
+
+
+
+
+DROP procedure IF EXISTS `sp_getTags`;
+
+DELIMITER $$
+
+CREATE PROCEDURE `sp_getTags`()
+    NO SQL
+BEGIN
+    SELECT 
+        `tags`.`id`, 
+        `tags`.`name`, 
+        `newsletter_tags`.`updated_at` 
+    FROM 
+        `newsletter_tags` 
+    INNER JOIN `tags` on `tags`.`id` = `newsletter_tags`.`id_tag` 
+    INNER JOIN `newsletters` ON `newsletters`.`id` =  `newsletter_tags`.`id_newsletter`
+    WHERE
+		`newsletters`.`isDeleted` = 0
+    GROUP BY 
+        `tags`.`name`, 
+        `tags`.`id` 
+    ORDER BY 
+        `newsletter_tags`.`updated_at` DESC;
+END$$
+
+DELIMITER ;
+
+
+
+
+DROP procedure IF EXISTS `sp_getNewsletter`;
+
+DELIMITER $$
+
+CREATE PROCEDURE `sp_getNewsletter`(IN `allFields` BOOLEAN)
+    NO SQL
+BEGIN
+
+	IF allFields = 0 THEN
+		SELECT 
+			ne.id,
+			ne.title,
+			ne.created_at,
+            ne.published_at,
+			ne.name_img,
+			ne.content,
+			ne.summary,
+			cat.name,
+			ne.title AS url,
+            u.name AS userName,
+            u.lastName AS userLastName
+		FROM newsletters AS ne 
+			INNER JOIN categories AS cat ON ne.category_id=cat.id
+            INNER JOIN users as u ON u.id=ne.user_id
+		WHERE 
+			ne.isDeleted = 0 
+		ORDER BY ne.published_at DESC
+		LIMIT 8;
+	ELSE
+		SELECT 
+			ne.id,
+			ne.title,
+			ne.created_at,
+			ne.name_img,
+			ne.content,
+			ne.summary,
+			cat.name,
+			ne.title AS url
+		FROM newsletters AS ne 
+			INNER JOIN categories AS cat ON ne.category_id=cat.id
+		WHERE 
+			ne.isDeleted = 0 
+		ORDER BY ne.published_at DESC
+		LIMIT 8, 1000;
+	END IF;
+END$$
+
+DELIMITER ;
+
+
+
+DROP procedure IF EXISTS `sp_getNewsletterFilterByCategory`;
+
+DELIMITER $$
+
+CREATE PROCEDURE `sp_getNewsletterFilterByCategory`(IN `cat_id` INT)
+    NO SQL
+SELECT 
+	ne.id,
+    ne.title,
+    ne.created_at,
+    ne.published_at,
+    ne.name_img,
+    ne.content,
+    ne.summary,
+    cat.name,
+    ne.title AS url,
+	u.name AS userName,
+	u.lastName AS userLastName
+FROM newsletters AS ne 
+	INNER JOIN categories AS cat ON ne.category_id=cat.id
+	INNER JOIN users as u ON u.id=ne.user_id
+WHERE 
+	ne.isDeleted = 0 AND
+	ne.category_id = cat_id
+ORDER BY ne.created_at DESC
+LIMIT 8$$
+
+DELIMITER ;
+
+
 
 
 

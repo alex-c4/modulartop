@@ -361,3 +361,76 @@ var sendFormNewsletter = function(_route, _token, _data, _form_id){debugger
         $('#divMessageNews').html("Error en la operación, por favor intente de nuevo. Muchas gracias!");
     })
 }
+
+
+$("#form_updloadexcel").on("submit", function(ev){
+    debugger
+    ev.preventDefault();
+
+    var formData = new FormData(document.getElementById("form_updloadexcel"));
+    var _route = $(this).attr('action');
+    var _token = $("#token").val();
+
+    $("#planilla").removeClass("error");
+
+    if($("#planilla").val() == ""){
+        $("#planilla").addClass("error");
+    }else{
+        $("#btnUpload").prop("disabled", true);
+
+        $.ajax({
+            url: _route,
+            dataType: "html",
+            contentType: false,
+            headers: { 'X-CSRF-TOKEN': _token },
+            type: 'POST',
+            data: formData,
+            processData: false
+        })
+        .done(function(resp){
+            $("#btnUpload").prop("disabled", false);
+            
+            data = JSON.parse(resp);
+            
+            showAlert(data.result, data.message);
+
+            $("#planilla").val("");
+
+        })
+        .fail(function(jqXHR, textStatus, errorThrown ){  
+            showAlert(false, "Hubo un error en la petición, por favor vuelva a intentarlo");
+            $("#btnUpload").prop("disabled", false);
+            console.log(jqXHR.responseJSON.errors);
+        })
+
+    }
+
+
+});
+
+var showAlert = function(status, message){
+    var _msg = "", _class = "";
+    if(status){
+        _msg = message;
+        _class = 'success'
+    }else{
+        _msg = message;
+        _class = 'warning'
+
+    }
+    $("#message_alert").html("");
+    var _html = '<div class="alert alert-' + _class + ' alert-dismissible fade show" role="alert">' +
+                _msg +
+                '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+                '    <span aria-hidden="true">&times;</span>' +
+                '</button>' +
+                '</div>';
+    
+    $("#message_alert").html(_html);
+    
+}
+
+var goToProject = function(projectId){
+    console.log(projectId);
+}
+

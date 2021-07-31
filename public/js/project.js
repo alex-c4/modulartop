@@ -13,8 +13,13 @@ $(function(){
 
 $("#proyectista").on("change", function(){
     var _value = parseInt(this.value);
-
-    if(GLOBAL_VALIDATOR) GLOBAL_VALIDATOR.destroy();
+    debugger
+    try {
+        if(GLOBAL_VALIDATOR) GLOBAL_VALIDATOR.destroy();
+    } catch (error) {
+        GLOBAL_VALIDATOR = null;
+    }
+    
     switch (_value) {
         case 1:
 
@@ -102,13 +107,15 @@ $("#proyectista").on("change", function(){
 
 var hideFields = function(listFields){
     listFields.forEach(function(item){
-        $("#" + item).addClass("d-none");
+        // $("#" + item).addClass("d-none");
+        $("#" + item).hide("slow");
     });
 }
 
 var showFields = function(listFields){
     listFields.forEach(function(item){
-        $("#" + item).removeClass("d-none");
+        // $("#" + item).removeClass("d-none");
+        $("#" + item).show("slow");
     });
 }
 

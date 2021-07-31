@@ -129,9 +129,9 @@ $("#type").on("change", function(){
 })
 
 $("#subtype").on("change", function(){
-    var subtype_id = parseInt(this.value);
+    var subtype_id = (this.value != "") ? parseInt(this.value) : this.value;
 
-    if(subtype_id > 0){
+    if(subtype_id != ""){
         $("#div-code").show("slow");
         $("#div-name").show("slow");
         $("#div-origen").show("slow");
@@ -148,36 +148,6 @@ $("#subtype").on("change", function(){
         $("#cantinit").val("0");
     }
 })
-
-var onclick_addSubType = function(){
-    var _modal_type = $("#modal_type").val();
-    var _subtype = $("#txtSubType").val();
-    var _url = $("#hRouteAddSubType").val();
-    var _data = {
-        modal_type: _modal_type,
-        subtype: _subtype
-    };
-
-    if(_subtype == ""){
-        $("#txtSubType").addClass("is-invalid");
-    }else{
-
-        Utils.getData(_url, _token, _type, _data).then(function(result){
-            if(result.result == true){
-                produc_subtypes = result.data;
-                $("#type").trigger("change");
-                $('#subtypeModal').modal('hide')
-                $("#txtSubType").val("");
-                $("#txtSubType").removeClass("is-invalid")
-
-            }else{
-                console.log(result.message);
-            }
-        });
-
-
-    }
-}
 
 $("#acabado").on("change", function(){
     var acabado_id = (this.value != "") ? parseInt(this.value) : this.value;
@@ -206,6 +176,426 @@ $("#acabado").on("change", function(){
     }
 })
 
+var validator_forTapacanto = function(){
+    var validator = $("#form_product").validate({
+        rules:{
+            category:{
+                min: 1
+            },
+            type:{
+                required: true
+            },
+            subtype:{
+                required: true
+            },
+            code:{
+                required: true
+            },
+            name:{
+                required: true
+            },
+            origen:{
+                required: true
+            },
+            width:{
+                required: true,
+                min: 1
+            },
+            thickness:{
+                required: true,
+                min: 1
+            },
+            description:{
+                required: true
+            },
+            image_0:{
+                required: true
+            },
+            image_alt:{
+                required: true
+            }
+        },
+        messages: {
+            category: "Por favor seleccione la Categoria",
+            type: "Por favor seleccione el Tipo",
+            subtype: "Por favor seleccione el Sub-tipo",
+            code: "Por favor ingrese el Código",
+            name: "Por favor ingrese el Nombre",
+            origen: "Por favor seleccione el Origen",
+            width: "Por favor ingrese el Ancho",
+            thickness: "Por favor ingrese el Espesor",
+            description: "Por favor ingrese la Descripción",
+            image_0: "Por favor seleccione la Imagen Principal",
+            image_alt: "Por favor ingrese el Texto Alternativo"
+        },
+        errorPlacement: function(error, element) {
+        },
+        submitHandler: function(form) {
+            $("#btnSave").prop("disabled", false);
+            form.submit();
+        }
+    });
+
+    GLOBAL_VALIDATOR = validator;
+
+}
+
+var validator_forTableros = function(){
+    var validator = $("#form_product").validate({
+        rules: {
+            category:{
+                required: true
+            },
+            type:{
+                required: true
+            },
+            subtype:{
+                required: true
+            },
+            code:{
+                required: true
+            },
+            name:{
+                required: true
+            },
+            origen:{
+                min: 1
+            },
+            acabado:{
+                required: true
+            },
+            width:{
+                required: true,
+                min: 1
+            },
+            thickness:{
+                required: true,
+                min: 1
+            },
+            length:{
+                required: true,
+                min: 1
+            },
+            material:{
+                required: true
+            },
+            sustrato:{
+                required: true
+            },
+            color:{
+                required: true
+            },
+            description:{
+                required: true
+            },
+            image_0:{
+                required: true
+            },
+            image_alt:{
+                required: true
+            }
+        },
+        messages: {
+            category: "Por favor seleccione la Categoria",
+            type: "Por favor seleccione el Tipo",
+            subtype: "Por favor seleccione el Sub-tipo",
+            code: "Por favor ingrese el Código",
+            name:"Por favor ingrese el Nombre",
+            origen:"Por favor seleccione el Origen",
+            acabado:"Por favor seleccione el Acabado",
+            width:"Por favor ingrese el Ancho",
+            thickness:"Por favor ingrese el Espesor",
+            length:"Por favor ingrese el Largo",
+            material: "Por favor seleccione el Material",
+            sustrato: "Por favor seleccione el Sustrato",
+            color: "Por favor seleccione el Color",
+            description: "Por favor ingrese la Descripción",
+            image_0: "Por favor seleccione la Imagen Principal",
+            image_alt: "Por favor ingrese el Texto Alternativo"
+        },
+        errorPlacement: function(error, element) {
+            // $("#error-subtype").html("");
+
+            // if(element[0].id == "subtype"){
+            //     $("#error-subtype").html(error[0].getInnerHTML())
+            // }
+        },
+        submitHandler: function(form) {
+            $("#btnSave").prop("disabled", false);
+            form.submit();
+        }
+    });
+
+    GLOBAL_VALIDATOR = validator;
+        
+}
+
+var validator_default = function(){
+    var validator = $("#form_product").validate({
+        rules:{
+            category:{
+                required: true
+            },
+            type:{
+                required: true
+            }
+        },
+        messages: {
+            category: "Por favor seleccione la Categoria",
+            type: "Por favor seleccione el Tipo"
+        },
+        submitHandler: function(form) {
+            // $("#btnSave").prop("disabled", false);
+            form.submit();
+        }
+    });
+
+    GLOBAL_VALIDATOR = validator;
+}
+
+var onclick_addSubType = function(){
+    var _modal_type = $("#modal_type").val();
+    var _subtype = $("#txtSubType").val();
+    var _url = $("#hRouteAddSubType").val();
+    var _data = {
+        modal_type: _modal_type,
+        subtype: _subtype
+    };
+
+    if(_subtype == ""){
+        $("#txtSubType").addClass("is-invalid");
+    }else{
+
+        Utils.getData(_url, _token, _type, _data).then(function(result){
+            if(result.result == true){
+                produc_subtypes = result.data;
+                type_id = parseInt($("#type").val());
+                produc_subtypes.forEach(function(item){
+                    if(type_id == parseInt(item.type_id)){
+                        $('#subtype').append($('<option>', {
+                            value: item.id,
+                            text: item.name
+                        }));
+                    }
+                });
+
+                $("#type").trigger("change");
+                $('#subtypeModal').modal('hide')
+                $("#txtSubType").val("");
+                $("#txtSubType").removeClass("is-invalid")
+
+            }else{
+                console.log(result.message);
+            }
+        });
 
 
+    }
+}
+
+var onclick_addAcabado = function(){
+
+    var _url = $("#hRouteAddAcabado").val();
+    var _name = $("#txtAcabado").val();
+
+    var _data = {
+        name: _name
+    };
+
+    if(_name == ""){
+        $("#txtAcabado").addClass("is-invalid");
+    }else{
+
+        Utils.getData(_url, _token, _type, _data).then(function(result){
+
+            if(result.result == true){                
+                var produc_acabados = result.data;
+                $("#acabado").html("")
+                $("#modal_acabado").html("");
+                
+                $('#acabado').append($('<option>', {
+                    value: 0,
+                    text: "-Seleccione-"
+                }));
+                produc_acabados.forEach( item => {
+                    $('#acabado').append($('<option>', {
+                        value: item.id,
+                        text: item.name
+                    }));
+
+                    // combo del modal
+                    $('#modal_acabado').append($('<option>', {
+                        value: item.id,
+                        text: item.name
+                    }));
+                })
+                $("#acabado").val("0").trigger("change");
+                $('#subacabado').modal('hide');
+
+                $('#acabadoModal').modal('hide');
+                $("#txtAcabado").val("");
+                $("#txtAcabado").removeClass("is-invalid")
+            }else{
+                console.log(result.message);
+            }
+        });
+
+
+    }
+}
+
+var onclick_addSubacabado = function(){
+    var _url = $("#hRouteAddSubacabado").val();
+    var _id_acabado = $("#modal_acabado").val();
+    var _name = $("#txtSubacabado").val();
+
+    var _data = {
+        id_acabado: _id_acabado,
+        name: _name
+    };
+
+    if(_name == ""){
+        $("#txtAcabado").addClass("is-invalid");
+    }else{
+        Utils.getData(_url, _token, _type, _data).then(function(result){
+            if(result.result == true){
+                $("#sub_acabado").html("");
+                produc_subacabados = result.data;
+                produc_subacabados.forEach( item => {
+                    $('#sub_acabado').append($('<option>', {
+                        value: item.id,
+                        text: item.name
+                    }));
+
+                    $("#acabado").val("0").trigger("change");
+                    $('#subacabadoModal').modal('hide');
+                    $("#txtSubacabado").val("");
+                    $("#txtSubacabado").removeClass("is-invalid")
+                })
+            }else{
+                console.log(result.message);
+            }
+        });
+    }
+
+}
+
+var onclick_addMaterial = function(){
+    var _url = $("#hRouteAddMaterial").val();
+    var _name = $("#txtMaterial").val();
+
+    var _data = {
+        name: _name
+    };
+
+    if(_name == ""){
+        $("#txtMaterial").addClass("is-invalid");
+    }else{
+        Utils.getData(_url, _token, _type, _data).then(function(result){
+            if(result.result == true){
+                $("#material").html("");
+                materials = result.data;
+
+                $('#material').append($('<option>', {
+                    value: "",
+                    text: "-Seleccione-"
+                }));
+
+                materials.forEach( item => {
+                    $('#material').append($('<option>', {
+                        value: item.id,
+                        text: item.name
+                    }));
+
+                });
+
+                $("#material").val("").trigger("change");
+                $('#materialModal').modal('hide');
+                $("#txtMaterial").val("");
+                $("#txtMaterial").removeClass("is-invalid")
+
+            }else{
+                console.log(result.message);
+            }
+        });
+    }
+}
+
+var onclick_addSustrato = function(){
+    var _url = $("#hRouteAddSustrato").val();
+    var _name = $("#txtSustrato").val();
+
+    var _data = {
+        name: _name
+    };
+
+    if(_name == ""){
+        $("#txtSustrato").addClass("is-invalid");
+    }else{
+        Utils.getData(_url, _token, _type, _data).then(function(result){
+            if(result.result == true){
+                $("#sustrato").html("");
+                materials = result.data;
+
+                $('#sustrato').append($('<option>', {
+                    value: "",
+                    text: "-Seleccione-"
+                }));
+
+                materials.forEach( item => {
+                    $('#sustrato').append($('<option>', {
+                        value: item.id,
+                        text: item.name
+                    }));
+
+                    $("#sustrato").val("").trigger("change");
+                    $('#sustratoModal').modal('hide');
+                    $("#txtSustrato").val("");
+                    $("#txtSustrato").removeClass("is-invalid")
+                })
+            }else{
+                console.log(result.message);
+            }
+        });
+    }
+}
+
+var onclick_addColor = function(){
+    var _url = $("#hRouteAddColor").val();
+    var _name = $("#txtColor").val();
+
+    var _data = {
+        name: _name
+    };
+
+    if(_name == ""){
+        $("#txtColor").addClass("is-invalid");
+    }else{
+        Utils.getData(_url, _token, _type, _data).then(function(result){
+            if(result.result == true){
+                $("#color").html("");
+                colors = result.data;
+
+                $('#color').append($('<option>', {
+                    value: "",
+                    text: "-Seleccione-"
+                }));
+
+                colors.forEach( item => {
+                    $('#color').append($('<option>', {
+                        value: item.id,
+                        text: item.name
+                    }));
+
+                    $("#color").val("").trigger("change");
+                    $('#colorModal').modal('hide');
+                    $("#txtColor").val("");
+                    $("#txtColor").removeClass("is-invalid")
+                })
+            }else{
+                console.log(result.message);
+            }
+        });
+    }
+}
 

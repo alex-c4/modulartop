@@ -70,7 +70,7 @@ content="Tablero melaminico hidrófugo y natural MDP importado y nacional, acaba
                                 <div class="form-group row mb-1">
                                     <label class="col-sm-5 col-form-label text-right"><strong>Precio:</strong></label>
                                     <div class="col-sm-7 text-left">
-                                        <label class="col-form-label">{{ $product->price_product }}</label>
+                                        <label class="col-form-label">{{ $product->price_product }} <strong>P.V.P</strong></label>
                                         <!-- <input disabled type="email" class="form-control" id="inputEmail3"> -->
                                     </div>
                                 </div>
@@ -92,7 +92,7 @@ content="Tablero melaminico hidrófugo y natural MDP importado y nacional, acaba
                                 </div>
                                 
                                 <div class="form-group row mb-1">
-                                    <label  class="col-sm-5 col-form-label text-right"><strong>Efecto visual:</strong></label>
+                                    <label  class="col-sm-5 col-form-label text-right"><strong>Sub-acabado:</strong></label>
                                     <div class="col-sm-7 text-left">
                                         <label  class="col-form-label">{{ $product->name_subcategory_efecto_v }}</label>
                                         <!-- <input disabled type="email" class="form-control" id="inputEmail3"> -->
@@ -131,18 +131,10 @@ content="Tablero melaminico hidrófugo y natural MDP importado y nacional, acaba
                         <div class="form-group row mb-1">
                             <div class="containerActionButtons">
                                 <div class="actionButtons">
-                                <a href="{{ route('tablero.showImages', $product->id_product) }}" alt="Ver precio" class="p-2">
+                                <a href="{{ route('tablero.showImages', $product->id_product) }}" alt="Ver galería del producto" class="p-2">
                                     <span class="icon-circle-o"></span>
-                                    Ver más imagenes
+                                    Ver galería del producto
                                 </a>
-
-                                @if(isset($product->pdffile_product) != "")
-                                <a href="{{ route('tablero.fichatecnica', $product->id_product) }}" target="_blank" alt="Ver precio" class="p-2">
-                                    <span class="icon-circle-o"></span>
-                                    Ficha técnica
-                                </a>
-                                @endif
-                                
 
                                 </div>
                             </div>

@@ -53,7 +53,7 @@ Creacion de nuevos productos
         <div class="col-lg-8">
             <div class="card">
                 <div class="card-body">
-                    <form id="form_create_product" method="POST" action="{{ route('product.store') }}" enctype="multipart/form-data">
+                    <form id="form_product" method="POST" action="{{ route('product.store') }}" enctype="multipart/form-data">
                     
                         <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
                         
@@ -359,18 +359,24 @@ Creacion de nuevos productos
                             @enderror
                         </div>
 
+                        <hr>
+
                         <!-- Otras imagenes -->
                         <div class="row form-group">
-                            <label for="image_1" class="col-md-4 col-form-label text-md-right">Otras imagenes</label>
+                            <label for="image_1" class="col-md-4 col-form-label text-md-right">Imagen de galería</label>
                             <div class="col-md-6" id="container-img">
                                 <input type="file" id="image_1" name="image_1" accept="image/png, image/jpeg, image/jpg" class="form-control mt-2" placeholder="Imagen"> 
-                            </div>
-                            <div class="col-md-12 text-center mt-2" id="btnAddImage" name="btnAddImage">
-                                <button type="button" class="btn btn-primary">
-                                    Agregar campo imagen
-                                </button>
+                                <input maxlength="60" type="text" name="image_alt_1" id="image_alt_1" class="form-control mt-1" placeholder="Texto alternativo">
                             </div>
                         </div>
+                                               
+                        <div class="col-md-12 text-center mt-2" id="btnAddImage" name="btnAddImage">
+                            <button type="button" class="btn btn-primary">
+                                Agregar campo imagen
+                            </button>
+                        </div>
+
+                        <br>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
@@ -389,7 +395,7 @@ Creacion de nuevos productos
 
 <!-- Modal section -->
 
-<!-- modal para agregar nuevo proveedor -->
+<!-- modal Subtipo -->
 <div class="modal fade" id="subtypeModal" tabindex="-1" aria-labelledby="subtypeModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">

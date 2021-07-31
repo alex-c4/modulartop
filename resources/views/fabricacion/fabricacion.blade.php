@@ -53,7 +53,7 @@ mundial para casas, hoteles, oficinas, restaurantes y tiendas comerciales." />
               informamos que fabricamos los muebles ideales a precios competitivos.</p>
 
               <p class="lead">¡Cuéntanos tu proyecto y lo fabricamos!</p>
-              <a href="{{ route('contact.tellus') }}#contact-section" class="btn btn-primary mr-2 mb-2">Cuéntanos</a>
+              <a href="{{ route('welcome') }}#contact-section" class="btn btn-primary mr-2 mb-2">Cuéntanos</a>
             </p>
              
             </div>

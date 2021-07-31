@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
+use PDF;
 
 class InventoryController extends Controller
 {
@@ -83,5 +84,17 @@ class InventoryController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Descarga el inventario a PDF
+     */
+    public function download(){
+        $inventory = DB::select("CALL sp_getInventory()");
+
+        $pdf = PDF::loadView('inventory.downloadinventorypdf', ["inventory" => $inventory])
+            ->setPaper('A4', 'landscape');
+        
+        return $pdf->download('inventario-modular-top.pdf');
     }
 }

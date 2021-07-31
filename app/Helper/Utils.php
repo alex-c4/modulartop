@@ -52,9 +52,11 @@ class Utils
             "product.create",
             "product.index",
             "product.edit",
-            "product.uploadFichaTecnica",
+            "fichaTecnica.uploadFichaTecnica",
             "product.storeFichaTecnica",
-            "product.store"
+            "product.store",
+            "product.show",
+            "fichaTecnica.showFichaTecnica"
         );
 
         $_compra_routes = array(
@@ -191,6 +193,30 @@ class Utils
         }
         
         return $result;
+    }
+    /**
+     * Funcion para validar la existencia del producto en el inventario
+     * 
+     * @param $productId id del producto a validar existencia en el inventario
+     * @param $quantity cantidad del producto que se desea validar
+     */
+    public static function validar_existencia_inventario_porProducto($productId, $quantity){
+        $inventory = DB::table("inventory")->where("id_product", $productId)->first();
+
+        if($inventory->quantity < $quantity){
+            $result = array(
+                "result" => false,
+                "message" => "Excede el máximo del inventario, capacidad actual <strong>".$inventory->quantity ."</strong>"
+            );
+        }else{
+            $result = array(
+                "result" => true,
+                "message" => "Capacidad aceptada"
+            );
+        }
+
+        return $result;
+
     }
 
     /**

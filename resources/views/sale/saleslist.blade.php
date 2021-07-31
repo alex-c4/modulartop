@@ -43,6 +43,7 @@ Lista de ventas
                 <th scope="col">Fecha de venta</th>
                 <th scope="col">Cliente</th>
                 <th scope="col">ID de factura</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
@@ -53,6 +54,9 @@ Lista de ventas
                 <td>{{ $sale->saleDate }}</td>
                 <td>{{ ucfirst($sale->buyerName) }} {{ ucfirst($sale->buyerLastName) }}</td>
                 <td>{{ $sale->invoiceId }}</td>
+                <td>
+                    <a href="{{ route('sale.show', $sale->saleId) }}"><span class="icon-eye"></span></a>
+                </td>
             </tr>
             @endforeach
         </tbody>

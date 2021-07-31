@@ -35,12 +35,12 @@ Creación orden de compra
         </div>
     </nav>
 
-
+    
     <!-- mensaje para la creacion de los post -->
     @if(isset($msgPost) != null)
         <div class="container">
             <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>{{$msgPost}}</strong> 
+            <strong>{!! $msgPost !!}</strong> 
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -55,6 +55,16 @@ Creación orden de compra
                     <form method="POST" action="{{ route('ordersale.store') }}" enctype="multipart/form-data">
                     
                         <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+
+                        <!-- title -->
+                        <div class="row form-group">
+                            <div class="col-12 text-center">
+                                <label for="">
+                                    Enviar planilla de solicitud de compra para crear una orden
+                                </label>
+                            </div>
+                        </div>
+                        
 
                         <!-- Factura -->
                         <div class="row form-group">
@@ -73,7 +83,7 @@ Creación orden de compra
                         <div class="form-group row mb-1 mt-3">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary" id="btnSave" name="btnSave">
-                                    Guardar
+                                    Crear orden
                                 </button>
                             </div>
                         </div>

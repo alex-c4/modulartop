@@ -82,9 +82,44 @@ Edición proyecto
                             </div>
                         </div>
 
+                        <!-- Partner company -->
+                        <div class="form-group row" style="display: none" id="div_partner_company">
+                            <label for="partner_company" class="col-md-4 col-form-label text-md-right">Empresa aliada<span>*</span></label>
+                            <div class="col-md-6">
+                                <input maxlength="60" id="partner_company" name="partner_company" type="text" class="form-control @error('partner_company') is-invalid @enderror" value="{{ $project->partner_company }}" >
+                                @error('partner_company')
+                                    <span class="invalid-field" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <!-- Proveedores -->
+                        <div class="row form-group" style="display: none" id="div_provider">
+                            <label class="col-lg-4 col-form-label text-md-right" for="provider">Proveedor<span>*</span></label>
+                            <div class="col-md-6">
+                                <select class="custom-select" id="provider" name="provider">
+                                    <option value="0">Seleccione...</option>
+                                    @foreach($providers as $provider)
+                                        @if($provider->id == $project->provider_id)
+                                            <option selected value="{{ $provider->id }}">{{ $provider->name}}</option>
+                                        @else
+                                            <option value="{{ $provider->id }}">{{ $provider->name}}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                                @error('provider')
+                                    <span class="invalid-field" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
                         <!-- Nombre -->
                         <div class="form-group row">
-                            <label for="code" class="col-md-4 col-form-label text-md-right">Nombre<span>*</span></label>
+                            <label for="code" class="col-md-4 col-form-label text-md-right">Nombre del proyecto<span>*</span></label>
                             <div class="col-md-6">
                                 <input maxlength="120" id="name" name="name" type="text" class="form-control @error('name') is-invalid @enderror" value="{{ $project->name }}" autofocus>
                                 @error('name')
@@ -100,6 +135,7 @@ Edición proyecto
                             <label for="cover_photo" class="col-md-4 col-form-label text-md-right">Foto portada<span>*</span></label>
                             <div class="col-md-6">
                                 <input type="file" id="cover_photo" name="cover_photo" accept="image/png, image/jpeg, image/jpg" class="form-control @error('cover_photo') is-invalid @enderror" placeholder="Imagen"> 
+                                <small id="sizeImage" class="form-text text-muted sizeImage">Tamaño de la imagen (700 x 500 pixeles)</small>
                             </div>
                             
                             @error('cover_photo')
@@ -113,7 +149,6 @@ Edición proyecto
                             <img height="100px" src="{{ asset('images/proyectos') }}/{{ $project->cover_photo }}" alt="" srcset="">
                         </div>
 
-
                         <!-- cover photo alt_text -->
                         <div class="row form-group">
                             <label for="cover_photo_alt_text" class="col-md-4 col-form-label text-md-right">Texto alternativo<span>*</span></label>
@@ -126,7 +161,6 @@ Edición proyecto
                                 @enderror    
                             </div>
                         </div>
-
 
                         <!-- Descripcion -->
                         <div class="row form-group">
@@ -162,7 +196,7 @@ Edición proyecto
                         </div>
 
                         <!-- Client name -->
-                        <div class="form-group row d-none" id="div_client_name">
+                        <div class="form-group row" style="display: none" id="div_client_name">
                             <label for="client_name" class="col-md-4 col-form-label text-md-right">Nombre del cliente<span>*</span></label>
                             <div class="col-md-6">
                                 <input maxlength="60" id="client_name" name="client_name" type="text" class="form-control @error('client_name') is-invalid @enderror" value="{{ $project->client_name }}" >
@@ -175,47 +209,12 @@ Edición proyecto
                         </div>
 
                         <!-- Fecha -->
-                        <div class="form-group row d-none" id="div_project_date">
+                        <div class="form-group row" style="display: none" id="div_project_date">
                             <label for="project_date" class="col-lg-4 col-form-label text-lg-right">Fecha<span>*</span></label>
                             <div class="col-lg-6">
                                 <input id="project_date" name="project_date" autocomplete="off" type="text" class="form-control @error('project_date') is-invalid @enderror" value="{{ $project->project_date }}" >
 
                                 @error('project_date')
-                                    <span class="invalid-field" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <!-- Partner company -->
-                        <div class="form-group row d-none" id="div_partner_company">
-                            <label for="partner_company" class="col-md-4 col-form-label text-md-right">Empresa aliada<span>*</span></label>
-                            <div class="col-md-6">
-                                <input maxlength="60" id="partner_company" name="partner_company" type="text" class="form-control @error('partner_company') is-invalid @enderror" value="{{ $project->partner_company }}" >
-                                @error('partner_company')
-                                    <span class="invalid-field" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <!-- Proveedores -->
-                        <div class="row form-group d-none" id="div_provider">
-                            <label class="col-lg-4 col-form-label text-md-right" for="provider">Proveedor<span>*</span></label>
-                            <div class="col-md-6">
-                                <select class="custom-select" id="provider" name="provider">
-                                    <option value="0">Seleccione...</option>
-                                    @foreach($providers as $provider)
-                                        @if($provider->id == $project->provider_id)
-                                            <option selected value="{{ $provider->id }}">{{ $provider->name}}</option>
-                                        @else
-                                            <option value="{{ $provider->id }}">{{ $provider->name}}</option>
-                                        @endif
-                                    @endforeach
-                                </select>
-                                @error('provider')
                                     <span class="invalid-field" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -236,11 +235,15 @@ Edición proyecto
 
                         <hr>
 
-                        <div class="row mb-5">
+                        <h5 class="card-title mt-2 mb-4">
+                            Galería de imágenes del Proyecto
+                        </h5>
+
+                        <!-- <div class="row mb-5">
                             <div class="col-12 text-center">
-                            <h2 class="section-title mb-3 text-black">Galeria de fotos</h2>
+                                <h2 class="section-title mb-3 text-black">Galeria de fotos</h2>
                             </div>
-                        </div>
+                        </div> -->
 
                         <form id="form_upload_image" action="" method="post" enctype="multipart/form-data">
                         <input type="hidden" id="hProjectId" name="hProjectId" value="{{ $project->id }}">
@@ -277,7 +280,7 @@ Edición proyecto
                         <div class="form-group row mb-1 mt-3">
                             <div class="col-md-6 offset-md-4">
                                 <button type="button" class="btn btn-primary" id="btnUpload" name="btnUpload">
-                                    Subir
+                                    Agregar
                                 </button>
                             </div>
                         </div>

@@ -17,7 +17,7 @@
 
     <!-- Blog Start -->
     <section class="section" id="news">
-            <div class="container m-3">
+            <div class="container mb-3">
 
                 <div class="row">
 
@@ -37,7 +37,7 @@
                                             <a href="javascript:void(0)" class="text-dark">{{ $project->proyectista_name }}</a>
                                         </li> 
                                     </ul> 
-                                    <a href="javascript:void(0)"><h5 class="title text-dark">{{ $project->project_name }}</h5></a> 
+                                    <a href="{{ route('project.showphotos', $project->projectId) }}"><h5 class="title text-dark">{{ $project->project_name }}</h5></a> 
                                     <ul class="list-unstyled post-meta mb-0 mt-3">
                                         <li class="float-right">
                                             <i class="mdi mdi-calendar-edit mr-1"></i>

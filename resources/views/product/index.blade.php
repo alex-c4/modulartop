@@ -1,5 +1,18 @@
 @extends('layouts.layoutSidebar')
 
+@section('header')
+    <style>
+        .table{
+            font-size: smaller;
+        }
+        
+        @media (max-width: 768px) {
+            .table{
+                font-size: xx-small;
+            }
+        }
+    </style>
+@endsection
 
 @section('content')
 
@@ -50,8 +63,12 @@ Lista de productos registrados
                 <th scope="col">#</th>
                 <th scope="col">Código</th>
                 <th scope="col">Nombre</th>
-                <th scope="col">Categoria</th>
                 <th scope="col">Tipo</th>
+                <th scope="col">Acabados</th>
+                <th scope="col">Ancho/Espesor/Largo</th>
+                <th scope="col">Material</th>
+                <th scope="col">Sustrato</th>
+                <th scope="col">P.V.P</th>
                 <th scope="col"></th>
             </tr>
         </thead>
@@ -62,8 +79,12 @@ Lista de productos registrados
                 <th>{{ $key += 1 }}</th>
                 <td>{{ $product->code }}</td>
                 <td>{{ $product->product_name }}</td>
-                <td>{{ $product->category_product_name }}</td>
                 <td>{{ $product->product_type_name }}</td>
+                <td>{{ $product->acabado }}</td>
+                <td>{{ $product->width }}/{{ $product->thickness }}/{{ $product->length }}</td>
+                <td>{{ $product->material }}</td>
+                <td>{{ $product->sustrato }}</td>
+                <td>{{ $product->price }}</td>
                 <td>
                     <a href="{{ route('product.edit', $product->id) }}" title="Editar" ><span class="icon-pencil p-1 icon-gray"></span></a>
                     @if($product->product_isdeleted == 1)
@@ -71,6 +92,7 @@ Lista de productos registrados
                     @else
                         <a href="{{ route('product.delete', $product->id) }}" title="Inactivar" ><span class="icon-close p-1 icon-red"></span></a>
                     @endif
+                    <a href="{{ route('product.show', $product->id) }}" title="Ver" ><span class="icon-pencil p-1 icon-eye"></span></a>
                 </td>
             </tr>
             @endforeach

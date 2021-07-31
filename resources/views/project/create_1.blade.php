@@ -73,9 +73,40 @@ Creación proyecto
                             </div>
                         </div>
 
+                        <!-- Partner company -->
+                        <div class="form-group row" style="display: none" id="div_partner_company">
+                            <label for="partner_company" class="col-md-4 col-form-label text-md-right">Empresa aliada<span>*</span></label>
+                            <div class="col-md-6">
+                                <input maxlength="60" id="partner_company" name="partner_company" type="text" class="form-control @error('partner_company') is-invalid @enderror" value="{{ old('partner_company') }}" >
+                                @error('partner_company')
+                                    <span class="invalid-field" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <!-- Proveedores -->
+                        <div class="row form-group" id="div_provider"  style="display: none">
+                            <label class="col-md-4 col-form-label text-md-right" for="provider">Proveedor<span>*</span></label>
+                            <div class="col-md-6">
+                                <select class="custom-select" id="provider" name="provider">
+                                    <option value="0">Seleccione...</option>
+                                    @foreach($providers as $provider)
+                                        <option value="{{ $provider->id }}">{{ $provider->name}}</option>
+                                    @endforeach
+                                </select>
+                                @error('provider')
+                                    <span class="invalid-field" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
                         <!-- Nombre -->
                         <div class="form-group row">
-                            <label for="code" class="col-md-4 col-form-label text-md-right">Nombre<span>*</span></label>
+                            <label for="code" class="col-md-4 col-form-label text-md-right">Nombre del proyecto<span>*</span></label>
                             <div class="col-md-6">
                                 <input maxlength="120" id="name" name="name" type="text" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" autofocus>
                                 @error('name')
@@ -91,6 +122,7 @@ Creación proyecto
                             <label for="cover_photo" class="col-md-4 col-form-label text-md-right">Foto portada<span>*</span></label>
                             <div class="col-md-6">
                                 <input type="file" id="cover_photo" name="cover_photo" accept="image/png, image/jpeg, image/jpg" class="form-control @error('cover_photo') is-invalid @enderror" placeholder="Imagen"> 
+                                <small id="sizeImage" class="form-text text-muted sizeImage">Tamaño de la imagen (700 x 500 pixeles)</small>
                             </div>
                             
                             @error('cover_photo')
@@ -145,7 +177,7 @@ Creación proyecto
                         </div>
 
                         <!-- Client name -->
-                        <div class="form-group row d-none" id="div_client_name">
+                        <div class="form-group row" style="display: none" id="div_client_name">
                             <label for="client_name" class="col-md-4 col-form-label text-md-right">Nombre del cliente<span>*</span></label>
                             <div class="col-md-6">
                                 <input maxlength="60" id="client_name" name="client_name" type="text" class="form-control @error('client_name') is-invalid @enderror" value="{{ old('client_name') }}" >
@@ -158,7 +190,7 @@ Creación proyecto
                         </div>
 
                         <!-- Fecha -->
-                        <div class="form-group row d-none" id="div_project_date">
+                        <div class="form-group row" style="display: none" id="div_project_date">
                             <label for="project_date" class="col-md-4 col-form-label text-md-right">Fecha<span>*</span></label>
                             <div class="col-md-6">
                                 <input id="project_date" name="project_date" autocomplete="off" type="text" class="form-control @error('project_date') is-invalid @enderror" value="{{ old('project_date') }}" >
@@ -171,41 +203,10 @@ Creación proyecto
                             </div>
                         </div>
 
-                        <!-- Partner company -->
-                        <div class="form-group row d-none" id="div_partner_company">
-                            <label for="partner_company" class="col-md-4 col-form-label text-md-right">Empresa aliada<span>*</span></label>
-                            <div class="col-md-6">
-                                <input maxlength="60" id="partner_company" name="partner_company" type="text" class="form-control @error('partner_company') is-invalid @enderror" value="{{ old('partner_company') }}" >
-                                @error('partner_company')
-                                    <span class="invalid-field" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <!-- Proveedores -->
-                        <div class="row form-group d-none" id="div_provider">
-                            <label class="col-md-4 col-form-label text-md-right" for="provider">Proveedor<span>*</span></label>
-                            <div class="col-md-6">
-                                <select class="custom-select" id="provider" name="provider">
-                                    <option value="0">Seleccione...</option>
-                                    @foreach($providers as $provider)
-                                        <option value="{{ $provider->id }}">{{ $provider->name}}</option>
-                                    @endforeach
-                                </select>
-                                @error('provider')
-                                    <span class="invalid-field" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
                         <div class="form-group row mb-1 mt-3">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary" id="btnSave" name="btnSave">
-                                    Guardar
+                                    Siguiente
                                 </button>
                             </div>
                         </div>

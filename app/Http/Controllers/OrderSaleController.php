@@ -19,7 +19,8 @@ class OrderSaleController extends Controller
     public function __construct()
     {
         // $this->middleware('verified');
-        $this->middleware(['auth', 'administrative'], ['except' => ['create', 'downloadexcel', 'store', 'index', 'show', 'delete']]);
+        // $this->middleware(['auth', 'checkIfAreClient', 'administrative'], ['except' => ['create', 'downloadexcel', 'store', 'show', 'delete']]);
+        $this->middleware(['auth'], ['except' => ['create', 'downloadexcel', 'store', 'show', 'delete']]);
     }
 
     /**
@@ -29,6 +30,8 @@ class OrderSaleController extends Controller
      */
     public function index()
     {
+        $this->middleware('checkIfAreClient');
+
         $orders = $this->getOrders();
         
         return view("ordersale.index", compact("orders"));
@@ -93,7 +96,7 @@ class OrderSaleController extends Controller
                 $message->to($userEmail)->subject($subject);
             });
 
-            $msgPost = "Orden registrada correctamente";
+            $msgPost = "Su Orden de compra fue registrada correctamente, la misma será atendida lo más pronto posible. Puede hacer seguimiento de su orden desde <a href='" . route('ordersale.index') . "'>aqui</a>";
 
         } catch (\Throwable $th) {
             $msgPost = "Hubo un error creando la order.".$th->getmessage();
@@ -277,7 +280,33 @@ class OrderSaleController extends Controller
     }
 
     public function downloadexcel(){
-        return Storage::disk("global")->download("file_user_excel/Nuevo Formato de Solicitud de Materiales y Servicios 05-2021.xlsx", "Nuevo Formato de Solicitud de Materiales y Servicios 05-2021.xlsx");
+        $name_plantilla = env("PLANTILLA_NAME");
+        return Storage::disk("global")->download("file_user_excel/".$name_plantilla, $name_plantilla);
+    }
+
+    public function uploadexcel(Request $request){
+        try {
+            $name_plantilla = env("PLANTILLA_NAME");
+
+            $file = $request->file("planilla");
+
+            $file->storeAs('file_user_excel', $name_plantilla, 'global');
+
+            $result = array(
+                "result" => true,
+                "message" => "Planilla actualizada satisfactoriamente."
+            );
+
+        } catch (\Throwable $th) {
+            //throw $th;
+
+            $result = array(
+                "result" => false,
+                "message" => "ha ocurrido un error actualizando la planilla."
+            );
+        }
+
+        return $result;
     }
 
     public function validateOrderSale(array $data){
@@ -296,11 +325,13 @@ class OrderSaleController extends Controller
             $orders_temp = DB::table("order_sales")
             ->select("order_sales.id as id", "users.name as userName", "users.lastName as userLastName", "order_sales.status as status", "order_sales.status as statusName", "order_sales.created_at as created_at")
             ->join("users", "users.id", "=", "order_sales.id_user", "inner", false)
+            ->orderBy("order_sales.created_at", "desc")
             ->get();
         }else{
             $crrUserId = auth()->user()->id;
             $orders_temp = DB::table("order_sales")->select("id as id", "status as status", "status as statusName", "created_at as created_at")
                 ->where("id_user", $crrUserId)
+                ->orderBy("order_sales.created_at", "desc")
                 ->get();
         }
 

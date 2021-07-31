@@ -24,7 +24,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
                 <h1 class="text-shadow">¡Fabricamos tus sueños!</h1>
                 <p class="mb-5 text-shadow">Hacemos realidad el mobiliario que tienes en mente. 
                 Muebles ideales para hoteles, cocinas, oficina, dormitorios, baños y más.</p>
-                <p><a href="{{ route('contact.tellus') }}#contact-section" class="btn btn-primary px-5 py-3">Cuéntanos</a></p>
+                <p><a href="{{ route('welcome') }}#contact-section" class="btn btn-primary px-5 py-3">Cuéntanos</a></p>
                 
               </div>
             </div>
@@ -81,9 +81,9 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
               <div class="hijostm">
                 <div class="ftco-media-1">
                   <div class="ftco-media-1-inner">
-                    <a href="{{ route('tablero.byVisualEfect', 3) }}" class=""><img src="images/tableros/tablero-altobrillo.jpg" alt="Tablero melaminico alto brillo MDF importado, acabado premium oneskin" class="img-tm"></a>
+                    <a href="{{ route('tablero.byVisualEfect', 1) }}" class=""><img src="images/tableros/tablero-altobrillo.jpg" alt="Tablero melaminico alto brillo MDF importado, acabado premium oneskin" class="img-tm"></a>
                     <div class="ftco-media-details">
-                      <h3><BR>ACABADOS PREMIUM</h3>
+                      <h3><BR><a href="{{ route('tablero.byVisualEfect', 1) }}" class="">ACABADOS PREMIUM</a></h3>
                       <p>MDF-ALTO BRILLO-IMPORTADO</p>
                      
                     </div>
@@ -95,9 +95,9 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
               <div class="hijostm">
                 <div class="ftco-media-1">
                   <div class="ftco-media-1-inner">
-                    <a href="{{ route('tablero.byVisualEfect', 4) }}" class=""><img src="images/tableros/tablero-supermate.jpg" alt="Tablero melaminico super mate MDF importado, acabado premium oneskin" class="img-tm"></a>
+                    <a href="{{ route('tablero.byVisualEfect', 2) }}" class=""><img src="images/tableros/tablero-supermate.jpg" alt="Tablero melaminico super mate MDF importado, acabado premium oneskin" class="img-tm"></a>
                     <div class="ftco-media-details">
-                        <h3><BR>ACABADOS PREMIUM</h3>
+                        <h3><BR><a href="{{ route('tablero.byVisualEfect', 2) }}">ACABADOS PREMIUM</a> </h3>
                         <p>MDF-SUPER MATE-IMPORTADO</p>
                      
                     </div>
@@ -109,9 +109,9 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
               <div class="hijostm">
                 <div class="ftco-media-1">
                   <div class="ftco-media-1-inner">
-                    <a href="{{ route('tablero.byVisualEfect', 5) }}" class=""><img src="images/tableros/tablero-cuerpo.jpg" alt="Tablero melaminico hidrófugo y natural MDP importado y nacional, acabado tradicional masisa/losan" class="img-tm"></a>
+                    <a href="{{ route('tablero.byVisualEfect', 3) }}" class=""><img src="images/tableros/tablero-cuerpo.jpg" alt="Tablero melaminico hidrófugo y natural MDP importado y nacional, acabado tradicional masisa/losan" class="img-tm"></a>
                     <div class="ftco-media-details">
-                        <h3><BR>Acabados Tradicionales</h3>
+                        <h3><BR><a href="{{ route('tablero.byVisualEfect', 3) }}">Acabados Tradicionales</a></h3>
                         <p>MDP HR (HIDRÓFUGOS) Y ESTÁNDAR, IMPORTADOS Y NACIONALES</p>
                      
                     </div>
@@ -123,7 +123,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
               <div class="hijostm">
                 <div class="ftco-media-1">
                   <div class="ftco-media-1-inner">
-                    <a href="{{ route('tablero.byVisualEfect', 3) }}" class=""><img src="images/tableros/cocina-altobrillo.jpg" alt="Fabricacion de muebles alto brillo MDF importado, acabado premium oneskin" class="img-tm"></a>
+                    <a href="{{ route('tablero.byVisualEfect', 1) }}" class=""><img src="images/tableros/cocina-altobrillo.jpg" alt="Fabricacion de muebles alto brillo MDF importado, acabado premium oneskin" class="img-tm"></a>
                     <br>
                     <div class="ftco-media-details">
                     <h3><BR></h3>    
@@ -137,7 +137,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
               <div class="hijostm">
                 <div class="ftco-media-1">
                   <div class="ftco-media-1-inner">
-                    <a href="{{ route('tablero.byVisualEfect', 4) }}" class=""><img src="images/tableros/cocina-supermate.jpg" alt="Fabricacion de muebles super mate MDF importado, acabado premium oneskin" class="img-tm"></a>
+                    <a href="{{ route('tablero.byVisualEfect', 2) }}" class=""><img src="images/tableros/cocina-supermate.jpg" alt="Fabricacion de muebles super mate MDF importado, acabado premium oneskin" class="img-tm"></a>
                     <div class="ftco-media-details">
                     <h3><BR></h3>        
                      
@@ -150,7 +150,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
               <div class="hijostm">
                 <div class="ftco-media-1">
                   <div class="ftco-media-1-inner">
-                    <a href="{{ route('tablero.byVisualEfect', 5) }}" class=""><img src="images/tableros/brillo_doblecara.jpg" alt="Fabricacion de muebles hidrófugo y natural MDP importado y nacional, acabado tradicional masisa/losan" class="img-tm"></a>
+                    <a href="{{ route('tablero.byVisualEfect', 3) }}" class=""><img src="images/tableros/brillo_doblecara.jpg" alt="Fabricacion de muebles hidrófugo y natural MDP importado y nacional, acabado tradicional masisa/losan" class="img-tm"></a>
                     <div class="ftco-media-details">
                     <h3><BR></h3>       
                       
@@ -259,7 +259,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
                                             <a class="mfp-image" href="{{ asset('images/proyectos/') }}/{{ $project->cover_photo }}" title="{{ $project->project_name }}"><i class="pe-7s-expand1 text-white"></i></a>
                                         </div>
                                         <div class="work-content">
-                                            <h6 class="title mb-0"><a href="javascript:void(0)" class="text-light text-uppercase">{{ $project->project_name }}</a></h6>
+                                            <h6 class="title mb-0"><a href="{{ route('project.showphotos', $project->projectId) }}" class="text-light text-uppercase">{{ $project->project_name }}</a></h6>
                                             <small class="text-white-50"><a href="{{ route('project.showphotos', $project->projectId) }}" style="color: white !important">Ver más</a></small>
                                         </div>
                                     </div>
@@ -273,7 +273,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
                    
                 <div class="row justify-content-center mt-4 pt-2">
                   <div class="col-12 text-center">
-                    <a href="{{ route('project.showphotosbyproyectista') }}" class="btn btn-primary">Ver más proyectos <i class="mdi mdi-chevron-right"></i></a>
+                    <a href="{{ route('project.showphotosbyproyectista') }}" >Ver más proyectos <i class="mdi mdi-chevron-right"></i></a>
                   </div><!--end col-->
                 </div><!--end row-->
 
@@ -313,7 +313,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
             </p>
             <p>
               ¡Cuéntanos tu proyecto y lo fabricamos!
-             <br> <br><a href="{{ route('contact.tellus') }}#contact-section" class="btn btn-primary mr-2 mb-2">Cuéntanos</a>
+             <br> <br><a href="{{ route('welcome') }}#contact-section" class="btn btn-primary mr-2 mb-2">Cuéntanos</a>
             </p>
             
              
@@ -557,7 +557,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
      <!-- Fin Seccion Aliados-->
 
     <!--Seccion contactanos-->
-    <section class="site-section bg-light bg-image" id="contact-section">
+    <section class="site-section bg-light bg-image" id="contact-section" name="contact-section-bk">
       <div class="container">
         <div class="row mb-5">
           <div class="col-12 text-center">
@@ -701,6 +701,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
         </div>
       </div>
     </section>
+
     <!--Fin Seccion seccion Contactanos-->
 
 

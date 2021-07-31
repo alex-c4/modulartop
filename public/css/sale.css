@@ -4,3 +4,10 @@
     font-weight: bolder;
     vertical-align: top;
 }
+
+label.error{
+    color: crimson !important;
+    font-weight: bolder;
+    /* font-size: 10px !important; */
+}
+

@@ -101,6 +101,21 @@ class ValidationUserClientController extends Controller
             ]);
         }
 
+        $this->sendEmail($user_created, $password);
+
+
+        $user_created->save();
+
+        $msg = "Usuario creado satisfactoriamente";
+
+        $roles = DB::table("roles")->get();
+
+        $company_types = DB::table("company_types")->get();
+
+        return view("auth.create", compact("roles", "company_types", "msg"));
+    }
+
+    public function sendEmail($user_created, $password){
         $req = array(
             "correo" => env('EMAIL_ADMIN')
         );
@@ -118,17 +133,68 @@ class ValidationUserClientController extends Controller
             $message->from($req["correo"], 'Web Modular Top');
             $message->to($user_created->email)->subject($subject);
         });
+    }
 
+    public function storeAjax(Request $request){
 
-        $user_created->save();
+        $password = Str::random(15);
 
-        $msg = "Usuario creado satisfactoriamente";
+        
 
-        $roles = DB::table("roles")->get();
+        try {
+            //Validar queno exista el correo
+            $emailRepeat = User::where("email", request()->email)->first();
+            
+            if($emailRepeat != null){
+                $result = array(
+                    "result" => false,
+                    "message" => "El correo electrónico ya existe"
+                );
 
-        $company_types = DB::table("company_types")->get();
+            }else{
+                
+                $user_created = User::create([
+                    'name' => request()->name,
+                    'lastName' => request()->lastName,
+                    'email' => request()->email,
+                    'password' => bcrypt($password),
+                    'phone' => request()->clientPhone,
+                    'roll_id' => request()->rolId,
+                    'address' => request()->clientAddress,
+                    'rif' => request()->rif,
+                    'razonSocial' => request()->rsocial,
+                    'companyAddress' => request()->companyAddress,
+                    'companyPhone' => request()->companyPhone,
+                    'company_type_id' => request()->company_type,
+                    'confirmed' => true,
+                    'validationByAdmin' => true,
+                    'email_verified_at' => Carbon::now(),
+                    'is_client' => true
+                ]);
 
-        return view("auth.create", compact("roles", "company_types", "msg"));
+                $this->sendEmail($user_created, $password);
+    
+                $result = array(
+                    "result" => true,
+                    "data" => array(
+                        "id" => $user_created->id,
+                        "name" => $user_created->name,
+                        "lastName" => $user_created->lastName
+                    ),
+                    "message" => "Se registro correctamente el Cliente."
+                );
+
+            }
+
+        } catch (\Throwable $th) {
+            //throw $th;
+            $result = array(
+                "result" => false,
+                "message" => "No se pudo crear el usuario correctamente, por favor intente de nuevo.".$th->getMessage()
+            );
+        }
+        
+        return $result; 
     }
 
     /**

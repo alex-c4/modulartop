@@ -70,7 +70,7 @@ muebles, historia, servicios de madera y fabricación de mueblería." />
                                     <div class="blog-info">
                                     <img src="images/clock.png" alt="">
                                         <span>{{ explode(' ', $newsletter->published_at)[0] }}</span><span class="mx-2">&bullet;
-                                        <!-- </span><i class="lnr lnr-user"></i> Author Name -->
+                                        </span><i class="lnr lnr-user"></i> {{ $newsletter->userName }} {{ $newsletter->userLastName }}
                                     </div>
                                    
                                 </div>

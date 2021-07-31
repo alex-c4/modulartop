@@ -277,6 +277,7 @@ home
                                             <thead>
                                                 <tr>
                                                     <th >ID</th>
+                                                    <th >Cliente</th>
                                                     <th >Fecha de creación</th>
                                                     <th ></th>
                                                 </tr>
@@ -285,6 +286,7 @@ home
                                             @foreach($orders as $key => $order)
                                                 <tr>
                                                     <th scope="row">{{ $order->id }}</th>
+                                                    <td>{{ $order->userName }} {{ $order->userLastName }}</td>
                                                     <td>{{ $order->created_at }}</td>
                                                     <th class="icons-orders">
                                                         @if($order->status == 2)
@@ -313,7 +315,63 @@ home
                     
                     @endif
 
-                    
+                    <!-- Tableros -->
+                    <div class="col-lg-6">
+                        <div class="container-dash">
+                            <div class="nodo">
+                                <div class="nodo-title">
+                                    <span class="icon-square"></span>
+                                    Tableros
+                                </div>
+                                <div class="nodo-content">
+
+                                    <div id="divTableros" style="width: 100%;">
+                                        
+                                        <div class="fondo-rojo">
+                                            &nbsp;
+                                        </div>
+
+                                        <div class="div-subacabado">
+                                            <a href="{{ route('tablero.byVisualEfect', 1) }}">
+                                                <img src="images/tableros/tablero-altobrillo.jpg" alt="Tablero melaminico alto brillo MDF importado, acabado premium oneskin" class="img-tm">
+                                            </a>
+                                            <div class="title-tableros">
+                                                <a href="{{ route('tablero.byVisualEfect', 1) }}">ACABADOS PREMIUM</a>
+                                                <p>MDF-ALTO BRILLO-IMPORTADO</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="div-subacabado">
+                                            <a href="{{ route('tablero.byVisualEfect', 2) }}">
+                                                <img src="images/tableros/tablero-supermate.jpg" alt="Tablero melaminico super mate MDF importado, acabado premium oneskin" class="img-tm">
+                                            </a>
+                                            <div class="title-tableros">
+                                                <a href="{{ route('tablero.byVisualEfect', 2) }}">ACABADOS PREMIUM</a>
+                                                <p>MDF-SUPER MATE-IMPORTADO</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="div-subacabado">
+                                            <a href="{{ route('tablero.byVisualEfect', 3) }}">
+                                                <img src="images/tableros/tablero-cuerpo.jpg" alt="Tablero melaminico hidrófugo y natural MDP importado y nacional, acabado tradicional masisa/losan" class="img-tm">
+                                            </a>
+                                            <div class="title-tableros">
+                                                <a href="{{ route('tablero.byVisualEfect', 3) }}">ACABADOS TRADICIONALES</a>
+                                                <p>
+                                                    MDP HR (HIDRÓFUGOS) Y ESTÁNDAR<br>
+                                                    IMPORTADOS Y NACIONALES
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>

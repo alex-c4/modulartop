@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\OrderSale;
 use Utils;
+use DB;
 
 class HomeController extends Controller
 {
@@ -32,8 +33,11 @@ class HomeController extends Controller
         $total = count($usersToValidate);
 
         // Búsqueda de nuevas ordedes de compra donde el status sea 2=inicial
-        $orders = OrderSale::where("status", 2)
-            ->orWhere("status", 3)
+        $orders = DB::table("order_sales as os")
+            ->select("u.name as userName", "u.lastName as userLastName", "os.id", "os.created_at", "os.status")
+            ->join("users as u", "u.id", "=", "os.id_user", "inner", false )
+            ->where("os.status", 2)
+            ->orWhere("os.status", 3)
             ->get();
         $totalOrders = count($orders);
 

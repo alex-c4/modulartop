@@ -8,6 +8,7 @@
 <script src="{{asset('js/sceditor/minified/formats/xhtml.js')}} "></script>
 
 <link rel="stylesheet" href="{{ asset('css/newsletter.css') }}">
+
 <style>
     .sceditor-container{
         width: 100% !important;
@@ -65,6 +66,17 @@ Nuevo Post
     <div class="container">
         
 
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+
+            <button type="button" id="sidebarCollapse" class="btn btn-info ">
+                <!-- <i class="fas fa-align-left"></i> -->
+                <span class="icon-align-left"></span>
+                <!-- <span>Toggle Sidebar</span> -->
+            </button>
+
+        </div>
+    </nav>
         <!-- mensaje para la creacion de los post -->
         @if(isset($msgPost) != null)
         <div class="container">
@@ -84,35 +96,59 @@ Nuevo Post
                     <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
 
                     <input type="hidden" name="HiddenFielTag" id="HiddenFielTag" value="">
+
+
+                    <!-- Image -->
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <label for="name_img">Imagen principal<span>*</span></label>
+                            <input type="file" accept="image/png, image/jpeg, image/jpg" class="form-control" id="name_img" name="name_img" placeholder="Imagen" value="{{ old('name_img') }}">
+                            @error('name_img')
+                                <span class="invalid-field" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+
                     <!-- titulo -->
                     <div class="row form-group">
                         <div class="col-md-12">
-                            <label class="text-black" for="title">Titulo</label> 
+                            <label class="text-black" for="title">Titulo<span>*</span></label> 
                             <input maxlength="100" type="text" id="title" name="title" class="form-control">
+                            @error('title')
+                                <span class="invalid-field" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
 
                     <!-- summary -->
                     <div class="row form-group">
                         <div class="col-md-12">
-                            <label class="text-black" for="summary">Descripción</label> 
+                            <label class="text-black" for="summary">Descripción<span>*</span></label> 
                             <textarea maxlength="200" id="summary" name="summary" rows="2" class="form-control"></textarea>
+                            @error('summary')
+                                <span class="invalid-field" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
 
-                    <!-- Boton para agregar imagenes link -->
-                    <!-- comentado temporalmente -->
-                    <!-- <div class="row form-group mt-3 mb-3">
-                        <div class="col-md-12">
-                            <input type="button" class="btn btn-primary" value="Ver imagenes" data-toggle="modal" data-target="#imagesModal">
-                        </div>
-                    </div> -->
+                    
 
                     <!-- contenido -->
                     <div class="row form-group">
                         <div class="col-md-12">
-                            <label class="text-black" for="content">Contenido</label> 
-                            <textarea id="content-wysiwyg" name="content-wysiwyg" rows="7" style="height:300px; width: 100%;" class="form-control"></textarea>
+                            <label class="text-black" for="content">Contenido<span>*</span></label> 
+                            <textarea id="content-wysiwyg" name="content-wysiwyg" rows="15" style="height:600px; width: 100%;" class="form-control"></textarea>
+                            @error('content-wysiwyg')
+                                <span class="invalid-field" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
 
@@ -127,7 +163,7 @@ Nuevo Post
                                     @endforeach
                                 </select>
                                 <div class="input-group-append">
-                                    <button style="height: 38px" id="btnAddCategory" data-toggle="modal" data-target="#categoryModal" title="Agregar nueva cartegoria" class="btn btn-primary" type="button"><span class="icon-add"></span></button>
+                                    <button style="height: 38px" id="btnAddCategory" data-toggle="modal" data-target="#categoryModal" title="Agregar nueva cartegoria" class="btn btn-primary" type="button"><span class="icon-add" style="color: white !important;"></span></button>
                                 </div>
                             </div>
                             <small id="addMessage" name="addMessage" class="form-text text-muted"></small>
@@ -138,7 +174,7 @@ Nuevo Post
                             <div class="input-group" >
                                 <input maxlength="20" type="text" id="tags" name="tags" class="form-control basicAutoComplete" autocomplete="off" data-url="{{ route('search_tags') }}" data-noresults-text="No se encontró el Tag">
                                 <div class="input-group-append">
-                                    <button style="height: 38px" id="btnAddTag" data-toggle="modal" data-target="#tagModal" title="Agregar nuevo Tag" class="btn btn-primary" type="button"><span class="icon-add"></span></button>
+                                    <button style="height: 38px" id="btnAddTag" data-toggle="modal" data-target="#tagModal" title="Agregar nuevo Tag" class="btn btn-primary" type="button"><span class="icon-add" style="color: white !important;"></span></button>
                                 </div>
                             </div>
                             <small id="addMessage2" name="addMessage2" class="form-text text-muted"></small>
@@ -149,14 +185,13 @@ Nuevo Post
                             </div>
                         </div>
 
-
                     </div>
 
-                    <!-- Image -->
-                    <div class="row form-group">
+                    <!-- Boton para agregar imagenes link -->
+                    <!-- comentado temporalmente -->
+                    <div class="row form-group mt-3 mb-3 text-center">
                         <div class="col-md-12">
-                            <label for="name_img">Imagen principal</label>
-                            <input type="file" accept="image/png, image/jpeg, image/jpg" class="form-control" id="name_img" name="name_img" placeholder="Imagen" value="{{ old('name_img') }}">
+                            <input type="button" class="btn btn-primary" value="Ver imagenes" data-toggle="modal" data-target="#imagesModal">
                         </div>
                     </div>
 

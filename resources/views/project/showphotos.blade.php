@@ -1,5 +1,15 @@
 @extends('layouts.layout')
 
+@section('header')
+
+<style>
+    .modal-footer{
+        justify-content: center !important;
+    }
+</style>
+
+@endsection
+
 @section('content')
 
 
@@ -25,7 +35,7 @@
               <div class="col-12 text-center">
                   <ul class="col container-filter portfolioFilter list-unstyled mb-0 text-center" id="filter">
                       <!-- <li class="list-inline-item"><a class="categories rounded pl-3 pr-3 mb-2 active" data-filter="*">Todos</a></li> -->
-                      <li class="list-inline-item"><a class="categories rounded pl-3 pr-3 mb-2 active" data-filter="*">{{ $proyectista_name }}</a></li>
+                      <li class="list-inline-item"><a class="categories rounded pl-3 pr-3 mb-2 active d-none" data-filter="*">{{ $proyectista_name }}</a></li>
                   </ul>
               </div><!--end col-->
           </div><!--end row-->
@@ -39,17 +49,17 @@
         
         <!-- aqui va la descripcion -->
         <div class="m-4">
-            <h1>{{$project_name}}</h1>
+            <div class="text-center">
+                <h1>{{$project_name}}</h1>
+            </div>
+
             <h5>Descripción</h5>
             {{ $project_description }}
         </div>
 
-        <div style="display: flex; justify-content: center">
-            <a href="{{ route('contact.tellus') }}#contact-section" class="btn btn-primary px-5 py-3 m-3">Fabricar mi proyecto</a>
-            <a href="{{ route('welcome') }}#contact-section" class="btn btn-primary px-5 py-3 m-3">Contactar</a>
-        </div>
+        
 
-        <div class="container m-3">
+        <div class="container">
             <div class="portfolioContainer row pt-2 mt-4" style="visibility: hidden">
                 
                     @foreach($photos as $item)
@@ -63,7 +73,7 @@
                                             <a class="mfp-image" href="{{ asset('images/proyectos/') }}/{{ $item->photo }}" title="{{ $item->project_name }}"><i class="pe-7s-expand1 text-white"></i></a>
                                         </div>
                                         <div class="work-content">
-                                            <h6 class="title mb-0"><a href="javascript:void(0)" class="text-light text-uppercase">{{ $item->project_name }}</a></h6>
+                                            <h6 class="title mb-0"><a onclick="onclick_image('{{ asset('images/proyectos/') }}/{{ $item->photo }}', '{{ $item->project_name }}', '{{ $item->alt_text }}')" data-toggle="modal" data-target="#imageModal" href="javascript:void(0)" class="text-light text-uppercase">Ver detalles</a></h6>
                                         </div>
                                     </div>
                                 </div>                                
@@ -71,10 +81,8 @@
                         </div><!--end col-->
 
                     @endforeach
-                
-                
+                    
             </div><!--end row-->
-
 
             <!-- <div class="row justify-content-center mt-4 pt-2">
                 <div class="col-12 text-center">
@@ -84,11 +92,42 @@
             <!--end row-->
 
         </div><!--end container-->
+                
+        <div style="display: flex; justify-content: center">
+            <a href="{{ route('welcome') }}#contact-section" class="btn btn-primary px-5 py-3 m-3">Contactar</a>
+        </div>
+        
       @endif
 
   </section><!--end section-->
   <!-- Projects End -->
 
+    <!-- Modal -->
+    <div class="modal fade" id="imageModal" name="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header d-none">
+                    <h5 class="modal-title" id="imageModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card" style="width: 100%;">
+                        <img src="..." class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title"></h5>
+                            <p class="card-text"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin Modal -->
 
 
 
@@ -96,6 +135,12 @@
 
 @section('script')
 <script>
+var onclick_image = function(_image, _title, _info){
+    $(".card-img-top").prop("src", _image);
+    $(".card-title").html(_title);
+    $(".card-text").html(_info);
+    
+}
 
 $(window).on('load', function () {
     var $container = $('.portfolioContainer');
@@ -108,7 +153,22 @@ $(window).on('load', function () {
             queue: false
         }
     });
+
+    $('#imageModal').on('show.bs.modal', function (event) {
+        debugger
+        console.log('mostrando el modal');
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var info = button.data('info') // Extract info from data-* attributes
+        var image = button.data('image') // Extract info from data-* attributes
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        var modal = $(this)
+        modal.find('.card-text').html(info)
+        modal.find('.modal-body input').val(info)
+    });
+
 })
+
 
 </script>
 @endsection

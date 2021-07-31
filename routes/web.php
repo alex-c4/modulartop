@@ -33,6 +33,7 @@ Route::get('user/showUser', ["as" => "user.showUser", "uses" => "Auth\Validation
 Route::post('user/read/{id}', ["as" => "user.read", "uses" => "Auth\ValidationUserClientController@read"]);
 Route::get('user/inactive/{id}', ["as" => "user.inactive_form", "uses" => "Auth\ValidationUserClientController@inactive_form"]);
 Route::post('user/inactive', ["as" => "user.inactive", "uses" => "Auth\ValidationUserClientController@inactive"]);
+Route::post('userCliente/storeAjax', ["as" => "userClient.storeAjax", "uses" => "Auth\ValidationUserClientController@storeAjax"]);
 
 // Registration Routes...
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
@@ -78,7 +79,6 @@ Route::view('/fabricacion', 'fabricacion/fabricacion');
 Route::get('tablero/byVisualEfect/{id}', ["as" => "tablero.byVisualEfect", "uses" => "ProductController@ShowViewByVisualEfect"]);
 Route::get("tablero/{id}/description", ["as" => "tablero.description", "uses" => "ProductController@descriptionByProducto"]);
 Route::get("tableros/{id}/showImages", ["as" => "tablero.showImages", "uses" => "ProductController@showImagesByProduct"])->middleware('auth');
-Route::get("tablero/ficha/{id}", ["as" => "tablero.fichatecnica", "uses" => "ProductController@fichatecnica"])->middleware('auth');
 
 Route::post('fabricacion/messageFabrication', ['as' => 'fabricacion.messageFabricacion', 'uses' => 'ContactController@formFabricacion']);
 
@@ -124,8 +124,18 @@ Route::get("product/edit/{id}", ["as" => "product.edit", "uses" => "ProductContr
 Route::post("product/update/{id}", ["as" => "product.update", "uses" => "ProductController@update"]);
 Route::get("product/delete/{id}", ["as" => "product.delete", "uses" => "ProductController@delete"]);
 Route::get("product/restore/{id}", ["as" => "product.restore", "uses" => "ProductController@restore"]);
-Route::get("product/downloadFichaTecnica/{id}", ["as" => "product.downloadFichaTecnica", "uses" => "ProductController@downloadFichaTecnica"])->middleware("auth");
-Route::get("product/deleteFichaTecnica/{id}", ["as" => "product.deleteFichaTecnica", "uses" => "ProductController@deleteFichaTecnica"]);
+Route::get("product/show/{id}", ["as" => "product.show", "uses" => "ProductController@show"]);
+
+// Ficha tecnica
+Route::get("fichaTecnica/uploadFichaTecnica", ["as" => "fichaTecnica.uploadFichaTecnica", "uses" => "FichaTecnicaController@showFormFichaTecnica"]);
+
+Route::get("fichaTecnica/downloadFichaTecnica/{id}", ["as" => "fichaTecnica.downloadFichaTecnica", "uses" => "FichaTecnicaController@downloadFichaTecnica"])->middleware("auth");
+Route::get("fichaTecnica/deleteFichaTecnica/{id}", ["as" => "fichaTecnica.deleteFichaTecnica", "uses" => "FichaTecnicaController@deleteFichaTecnica"]);
+Route::get("fichaTecnica/showFichaTecnica", ["as" => "fichaTecnica.showFichaTecnica", "uses" => "FichaTecnicaController@showFichaTecnica"])->middleware("auth");
+Route::post("fichaTecnica/storeFichaTecnica", ["as" => "fichaTecnica.storeFichaTecnica", "uses" => "FichaTecnicaController@storeFichaTecnica"]);
+
+
+
 
 //Compras - Purchase
 Route::get("purchase/create", ["as" => "purchase.create", "uses" => "PurchaseController@create"]);
@@ -138,12 +148,16 @@ Route::get("sale/saleslist", ["as" => "sale.saleslist", "uses" => "SaleControlle
 Route::get("sales/downloadsales", ["as" => "sales.downloadsales", "uses" => "SaleController@downloadsales"]);
 Route::get("sales/statistics", ["as" => "sale.statistics", "uses" => "SaleController@statistics"]);
 Route::post("sales/getStatisticsData", ["as" => "sale.getStatisticsData", "uses" => "SaleController@getStatisticsData"]);
+Route::post("sales/validarExistencia", ["as" => "sale.validarExistencia", "uses" => "SaleController@validarExistencia"]);
+Route::get("sale/show/{id}", ["as" => "sale.show", "uses" => "SaleController@show"]);
+
 
 // Order Sale
 Route::get("ordersale/downloadexcel", ["as" => "ordersale.downloadexcel", "uses" => "OrderSaleController@downloadexcel"]);
+Route::post("ordersale/uploadexcel", ["as" => "ordersale.uploadexcel", "uses" => "OrderSaleController@uploadexcel"])->middleware('administrative');
 Route::get("ordersale/create", ["as" => "ordersale.create", "uses" => "OrderSaleController@create"])->middleware('checkIfAreClient');
 Route::post("ordersale/store", ["as" => "ordersale.store", "uses" => "OrderSaleController@store"]);
-Route::get("ordersale/index", ["as" => "ordersale.index", "uses" => "OrderSaleController@index"])->middleware('checkIfAreClient');
+Route::get("ordersale/index", ["as" => "ordersale.index", "uses" => "OrderSaleController@index"])->middleware('checkIfAreClient');;
 Route::post("ordersale/delete/{id}", ["as" => "ordersale.delete", "uses" => "OrderSaleController@delete"]);
 Route::post("ordersale/attend/{id}", ["as" => "ordersale.attend", "uses" => "OrderSaleController@attend"]);
 Route::post("ordersale/attendFromHome", ["as" => "ordersale.attendFromHome", "uses" => "OrderSaleController@attendFromHome"]);
@@ -172,6 +186,7 @@ Route::get("project/showphotosbyproyectista", ["as" => "project.showphotosbyproy
 
 // Inventario - Inventory
 Route::get("inventory/index", ["as" => "inventory.index", "uses" => "InventoryController@index"]);
+Route::get("inventory/download", ["as" => "inventory.download", "uses" => "InventoryController@download"]);
 
 // AJAX
 //Category
@@ -197,8 +212,6 @@ Route::post("product/addSubacabado", ["as" => "product.addSubacabado", "uses" =>
 Route::post("product/addMaterial", ["as" => "product.addMaterial", "uses" => "ProductController@addMaterial"]);
 Route::post("product/addSustrato", ["as" => "product.addSustrato", "uses" => "ProductController@addSustrato"]);
 Route::post("product/addColor", ["as" => "product.addColor", "uses" => "ProductController@addColor"]);
-Route::get("product/uploadFichaTecnica", ["as" => "product.uploadFichaTecnica", "uses" => "ProductController@showFormFichaTecnica"]);
-Route::post("product/storeFichaTecnica", ["as" => "product.storeFichaTecnica", "uses" => "ProductController@storeFichaTecnica"]);
 
 // Images-link
 Route::post("newsletter/uploadimage", ["as" => "newsletter.uploadimage", "uses" => "NewsletterController@uploadimage"]);

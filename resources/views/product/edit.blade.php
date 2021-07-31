@@ -52,7 +52,7 @@ Edición de producto
         <div class="col-lg-8">
             <div class="card" style="display: none;">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('product.update', $product->id) }}" enctype="multipart/form-data">
+                    <form id="form_product" method="POST" action="{{ route('product.update', $product->id) }}" enctype="multipart/form-data">
                     
                         <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
                         <input type="hidden" name="hUrlDeleteImage" id="hUrlDeleteImage" value="{{ route('product.deleteimg') }}">
@@ -98,9 +98,9 @@ Edición de producto
                                     @foreach($product_subtypes as $subtype)
                                         @if($subtype->type_id == $product->id_product_type)
                                             @if($subtype->id == $product->id_product_subtype)
-                                                <option selected value="{{ $type->id }}">{{ $subtype->name }}</option>
+                                                <option selected value="{{ $subtype->id }}">{{ $subtype->name }}</option>
                                             @else
-                                                <option value="{{ $type->id }}">{{ $subtype->name }}</option>
+                                                <option value="{{ $subtype->id }}">{{ $subtype->name }}</option>
                                             @endif
                                         @endif
                                     @endforeach
@@ -119,7 +119,7 @@ Edición de producto
                         <div class="form-group row">
                             <label for="code" class="col-md-4 col-form-label text-md-right">Código<span>*</span></label>
                             <div class="col-md-6">
-                                <input maxlength="60" id="code" name="code" type="text" class="form-control @error('code') is-invalid @enderror" value="{{ $product->code }}" required autofocus>
+                                <input maxlength="60" id="code" name="code" type="text" class="form-control @error('code') is-invalid @enderror" value="{{ $product->code }}" autofocus>
                                 @error('code')
                                     <span class="invalid-field" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -196,10 +196,12 @@ Edición de producto
                                 <div class="input-group" >
                                     <select class="custom-select" id="sub_acabado" name="sub_acabado">
                                         @foreach($product_subacabados as $subacabado)
-                                            @if($subacabado->id == $product->id_product_subacabado)
-                                                <option selected value="{{ $subacabado->id }}">{{ $subacabado->name }}</option>
-                                            @else
-                                                <option value="{{ $subacabado->id }}">{{ $subacabado->name }}</option>
+                                            @if($product->id_product_acabado == $subacabado->id_acabado)
+                                                @if($subacabado->id == $product->id_product_subacabado)
+                                                    <option selected value="{{ $subacabado->id }}">{{ $subacabado->name }}</option>
+                                                @else
+                                                    <option value="{{ $subacabado->id }}">{{ $subacabado->name }}</option>
+                                                @endif
                                             @endif
                                         @endforeach
                                     </select>
@@ -293,20 +295,26 @@ Edición de producto
                         <div class="form-group row" id="div-sustrato">
                             <label for="sustrato" class="col-md-4 col-form-label text-md-right">Tipo de sustrato<span>*</span></label>
                             <div class="col-md-6">
-                                <select class="form-control" id="sustrato" name="sustrato">
-                                @foreach($product_sustrato as $sustrato)
-                                    @if($sustrato->id == $product->id_product_sustrato)
-                                        <option selected value="{{ $sustrato->id }}">{{ $sustrato->name }}</option>
-                                    @else
-                                        <option value="{{ $sustrato->id }}">{{ $sustrato->name }}</option>
-                                    @endif
-                                @endforeach
-                                </select>
-                                @error('sustrato')
-                                    <span class="invalid-field text-center" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <div class="input-group" >
+                                    <select class="custom-select" id="sustrato" name="sustrato">
+                                    @foreach($product_sustrato as $sustrato)
+                                        @if($sustrato->id == $product->id_product_sustrato)
+                                            <option selected value="{{ $sustrato->id }}">{{ $sustrato->name }}</option>
+                                        @else
+                                            <option value="{{ $sustrato->id }}">{{ $sustrato->name }}</option>
+                                        @endif
+                                    @endforeach
+                                    </select>
+                                    <div class="input-group-append">
+                                        <button style="height: 38px" id="btnAddSustrato" data-toggle="modal" data-target="#sustratoModal" title="Agregar nuevo Tipo de Sustrato" class="btn btn-primary" type="button"><span class="icon-add" style="color: white !important;"></span></button>
+                                    </div>
+
+                                    @error('sustrato')
+                                        <span class="invalid-field text-center" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
 
@@ -314,20 +322,26 @@ Edición de producto
                         <div class="form-group row" id="div-colors">
                             <label for="color" class="col-md-4 col-form-label text-md-right">Clasificación por colores<span>*</span></label>
                             <div class="col-md-6">
-                                <select class="form-control" id="color" name="color">
-                                @foreach($product_colors as $color)
-                                    @if($color->id == $product->id_product_color)
-                                        <option selected value="{{ $color->id }}">{{ $color->name }}</option>
-                                    @else
-                                        <option value="{{ $color->id }}">{{ $color->name }}</option>
-                                    @endif
-                                @endforeach
-                                </select>
-                                @error('color')
-                                    <span class="invalid-field text-center" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <div class="input-group">
+                                    <select class="custom-select" id="color" name="color">
+                                    @foreach($product_colors as $color)
+                                        @if($color->id == $product->id_product_color)
+                                            <option selected value="{{ $color->id }}">{{ $color->name }}</option>
+                                        @else
+                                            <option value="{{ $color->id }}">{{ $color->name }}</option>
+                                        @endif
+                                    @endforeach
+                                    </select>
+                                    <div class="input-group-append">
+                                        <button style="height: 38px" id="btnAddColor" data-toggle="modal" data-target="#colorModal" title="Agregar nuevo Color" class="btn btn-primary" type="button"><span class="icon-add" style="color: white !important;"></span></button>
+                                    </div>
+
+                                    @error('color')
+                                        <span class="invalid-field text-center" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
                         
@@ -358,9 +372,10 @@ Edición de producto
 
                         <!-- Imagen -->
                         <div class="row form-group">
-                            <label for="image_0" class="col-md-4 col-form-label text-md-right">Imagen<span>*</span></label>
+                            <label for="image_0" class="col-md-4 col-form-label text-md-right">Imagen Principal<span>*</span></label>
                             <div class="col-md-6">
                                 <input type="file" id="image_0" name="image_0" accept="image/png, image/jpeg, image/jpg" class="form-control mt-2" placeholder="Imagen"> 
+                                <small id="sizeImage" class="form-text text-muted sizeImage">Tamaño de la imagen (300 x 400 pixeles)</small>
                             </div>
                             
                             @error('image_0')
@@ -385,7 +400,7 @@ Edición de producto
 
                         <!-- Imagenes cargadas -->
                         <div class="form-group row">
-                            <label for="subcategory" class="col-md-6 col-form-label text-md-right mt-4"><strong>Imagenes cargadas</strong></label>
+                            <label for="subcategory" class="col-md-8 col-form-label text-md-right mt-6"><strong>Imagenes cargadas para galería</strong></label>
                             <div class="images-container">
                                 
                                 @foreach($product_images as $image)
@@ -402,9 +417,10 @@ Edición de producto
                         
                         <!-- Imagen -->
                         <div class="row form-group">
-                            <label for="image_1" class="col-md-4 col-form-label text-md-right">Otras imagenes</label>
+                            <label for="image_1" class="col-md-4 col-form-label text-md-right">Imagen de galería</label>
                             <div class="col-md-6" id="container-img">
                                 <input type="file" id="image_1" name="image_1" accept="image/png, image/jpeg, image/jpg" class="form-control mt-2" placeholder="Imagen"> 
+                                <input maxlength="60" type="text" name="image_alt_1" id="image_alt_1" class="form-control mt-1" placeholder="Texto alternativo">
                             </div>
                             <div class="col-md-12 text-center mt-2" id="btnAddImage" name="btnAddImage">
                                 <button type="button" class="btn btn-primary">
@@ -427,6 +443,224 @@ Edición de producto
         </div>
     </div>
 </div>
+
+
+<!-- Modal section -->
+
+<!-- modal para agregar nuevo subtipo -->
+<div class="modal fade" id="subtypeModal" tabindex="-1" aria-labelledby="subtypeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+      
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar Sub-Tipo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+            
+                <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+                <input type="hidden" id="hRouteAddSubType" value="{{ route('product.addSubType') }}">
+            
+                <!-- Tipos -->
+                <div class="form-group">
+                    <label for="modal_type">Tipo</label>
+                    <select class="form-control" id="modal_type" name="modal_type">
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="txtSubType">Nuevo Sub-Tipo</label>
+                    <input type="text" class="form-control" id="txtSubType">
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="onclick_addSubType()">Guardar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Modal Acabado -->
+<div class="modal fade" id="acabadoModal" tabindex="-1" aria-labelledby="acabadoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+      
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar Acabado</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+            
+                <input type="hidden" id="hRouteAddAcabado" value="{{ route('product.addAcabado') }}">
+
+                <div class="form-group">
+                    <label for="txtAcabado">Nuevo Acabado</label>
+                    <input type="text" class="form-control" id="txtAcabado">
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="onclick_addAcabado()">Guardar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Modal Sub-acabado -->
+<div class="modal fade" id="subacabadoModal" tabindex="-1" aria-labelledby="subacabadoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+      
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar Sub-acabado</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+            
+                <input type="hidden" id="hRouteAddSubacabado" value="{{ route('product.addSubacabado') }}">
+
+                <!-- Acabados -->
+                <div class="form-group">
+                    <label for="modal_type">Acabados</label>
+                    <select class="form-control" id="modal_acabado" name="modal_acabado">
+                        @foreach($product_acabados as $acabado)
+                            <option value="{{ $acabado->id }}">{{ $acabado->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="txtSubacabado">Nuevo Sub-acabado</label>
+                    <input type="text" class="form-control" id="txtSubacabado">
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="onclick_addSubacabado()">Guardar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Modal Materiales -->
+<div class="modal fade" id="materialModal" tabindex="-1" aria-labelledby="materialModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+      
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar Material</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+            
+                <input type="hidden" id="hRouteAddMaterial" value="{{ route('product.addMaterial') }}">
+
+                <!-- Material -->
+                <div class="form-group">
+                    <label for="txtMaterial">Nuevo Material</label>
+                    <input type="text" class="form-control" id="txtMaterial">
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="onclick_addMaterial()">Guardar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Modal Sustrato -->
+<div class="modal fade" id="sustratoModal" tabindex="-1" aria-labelledby="sustratoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+      
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar Sustrato</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+            
+                <input type="hidden" id="hRouteAddSustrato" value="{{ route('product.addSustrato') }}">
+
+                <!-- Sustrato -->
+                <div class="form-group">
+                    <label for="txtSustrato">Nuevo Sustrato</label>
+                    <input type="text" class="form-control" id="txtSustrato">
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="onclick_addSustrato()">Guardar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Modal Color -->
+<div class="modal fade" id="colorModal" tabindex="-1" aria-labelledby="colorModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+      
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar Color</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+            
+                <input type="hidden" id="hRouteAddColor" value="{{ route('product.addColor') }}">
+
+                <!-- Color -->
+                <div class="form-group">
+                    <label for="txtColor">Nuevo Color</label>
+                    <input type="text" class="form-control" id="txtColor">
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="onclick_addColor()">Guardar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- End Modal section -->
 
 </section>
 
@@ -457,9 +691,24 @@ Edición de producto
             // Ocultar secciones cuando es Tapacanto
             hideTableroSections();
 
+            //creacion de validator para elementos de tipo "Tableros"
+            validator_forTapacanto();
+
             // dispara evento change de combo type
             // $("#type").trigger("change");
+        
+        @else
+            //creacion de validator para elementos de tipo "Tableros"
+            validator_forTableros();
         @endif
+
+        //Llenarcobo de subtipo del modal
+        produc_types.forEach(function(item){
+            $('#modal_type').append($('<option>', {
+                value: item.id,
+                text: item.name
+            }));
+        });
             
         // mostrar formulario
         $(".card").show("slow");

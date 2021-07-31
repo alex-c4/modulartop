@@ -59,6 +59,14 @@ async='async'></script>
               <div class="sharethis-inline-share-buttons"></div>
               
               <h1 class="section-title-modulartop mb-3"><br>{{ $newsletter->title }}</h1> 
+              <div class="blog-widget">
+                  <div class="blog-info">
+                  <img src="images/clock.png" alt="">
+                      <span>{{ explode(' ', $newsletter->published_at)[0] }}</span><span class="mx-2">&bullet;
+                      </span><i class="lnr lnr-user"></i> {{ $newsletter->userName }} {{ $newsletter->userLastName }}
+                  </div>
+                  
+              </div>
               @if(Auth::check())
                 @if(auth()->user()->hasRoles('Administrator') || auth()->user()->hasRoles('Marketing')) 
                   <div class="botonesEditList">
