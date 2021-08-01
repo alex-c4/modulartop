@@ -23,7 +23,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
                 <h1 class="text-shadow">¡Fabricamos tus sueños!</h1>
                 <p class="mb-5 text-shadow">Hacemos realidad el mobiliario que tienes en mente. 
                 Muebles ideales para hoteles, cocinas, oficina, dormitorios, baños y más.</p>
-                <p><a href="<?php echo e(route('contact.tellus')); ?>#contact-section" class="btn btn-primary px-5 py-3">Cuéntanos</a></p>
+                <p><a href="<?php echo e(route('welcome')); ?>#contact-section" class="btn btn-primary px-5 py-3">Cuéntanos</a></p>
                 
               </div>
             </div>
@@ -80,9 +80,9 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
               <div class="hijostm">
                 <div class="ftco-media-1">
                   <div class="ftco-media-1-inner">
-                    <a href="<?php echo e(route('tablero.byVisualEfect', 3)); ?>" class=""><img src="images/tableros/tablero-altobrillo.jpg" alt="Tablero melaminico alto brillo MDF importado, acabado premium oneskin" class="img-tm"></a>
+                    <a href="<?php echo e(route('tablero.byVisualEfect', 1)); ?>" class=""><img src="images/tableros/tablero-altobrillo.jpg" alt="Tablero melaminico alto brillo MDF importado, acabado premium oneskin" class="img-tm"></a>
                     <div class="ftco-media-details">
-                      <h3><BR>ACABADOS PREMIUM</h3>
+                      <h3><BR><a href="<?php echo e(route('tablero.byVisualEfect', 1)); ?>" class="">ACABADOS PREMIUM</a></h3>
                       <p>MDF-ALTO BRILLO-IMPORTADO</p>
                      
                     </div>
@@ -94,9 +94,9 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
               <div class="hijostm">
                 <div class="ftco-media-1">
                   <div class="ftco-media-1-inner">
-                    <a href="<?php echo e(route('tablero.byVisualEfect', 4)); ?>" class=""><img src="images/tableros/tablero-supermate.jpg" alt="Tablero melaminico super mate MDF importado, acabado premium oneskin" class="img-tm"></a>
+                    <a href="<?php echo e(route('tablero.byVisualEfect', 2)); ?>" class=""><img src="images/tableros/tablero-supermate.jpg" alt="Tablero melaminico super mate MDF importado, acabado premium oneskin" class="img-tm"></a>
                     <div class="ftco-media-details">
-                        <h3><BR>ACABADOS PREMIUM</h3>
+                        <h3><BR><a href="<?php echo e(route('tablero.byVisualEfect', 2)); ?>">ACABADOS PREMIUM</a> </h3>
                         <p>MDF-SUPER MATE-IMPORTADO</p>
                      
                     </div>
@@ -108,9 +108,9 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
               <div class="hijostm">
                 <div class="ftco-media-1">
                   <div class="ftco-media-1-inner">
-                    <a href="<?php echo e(route('tablero.byVisualEfect', 5)); ?>" class=""><img src="images/tableros/tablero-cuerpo.jpg" alt="Tablero melaminico hidrófugo y natural MDP importado y nacional, acabado tradicional masisa/losan" class="img-tm"></a>
+                    <a href="<?php echo e(route('tablero.byVisualEfect', 3)); ?>" class=""><img src="images/tableros/tablero-cuerpo.jpg" alt="Tablero melaminico hidrófugo y natural MDP importado y nacional, acabado tradicional masisa/losan" class="img-tm"></a>
                     <div class="ftco-media-details">
-                        <h3><BR>Acabados Tradicionales</h3>
+                        <h3><BR><a href="<?php echo e(route('tablero.byVisualEfect', 3)); ?>">Acabados Tradicionales</a></h3>
                         <p>MDP HR (HIDRÓFUGOS) Y ESTÁNDAR, IMPORTADOS Y NACIONALES</p>
                      
                     </div>
@@ -122,7 +122,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
               <div class="hijostm">
                 <div class="ftco-media-1">
                   <div class="ftco-media-1-inner">
-                    <a href="<?php echo e(route('tablero.byVisualEfect', 3)); ?>" class=""><img src="images/tableros/cocina-altobrillo.jpg" alt="Fabricacion de muebles alto brillo MDF importado, acabado premium oneskin" class="img-tm"></a>
+                    <a href="<?php echo e(route('tablero.byVisualEfect', 1)); ?>" class=""><img src="images/tableros/cocina-altobrillo.jpg" alt="Fabricacion de muebles alto brillo MDF importado, acabado premium oneskin" class="img-tm"></a>
                     <br>
                     <div class="ftco-media-details">
                     <h3><BR></h3>    
@@ -136,7 +136,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
               <div class="hijostm">
                 <div class="ftco-media-1">
                   <div class="ftco-media-1-inner">
-                    <a href="<?php echo e(route('tablero.byVisualEfect', 4)); ?>" class=""><img src="images/tableros/cocina-supermate.jpg" alt="Fabricacion de muebles super mate MDF importado, acabado premium oneskin" class="img-tm"></a>
+                    <a href="<?php echo e(route('tablero.byVisualEfect', 2)); ?>" class=""><img src="images/tableros/cocina-supermate.jpg" alt="Fabricacion de muebles super mate MDF importado, acabado premium oneskin" class="img-tm"></a>
                     <div class="ftco-media-details">
                     <h3><BR></h3>        
                      
@@ -149,7 +149,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
               <div class="hijostm">
                 <div class="ftco-media-1">
                   <div class="ftco-media-1-inner">
-                    <a href="<?php echo e(route('tablero.byVisualEfect', 5)); ?>" class=""><img src="images/tableros/brillo_doblecara.jpg" alt="Fabricacion de muebles hidrófugo y natural MDP importado y nacional, acabado tradicional masisa/losan" class="img-tm"></a>
+                    <a href="<?php echo e(route('tablero.byVisualEfect', 3)); ?>" class=""><img src="images/tableros/brillo_doblecara.jpg" alt="Fabricacion de muebles hidrófugo y natural MDP importado y nacional, acabado tradicional masisa/losan" class="img-tm"></a>
                     <div class="ftco-media-details">
                     <h3><BR></h3>       
                       
@@ -227,25 +227,18 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
 
       <!-- Projects Start -->
       <section class="section" id="projects">
+
             <div class="container">
-                <!-- <div class="row justify-content-center">
-                    <div class="col-12 text-center">
-                        <div class="section-title">
-                            <div class="titles">
-                                <h4 class="title text-uppercase mb-4 pb-4">My Portfolio</h4>
-                                <span></span>
-                            </div>
-                            <p class="text-muted mx-auto para-desc mb-0">Obviously I'M Web Designer. Experienced with all stages of the development cycle for dynamic web projects.</p>
-                        </div>
-                    </div>!--end col--
-                </div>!--end row-- -->
 
                 <div class="row justify-content-center mt-4 pt-2">
                     <div class="col-12 text-center">
                         <ul class="col container-filter portfolioFilter list-unstyled mb-0 text-center" id="filter">
-                            <li class="list-inline-item"><a class="categories rounded pl-3 pr-3 mb-2 active" data-filter="*">Modular Top</a></li>
-                            <li class="list-inline-item"><a class="categories rounded pl-3 pr-3 mb-2" data-filter=".web">Aliados Comerciales</a></li>
-                            <li class="list-inline-item"><a class="categories rounded pl-3 pr-3 mb-2" data-filter=".brand">Proveedores</a></li>
+                            <!-- <li class="list-inline-item"><a class="categories rounded pl-3 pr-3 mb-2 active" data-filter="*">Todos</a></li> -->
+                          <?php $__currentLoopData = $proyectistas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $proyectista): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <li class="list-inline-item"><a class="categories rounded pl-3 pr-3 mb-2 active" data-filter=".<?php echo e($proyectista->prefix); ?>"><?php echo e($proyectista->name); ?></a></li>
+                          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            <!-- <li class="list-inline-item"><a class="categories rounded pl-3 pr-3 mb-2" data-filter=".web">Aliados Comerciales</a></li>
+                            <li class="list-inline-item"><a class="categories rounded pl-3 pr-3 mb-2" data-filter=".brand">Proveedores</a></li> -->
                             
                         </ul>
                     </div><!--end col-->
@@ -253,117 +246,48 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
             </div><!--end container-->
 
             <div class="container">
-                <div class="portfolioContainer row pt-2 mt-4">                    
-                    <div class="col-lg-4 col-md-6 p-0 web">
-                        <div class="portfolio-box position-relative ml-0 mr-0">                                
-                            <div class="work-img position-relative overflow-hidden">
-                                <img src="images/proyectos/01.jpg" class="img-fluid" alt="work-image">
-                                <div class="overlay-work">
-                                    <div class="icon text-center">
-                                        <a class="mfp-image" href="images/proyectos/01.jpg" title="Minimal Product"><i class="pe-7s-expand1 text-white"></i></a>
+                <div class="portfolioContainer row pt-2 mt-4" style="visibility: hidden">
+                    <?php $__currentLoopData = $allProjects; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $items): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                      <?php $__currentLoopData = $items; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $project): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <div class="col-lg-4 col-md-6 p-0 <?php echo e($project->prefix); ?>">
+                            <div class="portfolio-box position-relative ml-0 mr-0">
+                                <div class="work-img position-relative overflow-hidden">
+                                    <img src="<?php echo e(asset('images/proyectos/')); ?>/<?php echo e($project->cover_photo); ?>" class="img-fluid" alt="<?php echo e($project->cover_photo_alt_text); ?>">
+                                    <div class="overlay-work">
+                                        <div class="icon text-center">
+                                            <a class="mfp-image" href="<?php echo e(asset('images/proyectos/')); ?>/<?php echo e($project->cover_photo); ?>" title="<?php echo e($project->project_name); ?>"><i class="pe-7s-expand1 text-white"></i></a>
+                                        </div>
+                                        <div class="work-content">
+                                            <h6 class="title mb-0"><a href="<?php echo e(route('project.showphotos', $project->projectId)); ?>" class="text-light text-uppercase"><?php echo e($project->project_name); ?></a></h6>
+                                            <small class="text-white-50"><a href="<?php echo e(route('project.showphotos', $project->projectId)); ?>" style="color: white !important">Ver más</a></small>
+                                        </div>
                                     </div>
-                                    <div class="work-content">
-                                        <h6 class="title mb-0"><a href="javascript:void(0)" class="text-light text-uppercase">Nombre del proyecto</a></h6>
-                                        <small class="text-white-50">Ver más</small>
-                                    </div>
-                                </div>
-                            </div>                                
-                        </div>
-                    </div><!--end col-->
+                                </div>                                
+                            </div>
+                        </div><!--end col-->
+                      <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     
-                    <div class="col-lg-4 col-md-6 p-0 brand">
-                        <div class="portfolio-box position-relative ml-0 mr-0">                                
-                            <div class="work-img position-relative overflow-hidden">
-                                <img src="images/proyectos/02.jpg" class="img-fluid" alt="work-image">
-                                <div class="overlay-work">
-                                    <div class="icon text-center">
-                                        <a class="mfp-image" href="images/proyectos/02.jpg" title="Minimal Product"><i class="pe-7s-expand1 text-white"></i></a>
-                                    </div>
-                                    <div class="work-content">
-                                        <h6 class="title mb-0"><a href="javascript:void(0)" class="text-light text-uppercase">Work Title</a></h6>
-                                        <small class="text-white-50">Clients</small>
-                                    </div>
-                                </div>
-                            </div>                                
-                        </div>
-                    </div><!--end col-->
-                    
-                    <div class="col-lg-4 col-md-6 p-0 studio">
-                        <div class="portfolio-box position-relative ml-0 mr-0">                                
-                            <div class="work-img position-relative overflow-hidden">
-                                <img src="images/proyectos/03.jpg" class="img-fluid" alt="work-image">
-                                <div class="overlay-work">
-                                    <div class="icon text-center">
-                                        <a class="mfp-image" href="images/proyectos/03.jpg" title="Minimal Product"><i class="pe-7s-expand1 text-white"></i></a>
-                                    </div>
-                                    <div class="work-content">
-                                        <h6 class="title mb-0"><a href="javascript:void(0)" class="text-light text-uppercase">Work Title</a></h6>
-                                        <small class="text-white-50">Clients</small>
-                                    </div>
-                                </div>
-                            </div>                                
-                        </div>
-                    </div><!--end col-->
-                    
-                    <div class="col-lg-4 col-md-6 p-0 graphic">
-                        <div class="portfolio-box position-relative ml-0 mr-0">                                
-                            <div class="work-img position-relative overflow-hidden">
-                                <img src="images/proyectos/04.jpg" class="img-fluid" alt="work-image">
-                                <div class="overlay-work">
-                                    <div class="icon text-center">
-                                        <a class="mfp-image" href="images/proyectos/04.jpg" title="Minimal Product"><i class="pe-7s-expand1 text-white"></i></a>
-                                    </div>
-                                    <div class="work-content">
-                                        <h6 class="title mb-0"><a href="javascript:void(0)" class="text-light text-uppercase">Work Title</a></h6>
-                                        <small class="text-white-50">Clients</small>
-                                    </div>
-                                </div>
-                            </div>                                
-                        </div>
-                    </div><!--end col-->
-                    
-                    <div class="col-lg-4 col-md-6 p-0 web">
-                        <div class="portfolio-box position-relative ml-0 mr-0">                                
-                            <div class="work-img position-relative overflow-hidden">
-                                <img src="images/proyectos/05.jpg" class="img-fluid" alt="work-image">
-                                <div class="overlay-work">
-                                    <div class="icon text-center">
-                                        <a class="mfp-image" href="images/proyectos/05.jpg" title="Minimal Product"><i class="pe-7s-expand1 text-white"></i></a>
-                                    </div>
-                                    <div class="work-content">
-                                        <h6 class="title mb-0"><a href="javascript:void(0)" class="text-light text-uppercase">Work Title</a></h6>
-                                        <small class="text-white-50">Clients</small>
-                                    </div>
-                                </div>
-                            </div>                                
-                        </div>
-                    </div><!--end col-->
-                    
-                    <div class="col-lg-4 col-md-6 p-0 brand">
-                        <div class="portfolio-box position-relative ml-0 mr-0">                                
-                            <div class="work-img position-relative overflow-hidden">
-                                <img src="images/proyectos/06.jpg" class="img-fluid" alt="work-image">
-                                <div class="overlay-work">
-                                    <div class="icon text-center">
-                                        <a class="mfp-image" href="images/proyectos/06.jpg" title="Minimal Product"><i class="pe-7s-expand1 text-white"></i></a>
-                                    </div>
-                                    <div class="work-content">
-                                        <h6 class="title mb-0"><a href="javascript:void(0)" class="text-light text-uppercase">Work Title</a></h6>
-                                        <small class="text-white-50">Clients</small>
-                                    </div>
-                                </div>
-                            </div>                                
-                        </div>
-                    </div><!--end col-->
                 </div><!--end row-->
+                   
                 <div class="row justify-content-center mt-4 pt-2">
+                  <div class="col-12 text-center">
+                    <a href="<?php echo e(route('project.showphotosbyproyectista')); ?>" >Ver más proyectos <i class="mdi mdi-chevron-right"></i></a>
+                  </div><!--end col-->
+                </div><!--end row-->
+
+                <!-- <div class="row justify-content-center mt-4 pt-2">
                     <div class="col-12 text-center">
                         <a href="javascript:void(0)">Ver más</a>
-                    </div><!--end col-->
-                </div><!--end row-->
+                    </div>
+                </div> -->
+                <!--end row-->
+
             </div><!--end container-->
+
         </section><!--end section-->
         <!-- Projects End -->
+
 
         <div class="container">
         <h2 class="section-title mb-3 text-black"><br> Fabricamos Mobiliarios <br> a la medida de tus sueños</h2>
@@ -388,7 +312,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
             </p>
             <p>
               ¡Cuéntanos tu proyecto y lo fabricamos!
-             <br> <br><a href="<?php echo e(route('contact.tellus')); ?>#contact-section" class="btn btn-primary mr-2 mb-2">Cuéntanos</a>
+             <br> <br><a href="<?php echo e(route('welcome')); ?>#contact-section" class="btn btn-primary mr-2 mb-2">Cuéntanos</a>
             </p>
             
              
@@ -632,7 +556,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
      <!-- Fin Seccion Aliados-->
 
     <!--Seccion contactanos-->
-    <section class="site-section bg-light bg-image" id="contact-section">
+    <section class="site-section bg-light bg-image" id="contact-section" name="contact-section-bk">
       <div class="container">
         <div class="row mb-5">
           <div class="col-12 text-center">
@@ -781,6 +705,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
         </div>
       </div>
     </section>
+
     <!--Fin Seccion seccion Contactanos-->
 
 
@@ -789,7 +714,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
 <?php $__env->startSection("script"); ?>
 <script>
   // $(function () {
-  //   $("#alertregister").hide();
+    
   // });
 
   // $("#g-recaptcha-response").on("click", function(){

@@ -17,6 +17,10 @@
     <link rel="stylesheet" href="<?php echo e(asset('css/owl.theme.default.min.css')); ?>">
     <!-- <link rel="stylesheet" href="css/owl.theme.default.min.css"> -->
 
+    
+    <!--Bloque incorporado para galeria de proyectos-->
+    <link href="<?php echo e(asset('css/proyectos/magnific-popup.css')); ?>" rel="stylesheet" type="text/css" />
+
     <link rel="stylesheet" href="<?php echo e(asset('css/jquery.fancybox.min.css')); ?>">
 
     <link rel="stylesheet" href="<?php echo e(asset('css/bootstrap-datepicker.css')); ?>">
@@ -35,11 +39,9 @@
     <script src="<?php echo e(asset('js/modernizr.custom.17475.js')); ?>"></script>
      <!-- fin del bloque fabricacion -->
 
-    <!--Bloque incorporado para galeria de proyectos-->
-    <link href="css/proyectos/magnific-popup.css" rel="stylesheet" type="text/css" />
     <!-- Icon -->
     <!-- <link href="css/proyectos/materialdesignicons.min.css" rel="stylesheet" type="text/css" /> -->
-    <link href="css/pe-icon-7-stroke.css" rel="stylesheet" type="text/css" />
+    <link href="<?php echo e(asset('css/pe-icon-7-stroke.css')); ?>" rel="stylesheet" type="text/css" />
     <!-- fin del bloque fabricacion -->
 
      <!-- Javascript para captcha de formulario -->
@@ -53,7 +55,7 @@
       alert(+ d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds());
     </script> -->
     
-    <script type="text/javascript" src="js/videos.js"></script>
+    <script type="text/javascript" src="<?php echo e(asset('js/videos.js')); ?>"></script>
     <!-- <script src="js/videos.js"></script> -->
     
 
@@ -266,9 +268,12 @@
                 <li><a href="<?php echo e(route('welcome')); ?>#contact-section" class="nav-link">Contactanos</a></li>
                 <?php if(Auth::check()): ?>
                   <li><a href="<?php echo e(route('logout')); ?>" class="nav-link">Salir</a></li>
-                  <li><a href="<?php echo e(route('home')); ?>" class="nav-link"><span class="icon-home"></span></a></li>
+                  <li><a href="<?php echo e(route('home')); ?>" class="nav-link"><span class="icon-home"></span> Mi Sesión</a></li>
                 <?php else: ?>
-                  <li><a href="<?php echo e(route('login')); ?>" class="nav-link"><span class="icon-user"></span></a></li>
+                  <li>
+                    <a href="<?php echo e(route('login')); ?>" class="nav-link"><span class="icon-user"></span> Ingresar / Registrarse</a>
+                    <!-- <a href="<?php echo e(route('login')); ?>#contact-section" class="nav-link">Ingresar / Registrarse</a> -->
+                  </li>
                 <?php endif; ?>
 
               </ul>
@@ -482,23 +487,16 @@
   <!-- fin del bloque fabricacion -->  
 
 <!-- javascript -->
-<script src="js/galeria/jquery.min.js"></script>
-        <script src="js/galeria/bootstrap.bundle.min.js"></script>
-        <script src="js/galeria/jquery.easing.min.js"></script>
-        <script src="js/galeria/scrollspy.min.js"></script>
         <!-- SLIDER -->
-        <script src="js/galeria/owl.carousel.min.js"></script>
         <!-- Magnific Popup -->
-        <script src="js/galeria/jquery.magnific-popup.min.js"></script>
-        <script src="js/galeria/isotope.js"></script>
-        <script src="js/galeria/portfolio-filter.js"></script> 
+        <script src="<?php echo e(asset('js/isotope.js')); ?>"></script>
+        <script src="<?php echo e(asset('js/galeria/jquery.magnific-popup.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('js/galeria/portfolio-filter.js')); ?>"></script> 
+        <script src="<?php echo e(asset('js/scrollspy.min.js')); ?>"></script> 
+        <script src="<?php echo e(asset('js/app-project.js')); ?>"></script> 
         <!-- Contact -->
-        <script src="js/galeria/contact.js"></script>
         <!-- Counter -->
-        <script src="js/galeria/counter.init.js"></script>
         <!-- Switcher -->
-        <script src="js/galeria/switcher.js"></script>
         <!-- Main Js -->
-        <script src="js/galeria/app.js"></script>
 
   <?php echo $__env->yieldContent('script'); ?><?php /**PATH C:\xampp\htdocs\modulartop\modulartop\resources\views/layouts/layout.blade.php ENDPATH**/ ?>

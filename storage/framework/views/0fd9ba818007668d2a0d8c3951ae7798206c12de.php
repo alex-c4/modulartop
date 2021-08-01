@@ -1,70 +1,412 @@
-<?php $__env->startSection('content'); ?>
+<?php $__env->startSection('header'); ?>
 
-<div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(<?php echo e(asset('images/banner/fabricacion.jpg')); ?>);" data-aos="fade">
-    <div class="container">
-    <div class="row align-items-center justify-content-center">
-        <div class="col-md-5 mx-auto mt-lg-5 text-center">
-        <h1>Bienvenido</h1>
-        <p class="mb-5"><strong class="text-white">home</strong></p>
-        
-        </div>
-    </div>
-    </div>
+    <!-- Bootstrap CSS CDN -->
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous"> -->
+    <!-- Our Custom CSS -->
 
-    <!-- <a href="#blog" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a> -->
-</div> 
+    <!-- Font Awesome JS -->
+    <!-- <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script> -->
+    <!-- <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script> -->
 
-<br>
+    <!-- <link rel="stylesheet" href="<?php echo e(asset('css/style4.css')); ?>"> -->
 
-    <!-- mensaje para la creacion de los post -->
-    <?php if(isset($msgPost) != null): ?>
-    <div class="container">
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <strong><?php echo e($msgPost); ?></strong> 
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-        </div>
-    </div>
-    <?php endif; ?>
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.css">
 
-<section class="site-section bg-light" id="services-section">
+    <link rel="stylesheet" href="<?php echo e(asset('css/home.css')); ?>?v=<?php echo e(env('APP_VERSION')); ?>">
 
-    <div class="container">
-        <div class="row align-items-stretch">
-            <div class="col-mb-6 col-lg-6 mb-6 mb-lg-6" data-aos="fade-up">
-                <div class="unit-4 d-flex">
-                <div class="mr-4">
-                    <!-- <a href="<?php echo e(route('newsletter.create')); ?>"> -->
-                        <span class="icon-newspaper-o "></span>
-                    <!-- </a> -->
-                    </div>
-                        <div>
-                            <h3>Newsletters</h3>
-                            <p>Novedades y noticias</p>
-                            <p>
-                            
-                            <?php if(auth()->user()->hasRoles('Administrator') || auth()->user()->hasRoles('Newsletter')): ?> 
-                                <a title="Agregar novedades" href="<?php echo e(route('newsletter.create')); ?>"><span class="icon-plus"></span></a>
-                                &nbsp;
-                                <a title="Listar novedades" href="<?php echo e(route('newsletter.index')); ?>"><span class="icon-list"></span></a>
-                                &nbsp;
-                            <?php endif; ?>
-                                <a title="Visualizar novedades" href="<?php echo e(route('novedades')); ?>"><span class="icon-th-large"></span></a>
-                            </p>
-                        </div>
-                    </div>
-            </div>
-        </div>
+    <style>
+        .text-sm{
+            font-size: smaller;
+        }
 
-        
+        .soy-cliente{
+            color: blue !important;
+            text-decoration: underline !important;
+            font-size: smaller;
+        }
 
-    </div>
-</section>
+        .icons-orders{
+            display: flex; 
+            justify-content: space-around;
+        }
+
+        .icon-check:hover{
+            color: green;
+        }
+
+        .icon-close:hover{
+            color: red;
+        }
+        .icon-remove:hover{
+            color: red;
+        }
+    </style>
 
 
-
-<br>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\modulartop\modulartop\resources\views/home.blade.php ENDPATH**/ ?>
+<?php $__env->startSection('content'); ?>
+
+<?php $__env->startSection('imgBanner'); ?>
+<?php echo e(Utils::getBanner(auth()->user()->roll_id)); ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('title'); ?>
+Bienvenido
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('subtitle'); ?>
+home
+<?php $__env->stopSection(); ?>
+
+
+<div class="wrapper">
+        
+
+        <!-- Page Content  -->
+        <div id="content">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="btn btn-info ">
+                        <!-- <i class="fas fa-align-left"></i> -->
+                        <span class="icon-align-left"></span>
+                        <!-- <span>Toggle Sidebar</span> -->
+                    </button>
+
+                    <!-- <button class="btn btn-dark d-inline-block d-lg-none ml-auto " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon-align-justify"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">Page</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Page</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Page</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Page</a>
+                            </li>
+                        </ul>
+                    </div> -->
+
+                    <?php if(Auth::user()->roll_id == 2): ?>
+                    <div class="ml-auto pr-4">
+                        <a href="<?php echo e(route('user.edit')); ?>" class="soy-cliente" >Soy o quiero ser cliente</a>
+                    </div>
+                    <?php endif; ?>
+
+                    <div class="" id="navbarSupportedContent">
+
+                        <div class="dropdown ml-auto">
+                            <button class="btn dropdown-toggle menu-boton" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <div class="contenedor-menu">
+                                    <div class="menu-img">
+                                        <img src="<?php echo e(asset('images/customers_logos/avatars')); ?>/<?php echo e($avatar); ?>" width="40px" height="40px" alt="" srcset="">
+                                    </div>
+                                    <div class="contendor-name">
+                                        <div class="menu-name"><?php echo e($userName); ?> <?php echo e($userLastName); ?></div>
+                                        <div class="menu-roll"><?php echo e($roll); ?></div>
+                                    </div>
+                                </div>
+                            </button>
+                            <div class="dropdown-menu menu-dropdown" aria-labelledby="dropdownMenuButton" id="menuDropdown">
+                                <a class="dropdown-item" href="<?php echo e(route('user.edit')); ?>">
+                                    <span class="icon-pencil"></span>
+                                    Mis datos
+                                </a>
+                                <a class="dropdown-item" href="<?php echo e(route('password.showFormResetPassw')); ?>">
+                                    <span class="icon-lock"></span>
+                                    Cambio de clave
+                                </a>
+                                <a class="dropdown-item" href="<?php echo e(route('user.delete.confirm')); ?>">
+                                    <span class="icon-trash"></span>
+                                    Eliminar mi cuenta
+                                </a>
+                                <a class="dropdown-item" href="<?php echo e(route('logout')); ?>">
+                                    <span class="icon-close"></span>
+                                    Salir
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </nav>
+
+            <div class="container">
+                <div class="row">
+                    <?php if(Auth::user()->roll_id != 5): ?> 
+                    <div class="col-lg-6">
+
+                        <div class="container-dash">
+                            <div class="nodo">
+                                <div class="nodo-title">
+                                    <span class="icon-newspaper-o"></span>
+                                    Novedades
+                                </div>
+                                <div class="nodo-content">
+                                    <?php if(Auth::user()->roll_id == 1 || Auth::user()->roll_id == 3): ?>  
+
+                                        <div class="content-btn">
+                                            <a href="<?php echo e(route('newsletter.create')); ?>" class="btn btn-plus"><span class="icon-plus"></a>
+                                            <!-- <button type="button" class="btn btn-plus"><span class="icon-plus"></button> -->
+                                            <div>
+                                                Agregar
+                                            </div>
+
+                                        </div>
+                                        <div class="content-btn">
+                                            <a href="<?php echo e(route('newsletter.index')); ?>" class="btn btn-list"><span class="icon-list"></a>
+                                            <!-- <button type="button" class="btn btn-list"><span class="icon-list"></button> -->
+                                            <div>
+                                                Listar
+                                            </div>
+
+                                        </div>
+                                    <?php endif; ?>
+
+                                        <div class="content-btn">
+                                            <a href="<?php echo e(route('novedades')); ?>" class="btn btn-show"><span class="icon-th-large"></a>
+                                            <!-- <button type="button" class="btn btn-show"><span class="icon-th-large"></button> -->
+                                            <div>
+                                                Visualizar
+                                            </div>
+
+                                        </div>
+                                        <!-- <div class="nodo-content-icon">
+                                            <span class="icon-plus"></span>
+                                        </div>
+                                        <div>
+                                            <h5>Agregar</h5>
+                                            <p>
+                                                Modulo para
+                                            </p>
+                                        </div> -->
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <?php endif; ?>
+
+                    <?php if(Auth::user()->roll_id == 1 || Auth::user()->roll_id == 5): ?>  
+
+                    <input type="hidden" name="hRouteUserUpdateFromHome" id="hRouteUserUpdateFromHome" value="<?php echo e(route('userValidation.updateFromHome')); ?>">
+                    <div class="col-lg-6">
+                        <div class="container-dash">
+                            <div class="nodo">
+                                <div class="nodo-title">
+                                    <span class="icon-users"></span>
+                                    Clientes por confirmar <?php if($total > 0): ?><span class="cantNews"><?php echo e($total); ?></span> <?php endif; ?>
+                                </div>
+                                <div class="nodo-content">
+                                    <div id="divTableUsers" style="width: 100%;">
+                                        <table class="table table-sm text-sm">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Cliente</th>
+                                                    <th scope="col">Razón social</th>
+                                                    <th scope="col">Tipo de cliente</th>
+                                                    <th scope="col"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            <?php $__currentLoopData = $usersToValidate; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <tr>
+                                                    <th scope="row"><?php echo e($key += 1); ?></th>
+                                                    <td><?php echo e($user->name); ?> <?php echo e($user->lastName); ?></td>
+                                                    <td><?php echo e($user->razonSocial); ?></td>
+                                                    <td><?php echo e($user->client_type_name); ?></td>
+                                                    <td class="icons-orders">
+
+                                                        <a href="#" title="Validar usuario" onclick="update_usuario(event, <?php echo e($user->id); ?>, 1)"><span class="icon-check"></span></a>
+                                                        <a href="#" title="Rechazar usuario" onclick="update_usuario(event, <?php echo e($user->id); ?>, 0)"><span class="icon-close"></span></a>
+
+                                                        <!-- <form id="formValidationUserValidate" action="<?php echo e(route('userValidation.update', $user->id )); ?>" method="post">
+                                                            <?php echo e(csrf_field()); ?>
+
+                                                            <input type="hidden" name="hOption" id="hOption" value="1">
+                                                            <a href="#" title="Validar usuario" onclick="document.getElementById('formValidationUserValidate').submit()"><span class="icon-check"></span></a>
+                                                        </form>
+                                                        
+                                                        <form id="formValidationUserInvalidate" action="<?php echo e(route('userValidation.update', $user->id)); ?>" method="post">
+                                                            <?php echo e(csrf_field()); ?>
+
+                                                            <input type="hidden" name="hOption" id="hOption" value="0">
+                                                            <a href="#" title="Rechazar usuario" onclick="document.getElementById('formValidationUserInvalidate').submit()"><span class="icon-close"></span></a>
+                                                        </form> -->
+                                                    </td>
+                                                <tr>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    <?php endif; ?>
+                    <?php if(Auth::user()->roll_id == 1 || Auth::user()->roll_id == 5): ?>  
+
+                    <input type="hidden" name="_token" id="token" value="<?php echo e(csrf_token()); ?>">
+                    <input type="hidden" name="hRouteAttendFromHome" id="hRouteAttendFromHome" value="<?php echo e(route('ordersale.attendFromHome')); ?>">
+                    <input type="hidden" name="hRouteWelcome" id="hRouteWelcome" value="<?php echo e(route('welcome')); ?>">
+                    <input type="hidden" name="hRouteCancelFromHome" id="hRouteCancelFromHome" value="<?php echo e(route('ordersale.cancelFromHome')); ?>">
+
+                    <div class="col-lg-6">
+                        <div class="container-dash">
+                            <div class="nodo">
+                                <div class="nodo-title">
+                                    <span class="icon-file"></span>
+                                    Ordenes de compra <?php if($totalOrders > 0): ?><span class="cantNews" id="cantOrders"><?php echo e($totalOrders); ?></span> <?php endif; ?>
+                                </div>
+                                <div class="nodo-content">
+
+                                    <div id="divTableOrders" style="width: 100%;">
+                                        <table class="table table-sm">
+                                            <thead>
+                                                <tr>
+                                                    <th >ID</th>
+                                                    <th >Cliente</th>
+                                                    <th >Fecha de creación</th>
+                                                    <th ></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            <?php $__currentLoopData = $orders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $order): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <tr>
+                                                    <th scope="row"><?php echo e($order->id); ?></th>
+                                                    <td><?php echo e($order->userName); ?> <?php echo e($order->userLastName); ?></td>
+                                                    <td><?php echo e($order->created_at); ?></td>
+                                                    <th class="icons-orders">
+                                                        <?php if($order->status == 2): ?>
+                                                            <a href="#" title="Atender" onclick="attend_order(event, <?php echo e($order->id); ?>)"><span class="icon-square-o"></span></a>
+                                                        <?php elseif($order->status == 3): ?>
+                                                            <form id="formOrderProcess_<?php echo e($order->id); ?>" action="<?php echo e(route('ordersale.process', $order->id)); ?>" method="post">
+                                                                <?php echo e(csrf_field()); ?>
+
+                                                                <a href="#" title="Procesar" onclick="document.getElementById('formOrderProcess_<?php echo e($order->id); ?>').submit()"><span class="icon-check m-1"></span></a>
+                                                            </form>
+                                                            
+                                                            <a href="#" title="Cancelar orden" onclick="cancel_order(event, <?php echo e($order->id); ?>)"><span class="icon-remove"></span></a>
+                                                        <?php endif; ?>
+                                                    </th>
+                                                <tr>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    <?php endif; ?>
+
+                    <!-- Tableros -->
+                    <div class="col-lg-6">
+                        <div class="container-dash">
+                            <div class="nodo">
+                                <div class="nodo-title">
+                                    <span class="icon-square"></span>
+                                    Tableros
+                                </div>
+                                <div class="nodo-content">
+
+                                    <div id="divTableros" style="width: 100%;">
+                                        
+                                        <div class="fondo-rojo">
+                                            &nbsp;
+                                        </div>
+
+                                        <div class="div-subacabado">
+                                            <a href="<?php echo e(route('tablero.byVisualEfect', 1)); ?>">
+                                                <img src="images/tableros/tablero-altobrillo.jpg" alt="Tablero melaminico alto brillo MDF importado, acabado premium oneskin" class="img-tm">
+                                            </a>
+                                            <div class="title-tableros">
+                                                <a href="<?php echo e(route('tablero.byVisualEfect', 1)); ?>">ACABADOS PREMIUM</a>
+                                                <p>MDF-ALTO BRILLO-IMPORTADO</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="div-subacabado">
+                                            <a href="<?php echo e(route('tablero.byVisualEfect', 2)); ?>">
+                                                <img src="images/tableros/tablero-supermate.jpg" alt="Tablero melaminico super mate MDF importado, acabado premium oneskin" class="img-tm">
+                                            </a>
+                                            <div class="title-tableros">
+                                                <a href="<?php echo e(route('tablero.byVisualEfect', 2)); ?>">ACABADOS PREMIUM</a>
+                                                <p>MDF-SUPER MATE-IMPORTADO</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="div-subacabado">
+                                            <a href="<?php echo e(route('tablero.byVisualEfect', 3)); ?>">
+                                                <img src="images/tableros/tablero-cuerpo.jpg" alt="Tablero melaminico hidrófugo y natural MDP importado y nacional, acabado tradicional masisa/losan" class="img-tm">
+                                            </a>
+                                            <div class="title-tableros">
+                                                <a href="<?php echo e(route('tablero.byVisualEfect', 3)); ?>">ACABADOS TRADICIONALES</a>
+                                                <p>
+                                                    MDP HR (HIDRÓFUGOS) Y ESTÁNDAR<br>
+                                                    IMPORTADOS Y NACIONALES
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <br>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('script'); ?>
+
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+    
+    <!-- Popper.JS -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script> -->
+    
+    <!-- Bootstrap JS -->
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script> -->
+
+    <!-- <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+    </script> -->
+
+    <script src="<?php echo e(asset('js/utils.js')); ?>"></script>
+    <script src="<?php echo e(asset('js/home.js')); ?>"></script>
+
+    <script src="<?php echo e(asset('js/bootstrap-table.min.js')); ?>"></script>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.layoutSidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\modulartop\modulartop\resources\views/home.blade.php ENDPATH**/ ?>

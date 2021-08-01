@@ -1,6 +1,7 @@
 <?php $__env->startSection('content'); ?>
 
-<div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(images/banner/fabricacion.jpg);" data-aos="fade">
+
+<div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(<?php echo e(asset('images/banner/fabricacion.jpg')); ?>);" data-aos="fade">
     <div class="container">
     <div class="row align-items-center justify-content-center">
         <div class="col-md-5 mx-auto mt-lg-5 text-center">
@@ -30,7 +31,7 @@
                                 <label for="email" class="col-md-4 col-form-label text-md-right">Correo electrónico</label>
 
                                 <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control <?php $__errorArgs = ['email'];
+                                    <input maxlength="60" id="email" type="email" class="form-control <?php $__errorArgs = ['email'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -51,6 +52,7 @@ $message = $__bag->first($__errorArgs[0]); ?>
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
+
                                 </div>
                             </div>
 
@@ -58,7 +60,7 @@ unset($__errorArgs, $__bag); ?>
                                 <label for="password" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Password')); ?></label>
 
                                 <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control <?php $__errorArgs = ['password'];
+                                    <input maxlength="60" id="password" type="password" class="form-control <?php $__errorArgs = ['password'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -94,14 +96,25 @@ unset($__errorArgs, $__bag); ?>
                                     </div>
                                 </div>
                             </div> -->
+                            <div class="form-group row mb-0 text-center">
+                                <div class="col-12">
+                                    <?php if(isset($resent) != null): ?>
+                                    <span class="" role="alert">
+                                        <strong>Correo reenviado</strong>
+                                    </span>
+                                    <?php endif; ?>
 
+                                </div>
+
+                            </div>
+                            
                             <div class="form-group row mb-0 text-center">
                                 <div class="col-12">
                                     <button type="submit" class="btn btn-primary">
                                         <?php echo e(__('Login')); ?>
 
                                     </button>
-
+                                    
 
                                 </div>
                                 <div class="col-12">
