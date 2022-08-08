@@ -1,7 +1,7 @@
 var hideTableroSections = function(){
-    $("#subtitle-acabados").hide("slow");
-    $("#div-acabados").hide("slow");
-    $("#div-subacabados").hide("slow");
+    // $("#subtitle-acabados").hide("slow");
+    // $("#div-acabados").hide("slow");
+    // $("#div-subacabados").hide("slow");
 
     $("#div-length").hide("slow");
 
@@ -12,60 +12,164 @@ var hideTableroSections = function(){
     $("#div-description").hide("slow");
 }
 
-$("#type").on("change", function(){
-    var type_id = (this.value != "") ? parseInt(this.value) : this.value;
-    $("#subtype").html("");   
 
-    // se destruye el validator para crear otro nuevo en base a la seleccion del tipo
-    try {
-        if(GLOBAL_VALIDATOR) GLOBAL_VALIDATOR.destroy();
-    } catch (error) {
-        GLOBAL_VALIDATOR = null;
+$("#category").on("change", function(){
+    var category_id = (this.value != "") ? parseInt(this.value) : this.value;
+    $("#type").html("");
+    $("#modal_type").html("");
+
+    if(category_id == ""){
+        $("#div-types").hide("slow");
+
+        $('#type').append($('<option>', {
+            value: "",
+            text: "-Seleccione-"
+        }));
+    }else{
+        $('#type').append($('<option>', {
+            value: "",
+            text: "-Seleccione-"
+        }));
+
+        
+        produc_types.forEach(function(item){
+            if(category_id == parseInt(item.category_id)){
+                $('#type').append($('<option>', {
+                    value: item.id,
+                    text: item.name
+                }));
+
+                $('#modal_type').append($('<option>', {
+                    value: item.id,
+                    text: item.name
+                }));
+            }
+        });
+
+        $("#div-types").show("slow");
+
     }
 
-    $('#subtype').append($('<option>', {
-        value: "",
-        text: "-Seleccione-"
-    }));
+    $("#type").val("").trigger("change");
 
-    produc_subtypes.forEach(function(item){
-        if(type_id == parseInt(item.type_id)){
-            $('#subtype').append($('<option>', {
-                value: item.id,
-                text: item.name
-            }));
-        }
-    });
+})
 
-    $('#subtype').trigger("change");
+$("#type").on("change", function(){
+    var type_id = (this.value != "") ? parseInt(this.value) : this.value;
+    var category_id = $("#category").val();
 
-    // $("#div-subtypes").show("slow");
+    $("#subtype").html("");   
 
-    if(type_id == 1){
-        $("#div-acabados").show("slow");
-        $("#div-length").show("slow");
-        $("#subtitle-acabados").show("slow");
+    // Se comenta el siguiente código debido al cambio agregado, 
+    // se agregó nuevo botón para agregar nueva categoria
 
-        showCaracteristicas(true);
+    // $('#subtype').trigger("change");
 
-        //creacion de validator para elementos de tipo "Tableros"
-        validator_forTableros();
+    
+    // if(type_id == 1){
+    //     $("#div-acabados").show("slow");
+    //     $("#div-length").show("slow");
+    //     $("#subtitle-acabados").show("slow");
 
-    }else{
+    //     showCaracteristicas(true);
+
+    //     //creacion de validator para elementos de tipo "Tableros"
+    //     validator_forTableros();
+
+    // }else{
+    //     $("#div-acabados").hide("slow");
+    //     $("#div-subacabados").hide("slow");
+    //     $("#subtitle-acabados").hide("slow");
+    //     //length
+    //     $("#div-length").hide("slow");
+    //     $("#length").val("");
+
+    //     $("#acabado").val("").trigger("change");
+    //     $("#sub_acabado").val("").trigger("change");
+
+    //     showCaracteristicas(false);
+
+    //     //creacion de validator para elementos de tipo "Tableros"
+    //     validator_forTapacanto();
+    // }
+    
+    // fin del código comentado
+
+    if(type_id == ""){
+        $("#div-subtypes").hide("slow");
         $("#div-acabados").hide("slow");
         $("#div-subacabados").hide("slow");
         $("#subtitle-acabados").hide("slow");
+
         //length
         $("#div-length").hide("slow");
         $("#length").val("");
 
-        $("#acabado").val("").trigger("change");
-        $("#sub_acabado").val("").trigger("change");
-
         showCaracteristicas(false);
 
-        //creacion de validator para elementos de tipo "Tableros"
-        validator_forTapacanto();
+        validator_default();
+    }else{
+        // se destruye el validator para crear otro nuevo en base a la seleccion del tipo
+        try {
+            if(GLOBAL_VALIDATOR) GLOBAL_VALIDATOR.destroy();
+        } catch (error) {
+            GLOBAL_VALIDATOR = null;
+        }
+
+        $('#subtype').append($('<option>', {
+            value: "",
+            text: "-Seleccione-"
+        }));
+
+        produc_subtypes.forEach(function(item){
+            if(type_id == parseInt(item.type_id)){
+                $('#subtype').append($('<option>', {
+                    value: item.id,
+                    text: item.name
+                }));
+            }
+        });
+        
+        $('#modal_type').html("");
+        produc_types.forEach(function(item){
+            if(category_id == parseInt(item.category_id)){
+
+                $('#modal_type').append($('<option>', {
+                    value: item.id,
+                    text: item.name
+                }));
+            }
+        });
+
+        $('#subtype').val("").trigger("change");
+    
+        $("#div-subtypes").show("slow");
+
+        $("#div-acabados").show("slow");
+        $("#subtitle-acabados").show("slow");
+        $("#div-subacabados").show("slow");
+
+        if(type_id == 1){
+            $("#div-length").show("slow");
+
+            showCaracteristicas(true);
+
+            //creacion de validator para elementos de tipo "Tableros"
+            validator_forTableros();
+        }else{
+            $("#div-subacabados").hide("slow");
+
+            $("#div-length").hide("slow");
+            $("#length").val("");
+
+            $("#acabado").val("").trigger("change");
+            $("#sub_acabado").val("").trigger("change");
+
+            showCaracteristicas(false);
+
+            //creacion de validator para elementos de tipo "Tableros"
+            validator_forTapacanto();
+        }
     }
 
 })
@@ -142,6 +246,9 @@ var validator_forTapacanto = function(){
             origen:{
                 required: true
             },
+            acabado:{
+                required: true
+            },
             width:{
                 required: true,
                 min: 1
@@ -164,12 +271,14 @@ var validator_forTapacanto = function(){
             code: "Por favor ingrese el Código",
             name: "Por favor ingrese el Nombre",
             origen: "Por favor seleccione el Origen",
+            acabado:"Por favor seleccione el Acabado",
             width: "Por favor ingrese el Ancho",
             thickness: "Por favor ingrese el Espesor",
             description: "Por favor ingrese la Descripción",
             image_alt: "Por favor ingrese el Texto Alternativo"
         },
         errorPlacement: function(error, element) {
+            setErrorPlacement(error, element);
         },
         submitHandler: function(form) {
             $("#btnSave").prop("disabled", false);
@@ -251,11 +360,7 @@ var validator_forTableros = function(){
             image_alt: "Por favor ingrese el Texto Alternativo"
         },
         errorPlacement: function(error, element) {
-            // $("#error-subtype").html("");
-
-            // if(element[0].id == "subtype"){
-            //     $("#error-subtype").html(error[0].getInnerHTML())
-            // }
+            setErrorPlacement(error, element);
         },
         submitHandler: function(form) {
             $("#btnSave").prop("disabled", false);
@@ -281,6 +386,9 @@ var validator_default = function(){
             category: "Por favor seleccione la Categoria",
             type: "Por favor seleccione el Tipo"
         },
+        errorPlacement: function(error, element) {
+            setErrorPlacement(error, element);
+        },
         submitHandler: function(form) {
             // $("#btnSave").prop("disabled", false);
             form.submit();
@@ -288,6 +396,51 @@ var validator_default = function(){
     });
 
     GLOBAL_VALIDATOR = validator;
+}
+
+var onclick_addCategory = function(){
+    var _category = $("#txtCategory").val();
+    var _url = $("#hRouteAddCategory").val();
+    var _data = {
+        name : _category
+    };
+    Utils.hideAlert("msgCategoryModal")
+    Utils.getData(_url, _token, _type, _data).then(function(result){
+        if(result.result == true){
+            var cate = result.data;
+            Utils.addOptionToSelect("category", cate.id, cate.name, false);
+            Utils.addOptionToSelect("modal_category_modal", cate.id, cate.name, false);
+            $('#categoryModal').modal('hide');
+            Utils.clearModal(['txtCategory'], 'msgCategoryModal')
+            // Utils.setAlert(result.message, 'success', 'msgCategoryModal');
+        }else{
+            Utils.setAlert(result.message, 'warning', 'msgCategoryModal');
+        }
+    });
+}
+
+var onclick_addType = function(){
+    var _category = $("#modal_category_modal").val();
+    var _tipo = $("#txtType").val();
+    var _url = $("#hRouteAddType").val();
+    var _data = {
+        category: _category,
+        name : _tipo
+    };
+    
+    Utils.getData(_url, _token, _type, _data).then(function(result){
+        if(result.result == true){
+            var tipo = result.data;
+            produc_types.push({id: tipo.id, category_id: parseInt(tipo.category_id), name: tipo.name});
+            Utils.addOptionToSelect("type", tipo.id, tipo.name, false);
+            $('#typeModal').modal('hide');
+            Utils.clearModal(['txtType'], 'msgTypeModal');
+            $("#type").val("").trigger("change")
+            // Utils.setAlert(result.message, 'success', 'msgTypeModal');
+        }else{
+            Utils.setAlert(result.message, 'warning', 'msgTypeModal');
+        }
+    });
 }
 
 var onclick_addSubType = function(){
@@ -306,6 +459,16 @@ var onclick_addSubType = function(){
         Utils.getData(_url, _token, _type, _data).then(function(result){
             if(result.result == true){
                 produc_subtypes = result.data;
+                type_id = parseInt($("#type").val());
+                produc_subtypes.forEach(function(item){
+                    if(type_id == parseInt(item.type_id)){
+                        $('#subtype').append($('<option>', {
+                            value: item.id,
+                            text: item.name
+                        }));
+                    }
+                });
+
                 $("#type").trigger("change");
                 $('#subtypeModal').modal('hide')
                 $("#txtSubType").val("");

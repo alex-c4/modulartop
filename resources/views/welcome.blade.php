@@ -250,7 +250,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
                 <div class="portfolioContainer row pt-2 mt-4" style="visibility: hidden">
                     @foreach($allProjects as $items)
                       @foreach($items as $project)
-                        <div class="col-lg-4 col-md-6 p-0 {{ $project->prefix }}">
+                        <div class="col-lg-4 col-md-6 p-2 {{ $project->prefix }}">
                             <div class="portfolio-box position-relative ml-0 mr-0">
                                 <div class="work-img position-relative overflow-hidden">
                                     <img src="{{ asset('images/proyectos/') }}/{{ $project->cover_photo }}" class="img-fluid" alt="{{ $project->cover_photo_alt_text }}">
@@ -588,7 +588,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
 
               <div class="row form-group">
                 
-                <div class="col-md-12">
+                <div class="col">
                   <label class="text-black" for="email">Email</label> 
                   <input type="email" id="email" name="email" class="form-control" value="{{ old('email') }}">
                   @if ($errors->has('email'))
@@ -597,7 +597,43 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
                     </div>
                   @endif
                 </div>
+
+                <!-- WhapsApp -->
+                <div class="col">
+                  <label for="whatsapp" class="text-black">Teléfono(WhatsApp)</label>
+                  <input maxlength="11" type="text" name="whatsapp" id="whatsapp" class="form-control" value="{{ old('whatsapp') }}">
+                </div>
+                
               </div>
+
+              <!-- LinkedIn -->
+              <div class="row form-group">
+                <div class="col">
+                  <label for="linkedin" class="text-black">LinkedIn</label>
+                  <input maxlength="60" type="text" name="linkedin" id="linkedin" class="form-control" value="{{ old('linkedin') }}">
+                </div>
+
+                <!-- Instagram -->
+                <div class="col">
+                  <label for="instagram" class="text-black">Instagram</label>
+                  <input maxlength="60" type="text" name="instagram" id="instagram" class="form-control" value="{{ old('instagram') }}">
+                </div>
+              </div>
+
+              <!-- Facebook -->
+              <div class="row form-group">
+                <div class="col">
+                  <label for="facebook" class="text-black">Facebook</label>
+                  <input maxlength="60" type="text" name="facebook" id="facebook" class="form-control" value="{{ old('facebook') }}">
+                </div>
+
+                <!-- Pinterest -->
+                <div class="col">
+                  <label for="pinterest" class="text-black">pinterest</label>
+                  <input maxlength="60" type="text" name="pinterest" id="pinterest" class="form-control" value="{{ old('pinterest') }}">
+                </div>
+              </div>
+              
 
               <!-- <div class="row form-group">
                 

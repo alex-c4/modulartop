@@ -41,6 +41,7 @@
         border: none;
         cursor: pointer;
         color: #8b171a;
+        display: flex;
     }
 
     #tags{
@@ -100,7 +101,12 @@ Edición de novedades
                     <div class="row form-group">
                         <div class="col-md-12">
                             <label class="text-black" for="title">Titulo</label> 
-                            <input maxlength="100" type="text" id="title" name="title" class="form-control" value="{{ $newsletter->title }}">
+                            <input maxlength="100" type="text" id="title" name="title" class="form-control" value="{{ old('title', $newsletter->title) }}">
+                            @error('title')
+                                <span class="invalid-field" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
 
@@ -108,7 +114,12 @@ Edición de novedades
                     <div class="row form-group">
                         <div class="col-md-12">
                             <label class="text-black" for="summary">Descripción</label> 
-                            <textarea maxlength="200" id="summary" name="summary" rows="2" class="form-control">{{ $newsletter->summary }}</textarea>
+                            <textarea maxlength="200" id="summary" name="summary" rows="2" class="form-control">{{ old('summary', $newsletter->summary) }}</textarea>
+                            @error('summary')
+                                <span class="invalid-field" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
 
@@ -116,10 +127,14 @@ Edición de novedades
                     <div class="row form-group">
                         <div class="col-md-12">
                             <label class="text-black" for="content">Contenido</label> 
-                            <textarea id="content-wysiwyg" name="content-wysiwyg" rows="7" style="height:600px; width: 100%;" class="form-control">{{ $newsletter->content }}</textarea>
+                            <textarea id="content-wysiwyg" name="content-wysiwyg" rows="7" style="height:600px; width: 100%;" class="form-control">{{ old('content', $newsletter->content) }}</textarea>
+                            @error('content-wysiwyg')
+                                <span class="invalid-field" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
-
                     
                     <!-- Boton para agregar imagenes link -->
                     <!-- comentado temporalmente -->
@@ -164,13 +179,14 @@ Edición de novedades
 
                         <div class="col-md-12 mt-3">
                             <div class="col-12" id="content-div-tags" name="content-div-tags">
+                                
                             </div>
                         </div>
 
                     </div>
 
 
-                    <div class="row form-group">
+                    <div class="row form-group text-center">
                         <div class="col-md-12">
                             <img src="{{ asset('images/newsletters/'.$newsletter->name_img) }}" class="img-thumbnail" alt="" srcset="">
                         </div>
@@ -180,6 +196,11 @@ Edición de novedades
                         <div class="col-md-12">
                             <label for="name_img">Imagen</label>
                             <input type="file" accept="image/png, image/jpeg, image/jpg" class="form-control" id="name_img" name="name_img" placeholder="Imagen" value="{{ old('name_img') }}">
+                            @error('name_img')
+                                <span class="invalid-field" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
 

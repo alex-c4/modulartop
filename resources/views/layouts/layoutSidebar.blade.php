@@ -365,12 +365,12 @@
                 @if(Auth::user()->roll_id == 1 || Auth::user()->roll_id == 5)  
                  
                  <li {{ Utils::getActiveRouteClass(Route::currentRouteName(), 'user_validation') }} >
-                       <a href="#user-operation"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                             <span class="icon-users"></span>
-                             Usuarios
-                       </a>
-                       <ul class="collapse list-unstyled" id="user-operation">
-                   @if(Auth::user()->roll_id == 1) 
+                    <a href="#user-operation"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                          <span class="icon-users"></span>
+                          Usuarios&nbsp;&nbsp;
+                    </a>
+                    <ul class="collapse list-unstyled" id="user-operation">
+                      @if(Auth::user()->roll_id == 1) 
                          <li>
                            <a href="{{ route('userClient.create') }}">
                                <span class="icon-plus"></span>
@@ -452,13 +452,19 @@
                 <li {{ Utils::getActiveRouteClass(Route::currentRouteName(), 'compra') }}>
                     <a href="#compra"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <span class="icon-shopping-cart"></span>
-                        Compra
+                        &nbsp;Compra&nbsp;&nbsp;
                     </a>
                     <ul class="collapse list-unstyled" id="compra">
                       <li>
                         <a href="{{ route('purchase.create') }}">
                             <span class="icon-plus"></span>
                             Registrar compra
+                        </a>
+                      </li>
+                      <li>
+                        <a href="{{ route('purchase.index') }}">
+                            <span class="icon-list-ul"></span>
+                            Consultar
                         </a>
                       </li>
                     </ul>
@@ -580,13 +586,13 @@
                 <li {{ Utils::getActiveRouteClass(Route::currentRouteName(), 'leds') }}>
                     <a href="#leds"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <span class="icon-files-o"></span>
-                        Leds
+                        Leads
                     </a>
                     <ul class="collapse list-unstyled" id="leds">
                       <li>
                         <a href="{{ route('leds.ledsget') }}">
                             <span class="icon-download"></span>
-                            Descargar Leds
+                            Descargar Leads
                         </a>
                       </li>
                     </ul>
@@ -783,14 +789,14 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="planillaModal" tabindex="-1" aria-labelledby="planillaModalLabel" aria-hidden="true">
+    <div class="modal fade" id="planillaModal" tabindex="-1" aria-labelledby="planillaModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Actualizar planilla</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
-            </button>
+            </button> -->
           </div>
 
           <form id="form_updloadexcel" action="{{ route('ordersale.uploadexcel') }}" method="post" enctype="multipart/form-data">
@@ -798,8 +804,7 @@
 
             <div class="modal-body">
               
-                <div id="message_alert">
-                </div>
+                <div id="message_alert" class="alert" role="alert"></div>
 
                 <div class="form-group">
                     <label for="txtSubType">Nueva planilla de orden de compra</label>
@@ -809,7 +814,7 @@
             </div>
 
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="Utils.hideAlert('message_alert')">Cerrar</button>
               <button type="submit" class="btn btn-primary" id="btnUpload">Subir planilla</button>
             </div>
 
@@ -850,6 +855,8 @@
      <!-- Javascript para captcha de formulario -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
+    <script type="text/javascript" src="{{ asset('js/utils.js')}}?v={{ env('APP_VERSION', '1') }}"></script>
+
     <script type="text/javascript" src="{{ asset('js/videos.js')}}"></script>
 
     <script type="text/javascript">
@@ -879,6 +886,8 @@
         }
 
         Message();
+
+        Utils.hideAlert("message_alert");
       });
       
 

@@ -31,8 +31,7 @@ Lista de ventas
 
     <div>
         <a href="{{ route('sales.downloadsales') }}" class="btn btn-primary m-3" target="_blank">
-            <span class="icon-file-pdf-o"></span>
-            Descagar a PDF</a>
+        <span class="icon-file-pdf-o"></span> Descargar a PDF</a>
     </div>
     
     <table class="table table-hover">

@@ -1,5 +1,5 @@
 .form-group span {
-    color: crimson;
+    /* color: crimson; */
     margin-left: 3px;
     font-weight: bolder;
     vertical-align: top;
@@ -9,5 +9,8 @@ label.error{
     color: crimson !important;
     font-weight: bolder;
     /* font-size: 10px !important; */
+}
+.asterisco{
+    color: crimson;
 }
 

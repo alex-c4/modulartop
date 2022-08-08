@@ -141,8 +141,12 @@ var Utils = {
         return Utils.GLOBAL_TAGS_IDs.findIndex(item => item == id);
     },
     updateHiddenFielTag: function(_arrIDs){
-        var _IDs = _arrIDs.reduce(function(prev_val, crr_value){ return prev_val + "," + crr_value })
-        $("#HiddenFielTag").val(_arrIDs);
+        try {
+            _arrIDs.reduce(function(prev_val, crr_value){ return prev_val + "," + crr_value })
+            $("#HiddenFielTag").val(_arrIDs);
+        } catch (error) {
+            $("#HiddenFielTag").val('');
+        }
     },
     initTags: function(){
 
@@ -171,7 +175,55 @@ var Utils = {
         .fail(function(jqXHR, textStatus, errorThrown ){
             debugger
         });
-    }
+    },
+    addOptionToSelect: function(_component, _value, _name, _selected){
+        var _sel = (_selected == true ) ? 'selected' : '';
+        $("#" + _component).append("<option value='" + _value + "' " + _sel + ">" + _name + "</option>");
+    },
+    setAlert: function(message, type, id){
+        
+        switch(type){
+            case 'success':
+                $('#' + id).removeClass('alert-warning alert-danger');
+                $('#' + id).addClass('alert-success');
+                break;
+            case 'danger':
+                $('#' + id).removeClass('alert-success alert-warning');
+                $('#' + id).addClass('alert-danger');
+                break;
+            case 'warning':
+                $('#' + id).removeClass('alert-success alert-danger');
+                $('#' + id).addClass('alert-warning');
+                break;
+        }
     
-
+        $("#" + id).slideDown();
+    
+        $('#' + id).html(message);
+    
+    },
+    hideAlert: function(id){
+        $("#" + id).slideUp();
+        $('#' + id).html('');
+    },
+    clearModal: function(listInputs, alertId){
+        Utils.hideAlert(alertId);
+        // lista de inputs
+        listInputs.forEach( item => {
+            $("#"+item).val("");
+        });
+    },
+    trigger_chkClient: function(checked){
+    
+        $("#chkClient").prop("checked", checked);
+        $("#chkClient").trigger("change");
+    
+    } ,
+    clearSelect: function(_component, isSelectpicker){
+        $("#" + _component).empty();
+        if(isSelectpicker){
+            $('.selectpicker').selectpicker('refresh');
+        }
+    },
+    
 }

@@ -2,9 +2,11 @@
 
 @section('header')
     <link rel="stylesheet" href="{{ asset('css/purchase.css') }}?v={{ env('APP_VERSION', '1') }}">
-
-    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.css">
     
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.css">
+
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-select.min.css') }}">   
+
 @endsection
 
 
@@ -62,10 +64,9 @@ Creacion de una nueva compra
 
                         <!-- Fecha de compra -->
                         <div class="form-group row">
-                            <label for="purchase_date" class="col-lg-4 col-form-label text-lg-right">Fecha de compra<span>*</span></label>
+                            <label for="purchase_date" class="col-lg-4 col-form-label text-lg-right">Fecha de compra<span class="">*</span></label>
                             <div class="col-lg-6">
                                 <input id="purchase_date" name="purchase_date" autocomplete="off" type="text" class="form-control @error('purchase_date') is-invalid @enderror" value="{{ old('purchase_date') }}" required>
-
                                 @error('purchase_date')
                                     <span class="invalid-field" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -124,7 +125,7 @@ Creacion de una nueva compra
                             <div class="form-group col-md-8">
                                 <label for="productList">Producto</label>
                                 <div class="input-group" >
-                                    <select class="custom-select" id="productList" name="productList" onchange="onchage_product(this)">
+                                    <select id="productList" name="productList" class="selectpicker form-control custom-select" data-live-search="true" onchange="onchage_product(this)">
                                         <option value="0" selected>Seleccione...</option>
                                         @foreach($products as $product)
                                             <option value="{{ $product->id }}">({{ $product->code }}) {{ $product->name}} - {{ $product->width }}/{{ $product->thickness }}/@if($product->length != "") {{ $product->length }} @else 0 @endif</option>
@@ -139,7 +140,7 @@ Creacion de una nueva compra
 
                             <div class="form-group col-md-2">
                                 <label for="quantity">P.V.P</label>
-                                <input type="number" class="form-control" id="cost" name="cost" min="1">
+                                <input type="number" class="form-control" id="cost" name="cost" min="0">
                             </div>
                         </div>
                         
@@ -204,9 +205,10 @@ Creacion de una nueva compra
 
         <div class="form-group">
             <label for="txtProviderName">Nuevo proveedor</label>
-                <input type="text" class="form-control" id="txtProviderName">
-            </div>
+            <input type="text" class="form-control" id="txtProviderName">
         </div>
+        
+    </div>
 
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -554,10 +556,8 @@ Creacion de una nueva compra
 
             <br>
 
-            <div id="message_alert">
-                
-            </div>
-
+            <div id="message_alert-prod"></div>
+            
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                 <button type="submit" class="btn btn-primary" id="btnSaveProduct" >Guardar</button>
@@ -802,6 +802,8 @@ Creacion de una nueva compra
     <script src="{{ asset('js/jquery-validate-1_19.js') }}"></script>
     <script src="{{ asset('js/product/product.js') }}?v={{ env('APP_VERSION', '1') }}"></script>
     <script src="{{ asset('js/product/product-register.js') }}?v={{ env('APP_VERSION', '1') }}"></script>
+
+    <script src="{{ asset('js/bootstrap-select.min.js') }}"></script>
 
     <script>
         var produc_types = @json($product_types);

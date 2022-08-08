@@ -84,6 +84,13 @@ content="Tablero melaminico hidrófugo y natural MDP importado y nacional, acaba
                                 </div>
                                 
                                 <div class="form-group row mb-1">
+                                    <label  class="col-sm-5 col-form-label text-right"><strong>Sub-tipo:</strong></label>
+                                    <div class="col-sm-7 text-left">
+                                        <label  class="col-form-label">{{ $product->name_product_subtype }}</label>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group row mb-1">
                                     <label  class="col-sm-5 col-form-label text-right"><strong>Acabado:</strong></label>
                                     <div class="col-sm-7 text-left">
                                         <label  class="col-form-label">{{ $product->name_subcategory_acabado }}</label>
@@ -99,6 +106,8 @@ content="Tablero melaminico hidrófugo y natural MDP importado y nacional, acaba
                                     </div>
                                 </div>
                                 
+                                <!-- seccion para los tableros -->
+                                @if($product->id_product_type == 1)
                                 <div class="form-group row mb-1">
                                     <label class="col-sm-5 col-form-label text-right"><strong>Material:</strong></label>
                                     <div class="col-sm-7 text-left">
@@ -122,7 +131,8 @@ content="Tablero melaminico hidrófugo y natural MDP importado y nacional, acaba
                                         <!-- <input disabled type="email" class="form-control" id="inputEmail3"> -->
                                     </div>
                                 </div>
-
+                                @endif
+                                <!-- fin seccion de tablero -->
                             </form>
 
                         </div>
@@ -141,6 +151,9 @@ content="Tablero melaminico hidrófugo y natural MDP importado y nacional, acaba
                             
 
                         </div>
+
+                        <!-- seccion para los tableros -->
+                        @if($product->id_product_type == 1)
                         <div class="form-group row mb-1">
                             <label for="inputEmail3" class="col-sm-12 col-form-label text-left"><strong>Descripción:</strong></label>
                             <div class="col-sm-12 text-justify">
@@ -148,6 +161,9 @@ content="Tablero melaminico hidrófugo y natural MDP importado y nacional, acaba
                                 <!-- <input disabled type="email" class="form-control" id="inputEmail3"> -->
                             </div>
                         </div>
+                        @endif
+                        <!-- fin seccion de tablero -->
+
                     </div>
                 </div>
 

@@ -41,6 +41,7 @@
         border: none;
         cursor: pointer;
         color: #8b171a;
+        display: flex;
     }
 
     #tags{
@@ -115,7 +116,7 @@ Nuevo Post
                     <div class="row form-group">
                         <div class="col-md-12">
                             <label class="text-black" for="title">Titulo<span>*</span></label> 
-                            <input maxlength="100" type="text" id="title" name="title" class="form-control">
+                            <input maxlength="100" type="text" id="title" name="title" value="{{ old('title') }}" class="form-control">
                             @error('title')
                                 <span class="invalid-field" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -128,7 +129,7 @@ Nuevo Post
                     <div class="row form-group">
                         <div class="col-md-12">
                             <label class="text-black" for="summary">Descripción<span>*</span></label> 
-                            <textarea maxlength="200" id="summary" name="summary" rows="2" class="form-control"></textarea>
+                            <textarea maxlength="200" id="summary" name="summary" rows="2" class="form-control">{{ old('summary') }}</textarea>
                             @error('summary')
                                 <span class="invalid-field" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -137,13 +138,11 @@ Nuevo Post
                         </div>
                     </div>
 
-                    
-
                     <!-- contenido -->
                     <div class="row form-group">
                         <div class="col-md-12">
                             <label class="text-black" for="content">Contenido<span>*</span></label> 
-                            <textarea id="content-wysiwyg" name="content-wysiwyg" rows="15" style="height:600px; width: 100%;" class="form-control"></textarea>
+                            <textarea id="content-wysiwyg" name="content-wysiwyg" rows="15" style="height:600px; width: 100%;" class="form-control">{{ old('content-wysiwyg') }}</textarea>
                             @error('content-wysiwyg')
                                 <span class="invalid-field" role="alert">
                                     <strong>{{ $message }}</strong>

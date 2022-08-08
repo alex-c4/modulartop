@@ -16,6 +16,18 @@ Lista de usuarios registrados en el sistema
 
 
 <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+
+            <button type="button" id="sidebarCollapse" class="btn btn-info ">
+                <!-- <i class="fas fa-align-left"></i> -->
+                <span class="icon-align-left"></span>
+                <!-- <span>Toggle Sidebar</span> -->
+            </button>
+
+        </div>
+    </nav>
+
 <!-- mensaje para la creacion de los post -->
     @if(isset($msgPost) != null)
         <div class="container">
@@ -28,6 +40,15 @@ Lista de usuarios registrados en el sistema
         </div>
     @endif
 
+
+    <form class="form-inline" method="POST" action="{{ route('user.searchUser') }}">
+        @csrf
+        <div class="form-group mx-sm-3 mb-2">
+            <label for="userName" class="sr-only">Usuario</label>
+            <input type="text" class="form-control" id="userName" name="userName" placeholder="Nombre" value="@if (isset($userName)){{ $userName }}@endif">
+        </div>
+        <button type="submit" class="btn btn-primary mb-2">Buscar</button>
+    </form>
 
     <table class="table table-hover">
         <thead>
@@ -60,6 +81,11 @@ Lista de usuarios registrados en el sistema
                         <form id="formUserInactive_{{ $user->id}}" action="{{ route('user.inactive_form', $user->id) }}" method="get">
                             {{ csrf_field() }}
                             <a href="#" title="Inactivar" onclick="document.getElementById('formUserInactive_{{ $user->id}}').submit()" class="m-1"><span class="icon-trash"></span></a>
+                        </form>
+                    @else
+                        <form id="formUserActive_{{ $user->id}}" action="{{ route('user.active_form', $user->id) }}" method="get">
+                            {{ csrf_field() }}
+                            <a href="#" title="Activar" onclick="document.getElementById('formUserActive_{{ $user->id}}').submit()" class="m-1"><span class="icon-check"></span></a>
                         </form>
                     @endif
                 </td>
@@ -107,6 +133,11 @@ Lista de usuarios registrados en el sistema
                         <form id="formUserInactive_{{ $user->id}}" action="{{ route('user.inactive_form', $user->id) }}" method="get">
                             {{ csrf_field() }}
                             <a href="#" title="Inactivar" onclick="document.getElementById('formUserInactive_{{ $user->id}}').submit()" class="m-3"><span class="icon-trash"></span></a>
+                        </form>
+                    @else
+                        <form id="formUserActive_{{ $user->id}}" action="{{ route('user.active_form', $user->id) }}" method="get">
+                            {{ csrf_field() }}
+                            <a href="#" title="Activar" onclick="document.getElementById('formUserActive_{{ $user->id}}').submit()" class="m-1"><span class="icon-check"></span></a>
                         </form>
                     @endif
                 </td>

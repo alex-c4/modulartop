@@ -12,13 +12,13 @@ $(function(){
         format: "yyyy-mm-dd",
         language: "en",
         autoclose: true,
-        startView: 2
+        startView: 0
     });
 
     $table = $('#purchase-table');
-    $table.bootstrapTable('destroy').bootstrapTable({
-        locale: "es-ES"
-    });
+    // $table.bootstrapTable('destroy').bootstrapTable({
+    //     locale: "es-ES"
+    // });
 
     // validacion de campo
     validator_purchase();
@@ -26,33 +26,38 @@ $(function(){
 });
 
 var validator_purchase = function(){
-    var validator = $("#form_savepurchase").validate({
-        rules:{
-            purchase_date:{
-                required: true
+    try {
+        var validator = $("#form_savepurchase").validate({
+            rules:{
+                purchase_date:{
+                    required: true
+                },
+                provider:{
+                    required: true
+                },
+                id_invoice:{
+                    required: true
+                }
             },
-            provider:{
-                required: true
+            messages: {
+                purchase_date: "Por favor seleccione la fecha de compra",
+                provider: "Por favor seleccione el proveedor",
+                id_invoice: "Por favor coloque el Id de factura"
             },
-            id_invoice:{
-                required: true
+            errorPlacement: function(error, element) {
+                FLAG_SEND = false;
+            },
+            submitHandler: function(form) {
+                $("#btnSave").prop("disabled", false);
+                form.submit();
             }
-        },
-        messages: {
-            purchase_date: "Por favor seleccione la fecha de compra",
-            provider: "Por favor seleccione el proveedor",
-            id_invoice: "Por favor coloque el Id de factura"
-        },
-        errorPlacement: function(error, element) {
-            FLAG_SEND = false;
-        },
-        submitHandler: function(form) {
-            $("#btnSave").prop("disabled", false);
-            form.submit();
-        }
-    });
+        });
+        
+        GLOBAL_VALIDATOR_PURCHASE = validator;
+    } catch (error) {
+        
+    }
 
-    GLOBAL_VALIDATOR_PURCHASE = validator;
 }
 
 var onclick_addProvider = function(){
@@ -236,14 +241,15 @@ $("#form_create_product").on("submit", function(ev){
             data = JSON.parse(result);
             if(data[0].result){
                 $("#productList").append("<option value='" + data[0].data[0].id + "'>(" + data[0].data[0].code + ") " + data[0].data[0].name + " " + data[0].data[0].width + "/" + data[0].data[0].thickness + "/" + data[0].data[0].length + "</option>")
+                $('.selectpicker').selectpicker('refresh');
                 resetField(_type);
             }
             
-            showAlert(data[0].result, data[0].msgPost);
+            showAlert(data[0].result, data[0].msgPost, 'message_alert-prod');
             
         })
         .fail(function(jqXHR, textStatus, errorThrown ){  
-            showAlert(false, "Hubo un error en la petición, por favor vuelva a intentarlo");
+            showAlert('', "Hubo un error en la petición, por favor vuelva a intentarlo", "message_alert-prod");
             $("#btnSaveProduct").prop("disabled", false);
             console.log(jqXHR.responseJSON.errors);
         })
@@ -274,28 +280,29 @@ var validationFormAddProduct = function(type){
 
 var clearFields = function(type){
     
-    var crr_arr = getArray(type);
-
-    crr_arr.forEach(function(item){
-        $("#" + item).removeClass("is-invalid");
-        $("#" + item + "-msg").css("display", "none");
-    });
+    try {
+        var crr_arr = getArray(type);
+    
+        crr_arr.forEach(function(item){
+            $("#" + item).removeClass("is-invalid");
+            $("#" + item + "-msg").css("display", "none");
+        });
+    } catch (error) {
+        
+    }
 
 }
 
 var getArray = function(type){
-    var crr_arr;
-
-    if(type == ""){
-        var crr_arr = JSON.parse( JSON.stringify( arr_default ) );
-    }
+    var crr_arr = [];
+    
     if(type == 1){
         var crr_arr = JSON.parse( JSON.stringify( arr_tablero ) );
-    }
-    if(type == 2){
+    }else if(type == 2){
         var crr_arr = JSON.parse( JSON.stringify( arr_tapacanto ) );
+    }else{
+        var crr_arr = JSON.parse( JSON.stringify( arr_default ) );
     }
-
     return crr_arr; 
 }
 
@@ -381,3 +388,14 @@ $("#sustratoModal").on("hide.bs.modal", function(event){
 $("#colorModal").on("hide.bs.modal", function(event){
     onclick_closeModal("", false);
 });
+
+var onclick_downloadpdf = function(){
+    var _startDate, _endDate;
+    _startDate = $("#purchase_date_start").val();
+    _endDate = $("#purchase_date_end").val();
+
+    $("#startDate").val(_startDate);
+    $("#endDate").val(_endDate);
+
+    $("#form_downloadpdf").trigger("submit");
+}

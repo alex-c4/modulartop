@@ -66,12 +66,18 @@ Creacion de nuevos productos
                         <div class="form-group row">
                             <label for="category" class="col-md-4 col-form-label text-md-right">Categoria<span>*</span></label>
                             <div class="col-md-6">
-                                <select class="form-control" id="category" name="category" autofocus >
-                                    <option value="">-Seleccione-</option>
-                                @foreach($product_categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                @endforeach
-                                </select>
+                                <div class="input-group" >
+                                    <select class="custom-select" id="category" name="category" autofocus >
+                                        <option value="">-Seleccione-</option>
+                                    @foreach($product_categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                    </select>
+                                    <div class="input-group-append">
+                                        <button style="height: 38px" id="btnAddCategory" data-toggle="modal" data-target="#categoryModal" title="Agregar nueva categoria" class="btn btn-primary" type="button"><span class="icon-add" style="color: white !important;"></span></button>
+                                    </div>
+                                </div>
+                                <div id="errorDivCategory"></div>
                             </div>
                         </div>
 
@@ -79,9 +85,15 @@ Creacion de nuevos productos
                         <div class="form-group row" id="div-types" style="display: none">
                             <label for="type" class="col-md-4 col-form-label text-md-right">Tipo<span>*</span></label>
                             <div class="col-md-6">
-                                <select class="form-control" id="type" name="type" >
-                                    <option value="">-Seleccione-</option>
-                                </select>
+                                <div class="input-group" >
+                                    <select class="custom-select" id="type" name="type" >
+                                        <option value="">-Seleccione-</option>
+                                    </select>
+                                    <div class="input-group-append">
+                                        <button style="height: 38px" id="btnAddCategory" data-toggle="modal" data-target="#typeModal" title="Agregar nueva categoria" class="btn btn-primary" type="button"><span class="icon-add" style="color: white !important;"></span></button>
+                                    </div>
+                                </div>
+                                <div id="errorDivType"></div>
                             </div>
                         </div>
 
@@ -97,9 +109,8 @@ Creacion de nuevos productos
                                         <button style="height: 38px" id="btnAddSubtype" data-toggle="modal" data-target="#subtypeModal" title="Agregar nuevo sub-tipo" class="btn btn-primary" type="button"><span class="icon-add" style="color: white !important;"></span></button>
                                     </div>
                                 </div>
-                                <span class="invalid-field" role="alert" id="error-subtype">
-                                    
-                                </span>
+                                <div id="errorDivSubtype"></div>
+                                <span class="invalid-field" role="alert" id="error-subtype"></span>
                             </div>
                         </div>
                         
@@ -176,6 +187,7 @@ Creacion de nuevos productos
                                         <button style="height: 38px" id="btnAddAcabado" data-toggle="modal" data-target="#acabadoModal" title="Agregar nuevo Acabado" class="btn btn-primary" type="button"><span class="icon-add" style="color: white !important;"></span></button>
                                     </div>
                                 </div>
+                                <div id="errorDivAcabado"></div>
                             </div>
                         </div>
 
@@ -267,6 +279,7 @@ Creacion de nuevos productos
                                         </span>
                                     @enderror
                                 </div>
+                                <div id="errorDivMaterial"></div>
                             </div>
                         </div>
 
@@ -291,6 +304,7 @@ Creacion de nuevos productos
                                         </span>
                                     @enderror
                                 </div>
+                                <div id="errorDivSustrato"></div>
                             </div>
                         </div>
 
@@ -315,6 +329,7 @@ Creacion de nuevos productos
                                         </span>
                                     @enderror
                                 </div>
+                                <div id="errorDivColor"></div>
                             </div>
                         </div>
                         
@@ -369,7 +384,11 @@ Creacion de nuevos productos
                                 <input maxlength="60" type="text" name="image_alt_1" id="image_alt_1" class="form-control mt-1" placeholder="Texto alternativo">
                             </div>
                         </div>
-                                               
+                        
+                        <div class="col-md-12 text-center mt-2">
+                            <div class="alert alert-warning" role="alert" id="msgInfoAddImg"></div>
+                        </div>
+
                         <div class="col-md-12 text-center mt-2" id="btnAddImage" name="btnAddImage">
                             <button type="button" class="btn btn-primary">
                                 Agregar campo imagen
@@ -394,6 +413,81 @@ Creacion de nuevos productos
 
 
 <!-- Modal section -->
+
+<!-- modal categoria -->
+<div class="modal fade" id="categoryModal" tabindex="-1" aria-labelledby="categoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+      
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar Categoria</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <input type="hidden" id="hRouteAddCategory" value="{{ route('product.addCategory') }}">
+
+                <div class="form-group">
+                    <label for="txtCategory">Nueva Categoria</label>
+                    <input type="text" class="form-control" id="txtCategory">
+                </div>
+
+                <div id="msgCategoryModal" name="msgCategoryModal" class="alert" role="alert"></div>
+            </div>
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="Utils.clearModal(['txtCategory'], 'msgCategoryModal')">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="onclick_addCategory()">Guardar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- modal tipo -->
+<div class="modal fade" id="typeModal" tabindex="-1" aria-labelledby="typeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+      
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar Tipo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <input type="hidden" id="hRouteAddType" value="{{ route('product.addType') }}">
+
+                <!-- categorias -->
+                <div class="form-group">
+                    <label for="modal_category_modal">Categorías</label>
+                    <select class="form-control" id="modal_category_modal" name="modal_category_modal">
+                        @foreach($product_categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="txtCategory">Nuevo Tipo</label>
+                    <input type="text" class="form-control" id="txtType" name="txtType">
+                </div>
+
+                <div id="msgTypeModal" name="msgTypeModal" class="alert" role="alert"></div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="Utils.clearModal(['txtType'], 'msgTypeModal')">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="onclick_addType()">Guardar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
 
 <!-- modal Subtipo -->
 <div class="modal fade" id="subtypeModal" tabindex="-1" aria-labelledby="subtypeModalLabel" aria-hidden="true">
@@ -633,9 +727,9 @@ Creacion de nuevos productos
     <script>
 
         $(function(){
-
+            $("#msgCategoryModal").hide();
             validator_default();
-
+            Utils.hideAlert("msgInfoAddImg");
 
         });
 

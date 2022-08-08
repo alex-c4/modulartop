@@ -10,6 +10,7 @@ use App\Purchase;
 use Carbon\Carbon;
 use Validator;
 use Utils;
+use PDF;
 
 class PurchaseController extends Controller
 {
@@ -31,7 +32,23 @@ class PurchaseController extends Controller
      */
     public function index()
     {
-        //
+        $purchases = DB::table('purchases as p')
+            ->select(
+                'p.id',
+                'p.purchase_date',
+                'pr.name as provider',
+                'p.id_invoice')
+            ->join('providers as pr', 'p.id_provider', '=', 'pr.id')
+            ->orderBy('p.purchase_date', 'DESC')
+            ->get();
+        $purchase_date_end = Carbon::now()->format('Y-m-d');
+        $purchase_date_start = '';
+        
+        return view('purchase.index', compact(
+            'purchases',
+            'purchase_date_end',
+            'purchase_date_start'
+        ));
     }
 
     /**
@@ -84,7 +101,6 @@ class PurchaseController extends Controller
      */
     public function store(Request $request)
     {
-
         $this->validatePurchase(request()->all())->validate();
         
         $msgPost = DB::transaction(function() use($request){
@@ -213,7 +229,25 @@ class PurchaseController extends Controller
      */
     public function show($id)
     {
-        //
+        $purchase = DB::table('purchases')->find($id);
+        $providers = DB::table("providers")->get();
+        $items = DB::table("purchase_items as pi")
+            ->select(
+                "pi.id",
+                "pi.cost",
+                "pi.quantity",
+                "p.name"
+            )
+            ->join("products as p", "pi.id_product", "=", "p.id")
+            ->join("purchases as pu", "pi.id_purchase", "=", "pu.id")
+            ->where("pu.id", "=", $id)
+            ->get();
+            
+        return view("purchase.show", compact(
+            'purchase',
+            'providers',
+            'items'
+        ));
     }
 
     /**
@@ -260,5 +294,63 @@ class PurchaseController extends Controller
             'provider' => 'required',
             'id_invoice' => 'required'
         ], $messages);
+    }
+
+    public function searchPurchase(Request $request)
+    {
+        $purchase_date_start = $request->input('purchase_date_start');
+        $purchase_date_end = $request->input('purchase_date_end');
+        
+        $purchases = $this->getPurchases($purchase_date_start, $purchase_date_end);
+
+        return view('purchase.index', compact(
+            'purchases',
+            'purchase_date_start',
+            'purchase_date_end'
+        ));
+    }
+
+    public function downloadpurchase(Request $request)
+    {
+        $purchase_date_start = $request->input("startDate");
+        $purchase_date_end = $request->input("endDate");
+        
+        $purchases = $this->getPurchases($purchase_date_start, $purchase_date_end);
+        
+        $pdf = PDF::loadView('purchase.pdf.downloadpurchases', ["purchases" => $purchases]);
+        return $pdf->download('compras-modular-top.pdf');
+
+    }
+
+    public function getPurchases($purchase_date_start, $purchase_date_end)
+    {
+        $purchases = [];
+        if($purchase_date_start == null){
+            $purchases = DB::table('purchases as p')
+                ->select(
+                    'p.id',
+                    'p.purchase_date',
+                    'pr.name as provider',
+                    'p.id_invoice',
+                    'p.observations')
+                ->join('providers as pr', 'p.id_provider', '=', 'pr.id')
+                ->where('p.purchase_date', "<=", $purchase_date_end)
+                ->get();
+        }
+
+        if($purchase_date_start != null && $purchase_date_end != null){
+            $purchases = DB::table('purchases as p')
+                ->select(
+                    'p.id',
+                    'p.purchase_date',
+                    'pr.name as provider',
+                    'p.id_invoice',
+                    'p.observations')
+                ->join('providers as pr', 'p.id_provider', '=', 'pr.id')
+                ->whereBetween('p.purchase_date', [$purchase_date_start, $purchase_date_end])
+                ->get();
+        }
+
+        return $purchases;
     }
 }

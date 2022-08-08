@@ -74,10 +74,10 @@ Información registrada del usuario
 
                                 <!-- Direccion del cilente -->
                                 <div class="form-group row">
-                                    <label for="clientAddress" class="col-md-4 col-form-label text-md-right">Dirección</label>
+                                    <label for="clientAddress" class="col-md-4 col-form-label text-md-right">Dirección estoy aqui</label>
 
                                     <div class="col-md-6">
-                                        <textarea disabled class="form-control" id="clientAddress" name="clientAddress" rows="3">{{ $user->address }}</textarea>
+                                        <textarea disabled class="form-control" id="clientAddress" name="clientAddress" rows="3" >{{ $user->address }}</textarea>
                                     </div>
                                 </div>
 

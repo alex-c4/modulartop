@@ -49,6 +49,13 @@ Imágenes del proyecto
 
     @else
 
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        El proyecto a sido creado satisfactoriamente, ahora proceda a cargar las imágenes de la galería.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="card">
@@ -113,7 +120,7 @@ Imágenes del proyecto
                         
                         <div class="form-group row mb-1 mt-3">
                             <div class="col-md-6 offset-md-4">
-                                <a href="{{ route('project.create') }}" class="btn btn-primary">Aceptar</a>
+                                <a href="{{ route('project.create_3') }}" class="btn btn-primary">Aceptar</a>
                             </div>
                         </div>
 

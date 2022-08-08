@@ -38,7 +38,7 @@ content="Tablero melaminico hidrófugo y natural MDP importado y nacional, acaba
                         <a href="{{ route('tablero.description', $product->id) }}" class="btn btn-primary">
                             <span class="icon-arrow-left"></span>
                             Volver
-</a>
+                        </a>
                     </p>
                 </div>
             </div>
@@ -50,11 +50,7 @@ content="Tablero melaminico hidrófugo y natural MDP importado y nacional, acaba
             <li><a href=""><img src="{{ asset('images/image_products') }}/{{ $image->name }}" alt="" /></a></li>
         @endforeach
 
-            <!-- <li><a href="{{ url('/fabricacion') }}"><img src="{{ asset('images/fabricacion/fabricacion-habitacion-1.jpg') }}" alt="Asesoría y desarrollo de proyectos de fabricación de mobiliarios para habitaciones, diseño, interiores, arquitectura, ingeniería civil, construcción, hoteles, restaurantes" /></a></li>
-            <li><a href="{{ url('/fabricacion') }}"><img src="{{ asset('images/fabricacion/fabricacion-cocina-2.jpg') }}" alt="Asesoría y desarrollo de proyectos de fabricación de mobiliarios para cocina, diseño, interiores, arquitectura, ingeniería civil, construcción, hoteles, restaurantes" /></a></li>
-            <li><a href="{{ url('/fabricacion') }}"><img src="{{ asset('images/fabricacion/fabricacion-habitacion-2.jpg') }}" alt="Asesoría y desarrollo de proyectos de fabricación de mobiliarios para habitaciones, diseño, interiores, arquitectura, ingeniería civil, construcción, hoteles, restaurantes" /></a></li>
-            <li><a href="{{ url('/fabricacion') }}"><img src="{{ asset('images/fabricacion/fabricacion-mobiliario.jpg"') }} alt="Asesoría y desarrollo de proyectos de fabricación de mobiliarios para habitaciones, diseño, interiores, arquitectura, ingeniería civil, construcción, hoteles, restaurantes" /></a></li> -->
-                
+               
         </ul>
 
     </div>

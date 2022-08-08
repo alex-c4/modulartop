@@ -58,7 +58,7 @@ class SaleController extends Controller
             ->get();
 
         $orders = $this->getOrderByEstatus(3);
-
+        
         foreach ($orders as $value) {
             $_arr = explode(" ", $value->orderSaleCreatedAt);
             $value->orderSaleCreatedAt = $_arr[0];  

@@ -36,8 +36,11 @@ content="Tablero melaminico hidrófugo y natural MDP importado y nacional, acaba
           </div>
         </div>
 
-        @foreach($IDsToGroup as $item)
-        
+        @if(count($IDsToGroupTableros) > 0)
+          <h4>Tableros</h4>
+          <hr>
+          <!-- mostrar primero tableros "id_product_type 1=tableros; 2=tapacanto" -->
+          @foreach($IDsToGroupTableros as $item)
             <div class="row mb-5">
                 <div class="col-md-12 text-left">
                     <h3 class="section-title mb-3">{{ $item["name"] }}</h3>
@@ -46,32 +49,51 @@ content="Tablero melaminico hidrófugo y natural MDP importado y nacional, acaba
             </div>
 
             <div class="row large-gutters">
-
-                @foreach($products as $product)
-                    @if($product->id_subcategory_color == $item["id"])
-                        <div class="col-md-6 col-lg-3 mb-5 mb-lg-5 ">
-                            <div class="ftco-media-1">
-                                <div class="ftco-media-1-inner">
-                                    <img src="{{ asset('images/image_products') }}/{{ $product->img_product }}" alt="{{ $product->description_product }}" class="img-fluid">
-                                    <div class="ftco-media-details">
-                                        <h3><BR>{{ $product->name_product }}</h3>
-                                        <p><a href="{{ route('tablero.description', $product->id_product) }}">Ver más</a></p>
-
-                                        <!-- <strong>BLANCO 100</strong>-->
-                                    </div>
-                                </div> 
+                @foreach($products_tableros as $product)
+                    @if($product->id_subcategory_color == $item["id"] && $product->id_product_type==1)
+                      <div class="col-md-6 col-lg-3 mb-5 mb-lg-5 ">
+                        <div class="ftco-media-1">
+                          <div class="ftco-media-1-inner">
+                            <img src="{{ asset('images/image_products') }}/{{ $product->img_product }}" alt="{{ $product->description_product }}" class="img-fluid">
+                            <div class="ftco-media-details">
+                              <h3><BR>{{ $product->name_product }}</h3>
+                              <p><a href="{{ route('tablero.description', $product->id_product) }}">Ver más</a></p>
+                              <!-- <strong>BLANCO 100</strong>-->
                             </div>
+                          </div> 
                         </div>
+                      </div>
                     @endif
-
                 @endforeach
-
             </div>
 
+          @endforeach
+        @endif
 
-        @endforeach
-
-
+        <!-- Tapacantos -->
+        @if(count($products_tapacantos) > 0)
+          <h4>Tapacantos</h4>
+          <hr>
+          <!-- Luego mostrar los tapacantos "id_product_type 1=tableros; 2=tapacanto" -->
+          <div class="row large-gutters">
+            @foreach($products_tapacantos as $product)
+              @if($product->id_product_type==2)
+                <div class="col-md-6 col-lg-3 mb-5 mb-lg-5 ">
+                  <div class="ftco-media-1">
+                    <div class="ftco-media-1-inner">
+                      <img src="{{ asset('images/image_products') }}/{{ $product->img_product }}" alt="{{ $product->description_product }}" class="img-fluid">
+                      <div class="ftco-media-details">
+                        <h3><BR>{{ $product->name_product }}</h3>
+                        <p><a href="{{ route('tablero.description', $product->id_product) }}">Ver más</a></p>
+                        <!-- <strong>BLANCO 100</strong>-->
+                      </div>
+                    </div> 
+                  </div>
+                  </div>
+              @endif
+            @endforeach
+          </div>
+        @endif
 
       </div>
     </div>

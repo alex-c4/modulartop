@@ -11,6 +11,9 @@
             text-decoration: underline;
         }
     </style>
+
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-select.min.css') }}">   
+
 @endsection
 
 
@@ -95,7 +98,7 @@ Creacion de venta
 
                         <!-- Fecha de venta -->
                         <div class="form-group row">
-                            <label for="sale_date" class="col-lg-4 col-form-label text-lg-right">Fecha de venta<span>*</span></label>
+                            <label for="sale_date" class="col-lg-4 col-form-label text-lg-right">Fecha de venta<span class="asterisco">*</span></label>
                             <div class="col-lg-6">
                                 <input id="sale_date" name="sale_date" autocomplete="off" type="text" class="form-control @error('sale_date') is-invalid @enderror" value="{{ old('sale_date') }}" required>
 
@@ -104,16 +107,17 @@ Creacion de venta
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                                <div id="errorDivSaleDate"></div>
                             </div>
                         </div>
 
                         <!-- Cliente -->
                         <div class="form-group row">
-                            <label for="client" class="col-md-4 col-form-label text-md-right">Cliente<span>*</span></label>
+                            <label for="client" class="col-md-4 col-form-label text-md-right">Cliente<span class="asterisco">*</span></label>
                             <div class="col-md-6">
                                 <div class="input-group" >
                                     <select class="custom-select @error('client') is-invalid @enderror" id="client" name="client" required>
-                                        <option value="0">-Seleccione-</option>
+                                        <option value="">-Seleccione-</option>
                                         @foreach($clients as $client)
                                         <option value="{{ $client->id }}">{{ $client->name }} {{ $client->lastName }}</option>
                                         @endforeach
@@ -128,20 +132,21 @@ Creacion de venta
                                         </span>
                                     @enderror
                                 </div>
+                                <div id="errorDivClient"></div>
                             </div>
                         </div>
                         
                         <!-- Id de la factura de la venta -->
                         <div class="form-group row">
-                            <label for="invoice_sale" class="col-lg-4 col-form-label text-lg-right">Id factura<span>*</span></label>
+                            <label for="invoice_sale" class="col-lg-4 col-form-label text-lg-right">Id factura<span class="asterisco">*</span></label>
                             <div class="col-lg-6">
                                 <input maxlength="30" id="invoice_sale" name="invoice_sale" autocomplete="off" type="text" class="form-control @error('invoice_sale') is-invalid @enderror" value="{{ old('invoice_sale') }}" required>
-
                                 @error('invoice_sale')
                                     <span class="invalid-field" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                                <div id="errorDivInvoceSale"></div>
                             </div>
                         </div>
 
@@ -151,12 +156,10 @@ Creacion de venta
                             <div class="col-md-6">
                                 <select class="form-control" id="id_order_sale" name="id_order_sale" >
                                     <option value="0">Seleccione...</option>
-                                    
                                 </select>
-
                             </div>
                         </div>
-
+                            
                         <!-- Descripcion -->
                         <div class="row form-group">
                             <label for="observations" class="col-md-4 col-form-label text-md-right">Descripción</label>
@@ -184,15 +187,17 @@ Creacion de venta
                             <!-- Productos -->
                             <div class="form-group col-md-10">
                                 <label for="productList">Producto</label>
-                                <select class="custom-select" id="productList" name="productList" onchange="onchage_product(this)">
-                                    <option value="0" selected>Seleccione...</option>
-                                    @foreach($products as $product)
-                                        <option value="{{ $product->id }}">({{ $product->code }}) {{ $product->name}} - {{ $product->width }}/{{ $product->thickness }}/@if($product->length != "") {{ $product->length }} @else 0 @endif</option>
-                                    @endforeach
-                                </select>
-                                <small class="form-text text-muted">(Código) Nombre - Ancho/Espesor/Largo</small>
+                                <div class="input-group">
+                                    <select id="productList" name="productList" class="selectpicker form-control custom-select" data-live-search="true" onchange="onchage_product(this)">
+                                        <option value="0" selected>Seleccione...</option>
+                                        @foreach($products as $product)
+                                            <option value="{{ $product->id }}">({{ $product->code }}) {{ $product->name}} - {{ $product->width }}/{{ $product->thickness }}/@if($product->length != "") {{ $product->length }} @else 0 @endif</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
                         </div>
+
 
                         <div class="form-row col-12 mb-3">
                             <label>&nbsp;</label>
@@ -216,6 +221,9 @@ Creacion de venta
                             </tbody>
                         </table>
 
+                        <div id="message_alert-2" class="alert alert-primary" role="alert">
+                        </div>
+                        
                         <div class="form-group row mb-1 mt-3">
                             <div class="col-md-6 offset-md-4">
                                 <button type="button" class="btn btn-primary" id="btnSave" name="btnSave">
@@ -423,7 +431,7 @@ Creacion de venta
                     </div>
 
                     <!-- Mensaje de respuesta de la operación -->
-                    <div id="message_alert" class="m-1">
+                    <div id="message_alert_client" class="m-1">
                     </div>
 
                     <div class="modal-footer">
@@ -453,8 +461,15 @@ Creacion de venta
     
     <script src="{{ asset('js/sale.js') }}?v={{ env('APP_VERSION', '1') }}"></script>
 
+    <script src="{{ asset('js/bootstrap-select.min.js') }}"></script>
+
     <script>
+
         var order_sales = @json($orders);
+        $(function(){
+            Utils.hideAlert("message_alert-2");
+        });    
+
     </script>
 
 @endsection

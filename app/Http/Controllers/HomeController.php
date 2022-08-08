@@ -32,7 +32,7 @@ class HomeController extends Controller
         $usersToValidate = Utils::getUsersToValidate(); 
         $total = count($usersToValidate);
 
-        // Búsqueda de nuevas ordedes de compra donde el status sea 2=inicial
+        // Búsqueda de nuevas ordenes de compra donde el status sea 2=inicial
         $orders = DB::table("order_sales as os")
             ->select("u.name as userName", "u.lastName as userLastName", "os.id", "os.created_at", "os.status")
             ->join("users as u", "u.id", "=", "os.id_user", "inner", false )

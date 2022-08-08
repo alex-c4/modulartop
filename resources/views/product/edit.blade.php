@@ -57,19 +57,38 @@ Edición de producto
                         <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
                         <input type="hidden" name="hUrlDeleteImage" id="hUrlDeleteImage" value="{{ route('product.deleteimg') }}">
 
+                        <!-- precio -->
+                        <div class="form-group row">
+                            <label for="cost" class="col-md-4 col-form-label text-md-right">P.V.P<span>*</span></label>
+                            <div class="col-md-6">
+                                <input type="number" class="form-control" id="cost" name="cost" min="0" value="{{ $product->price }}">
+                                @error('cost')
+                                    <span class="invalid-field" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
                         <!-- Categoria -->
                         <div class="form-group row">
                             <label for="category" class="col-md-4 col-form-label text-md-right">Categoria<span>*</span></label>
                             <div class="col-md-6">
-                                <select class="form-control" id="category" name="category" autofocus >
-                                @foreach($product_categories as $category)
-                                    @if($category->id == $product->id_product_category)
-                                        <option selected value="{{ $category->id }}">{{ $category->name }}</option>
-                                    @else
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                    @endif
-                                @endforeach
-                                </select>
+                                <div class="input-group" >
+                                    <select class="custom-select" id="category" name="category" autofocus >
+                                    @foreach($product_categories as $category)
+                                        @if($category->id == $product->id_product_category)
+                                            <option selected value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @else
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @endif
+                                    @endforeach
+                                    </select>
+                                    <div class="input-group-append">
+                                        <button style="height: 38px" id="btnAddCategory" data-toggle="modal" data-target="#categoryModal" title="Agregar nueva categoria" class="btn btn-primary" type="button"><span class="icon-add" style="color: white !important;"></span></button>
+                                    </div>
+                                </div>
+                                <div id="errorDivCategory"></div>
                             </div>
                         </div>
 
@@ -77,15 +96,21 @@ Edición de producto
                         <div class="form-group row">
                             <label for="type" class="col-md-4 col-form-label text-md-right">Tipo<span>*</span></label>
                             <div class="col-md-6">
-                                <select class="form-control" id="type" name="type">
-                                @foreach($product_types as $type)
-                                    @if($type->id == $product->id_product_type)
-                                        <option selected value="{{ $type->id }}">{{ $type->name }}</option>
-                                    @else
-                                        <option value="{{ $type->id }}">{{ $type->name }}</option>
-                                    @endif
-                                @endforeach
-                                </select>
+                                <div class="input-group" >
+                                    <select class="custom-select" id="type" name="type">
+                                    @foreach($product_types as $type)
+                                        @if($type->id == $product->id_product_type)
+                                            <option selected value="{{ $type->id }}">{{ $type->name }}</option>
+                                        @else
+                                            <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                        @endif
+                                    @endforeach
+                                    </select>
+                                    <div class="input-group-append">
+                                        <button style="height: 38px" id="btnAddCategory" data-toggle="modal" data-target="#typeModal" title="Agregar nueva categoria" class="btn btn-primary" type="button"><span class="icon-add" style="color: white !important;"></span></button>
+                                    </div>
+                                </div>
+                                <div id="errorDivType"></div>
                             </div>
                         </div>
 
@@ -109,6 +134,7 @@ Edición de producto
                                         <button style="height: 38px" id="btnAddSubtype" data-toggle="modal" data-target="#subtypeModal" title="Agregar nuevo sub-tipo" class="btn btn-primary" type="button"><span class="icon-add" style="color: white !important;"></span></button>
                                     </div>
                                 </div>
+                                <div id="errorDivSubtype"></div>
                                 <span class="invalid-field" role="alert" id="error-subtype">
                                     
                                 </span>
@@ -174,6 +200,7 @@ Edición de producto
                             <div class="col-md-6">
                                 <div class="input-group" >
                                     <select class="custom-select" id="acabado" name="acabado">
+                                        <option value="">-Seleccione-</option>
                                         @foreach($product_acabados as $acabado)
                                             @if($acabado->id == $product->id_product_acabado)
                                                 <option selected value="{{ $acabado->id }}">{{ $acabado->name }}</option>
@@ -186,6 +213,7 @@ Edición de producto
                                         <button style="height: 38px" id="btnAddAcabado" data-toggle="modal" data-target="#acabadoModal" title="Agregar nuevo Acabado" class="btn btn-primary" type="button"><span class="icon-add" style="color: white !important;"></span></button>
                                     </div>
                                 </div>
+                                <div id="errorDivAcabado"></div>
                             </div>
                         </div>
 
@@ -288,6 +316,7 @@ Edición de producto
                                         </span>
                                     @enderror
                                 </div>
+                                <div id="errorDivMaterial"></div>
                             </div>
                         </div>
 
@@ -315,6 +344,7 @@ Edición de producto
                                         </span>
                                     @enderror
                                 </div>
+                                <div id="errorDivSustrato"></div>
                             </div>
                         </div>
 
@@ -342,6 +372,7 @@ Edición de producto
                                         </span>
                                     @enderror
                                 </div>
+                                <div id="errorDivColor"></div>
                             </div>
                         </div>
                         
@@ -422,6 +453,11 @@ Edición de producto
                                 <input type="file" id="image_1" name="image_1" accept="image/png, image/jpeg, image/jpg" class="form-control mt-2" placeholder="Imagen"> 
                                 <input maxlength="60" type="text" name="image_alt_1" id="image_alt_1" class="form-control mt-1" placeholder="Texto alternativo">
                             </div>
+
+                            <div class="col-md-12 text-center mt-2">
+                                <div class="alert alert-warning" role="alert" id="msgInfoAddImg"></div>
+                            </div>
+
                             <div class="col-md-12 text-center mt-2" id="btnAddImage" name="btnAddImage">
                                 <button type="button" class="btn btn-primary">
                                     Agregar campo imagen
@@ -446,6 +482,81 @@ Edición de producto
 
 
 <!-- Modal section -->
+
+<!-- modal categoria -->
+<div class="modal fade" id="categoryModal" tabindex="-1" aria-labelledby="categoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+      
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar Categoria</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <input type="hidden" id="hRouteAddCategory" value="{{ route('product.addCategory') }}">
+
+                <div class="form-group">
+                    <label for="txtCategory">Nueva Categoria</label>
+                    <input type="text" class="form-control" id="txtCategory">
+                </div>
+
+                <div id="msgCategoryModal" name="msgCategoryModal" class="alert" role="alert"></div>
+            </div>
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="Utils.clearModal(['txtCategory'], 'msgCategoryModal')">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="onclick_addCategory()">Guardar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- modal tipo -->
+<div class="modal fade" id="typeModal" tabindex="-1" aria-labelledby="typeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+      
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar Tipo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <input type="hidden" id="hRouteAddType" value="{{ route('product.addType') }}">
+
+                <!-- categorias -->
+                <div class="form-group">
+                    <label for="modal_category_modal">Categorías</label>
+                    <select class="form-control" id="modal_category_modal" name="modal_category_modal">
+                        @foreach($product_categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="txtCategory">Nuevo Tipo</label>
+                    <input type="text" class="form-control" id="txtType" name="txtType">
+                </div>
+
+                <div id="msgTypeModal" name="msgTypeModal" class="alert" role="alert"></div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="Utils.clearModal(['txtType'], 'msgTypeModal')">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="onclick_addType()">Guardar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
 
 <!-- modal para agregar nuevo subtipo -->
 <div class="modal fade" id="subtypeModal" tabindex="-1" aria-labelledby="subtypeModalLabel" aria-hidden="true">
@@ -687,7 +798,7 @@ Edición de producto
         GLOBAL_URL = "{{ asset('images/image_products') }}";
         GLOBAL_PRODUCT_NAME = "{{ $product->name }}";
 
-        @if($product->id_product_type == 2)
+        @if($product->id_product_type != 1)
             // Ocultar secciones cuando es Tapacanto
             hideTableroSections();
 
@@ -712,6 +823,10 @@ Edición de producto
             
         // mostrar formulario
         $(".card").show("slow");
+
+        $("#msgCategoryModal").hide();
+
+        Utils.hideAlert("msgInfoAddImg");
 
     });
 

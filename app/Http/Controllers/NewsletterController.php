@@ -63,8 +63,26 @@ class NewsletterController extends Controller
      */
     public function store(Request $request)
     {
+        
+        $request->validate([
+            'title' => 'required',
+            'summary' => 'required',
+            'content-wysiwyg' => 'required',
+            'category' => 'required',
+            'name_img' => 'required|image|mimes:jpeg,png,jpg'
+        ],
+        [
+            'title.required' => 'El título es requerido',
+            'summary.required' => 'La descripción es requerida',
+            'content-wysiwyg.required' => 'El contenido es requerido',
+            'category.required' => 'La categoria es requerida',
+            'name_img.required' => 'Debe seleccionar una imagen',
+            'name_img.image' => 'El archivo seleccionado debe ser una imagen',
+            'name_img.mimes' => 'La imagen debe contener alguna de estas extensiones jpeg | png | jpg'
+        ]);
+
+        
         try {
-            $this->validateNewsletter(true, request()->all())->validate();
             
             $file = $request->file('name_img');
             $fileName = Carbon::now()->format('Y-m-d_Hi') ."_". $file->getClientOriginalName();
@@ -175,9 +193,12 @@ class NewsletterController extends Controller
             ->join("tags", "tags.id", "=", "newsletter_tags.id_tag", "inner", false)
             ->select("newsletter_tags.id_tag  as value", "tags.name as text")
             ->where("id_newsletter", "$id")->get();
+        // $tags = implode(",", $tags);
+        $tags = (count($tags) > 0) ? $tags : '';
+        // dd($tags);
         // $_tags = [];
         // foreach ($tags as $value) {
-        //     array_push($_tags, $value->id_tag);
+        //     array_push($_tags, $value->value);
         // }
         // $tags = implode(",", $_tags);
         // dd($tags);
@@ -196,13 +217,33 @@ class NewsletterController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'title' => 'required',
+            'summary' => 'required',
+            'content-wysiwyg' => 'required',
+            'category' => 'required',
+        ],
+        [
+            'title.required' => 'El título es requerido',
+            'summary.required' => 'La descripción es requerida',
+            'content-wysiwyg.required' => 'El contenido es requerido',
+            'category.required' => 'La categoria es requerida',
+        ]);
+        
         $file = $request->file('name_img');
 
         if($file != null){
+            $request->validate([
+                'name_img' => 'image|mimes:jpeg,png,jpg'
+            ],
+            [
+                'name_img.image' => 'El archivo seleccionado debe ser una imagen',
+                'name_img.mimes' => 'La imagen debe contener alguna de estas extensiones jpeg | png | jpg'
+            ]);
             $fileName = Carbon::now()->format('Y-m-d_Hi') ."_". $file->getClientOriginalName();
         }
 
-        $this->validateNewsletter(false, request()->all())->validate();
+        // $this->validateNewsletter(false, request()->all())->validate();
 
         $user_id = auth()->user()->id; 
 
@@ -234,10 +275,11 @@ class NewsletterController extends Controller
         $newsletters = $this->getNewslettersByUser($rollId, $userId);
         
         $tagIDs = $request->input("HiddenFielTag");
+        // dd($tagIDs);
         DB::table("newsletter_tags")
             ->where("id_newsletter", "=", $id)
             ->delete();
-        if($tagIDs != ""){
+        if($tagIDs != "" || $tagIDs != null){
             $arrIDs = explode(",", $tagIDs);
             foreach ($arrIDs as $value) {
                 DB::table("newsletter_tags")->insert([
@@ -317,30 +359,30 @@ class NewsletterController extends Controller
         return view('newsletter.index', compact('newsletters', 'msgPost'));
     }
 
-    public function validateNewsletter($isNew, array $data){
-        $messages = [
-            'required' => 'El campo es requerido.'
-        ];
+    // public function validateNewsletter($isNew, array $data){
+    //     $messages = [
+    //         'required' => 'El campo es requerido.'
+    //     ];
 
-        if($isNew){
-            return Validator::make($data, [
-                'title' => 'required|string',
-                'summary' => 'required',
-                'content-wysiwyg' => 'required|string',
-                'category' => 'required',
-                'name_img' => 'required'
-            ], $messages);
-        }else{
-            return Validator::make($data, [
-                'title' => 'required|string',
-                'summary' => 'required',
-                'content-wysiwyg' => 'required|string',
-                'category' => 'required'
-            ], $messages);
-        }
+    //     if($isNew){
+    //         return Validator::make($data, [
+    //             'title' => 'required|string',
+    //             'summary' => 'required',
+    //             'content-wysiwyg' => 'required|string',
+    //             'category' => 'required',
+    //             'name_img' => 'required'
+    //         ], $messages);
+    //     }else{
+    //         return Validator::make($data, [
+    //             'title' => 'required|string',
+    //             'summary' => 'required',
+    //             'content-wysiwyg' => 'required|string',
+    //             'category' => 'required'
+    //         ], $messages);
+    //     }
 
 
-    }
+    // }
 
     public function getCategories($isDeleted){
         return DB::table('categories')

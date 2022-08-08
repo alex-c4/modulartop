@@ -639,5 +639,13 @@ DELIMITER ;
 
 
 
+ALTER TABLE `contacts` 
+ADD `whatsapp` VARCHAR(60) NULL AFTER `form`, 
+ADD `linkedin` VARCHAR(60) NULL AFTER `whatsapp`, 
+ADD `facebook` VARCHAR(60) NULL AFTER `linkedin`, 
+ADD `instagram` VARCHAR(60) NULL AFTER `facebook`, 
+ADD `pinterest` VARCHAR(60) NULL AFTER `instagram`;
+
+
 
 

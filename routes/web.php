@@ -30,8 +30,12 @@ Route::post('userValidationUpdateFromHome', ['as' => 'userValidation.updateFromH
 Route::get('userClient/create', ["as" => "userClient.create", "uses" => "Auth\ValidationUserClientController@create"]);
 Route::post('userCliente/store', ["as" => "userClient.store", "uses" => "Auth\ValidationUserClientController@store"]);
 Route::get('user/showUser', ["as" => "user.showUser", "uses" => "Auth\ValidationUserClientController@showUser"]);
+Route::get('user/edit_from_table/{id}', 'UserController@edit_from_table')->name('user/edit_from_table');
+Route::get('user/update/{id}', 'UserController@update')->name('user/update');
+Route::post('user/searchUser', ["as" => "user.searchUser", "uses" => "Auth\ValidationUserClientController@searchUser"]);
 Route::post('user/read/{id}', ["as" => "user.read", "uses" => "Auth\ValidationUserClientController@read"]);
 Route::get('user/inactive/{id}', ["as" => "user.inactive_form", "uses" => "Auth\ValidationUserClientController@inactive_form"]);
+Route::get('user/active/{idUser}', ["as" => "user.active_form", "uses" => "Auth\ValidationUserClientController@active"]);
 Route::post('user/inactive', ["as" => "user.inactive", "uses" => "Auth\ValidationUserClientController@inactive"]);
 Route::post('userCliente/storeAjax', ["as" => "userClient.storeAjax", "uses" => "Auth\ValidationUserClientController@storeAjax"]);
 
@@ -125,6 +129,7 @@ Route::post("product/update/{id}", ["as" => "product.update", "uses" => "Product
 Route::get("product/delete/{id}", ["as" => "product.delete", "uses" => "ProductController@delete"]);
 Route::get("product/restore/{id}", ["as" => "product.restore", "uses" => "ProductController@restore"]);
 Route::get("product/show/{id}", ["as" => "product.show", "uses" => "ProductController@show"]);
+Route::post("product/searchProduct", ["as" => "product.searchProduct", "uses" => "ProductController@searchProduct"]);
 
 // Ficha tecnica
 Route::get("fichaTecnica/uploadFichaTecnica", ["as" => "fichaTecnica.uploadFichaTecnica", "uses" => "FichaTecnicaController@showFormFichaTecnica"]);
@@ -140,6 +145,10 @@ Route::post("fichaTecnica/storeFichaTecnica", ["as" => "fichaTecnica.storeFichaT
 //Compras - Purchase
 Route::get("purchase/create", ["as" => "purchase.create", "uses" => "PurchaseController@create"]);
 Route::post("purchase/store", ["as" => "purchase.store", "uses" => "PurchaseController@store"]);
+Route::get("purchase/index", "PurchaseController@index")->name("purchase.index");
+Route::post("purchase/index", "PurchaseController@searchPurchase")->name("purchase.searchPurchase");
+Route::get("purchase/show/{id}", "PurchaseController@show")->name("purchase.show");
+Route::post("purchase/downloadpurchase", "PurchaseController@downloadpurchase")->name("purchase.downloadpurchase");
 
 // Ventas - Sales
 Route::get("sale/create", ["as" => "sale.create", "uses" => "SaleController@create"]);
@@ -171,6 +180,7 @@ Route::post("ordersale/processFromHome", ["as" => "ordersale.processFromHome", "
 
 // Poyectos - Project
 Route::get("project/create", ["as" => "project.create", "uses" => "ProjectController@create"]);
+Route::get("project/create_3", ["as" => "project.create_3", "uses" => "ProjectController@create_3"]);
 // Route::get("project/create_2", ["as" => "project.create_2", "uses" => "ProjectController@create_2"]);
 Route::post("project/store", ["as" => "project.store", "uses" => "ProjectController@store"]);
 Route::post("project/update/{id}", ["as" => "project.update", "uses" => "ProjectController@update"]);
@@ -212,6 +222,8 @@ Route::post("product/addSubacabado", ["as" => "product.addSubacabado", "uses" =>
 Route::post("product/addMaterial", ["as" => "product.addMaterial", "uses" => "ProductController@addMaterial"]);
 Route::post("product/addSustrato", ["as" => "product.addSustrato", "uses" => "ProductController@addSustrato"]);
 Route::post("product/addColor", ["as" => "product.addColor", "uses" => "ProductController@addColor"]);
+Route::post("product/addCategory", "ProductController@addCategory")->name("product.addCategory");
+Route::post("product/addType", "ProductController@addType")->name("product.addType");
 
 // Images-link
 Route::post("newsletter/uploadimage", ["as" => "newsletter.uploadimage", "uses" => "NewsletterController@uploadimage"]);

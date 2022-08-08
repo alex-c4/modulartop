@@ -34,6 +34,15 @@ class ProductController extends Controller
         return view('product.index', compact("products"));
     }
 
+    public function searchProduct(Request $request){
+        $productName = request()->productName;
+
+        $products = $this->getProducts($productName);
+            
+        return view('product.index', compact("products", "productName"));
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -168,10 +177,7 @@ class ProductController extends Controller
                     "created_by" => auth()->user()->id,
                     "updated_at" => Carbon::now()
                 ]);
-            }
-
-            // Tapacanto
-            if($type == 2){
+            }else{
                 $product = Product::create([
                     "id_product_category" => $request->input("category"),
                     "id_product_type" => $request->input("type"),
@@ -179,6 +185,8 @@ class ProductController extends Controller
                     "code" => $request->input("code"),
                     "name" => $request->input("name"),
                     "id_product_origen" => $request->input("origen"),
+                    "id_product_acabado" => $request->input("acabado"),
+                    "id_product_subacabado" => $request->input("sub_acabado"),
                     "width" => $request->input("width"),
                     "thickness" => $request->input("thickness"),
                     "img_product" => "",
@@ -188,7 +196,6 @@ class ProductController extends Controller
                     "updated_at" => Carbon::now()
                 ]);
             }
-
     
             // Registro de imagenes subidas
             $cycles = 50;
@@ -249,7 +256,7 @@ class ProductController extends Controller
     }
 
     public function aumentarInventario($cantinit, $id_product){
-        if($cantinit > 0 || $cantinit != ""){
+        if($cantinit >= 0 || $cantinit != ""){
             $inventory = DB::table("inventory")->where("id_product", $id_product)->first();
             if($inventory == null){
                 DB::table("inventory")->insert([
@@ -364,8 +371,9 @@ class ProductController extends Controller
         $result = DB::transaction(function() use($request, $type, $id){
             $product = Product::find($id);
 
-            // Tableros
-            if($type == 1) {
+            
+            if($type == 1) { // Tablero
+                $product->price = $request->input("cost");
                 $product->id_product_category = $request->input("category");
                 $product->id_product_type = $request->input("type");
                 $product->id_product_subtype = $request->input("subtype");
@@ -383,20 +391,22 @@ class ProductController extends Controller
                 $product->description = $request->input("description");
                 $product->img_alt = $request->input("image_alt");
                 $product->updated_at = Carbon::now();
-            }
 
-            // Tapacanto
-            if($type == 2){
+            }else{ // cualquier otro tipo de producto
+                $product->price = $request->input("cost");
                 $product->id_product_category = $request->input("category");
                 $product->id_product_type = $request->input("type");
                 $product->id_product_subtype = $request->input("subtype");
                 $product->code = $request->input("code");
                 $product->name = $request->input("name");
                 $product->id_product_origen = $request->input("origen");
+                $product->id_product_acabado = $request->input("acabado");
+                $product->id_product_subacabado = $request->input("sub_acabado");
                 $product->width = $request->input("width");
                 $product->thickness = $request->input("thickness");
                 $product->img_alt = $request->input("image_alt");
                 $product->updated_at = Carbon::now();
+                
             }
 
             // Registro de imagenes subidas
@@ -433,6 +443,15 @@ class ProductController extends Controller
             }
 
             $product->save();
+
+            //Se actualiza el precio en la tabla [purchase_items]
+            $purchaseItem = DB::table("purchase_items")
+                ->where("id_product", $id)
+                ->orderBy("id", "desc")
+                ->first();
+            if($purchaseItem != null){
+                DB::table("purchase_items")->where("id", $purchaseItem->id)->update(['cost' => $request->input("cost")]);
+            }
 
             return "¡Registro actualizado satisfactoriamente!.";
 
@@ -595,6 +614,7 @@ class ProductController extends Controller
         ];
 
         return Validator::make($data, [
+            'cost' => 'required',
             'category' => 'required',
             'type' => 'required',
             'subtype' => 'required',
@@ -625,6 +645,7 @@ class ProductController extends Controller
             'code' => 'required',
             'name' => 'required',
             'origen' => 'required',
+            'acabado' => 'required',
             "width" => 'required',
             "thickness" => 'required',
             'image_0' => 'required',
@@ -637,12 +658,15 @@ class ProductController extends Controller
         ];
 
         return Validator::make($data, [
+            'cost' => 'required',
             'category' => 'required',
             'type' => 'required',
             'subtype' => 'required',
             'code' => 'required',
             'name' => 'required',
+            'acabado' => 'required',
             'origen' => 'required',
+            'acabado' => 'required',
             "width" => 'required',
             "thickness" => 'required',
             'image_alt' => 'required'
@@ -651,41 +675,74 @@ class ProductController extends Controller
 
     
 
-    public function getProducts(){
-        return DB::table("products as p")
-            ->select("p.id", 
-                    "p.code",
-                    "p.name as product_name",
-                    "p.width",
-                    "p.thickness",
-                    "p.length",
-                    "p.price",
-                    "pc.name as category_product_name",
-                    "pt.name as product_type_name",
-                    "p.is_deleted as product_isdeleted",
-                    "pa.name as acabado",
-                    "pm.name as material",
-                    "ps.name as sustrato"
-                    )
-            ->join("product_categories as pc", "pc.id", "=", "p.id_product_category", "inner", false)
-            ->join("product_types as pt", "pt.id", "=", "p.id_product_type", "inner", false)
-            ->leftjoin("product_acabados as pa", "pa.id", "=", "p.id_product_acabado", "inner", false)
-            ->leftjoin("product_materials as pm", "pm.id", "=", "p.id_product_material", "inner", false)
-            ->leftjoin("product_sustratos as ps", "ps.id", "=", "p.id_product_sustrato", "inner", false)
-            ->get();
+    public function getProducts($productName = ""){
+
+        if($productName != ""){
+            return DB::table("products as p")
+                ->select("p.id", 
+                        "p.code",
+                        "p.name as product_name",
+                        "p.width",
+                        "p.thickness",
+                        "p.length",
+                        "p.price",
+                        "pc.name as category_product_name",
+                        "pt.name as product_type_name",
+                        "p.is_deleted as product_isdeleted",
+                        "pa.name as acabado",
+                        "pm.name as material",
+                        "ps.name as sustrato"
+                        )
+                ->join("product_categories as pc", "pc.id", "=", "p.id_product_category", "inner", false)
+                ->join("product_types as pt", "pt.id", "=", "p.id_product_type", "inner", false)
+                ->leftjoin("product_acabados as pa", "pa.id", "=", "p.id_product_acabado", "inner", false)
+                ->leftjoin("product_materials as pm", "pm.id", "=", "p.id_product_material", "inner", false)
+                ->leftjoin("product_sustratos as ps", "ps.id", "=", "p.id_product_sustrato", "inner", false)
+                ->where("p.name", "LIKE", "%{$productName}%")
+                ->get();
+        }
+
+        if($productName == ""){
+            return DB::table("products as p")
+                ->select("p.id", 
+                        "p.code",
+                        "p.name as product_name",
+                        "p.width",
+                        "p.thickness",
+                        "p.length",
+                        "p.price",
+                        "pc.name as category_product_name",
+                        "pt.name as product_type_name",
+                        "p.is_deleted as product_isdeleted",
+                        "pa.name as acabado",
+                        "pm.name as material",
+                        "ps.name as sustrato"
+                        )
+                ->join("product_categories as pc", "pc.id", "=", "p.id_product_category", "inner", false)
+                ->join("product_types as pt", "pt.id", "=", "p.id_product_type", "inner", false)
+                ->leftjoin("product_acabados as pa", "pa.id", "=", "p.id_product_acabado", "inner", false)
+                ->leftjoin("product_materials as pm", "pm.id", "=", "p.id_product_material", "inner", false)
+                ->leftjoin("product_sustratos as ps", "ps.id", "=", "p.id_product_sustrato", "inner", false)
+                ->get();
+        }
+
     }
 
     public function ShowViewByVisualEfect($id){
-        $IDsToGroup = array();
-        $products = DB::select("CALL sp_getProductBy_product_subcategory_classification(?)", array($id));
+        $IDsToGroupTableros = array();
+        $products_tapacantos = array();
+        // $products = DB::select("CALL sp_getProductBy_product_subcategory_classification(?)", array($id));
+        $products_tableros = DB::select("CALL sp_getProducts_materiaPrima(?, ?)", array(1, $id));
+        $products_tapacantos = DB::select("CALL sp_getProducts_materiaPrima(?, ?)", array(2, $id));
         
-        foreach($products as $product) {
-            array_push($IDsToGroup, array(
+        foreach($products_tableros as $product) {
+            array_push($IDsToGroupTableros, array(
                 "id" => $product->id_subcategory_color, 
                 "name" => $product->name_subcategory_color
             ));
         }
-        $IDsToGroup = $this->unique_multidim_array($IDsToGroup, "id");
+        
+        $IDsToGroupTableros = $this->unique_multidim_array($IDsToGroupTableros, "id");
 
         // dd($IDsToGroup);
 
@@ -703,7 +760,7 @@ class ProductController extends Controller
         // }
 
         
-        return view("tableros.byVisualEfect", compact("products", "IDsToGroup", "imgToBanner", "title", "sub_title"));
+        return view("tableros.byVisualEfect", compact("products_tableros", "products_tapacantos", "IDsToGroupTableros", "imgToBanner", "title", "sub_title"));
     }
 
     function unique_multidim_array($array, $key) {
@@ -795,7 +852,7 @@ class ProductController extends Controller
 
         $images = DB::table("image_products")
             ->where("id_product", $id)->get();
-
+        // dd($product, $images);
         return view("tableros.showImageByProduct", compact("product", "images"));
     }
 
@@ -806,6 +863,96 @@ class ProductController extends Controller
     //     // $publicPath = public_path('ficha_tecnica');
     //     // return Storage::download($product->pdf_file, $name);
     // }
+
+    public function addCategory(Request $request)
+    {
+        $validated = Validator::make($request->all(), [
+            'name' => 'required|unique:product_categories'
+        ],
+        [
+            'name.required' => 'El campo nombre es requerido.',
+            'name.unique' => 'Ya existe una categoría con este nombre.'
+        ]);
+
+        if($validated->fails()){
+            return [
+                "result" => false,
+                "message" => $validated->errors()->first()
+            ];
+        }
+
+        try {
+            $name = $request->input("name");
+            $id = DB::table("product_categories")->insertGetId([
+                'name' => $name
+            ]);
+
+            $data = array(
+                'id' => $id,
+                'name' => $name
+            );
+
+            $result = [
+                "result" => true,
+                "data" => $data,
+                "message" => "Se agregó la categoría correctamente."
+            ];
+
+        } catch (\Throwable $th) {
+            $result = [
+                "result" => false,
+                "message" => "No se pudo agregar la categoría al sistema, por favor intente nuevamente."
+            ];
+        }
+
+        return $result;
+    }
+
+    public function addType(Request $request)
+    {
+        $validated = Validator::make($request->all(), [
+            'name' => 'required|unique:product_types',
+            'category' => 'required'
+        ],
+        [
+            'name.required' => 'El campo nombre es requerido.',
+            'name.unique' => 'Ya existe una categoría con este nombre.',
+            'category.required' => 'Debe seleccionar una categoría.'
+        ]);
+        if($validated->fails()){
+            return [
+                "result" => false,
+                "message" => $validated->errors()->first()
+            ];
+        }
+        try {
+            $name = $request->input("name");
+            $category = $request->input("category");
+            $id = DB::table("product_types")->insertGetId([
+                'category_id' => $category,
+                'name' => $name
+            ]);
+
+            $data = array(
+                'category_id' => $category,
+                'id' => $id,
+                'name' => $name
+            );
+
+            $result = [
+                "result" => true,
+                "data" => $data,
+                "message" => "Se agregó la categoría correctamente."
+            ];
+        } catch (\Throwable $th) {
+            $result = [
+                "result" => false,
+                "message" => "No se pudo agregar el tipo al sistema, por favor intente nuevamente."
+            ];
+        }
+        
+        return $result;
+    }
 
     public function addSubType(Request $request){
         try {

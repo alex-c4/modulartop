@@ -61,6 +61,13 @@ class ProjectController extends Controller
         );
         return view("project.create_2", compact('result'));
     }
+    public function create_3(){
+        $result = array(
+            "result" => true
+        );
+
+        return view('project.create_3', compact('result'));
+    }
 
     /**
      * Store a newly created resource in storage.

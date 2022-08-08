@@ -20,12 +20,13 @@ $("#btnAddImage").on("click", function(){
     });
 
     if(!_hasEmptyFile){
+        Utils.hideAlert("msgInfoAddImg");
         var _total_img = (_children.length / 2) + 1;
         var _html = "<input type='file' id='image_" + _total_img + "' name='image_" + _total_img + "' accept='image/png, image/jpeg, image/jpg' class='form-control mt-2' placeholder='Imagen'>" + 
                     "<input maxlength='60' type='text' name='image_alt_" + _total_img + "' id='image_alt_" + _total_img + "' class='form-control mt-1' placeholder='Texto alternativo'>"; 
         $("#container-img").append(_html);
     }else{
-        
+        Utils.setAlert('Debe ingresar una imagen con su texto alternativo, antes de agregar un nuevo campo de imagen.', 'warning', 'msgInfoAddImg')
     }
 
 });
@@ -81,6 +82,26 @@ var showCaracteristicas = function(option){
         $("#sustrato").val("").trigger("change");
         $("#color").val("").trigger("change");
         $("#description").val("")
+    }
+}
+
+var setErrorPlacement = function(error, element){
+    if(element.attr("id") == "category"){
+        error.insertBefore($('#errorDivCategory'));
+    }else if(element.attr("id") == "type"){
+        error.insertBefore($('#errorDivType'));
+    }else if(element.attr("id") == "subtype"){
+        error.insertBefore($('#errorDivSubtype'));
+    }else if(element.attr("id") == "acabado"){
+        error.insertBefore($('#errorDivAcabado'));
+    }else if(element.attr("id") == "material"){
+        error.insertBefore($('#errorDivMaterial'));
+    }else if(element.attr("id") == "sustrato"){
+        error.insertBefore($('#errorDivSustrato'));
+    }else if(element.attr("id") == "color"){
+        error.insertBefore($('#errorDivColor'));
+    }else{
+        error.insertAfter(element);
     }
 }
 

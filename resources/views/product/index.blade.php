@@ -57,19 +57,29 @@ Lista de productos registrados
         </div>
     @endif
 
+    <form class="form-inline" method="POST" action="{{ route('product.searchProduct') }}">
+        @csrf
+        <div class="form-group mx-sm-3 mb-2">
+            <label for="productName" class="sr-only">Producto</label>
+            <input type="text" class="form-control" id="productName" name="productName" placeholder="Nombre" value="@if (isset($productName)){{ $productName }}@endif">
+        </div>
+        <button type="submit" class="btn btn-primary mb-2">Buscar</button>
+    </form>
+
+    <div class="table-responsive">
     <table class="table table-hover">
         <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">Código</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Tipo</th>
-                <th scope="col">Acabados</th>
-                <th scope="col">Ancho/Espesor/Largo</th>
-                <th scope="col">Material</th>
-                <th scope="col">Sustrato</th>
-                <th scope="col">P.V.P</th>
-                <th scope="col"></th>
+                <th class="header" scope="col">#</th>
+                <th class="header" scope="col">Código</th>
+                <th class="header" scope="col">Nombre</th>
+                <th class="header" scope="col">Tipo</th>
+                <th class="header" scope="col">Acabados</th>
+                <th class="header" scope="col">Ancho/Espesor/Largo</th>
+                <th class="header" scope="col">Material</th>
+                <th class="header" scope="col">Sustrato</th>
+                <th class="header" scope="col">P.V.P</th>
+                <th class="header" scope="col"></th>
             </tr>
         </thead>
         
@@ -98,11 +108,25 @@ Lista de productos registrados
             @endforeach
         </tbody>
     </table>
-
+    </div>
 
 </div>
 
 </section>
+
+<style type="text/css">
+    thead tr th{
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background-color: #e6e4e4;
+        
+    }
+    .table-responsive{
+        height: 80vh;
+        overflow:scroll;
+    }
+</style>
 
 @endsection
 

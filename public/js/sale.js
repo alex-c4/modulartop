@@ -9,7 +9,7 @@ $(function(){
         format: "yyyy-mm-dd",
         language: "en",
         autoclose: true,
-        startView: 2
+        startView: 0
     });
 
     $table = $('#product_table');
@@ -21,15 +21,41 @@ $(function(){
 
 });
 
+// var FLAG_SEND = false;
 $("#btnSave").on("click", function(){
+    
+    // if(!FLAG_SEND){
+    //     FLAG_SEND = true;
+
+    //     $("#btnSave").prop("disabled", true);
+        
+    //     var _data = $table.bootstrapTable('getData');
+    //     var cadena = JSON.stringify(_data);
+    //     $("#hProducts").val(cadena);
+    //     if(_data.length <= 0){
+    //         Utils.setAlert("Aun no ha incluido productos a la venta.", "warning", "message_alert-2");
+    //         FLAG_SEND = false;
+    //         $("#btnSave").prop("disabled", false);
+    //         return false;
+    //     }
+    //     FLAG_SEND = false;
+    //     $("#btnSave").prop("disabled", false);
+    //     $("#form_savesale").trigger("submit");
+    // }
+
     $("#btnSave").prop("disabled", true);
     
     var _data = $table.bootstrapTable('getData');
     var cadena = JSON.stringify(_data);
     $("#hProducts").val(cadena);
 
-    $("#form_savesale").trigger("submit");
+    if(_data.length <= 0){
+        Utils.setAlert("Aun no ha incluido productos a la venta.", "warning", "message_alert-2");
+        $("#btnSave").prop("disabled", false);
+        return false;
+    }
 
+    $("#form_savesale").trigger("submit");
 });
 
 var onclick_addProduct = function(){
@@ -45,6 +71,8 @@ var onclick_addProduct = function(){
     };
 
     var _data = $table.bootstrapTable('getData');
+
+    Utils.hideAlert("message_alert-2");
 
     if(isRepeated(_idProduct, _data)){
 
@@ -68,7 +96,8 @@ var onclick_addProduct = function(){
                 
                 window.document.getElementById("quantity").focus();
             }else{
-                $("#smallInfo").html(resp.message);
+                var _msg = getHTML_message(resp.message)
+                $("#smallInfo").html(_msg);
             }
 
             $("#btnAddProduct").prop("disabled", false);
@@ -156,14 +185,14 @@ $("#form_client").on("submit", function(ev){
     
                 clearFields();
     
-                showAlert(true, data.message);
+                showAlert(true, data.message, 'message_alert_client');
             }else{
-                showAlert(false, data.message);
+                showAlert(false, data.message, 'message_alert_client');
             }
         })
         .fail(function(jqXHR, textStatus, errorThrown ){  
             debugger
-            showAlert(false, data.message)
+            showAlert(false, data.message, 'message_alert_client')
         });
 
     }else{
@@ -220,6 +249,33 @@ var makeValidation = function(){
         }
     });
 
+    var validation_sale = $("#form_savesale").validate({
+        rules: {
+            sale_date: {
+                required: true
+            },
+            client: {
+                required: true
+            },
+            invoice_sale: {
+                required: true
+            }
+        },
+        messages: {
+            sale_date: "Por favor ingrese la fecha de venta",
+            client: "Por favor ingrese el cliente",
+            invoice_sale: "Por favor ingrese el id de la factura"
+        },
+        errorPlacement: function(error, element) {
+            $("#btnSave").prop("disabled", false);
+            setErrorPlacement(error, element);
+        },
+        submitHandler: function(form) {
+            $("#btnSave").prop("disabled", true);
+            form.submit();
+        }
+    });
+
     GLOBAL_VALIDATION = validation;
 }
 
@@ -235,7 +291,8 @@ var clearFields = function(){
     $("#companyPhone").val("");
 }
 
-var showAlert = function(status, message){
+var showAlert = function(status, message, divid){
+    var _divid = (divid == undefined) ? 'message_alert' : divid;
     var _msg = "", _class = "";
     if(status){
         _msg = message;
@@ -245,7 +302,7 @@ var showAlert = function(status, message){
         _class = 'warning'
 
     }
-    $("#message_alert").html("");
+    $("#" + _divid).html("");
     var _html = '<div class="alert alert-' + _class + ' alert-dismissible fade show" role="alert">' +
                 _msg +
                 '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
@@ -253,7 +310,7 @@ var showAlert = function(status, message){
                 '</button>' +
                 '</div>';
     
-    $("#message_alert").html(_html);
+    $("#" + _divid).html(_html);
     
 }
 
@@ -279,4 +336,25 @@ $("#client").on("change", function(){
     }
 
 });
+
+var getHTML_message = function(msg){
+    var HTML = "<div class='alert alert-danger' role='alert'>" +
+                "<b>$message$</b>" +
+                "</div>";
+    HTML = HTML.replace("$message$", msg);
+
+    return HTML;
+}
+
+var setErrorPlacement = function(error, element){
+    if(element.attr("id") == "sale_date"){
+        error.insertBefore($('#errorDivSaleDate'));
+    }else if(element.attr("id") == "client"){
+        error.insertBefore($('#errorDivClient'));
+    }else if(element.attr("id") == "invoice_sale"){
+        error.insertBefore($('#errorDivInvoceSale'));
+    }else{
+        error.insertAfter(element);
+    }
+}
 

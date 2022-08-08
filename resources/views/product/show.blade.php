@@ -357,7 +357,8 @@ Ver producto
         GLOBAL_URL = "{{ asset('images/image_products') }}";
         GLOBAL_PRODUCT_NAME = "{{ $product->name }}";
 
-        @if($product->id_product_type == 2)
+
+        @if($product->id_product_type != 1)
             // Ocultar secciones cuando es Tapacanto
             hideTableroSections();
         @endif

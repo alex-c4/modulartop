@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 
 use App\User;
 
@@ -54,8 +55,8 @@ class ResetPasswordController extends Controller
     public function passwordUpdateFromSession(Request $request){
 
         // dd($request);
-        $this->validatePassword(request()->all())->validate();
-        
+        $validated = $this->validatePassword(request()->all())->validate();
+            
         if(Hash::check(request()->currentPassword, auth()->user()->password)){
             $user_id = auth()->user()->id;
             $user = User::find($user_id);
@@ -64,7 +65,8 @@ class ResetPasswordController extends Controller
             
             return redirect('password/showFormResetPassw')->with('message', 'Clave actualizada exitosamente');
         }else{
-            return redirect('password/showFormResetPassw')->with('error', 'La clave actual no coincide');
+            // return redirect('password/showFormResetPassw')->with('error', 'La clave actual no coincide');
+            return Redirect::back()->withErrors(['message' => 'La clave actual no coincide']);
         }
     }
 

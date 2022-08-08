@@ -143,12 +143,13 @@ home
             </nav>
 
             <div class="container">
-                <div class="row">
+                <div class="row" style="justify-content: center">
                     @if(Auth::user()->roll_id != 5) 
-                    <div class="col-lg-6">
+                    <!-- Novedades -->
+                    <div class="col-sm-12 col-md-6 class-overflow">
 
-                        <div class="container-dash">
-                            <div class="nodo">
+                        <div class="container-dash"  style="width: 100%;">
+                            <div class="nodo"  style="width: 100%;">
                                 <div class="nodo-title">
                                     <span class="icon-newspaper-o"></span>
                                     Novedades
@@ -201,7 +202,9 @@ home
                     @if(Auth::user()->roll_id == 1 || Auth::user()->roll_id == 5)  
 
                     <input type="hidden" name="hRouteUserUpdateFromHome" id="hRouteUserUpdateFromHome" value="{{ route('userValidation.updateFromHome') }}">
-                    <div class="col-lg-6">
+
+                    <!-- Clientes por confirmar -->
+                    <div class="col-sm-12 col-md-6 class-overflow">
                         <div class="container-dash">
                             <div class="nodo">
                                 <div class="nodo-title">
@@ -263,7 +266,8 @@ home
                     <input type="hidden" name="hRouteWelcome" id="hRouteWelcome" value="{{ route('welcome') }}">
                     <input type="hidden" name="hRouteCancelFromHome" id="hRouteCancelFromHome" value="{{ route('ordersale.cancelFromHome') }}">
 
-                    <div class="col-lg-6">
+                    <!-- Ordenes de compra -->
+                    <div class="col-sm-12 col-md-6 class-overflow">
                         <div class="container-dash">
                             <div class="nodo">
                                 <div class="nodo-title">
@@ -316,7 +320,7 @@ home
                     @endif
 
                     <!-- Tableros -->
-                    <div class="col-lg-6">
+                    <div class="col-sm-12 col-md-6 class-overflow">
                         <div class="container-dash">
                             <div class="nodo">
                                 <div class="nodo-title">

@@ -90,9 +90,9 @@
     padding: 5px;
 }
 
-.title-tableros{
+/* .title-tableros{
     height: 70px;
-}
+} */
 .title-tableros a{
     font-size: 8px;
 }
@@ -103,6 +103,8 @@
 .fondo-rojo{
     background-color: #8B171A;
     width: 57%;
-    height: 50%;
+    height: 27vh;
+    min-height: 125px;
+    max-height: 165px;
     position: absolute;
 }

@@ -42,13 +42,20 @@ class ForgotPasswordController extends Controller
     public function sendResetLinkEmail(Request $request)
     {
         $this->validateEmail($request);
-
         // We will send the password reset link to this user. Once we have attempted
         // to send the link, we will examine the response then see the message we
         // need to show to the user. Finally, we'll send out a proper response.
         // $response = $this->sendResetLink(
         //     $this->credentials($request)
         // );
+
+        //valida que el usuario no est bloqueado
+        $user = $this->userIsDeleted($request);
+        if (is_null($user)) {
+            $response = Password::INVALID_USER;
+            return $this->sendResetLinkFailedResponse($request, $response);
+        }
+
         $response = $this->broker()->sendResetLink(
             $request->only('email')
         );
@@ -58,6 +65,10 @@ class ForgotPasswordController extends Controller
                     : $this->sendResetLinkFailedResponse($request, $response);
     }
 
+    public function userIsDeleted(Request $request){
+        $user = User::where("email", $request['email'])->where("is_deleted", "0")->first();
+        return $user;
+    }
     public function sendResetLink(array $credentials)
     {
         // First we will check to see if we found a user at the given credentials and
@@ -135,6 +146,15 @@ class ForgotPasswordController extends Controller
 
     public function generateRandomString($length = 8) { 
         return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length); 
+    }
+
+    public function showResetForm(Request $request, $token = null)
+    {
+        //busca si el usuario esta bloqueado
+
+        return view('auth.passwords.reset')->with(
+            ['token' => $token, 'email' => $request->email]
+        );
     }
 
 }

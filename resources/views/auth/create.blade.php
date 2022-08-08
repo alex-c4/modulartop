@@ -125,10 +125,10 @@ Crear nuevo usuario
 
                                 <!-- Direccion del cilente -->
                                 <div class="form-group row">
-                                    <label for="clientAddress" class="col-md-4 col-form-label text-md-right">Dirección<span>*</span></label>
+                                    <label for="clientAddress" class="col-md-4 col-form-label text-md-right">Dirección</label>
 
                                     <div class="col-md-6">
-                                        <textarea class="form-control" id="clientAddress" name="clientAddress" rows="3" required>{{ old('clientAddress') }}</textarea>
+                                        <textarea class="form-control" id="clientAddress" name="clientAddress" rows="3">{{ old('clientAddress') }}</textarea>
                                     </div>
                                 </div>
 
@@ -153,7 +153,7 @@ Crear nuevo usuario
                                         <label for="rif" class="col-md-4 col-form-label text-md-right">Rif<span>*</span></label>
 
                                         <div class="col-md-6">
-                                            <input maxlength="20" id="rif" type="text" class="form-control @error('rif') is-invalid @enderror uppercase-field" name="rif" >
+                                            <input maxlength="20" id="rif" type="text" class="form-control @error('rif') is-invalid @enderror uppercase-field" name="rif" value="{{ old('rif') }}" >
 
                                             @error('rif')
                                                 <span class="invalid-feedback" role="alert">
@@ -169,7 +169,7 @@ Crear nuevo usuario
                                         <label for="rsocial" class="col-md-4 col-form-label text-md-right">Razón social<span>*</span></label>
 
                                         <div class="col-md-6">
-                                            <input maxlength="50" id="rsocial" name="rsocial" type="text" class="form-control @error('rsocial') is-invalid @enderror">
+                                            <input maxlength="50" id="rsocial" name="rsocial" type="text" class="form-control @error('rsocial') is-invalid @enderror" value="{{ old('rsocial') }}">
 
                                             @error('rsocial')
                                                 <span class="invalid-feedback" role="alert">
@@ -184,7 +184,7 @@ Crear nuevo usuario
                                         <label for="companyAddress" class="col-md-4 col-form-label text-md-right">Dirección fiscal<span>*</span></label>
 
                                         <div class="col-md-6">
-                                            <textarea class="form-control @error('companyAddress') is-invalid @enderror" id="companyAddress" name="companyAddress" rows="3"></textarea>
+                                            <textarea class="form-control @error('companyAddress') is-invalid @enderror" id="companyAddress" name="companyAddress" rows="3">{{ old('companyAddress') }}</textarea>
                                             @error('companyAddress')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -195,15 +195,9 @@ Crear nuevo usuario
 
                                     <!-- Telefono -->
                                     <div class="form-group row">
-                                        <label for="companyPhone" class="col-md-4 col-form-label text-md-right">Teléfono<span>*</span></label>
-
+                                        <label for="companyPhone" class="col-md-4 col-form-label text-md-right">Teléfono</label>
                                         <div class="col-md-6">
-                                            <input id="companyPhone" type="number" class="form-control @error('companyPhone') is-invalid @enderror" name="companyPhone" >
-                                            @error('companyPhone')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
+                                            <input id="companyPhone" type="number" class="form-control @error('companyPhone') is-invalid @enderror" name="companyPhone" value="{{ old('companyPhone') }}">
                                         </div>
                                     </div>
 
@@ -254,5 +248,19 @@ Crear nuevo usuario
 @endsection
 
 @section('script')
+    <script src="{{ asset('js/utils.js') }}?v={{ env('APP_VERSION', '1') }}"></script>
     <script src="{{ asset('js/user-register.js') }}?v={{ env('APP_VERSION', '1') }}"></script>
+
+    <script>
+        var is_client = "{{ old('chkClient') }}";
+        $(function(){
+            check_isClient();
+        })
+
+        function check_isClient(){
+            if(is_client){
+                Utils.trigger_chkClient(true);
+            }
+        }
+    </script>
 @endsection

@@ -32,7 +32,7 @@ Lista de inventario
     <div>
         <a href="{{ route('inventory.download') }}" class="btn btn-primary m-3" target="_blank">
             <span class="icon-file-pdf-o"></span>
-            Descagar a PDF</a>
+            Descargar a PDF</a>
     </div>
 
     <table class="table table-hover">

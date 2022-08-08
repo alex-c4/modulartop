@@ -365,6 +365,7 @@ var sendFormNewsletter = function(_route, _token, _data, _form_id){debugger
 
 $("#form_updloadexcel").on("submit", function(ev){
     debugger
+    Utils.hideAlert("message_alert");
     ev.preventDefault();
 
     var formData = new FormData(document.getElementById("form_updloadexcel"));
@@ -375,6 +376,7 @@ $("#form_updloadexcel").on("submit", function(ev){
 
     if($("#planilla").val() == ""){
         $("#planilla").addClass("error");
+        Utils.setAlert("Por favor seleccionar la planilla a cargar.", 'warning', 'message_alert')
     }else{
         $("#btnUpload").prop("disabled", true);
 
@@ -389,16 +391,16 @@ $("#form_updloadexcel").on("submit", function(ev){
         })
         .done(function(resp){
             $("#btnUpload").prop("disabled", false);
-            
             data = JSON.parse(resp);
-            
-            showAlert(data.result, data.message);
+            // showAlert(data.result, data.message);
+            Utils.setAlert(data.message, 'success', 'message_alert');
 
             $("#planilla").val("");
 
         })
         .fail(function(jqXHR, textStatus, errorThrown ){  
-            showAlert(false, "Hubo un error en la petición, por favor vuelva a intentarlo");
+            // showAlert(false, "Hubo un error en la petición, por favor vuelva a intentarlo");
+            Utils.setAlert("Hubo un error en la petición, por favor vuelva a intentarlo", 'warning', 'message_alert')
             $("#btnUpload").prop("disabled", false);
             console.log(jqXHR.responseJSON.errors);
         })

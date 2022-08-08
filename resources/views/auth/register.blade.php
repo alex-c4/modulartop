@@ -205,29 +205,27 @@
                                     <!-- Direccion del cliente -->
                                     <div class="form-group row">
                                         <label for="companyAddress" class="col-md-4 col-form-label text-md-right">Dirección fiscal<span>*</span></label>
-
                                         <div class="col-md-6">
-                                            <textarea class="form-control" id="companyAddress" name="companyAddress" rows="3"></textarea>
+                                            <textarea class="form-control @error('companyAddress') is-invalid @enderror" id="companyAddress" name="companyAddress" rows="3"></textarea>
+                                            @error('companyAddress')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                         </div>
-                                        @error('companyAddress')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
                                     </div>
 
                                     <!-- Telefono -->
                                     <div class="form-group row">
                                         <label for="companyPhone" class="col-md-4 col-form-label text-md-right">Teléfono</label>
-
                                         <div class="col-md-6">
-                                            <input id="companyPhone" type="number" class="form-control" name="companyPhone" >
+                                            <input id="companyPhone" type="number" class="form-control @error('companyPhone') is-invalid @enderror" name="companyPhone" >
+                                            @error('companyPhone')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                         </div>
-                                        @error('companyPhone')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
                                     </div>
 
                                     <!-- Tipo de empresa  -->
@@ -611,6 +609,21 @@
 @endsection
 
 @section('script')
+    <script src="{{ asset('js/utils.js') }}?v={{ env('APP_VERSION', '1') }}"></script>
     <script src="{{ asset('js/user-register.js') }}?v={{ env('APP_VERSION', '1') }}"></script>
+
+    <script>
+        var is_client = "{{ old('chkClient') }}";
+
+        $(function(){
+            check_isClient();
+        })
+
+        function check_isClient(){
+            if(is_client){
+                Utils.trigger_chkClient(true);
+            }
+        }
+    </script>
 @endsection
 

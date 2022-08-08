@@ -75,29 +75,21 @@ class UserController extends Controller
      */
     private function editar($id)
     {
-        // $id = auth()->user()->id;
-
-        $user = User::where("id", $id)->get();
+        $user = User::find($id);
 
         $roles = DB::table("roles")->get();
 
         $isCompanyClient = false;
 
-        foreach ($user as $key => $value) {
-            // if($value->rif != "" || $value->razonSocial != "" || $value->companyAddress != "" || $value->companyPhone != "" || $value->companyLogo != ""){
-            //     $isCompanyClient = true;
-            // }
-            $isCompanyClient = ($user[0]->is_client == 1);
-
-            if($value->avatar == ""){
-                $value->avatar = "no_image.png";
-            }
-
-            if($value->companyLogo == ""){
-                $value->companyLogo = "no_image.png";
-            }
+        $isCompanyClient = ($user->is_client == 1);
+        
+        if($user->avatar == ""){
+            $user->avatar = "no_image.png";
         }
-        $user = $user[0];
+
+        if($user->companyLogo == ""){
+            $user->companyLogo = "no_image.png";
+        }
 
         $company_types = DB::table("company_types")->get();
         return view("user.edit", compact("user", "isCompanyClient", "company_types", "roles"));
@@ -113,10 +105,18 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $isClient = request()->chkClient;
+        
+        if($isClient == "on"){
+            $validator = $this->validator_full(request()->all())->validate();
+        }else{
+            $validator = $this->validator_basic(request()->all())->validate();
+        }
+        
         $roles = DB::table("roles")->get();
+
         try {
             
-            $isClient = request()->chkClient;
             
             $isCompanyClient = $isClient;
             
@@ -133,7 +133,7 @@ class UserController extends Controller
 
             if($isClient == "on"){
                 
-                $this->validator_full(request()->all())->validate();
+                // $this->validator_full(request()->all())->validate();
                 
                 $user->name = $request->input('name');
                 $user->lastName = $request->input('lastName');
@@ -146,7 +146,7 @@ class UserController extends Controller
                 $user->company_type_id = $request->input('company_type');
                 $user->is_client = true;
             }else{
-                $this->validator_basic(request()->all())->validate();
+                // $this->validator_basic(request()->all())->validate();
     
                 $user->name = $request->input('name');
                 $user->lastName = $request->input('lastName');
@@ -216,13 +216,12 @@ class UserController extends Controller
     
             $user->save();
 
-
-            $msg = "La actualización de los datos se llevaron a cabo satisfactoriamente";
-            return view("user.edit", compact("user", "isCompanyClient", "msg", "company_types", "roles"));
+            $msg = "La actualización de los datos se llevaron a cabo satisfactoriamente.";
+            return view("user.edit", compact("user", "isCompanyClient", "msg", "company_types", "roles", "isClient"));
 
         } catch (\Throwable $th) {
             $msg = "La actualización de los datos no se pudo realizar.";
-            return view("user.edit", compact("user", "isCompanyClient", "msg", "company_types", "roles"));
+            return view("user.edit", compact("user", "isCompanyClient", "msg", "company_types", "roles", "isClient"));
         }
     }
 
@@ -261,9 +260,11 @@ class UserController extends Controller
         return Validator::make($data, [
             'name' => 'required|string',
             'lastName' => 'required|string',
-            'rif' => 'required|string',
-            'rsocial' => 'required|string',
-            'companyAddress' => 'required|string'
+            'clientPhone' => 'required',
+            'rif' => 'required',
+            'rsocial' => 'required',
+            'companyAddress' => 'required',
+            'company_type' => 'required'
             
         ], $messages);
     }

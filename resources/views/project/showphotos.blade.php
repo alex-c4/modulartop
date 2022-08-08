@@ -64,7 +64,7 @@
                 
                     @foreach($photos as $item)
 
-                        <div class="col-lg-4 col-md-6 p-0 ">
+                        <div class="col-lg-4 col-md-6 p-2">
                             <div class="portfolio-box position-relative ml-0 mr-0">
                                 <div class="work-img position-relative overflow-hidden">
                                     <img src="{{ asset('images/proyectos/') }}/{{ $item->photo }}" class="img-fluid" alt="{{ $item->alt_text }}">

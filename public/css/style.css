@@ -160,7 +160,7 @@ h1, h2, h3, h4, h5,
      
      .site-section-fabricacion {
       /* padding: 5em 0; } }*/
-      padding: 0em 0; } }
+      padding: 0em 0; }
   .site-section.site-section-sm {
     padding: 4em 0; }
 
@@ -812,7 +812,6 @@ h1, h2, h3, h4, h5,
         width: 80px;
         height: 4px;
         margin-top: -4px;
-        background: ;
         top: 0; }
       .block-12 .text .text-inner .heading {
         font-size: 20px;
@@ -1890,7 +1889,14 @@ h1, h2, h3, h4, h5,
 .ftco-media-1 h3 a {
   font-size: 20px;
   color: #808080;
-  margin-bottom: 0; }
+  margin-bottom: 0; 
+}
+
+.ftco-media-1 h3 {
+  font-size: 20px;
+  color: #808080;
+  margin-bottom: 0; 
+}
 
 .ftco-media-1 p {
   margin-bottom: 0; }
@@ -2515,7 +2521,7 @@ height:180px;
 overflow:hidden;
 } */
 .img-contenedor p{
-  color: rgb(147, 133, 133); */
+  color: rgb(147, 133, 133);
   /* color: #8b171a; */
 } 
 
@@ -2703,4 +2709,8 @@ input.error{
 
 select.error{
   border: 1px solid crimson !important;
+}
+
+.invalid-field{
+  color: crimson;
 }

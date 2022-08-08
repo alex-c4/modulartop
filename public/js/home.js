@@ -16,10 +16,10 @@ var attend_order = function(ev, idOrderSale){
 
     Utils.getData(_url, _token, _type, _data).then(function(result){
         debugger
-        var _data = result.orders;
+        var _datos = result.orders;
         
         if(result.result){
-            var html = renderHtml(result, _data);
+            var html = renderHtml(result, _datos);
             $("#divTableOrders").html(html);
         }
 
@@ -80,6 +80,7 @@ var renderHtml = function(result,_data){
         _html += '<tr>' +
                     '  <th scope="row">' + order.id + '</th>' +
                     '  <td>' + order.created_at + '</td>' +
+                    '  <td>' + order.userName + ' ' + order.userLastName + '</td>' +
                     '  <th class="icons-orders">';
         if(order.status == 2){
             _html += '<a href="#" title="Atender" onclick="attend_order(event, ' + order.id + ')"><span class="icon-square-o"></span></a>';

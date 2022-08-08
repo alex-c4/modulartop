@@ -61,7 +61,9 @@ class Utils
 
         $_compra_routes = array(
             "purchase.create",
-            "purchase.store"
+            "purchase.store",
+            "purchase.index",
+            "purchase.searchPurchase"
         );
 
         $_venta_routes = array(

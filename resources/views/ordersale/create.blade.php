@@ -52,7 +52,7 @@ Creación orden de compra
         <div class="col-lg-8">
             <div class="card">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('ordersale.store') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('ordersale.store') }}" enctype="multipart/form-data" name="form_ordersale" id="form_ordersale">
                     
                         <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
 
@@ -100,6 +100,8 @@ Creación orden de compra
 @endsection
 
 @section('script')
+
+<script src="{{ asset('js/ordersale.js') }}?v={{ env('APP_VERSION', '1') }}"></script>
 
 
 @endsection

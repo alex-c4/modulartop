@@ -290,6 +290,7 @@ a.article:hover {
 .container-dash{
     display: flex;
     margin: 15px;
+    width: 100%;
 }
 
 .nodo{
@@ -332,6 +333,7 @@ a.article:hover {
     justify-content: space-around;
     /* border: solid 2px #e7e7e7; */
     height: inherit;
+    font-size: small;
 }
 
 .nodo-content-icon{
@@ -433,14 +435,15 @@ a.article:hover {
     .nodo-content{
         display: flex;
         padding: 15px;
-        background-color: white;
-        color: white;
+        /* background-color: white;
+        color: white; */
         flex-direction: column;
         align-items: center;
         align-content: center;
         font-weight: 600;
         letter-spacing: 1px;
         justify-content: space-around;
+        font-size: xx-small;
     }
 
     .content-btn {
@@ -469,4 +472,11 @@ a.article:hover {
     padding: 0px;
     background-color: #800000;
     border: none;
+}
+
+.class-overflow{
+    overflow: auto;
+    min-width: 350px;
+    justify-content: center;
+    display: flex;
 }

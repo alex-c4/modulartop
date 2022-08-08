@@ -57,12 +57,12 @@ class ValidationUserClientController extends Controller
      */
     public function store(Request $request)
     {
-
+        // dd($request->all());
         $isClient = request()->chkClient;
         $password = Str::random(15);
 
         if($isClient == "on"){
-            $this->validator_full(request()->all())->validate();
+            $validator = $this->validator_full(request()->all())->validate();
 
             $user_created = User::create([
                 'name' => request()->name,
@@ -84,7 +84,7 @@ class ValidationUserClientController extends Controller
             ]);
 
         }else{
-            $this->validator_basic(request()->all())->validate();
+            $validator = $this->validator_basic(request()->all())->validate();
 
             $user_created = User::create([
                 'name' => request()->name,
@@ -206,7 +206,7 @@ class ValidationUserClientController extends Controller
     public function read($id)
     {
         $user = User::where("id", $id)->get();
-
+        
         $isCompanyClient = false;
 
         foreach ($user as $key => $value) {
@@ -290,7 +290,24 @@ class ValidationUserClientController extends Controller
     public function showUser(){
         $users_admin = $this->getAdminUsers();
 
-        $users = DB::table("users")
+        $users = $this->getUsers();
+            
+        return view("auth.showuser", compact('users_admin', 'users'));
+        
+    }
+    public function searchUser(Request $request){
+        $userName = request()->userName;
+        $users_admin = $this->getAdminUsers($userName);
+
+        $users = $this->getUsers($userName);
+            
+        return view("auth.showuser", compact('users_admin', 'users', 'userName'));
+        
+    }
+
+    public function getAdminUsers($userName = ""){
+        if($userName == ""){
+            return DB::table("users")
             ->select(
                 "users.id",
                 "users.name",
@@ -298,37 +315,79 @@ class ValidationUserClientController extends Controller
                 "users.email",
                 "users.is_deleted",
                 "users.created_at",
-                "roles.nombre as rolName",
-                "company_types.name as typeClientName"
+                "roles.nombre as rolName"
             )
             ->join("roles", "users.roll_id", "=", "roles.id", "inner", false)
-            ->join("company_types", "users.company_type_id", "=", "company_types.id", "left", false)
-            ->where("roll_id", "2")
             ->where("confirmed", "1")
-            ->orWhere("roll_id", "4")
+            ->whereIn("roll_id", [1,3,5])
             ->get();
-            
-        return view("auth.showuser", compact('users_admin', 'users'));
+        }
         
+        if($userName != ""){
+            return DB::table("users")
+            ->select(
+                "users.id",
+                "users.name",
+                "users.lastName",
+                "users.email",
+                "users.is_deleted",
+                "users.created_at",
+                "roles.nombre as rolName"
+            )
+            ->join("roles", "users.roll_id", "=", "roles.id", "inner", false)
+            ->where("confirmed", "1")
+            ->whereIn("roll_id", [1,3,5])
+            ->where(function($query) use($userName){
+                $query->where('users.name', 'LIKE', "%{$userName}%")
+                    ->orWhere('users.lastName', 'LIKE', "%{$userName}%");
+                })
+            ->get();
+        }
+
     }
 
-    public function getAdminUsers(){
-        return DB::table("users")
-        ->select(
-            "users.id",
-            "users.name",
-            "users.lastName",
-            "users.email",
-            "users.is_deleted",
-            "users.created_at",
-            "roles.nombre as rolName"
-        )
-        ->join("roles", "users.roll_id", "=", "roles.id", "inner", false)
-        ->where("roll_id", "1")
-        ->where("confirmed", "1")
-        ->orWhere("roll_id", "3")
-        ->orWhere("roll_id", "5")
-        ->get();
+    public function getUsers($userName = ""){
+        if($userName == ""){
+            return DB::table("users")
+                ->select(
+                    "users.id",
+                    "users.name",
+                    "users.lastName",
+                    "users.email",
+                    "users.is_deleted",
+                    "users.created_at",
+                    "roles.nombre as rolName",
+                    "company_types.name as typeClientName"
+                )
+                ->join("roles", "users.roll_id", "=", "roles.id", "inner", false)
+                ->join("company_types", "users.company_type_id", "=", "company_types.id", "left", false)
+                ->where("confirmed", "1")
+                ->whereIn("roll_id", [2,4])
+                ->get();
+        }
+        if($userName != ""){
+            return DB::table("users")
+                ->select(
+                    "users.id",
+                    "users.name",
+                    "users.lastName",
+                    "users.email",
+                    "users.is_deleted",
+                    "users.created_at",
+                    "roles.nombre as rolName",
+                    "company_types.name as typeClientName"
+                )
+                ->join("roles", "users.roll_id", "=", "roles.id", "inner", false)
+                ->join("company_types", "users.company_type_id", "=", "company_types.id", "left", false)
+                ->where("confirmed", "1")
+                ->whereIn("roll_id", [2,4])
+                ->where(function($query) use($userName){
+                    $query->where('users.name', 'LIKE', "%{$userName}%")
+                        ->orWhere('users.lastName', 'LIKE', "%{$userName}%");
+                    })
+                ->get();
+        }
+
     }
 
     public function inactive_form($id){
@@ -356,8 +415,22 @@ class ValidationUserClientController extends Controller
             "created_at" => Carbon::now()
         ]);
 
-        $users = User::where("confirmed", "1")->get();
+        // $users = User::where("confirmed", "1")->get();
+        $users = $this->getUsers();
         
+        $users_admin = $this->getAdminUsers();
+
+        return view("auth.showuser", compact('users', 'users_admin'));
+
+    }
+
+    public function active($idUser){
+        // dd($idUser);
+        
+        $user = User::where("id", $idUser)->update(["is_deleted" => 0]);
+        
+        $users = $this->getUsers();
+
         $users_admin = $this->getAdminUsers();
 
         return view("auth.showuser", compact('users', 'users_admin'));
@@ -368,7 +441,8 @@ class ValidationUserClientController extends Controller
     {
         $messages = [
             'numeric' => 'El campo debe ser numerico.',
-            'required' => 'El campo es requerido'
+            'required' => 'El campo es requerido',
+            'unique' => 'El correo ya existe'
         ];
 
         return Validator::make($data, [
@@ -383,8 +457,9 @@ class ValidationUserClientController extends Controller
     protected function validator_full(array $data)
     {
         $messages = [
-            'numeric' => 'El campo debe ser numerico.',
-            'required' => 'El campo es requerido'
+            'numeric' => 'El campo debe ser numerico',
+            'required' => 'El campo es requerido',
+            'unique' => 'El correo ya existe'
         ];
 
         return Validator::make($data, [

@@ -75,13 +75,23 @@ class ContactController extends Controller
             $email = $request->input('email');
             $messageContact = $request->input('message');
             $form = $request->input('hform');
+            $whatsapp = $request->input('whatsapp');
+            $linkedin = $request->input('linkedin');
+            $instagram = $request->input('instagram');
+            $facebook = $request->input('facebook');
+            $pinterest = $request->input('pinterest');
 
             Contact::create([
                 'nameContact' => $name,
                 'emailContact' => $email,
                 'message' => $messageContact,
                 'name_file' => $fileName,
-                'form' => $form
+                'form' => $form,
+                'whatsapp' => $whatsapp,
+                'linkedin' => $linkedin,
+                'instagram' => $instagram,
+                'facebook' => $facebook,
+                'pinterest' => $pinterest
             ]);
 
             $data = array(
