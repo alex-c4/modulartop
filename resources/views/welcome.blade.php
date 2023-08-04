@@ -669,9 +669,6 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
                   {!! NoCaptcha::display() !!}
                 </div>
 
-                <!-- <div class="col-md-12">
-                  <div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_KEY') }}"></div>
-                </div> -->
               </div>
 
               <div class="row form-group">

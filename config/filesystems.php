@@ -70,7 +70,7 @@ return [
 
         'customerLogo' => [
             'driver' => 'local',
-            'root' => public_path('images/customers_logos'),
+            'root' => public_path('/../images/customers_logos'),
         ],
 
         'public' => [

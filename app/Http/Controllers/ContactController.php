@@ -119,18 +119,18 @@ class ContactController extends Controller
                     break;
             }
 
-            if($file != null){
-                Mail::send('emails.contactuser', $data, function($message) use($req, $pathToFile, $subject){
-                    $message->from($req["correo"], 'Web Modular Top');
-                    $message->to($req["correo"])->subject($subject);
-                    $message->attach($pathToFile);
-                });
-            }else{
-                Mail::send('emails.contactuser', $data, function($message) use($req, $subject){
-                    $message->from($req["correo"], 'Web Modular Top');
-                    $message->to($req["correo"])->subject($subject);
-                });
-            }
+            // if($file != null){
+            //     Mail::send('emails.contactuser', $data, function($message) use($req, $pathToFile, $subject){
+            //         $message->from($req["correo"], 'Web Modular Top');
+            //         $message->to($req["correo"])->subject($subject);
+            //         $message->attach($pathToFile);
+            //     });
+            // }else{
+            //     Mail::send('emails.contactuser', $data, function($message) use($req, $subject){
+            //         $message->from($req["correo"], 'Web Modular Top');
+            //         $message->to($req["correo"])->subject($subject);
+            //     });
+            // }
 
             //obtener los tres primeros newsletters
             $newsletter_top3 = Newsletter::select('newsletters.id', 'newsletters.title', 'newsletters.created_at', 'newsletters.isDeleted', 'newsletters.title as url', 'newsletters.name_img', 'newsletters.summary')
@@ -286,10 +286,11 @@ class ContactController extends Controller
     public function validation($data){
         $messages = [
             'required' => 'El campo es requerido',
-            'captcha' => 'Debe realizar la selección del captcha'
+            'g-recaptcha-response.required' => 'Debe realizar la selección del captcha',
+            'g-recaptcha-response.captcha' => '¡Error de CAPTCHA! inténtelo de nuevo más tarde o comuníquese con el administrador del sitio.'
         ];
         return Validator::make($data, [
-            'g-recaptcha-response' => 'captcha',
+            'g-recaptcha-response' => 'required|captcha',
             'fname' => 'required',
             'email' => 'required',
         ], $messages);

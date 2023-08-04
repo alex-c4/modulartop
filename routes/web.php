@@ -230,5 +230,35 @@ Route::post("newsletter/uploadimage", ["as" => "newsletter.uploadimage", "uses" 
 
 // Temporal
 Route::get("vermensaje", ['as' => 'vermensaje', 'uses' => 'Auth\RegisterController@vermensaje']);
-
+// limpiar cache
+Route::get('/clear-cache', function() {
+    $exitCode = Artisan::call('cache:clear');
+    return 'Application cache cleared';
+});
+// borrar caché de ruta
+ Route::get('/route-cache', function() {
+    $exitCode = Artisan::call('route:cache');
+    return 'Routes cache cleared';
+});
+// borrar caché de configuración
+Route::get('/config-cache', function() {
+    $exitCode = Artisan::call('config:cache');
+    return 'Config cache cleared';
+}); 
+// borrar caché de vista
+Route::get('/view-clear', function() {
+    $exitCode = Artisan::call('view:clear');
+    return 'View cache cleared';
+});
+// genera una nueva key
+Route::get('/key-generate', function() {
+    $exitCode = Artisan::call('key:generate');
+    return 'View key generated';
+});
+// Ejecuta cualquier comando de php artisan definido en la variable $comando
+Route::get('/artisan', function() {
+    $comando = 'storage:link';
+    $exitCode = Artisan::call($comando);
+    return 'Artisan comando ejecutado';
+});
 

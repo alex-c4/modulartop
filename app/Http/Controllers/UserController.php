@@ -76,7 +76,7 @@ class UserController extends Controller
     private function editar($id)
     {
         $user = User::find($id);
-
+        dd($user);
         $roles = DB::table("roles")->get();
 
         $isCompanyClient = false;
