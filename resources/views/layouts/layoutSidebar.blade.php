@@ -573,7 +573,7 @@
                       </li>
                       <li>
                         <a href="{{ route('project.index') }}">
-                            <span class="icon-search"></span>
+                            <span class="icon-list"></span>
                             Consultar proyecto
                         </a>
                       </li>
@@ -859,9 +859,11 @@
 
     <script type="text/javascript" src="{{ asset('js/videos.js')}}"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script type="text/javascript">
     
-			
+    
 			$( '#carousel' ).elastislide();
       
       /**

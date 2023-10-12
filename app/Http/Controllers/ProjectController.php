@@ -31,7 +31,8 @@ class ProjectController extends Controller
                         "p.id", 
                         "p.name",
                         "p.description",
-                        "pr.name as proyectista"
+                        "pr.name as proyectista",
+                        "p.is_deleted"
                         )
                     ->join("proyectistas as pr", "pr.id", "p.proyectista_id", "=", "inner", false)
                     ->orderby("p.project_date", "DESC")
@@ -698,5 +699,66 @@ class ProjectController extends Controller
         return view("project.showphotosbyproyectista", compact("proyectistas", "allProjects"));
     }
     
+    public function delete($id){
 
+        try{
+            $msgPost = $this->changeStatus($id, 1);
+        }catch(\Throwable $th){
+            $msgPost = "Hubo un error en la eliminación del proyecto, por favor intente de nuevo.";
+        }
+
+        $projects = $projects = $this->getProjects();
+
+        return view("project.index", compact("projects", "msgPost"));        
+    }   
+    
+    public function restore($id){
+        try {
+            $msgPost = $this->changeStatus($id, 0);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
+        $projects = $this->getProjects();
+
+        return view("project.index", compact("projects", "msgPost"));
+    }
+
+    private function changeStatus($id, $status){
+        try {
+            $project = Project::where("id", $id)->first();
+            $project->is_deleted = $status;
+            $project->updated_at = Carbon::now();
+            $project->update();
+    
+            switch($status){
+                case 1:
+                    $msgPost = "Proyecto eliminado correctamente.";
+                    break;
+                case 2:
+                    $msgPost = "Proyecto activado correctamente.";
+                    break;
+                default:
+                    $msgPost = "Operación llevada a cabo satisfactoriamente.";
+                    break;
+            }
+        } catch (\Throwable $th) {
+            $msgPost = "Hubo un error en la operación, por favor intente nuevamente!";
+        }
+        return $msgPost;
+    }
+
+    private function getProjects(){
+        return DB::table("projects as p")
+                ->select(
+                    "p.id", 
+                    "p.name",
+                    "p.description",
+                    "pr.name as proyectista",
+                    "p.is_deleted"
+                    )
+                ->join("proyectistas as pr", "pr.id", "p.proyectista_id", "=", "inner", false)
+                ->orderby("p.project_date", "DESC")
+                ->get();
+    }
 }

@@ -2,6 +2,9 @@
 /public/hot
 /public/storage
 /public/images/newsletter
+/public/images/customers_logos
+/public/images/image_products
+/public/images/proyectos
 /storage/*.key
 .env
 .env.backup

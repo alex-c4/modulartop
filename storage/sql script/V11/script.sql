@@ -1,0 +1,1 @@
+ALTER TABLE `projects` ADD `is_deleted` BOOLEAN NOT NULL DEFAULT FALSE AFTER `provider_id`;

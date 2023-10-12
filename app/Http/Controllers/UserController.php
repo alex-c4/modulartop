@@ -76,7 +76,7 @@ class UserController extends Controller
     private function editar($id)
     {
         $user = User::find($id);
-        dd($user);
+        // dd($user);
         $roles = DB::table("roles")->get();
 
         $isCompanyClient = false;
@@ -171,12 +171,12 @@ class UserController extends Controller
                 if($avatar != null){
                     $userAvatar = $user->avatar;
                     if($userAvatar != ""){
-                        $crrImg = "avatars/" . $userAvatar;
-                        Storage::disk('customerLogo')->delete($crrImg);
+                        $crrImg = "customers_logos/" . $userAvatar;
+                        Storage::disk('local')->delete($crrImg);
                     }
         
                     $fileName = $user->id."_". $avatar->getClientOriginalName();
-                    $avatar->storeAs('avatars', $fileName, 'customerLogo');
+                    $avatar->storeAs('customers_logos', $fileName, 'local');
                     
                     $user->avatar = $fileName;
                 }
@@ -199,10 +199,10 @@ class UserController extends Controller
                     $fileName = $user->id."_". $avatar->getClientOriginalName();
                     $userAvatar = $user->avatar;
                     if($userAvatar != ""){
-                        $crrImg = "avatars/" . $userAvatar;
-                        Storage::disk('customerLogo')->delete($crrImg);
+                        $crrImg = "customers_logos/avatars/" . $userAvatar;
+                        Storage::disk('local')->delete($crrImg);
                     }
-                    $avatar->storeAs('avatars', $fileName, 'customerLogo');
+                    $avatar->storeAs('customers_logos/avatars', $fileName, 'local');
                     $user->avatar = $fileName;
                 }
                 

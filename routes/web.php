@@ -192,7 +192,8 @@ Route::post("project/searchalttext", ["as" => "project.searchalttext", "uses" =>
 Route::post("project/updatetext", ["as" => "project.updatetext", "uses" => "ProjectController@updatetext"]);
 Route::get("project/showphotos/{id}", ["as" => "project.showphotos", "uses" => "ProjectController@showphotos"]);
 Route::get("project/showphotosbyproyectista", ["as" => "project.showphotosbyproyectista", "uses" => "ProjectController@showphotosbyproyectista"]);
-
+Route::delete("project/delete/{id}", ["as" => "project.delete", "uses" => "ProjectController@delete"]);
+Route::patch("project/{id}", ["as" => "project.restore", "uses" => "ProjectController@restore"]);
 
 // Inventario - Inventory
 Route::get("inventory/index", ["as" => "inventory.index", "uses" => "InventoryController@index"]);

@@ -50,6 +50,7 @@ class WelcomeController extends Controller
                 ->join("proyectistas as p", "p.id", "=", "pr.proyectista_id", "inner", false)
                 ->limit(6, 0)
                 ->where("pr.proyectista_id", "=", $proyectista->id)
+                ->where("pr.is_deleted", "=", 0)
                 ->orderby("pr.project_date", "DESC")
                 ->get();
                 array_push($allProjects, $projects);

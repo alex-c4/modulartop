@@ -18,6 +18,7 @@ class Project extends Model
         'project_date',
         'partner_company',
         'provider_id',
+        'is_deleted',
         'created_at',
         'created_by',
         'updated_at',
