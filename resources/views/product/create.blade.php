@@ -75,6 +75,7 @@ Creacion de nuevos productos
                                     </select>
                                     <div class="input-group-append">
                                         <button style="height: 38px" id="btnAddCategory" data-toggle="modal" data-target="#categoryModal" title="Agregar nueva categoria" class="btn btn-primary" type="button"><span class="icon-add" style="color: white !important;"></span></button>
+                                        <button style="height: 38px" id="btnDeleteCategory" data-toggle="modal" data-target="#CategoryDeleteModal" title="Eliminar categoria seleccionada" class="btn btn-secondary" type="button"><span class="icon-minus" style="color: white !important;"></span></button>
                                     </div>
                                 </div>
                                 <div id="errorDivCategory"></div>
@@ -414,7 +415,7 @@ Creacion de nuevos productos
 
 <!-- Modal section -->
 
-<!-- modal categoria -->
+<!-- modal Agregar categoria -->
 <div class="modal fade" id="categoryModal" tabindex="-1" aria-labelledby="categoryModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -441,6 +442,38 @@ Creacion de nuevos productos
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="Utils.clearModal(['txtCategory'], 'msgCategoryModal')">Cerrar</button>
                 <button type="button" class="btn btn-primary" onclick="onclick_addCategory()">Guardar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- Modal Eliminar categoria -->
+<div class="modal fade" id="CategoryDeleteModal" tabindex="-1" aria-labelledby="categoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+      
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Eliminara Categoria</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <input type="hidden" id="hRouteDeleteCategory" value="{{ route('product.deleteCategory') }}">
+
+                <div class="form-group">
+                    <!-- <label for="msgCategory"></label> -->
+                    <div id="msgCategory"></div>
+                </div>
+
+                <div id="msgCategoryDelete" name="msgCategoryDelete" class="alert" role="alert"></div>
+            </div>
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="Utils.clearModal(['txtCategory'], 'msgCategoryModal')">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="onclick_deleteCategory()">Eliminar</button>
             </div>
 
         </div>

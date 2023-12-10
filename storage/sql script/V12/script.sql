@@ -1,0 +1,1 @@
+ALTER TABLE `product_categories` ADD `is_deleted` BOOLEAN NOT NULL DEFAULT FALSE AFTER `name`;

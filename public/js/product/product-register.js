@@ -392,6 +392,53 @@ var onclick_addCategory = function(){
     });
 }
 
+$('#CategoryDeleteModal').on('shown.bs.modal', function () {
+    $('#myInput').trigger('focus');
+    var _catId = $("#category").val();
+    if(_catId === ''){
+        $('#msgCategory').html('Debe seleccionar la categoria de la lista a eliminar.')
+    }else{
+        var _categoryName = $('select[name="category"] option:selected').text();
+        $('#msgCategory').html('¿Desea eliminar la categoria <b>'+_categoryName+'</b> de la lista?')
+
+    }
+})
+
+var onclick_deleteCategory = function(){
+    debugger
+    var _catId = $("#category").val();
+    var _url = $("#hRouteDeleteCategory").val();
+    var _data = {
+        id : _catId
+    };
+
+    Utils.getData(_url, _token, _type, _data).then(function(result){
+
+        if(result.result == true){
+            Utils.deleteOptionToSelect("category", _catId);
+            $('#category option:first').prop('selected', true);
+        
+            $("#type").html("");
+            $("#modal_type").html("");
+        
+            $("#div-types").hide("slow");
+        
+            $('#type').append($('<option>', {
+                value: "",
+                text: "-Seleccione-"
+            }));
+
+            $('#msgCategory').html('')
+            Utils.setAlert(result.message, 'success', 'msgCategoryDelete');
+        }else{
+            Utils.setAlert(result.message, 'warning', 'msgCategoryDelete');
+        }
+
+    });
+
+
+}
+
 var onclick_addType = function(){
     var _category = $("#modal_category_modal").val();
     var _tipo = $("#txtType").val();

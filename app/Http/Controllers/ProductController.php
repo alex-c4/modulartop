@@ -50,7 +50,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $product_categories = DB::table("product_categories")->get();
+        $product_categories = DB::table("product_categories")->where('is_deleted', 0)->get();
         $product_types = DB::table("product_types")->get();
         $product_subtypes = DB::table("product_subtypes")->get();
         $product_acabados = DB::table("product_acabados")->get();
@@ -88,7 +88,7 @@ class ProductController extends Controller
         $resultProduct = $this->addProduct($request);
         $msgPost = $resultProduct[0]["msg"];
 
-        $product_categories = DB::table("product_categories")->get();
+        $product_categories = DB::table("product_categories")->where('is_deleted', 0)->get();
         $product_types = DB::table("product_types")->get();
         $product_subtypes = DB::table("product_subtypes")->get();
         $product_acabados = DB::table("product_acabados")->get();
@@ -283,7 +283,7 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Product::find($id);
-        $product_categories = DB::table("product_categories")->get();
+        $product_categories = DB::table("product_categories")->where('is_deleted', 0)->get();
         $product_types = DB::table("product_types")->get();
         $product_subtypes = DB::table("product_subtypes")->get();
         $product_acabados = DB::table("product_acabados")->get();
@@ -319,7 +319,7 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::find($id);
-        $product_categories = DB::table("product_categories")->get();
+        $product_categories = DB::table("product_categories")->where('is_deleted', 0)->get();
         $product_types = DB::table("product_types")->get();
         $product_subtypes = DB::table("product_subtypes")->get();
         $product_acabados = DB::table("product_acabados")->get();
@@ -902,6 +902,43 @@ class ProductController extends Controller
             $result = [
                 "result" => false,
                 "message" => "No se pudo agregar la categoría al sistema, por favor intente nuevamente."
+            ];
+        }
+
+        return $result;
+    }
+
+    public function deleteCategory(Request $request)
+    {
+        $validated = Validator::make($request->all(), [
+            'id' => 'required'
+        ],
+        [
+            'name.required' => 'La categoría es requerida.'
+        ]);
+
+        if($validated->fails()){
+            return [
+                "result" => false,
+                "message" => $validated->errors()->first()
+            ];
+        }
+
+        try {
+            $id = $request->input("id");
+            $id = DB::table("product_categories")
+            ->where('id', $id)
+            ->update(["is_deleted" => 1]);
+
+            $result = [
+                "result" => true,
+                "message" => "Se elimino la categoría correctamente."
+            ];
+
+        } catch (\Throwable $th) {
+            $result = [
+                "result" => false,
+                "message" => "No se pudo eliminar la categoría, por favor intente nuevamente."
             ];
         }
 

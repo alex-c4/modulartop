@@ -224,6 +224,7 @@ Route::post("product/addMaterial", ["as" => "product.addMaterial", "uses" => "Pr
 Route::post("product/addSustrato", ["as" => "product.addSustrato", "uses" => "ProductController@addSustrato"]);
 Route::post("product/addColor", ["as" => "product.addColor", "uses" => "ProductController@addColor"]);
 Route::post("product/addCategory", "ProductController@addCategory")->name("product.addCategory");
+Route::post("product/deleteCategory", "ProductController@deleteCategory")->name("product.deleteCategory");
 Route::post("product/addType", "ProductController@addType")->name("product.addType");
 
 // Images-link

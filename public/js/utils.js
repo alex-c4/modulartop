@@ -180,6 +180,10 @@ var Utils = {
         var _sel = (_selected == true ) ? 'selected' : '';
         $("#" + _component).append("<option value='" + _value + "' " + _sel + ">" + _name + "</option>");
     },
+    deleteOptionToSelect: function(_component, _value){
+        $("#"+_component+" option[value='"+_value+"']").remove();
+        
+    },
     setAlert: function(message, type, id){
         
         switch(type){
