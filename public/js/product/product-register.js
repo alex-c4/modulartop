@@ -112,17 +112,7 @@ $("#type").on("change", function(){
         $("#div-acabados").show("slow");
         $("#subtitle-acabados").show("slow");
 
-        if(type_id == 1){
-            // $("#div-acabados").show("slow");
-            $("#div-length").show("slow");
-            // $("#subtitle-acabados").show("slow");
-
-            showCaracteristicas(true);
-
-            //creacion de validator para elementos de tipo "Tableros"
-            validator_forTableros();
-
-        }else{
+        if(type_id == 2){
             // $("#div-acabados").hide("slow");
             $("#div-subacabados").hide("slow");
             // $("#subtitle-acabados").hide("slow");
@@ -137,6 +127,15 @@ $("#type").on("change", function(){
 
             //creacion de validator para elementos de tipo "Tableros"
             validator_forTapacanto();
+        }else{
+            // $("#div-acabados").show("slow");
+            $("#div-length").show("slow");
+            // $("#subtitle-acabados").show("slow");
+
+            showCaracteristicas(true);
+
+            //creacion de validator para elementos de tipo "Tableros"
+            validator_forTableros();
         }
 
     }

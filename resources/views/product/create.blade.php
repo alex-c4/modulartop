@@ -69,9 +69,9 @@ Creacion de nuevos productos
                                 <div class="input-group" >
                                     <select class="custom-select" id="category" name="category" autofocus >
                                         <option value="">-Seleccione-</option>
-                                    @foreach($product_categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                    @endforeach
+                                        @foreach($product_categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @endforeach
                                     </select>
                                     <div class="input-group-append">
                                         <button style="height: 38px" id="btnAddCategory" data-toggle="modal" data-target="#categoryModal" title="Agregar nueva categoria" class="btn btn-primary" type="button"><span class="icon-add" style="color: white !important;"></span></button>
