@@ -75,7 +75,9 @@ Creacion de nuevos productos
                                     </select>
                                     <div class="input-group-append">
                                         <button style="height: 38px" id="btnAddCategory" data-toggle="modal" data-target="#categoryModal" title="Agregar nueva categoria" class="btn btn-primary" type="button"><span class="icon-add" style="color: white !important;"></span></button>
+                                        @if(Auth::user()->roll_id == 1)
                                         <button style="height: 38px" id="btnDeleteCategory" data-toggle="modal" data-target="#CategoryDeleteModal" title="Eliminar categoria seleccionada" class="btn btn-secondary" type="button"><span class="icon-minus" style="color: white !important;"></span></button>
+                                        @endif
                                     </div>
                                 </div>
                                 <div id="errorDivCategory"></div>
@@ -91,7 +93,10 @@ Creacion de nuevos productos
                                         <option value="">-Seleccione-</option>
                                     </select>
                                     <div class="input-group-append">
-                                        <button style="height: 38px" id="btnAddCategory" data-toggle="modal" data-target="#typeModal" title="Agregar nueva categoria" class="btn btn-primary" type="button"><span class="icon-add" style="color: white !important;"></span></button>
+                                        <button style="height: 38px" id="btnAddCategory" data-toggle="modal" data-target="#typeModal" title="Agregar nuevo tipo" class="btn btn-primary" type="button"><span class="icon-add" style="color: white !important;"></span></button>
+                                        @if(Auth::user()->roll_id == 1)
+                                        <button style="height: 38px" id="btnDeleteType" data-toggle="modal" data-target="#typeDeleteModal" title="Eliminar tipo" class="btn btn-secondary" type="button"><span class="icon-minus" style="color: white !important;"></span></button>
+                                        @endif
                                     </div>
                                 </div>
                                 <div id="errorDivType"></div>
@@ -108,6 +113,9 @@ Creacion de nuevos productos
                                     </select>
                                     <div class="input-group-append">
                                         <button style="height: 38px" id="btnAddSubtype" data-toggle="modal" data-target="#subtypeModal" title="Agregar nuevo sub-tipo" class="btn btn-primary" type="button"><span class="icon-add" style="color: white !important;"></span></button>
+                                        @if(Auth::user()->roll_id == 1)
+                                        <button style="height: 38px" id="btnDeleteSubtype" data-toggle="modal" data-target="#subtypeDeleteModal" title="Eliminar sub-tipo" class="btn btn-secondary" type="button"><span class="icon-minus" style="color: white !important;"></span></button>
+                                        @endif
                                     </div>
                                 </div>
                                 <div id="errorDivSubtype"></div>
@@ -473,14 +481,14 @@ Creacion de nuevos productos
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="Utils.clearModal(['txtCategory'], 'msgCategoryModal')">Cerrar</button>
-                <button type="button" class="btn btn-primary" onclick="onclick_deleteCategory()">Eliminar</button>
+                <button type="button" class="btn btn-primary" id="btnDelete" onclick="onclick_deleteCategory()">Eliminar</button>
             </div>
 
         </div>
     </div>
 </div>
 
-<!-- modal tipo -->
+<!-- modal Agregar tipo -->
 <div class="modal fade" id="typeModal" tabindex="-1" aria-labelledby="typeModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -521,8 +529,38 @@ Creacion de nuevos productos
         </div>
     </div>
 </div>
+<!-- modal Eliinar tipo -->
+<div class="modal fade" id="typeDeleteModal" tabindex="-1" aria-labelledby="typeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+      
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Eliminar Tipo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
 
-<!-- modal Subtipo -->
+            <div class="modal-body">
+                <input type="hidden" id="hRouteDeleteType" value="{{ route('product.deleteType') }}">
+
+                <div class="form-group">
+                    <div id="msgType"></div>
+                </div>
+
+                <div id="msgTypeDelete" name="msgTypeDelete" class="alert" role="alert"></div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="Utils.clearModal(['txtType'], 'msgTypeModal')">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="btnDeleteTypeModal" onclick="onclick_deleteType()">Eliminar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- modal Agregar Subtipo -->
 <div class="modal fade" id="subtypeModal" tabindex="-1" aria-labelledby="subtypeModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -557,6 +595,36 @@ Creacion de nuevos productos
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                 <button type="button" class="btn btn-primary" onclick="onclick_addSubType()">Guardar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- modal Eliinar sub-tipo -->
+<div class="modal fade" id="subtypeDeleteModal" tabindex="-1" aria-labelledby="subtypeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+      
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Eliminar Sub-tipo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <input type="hidden" id="hRouteDeleteSubtype" value="{{ route('product.deleteSubtype') }}">
+
+                <div class="form-group">
+                    <div id="msgSubtype"></div>
+                </div>
+
+                <div id="msgSubtypeDelete" name="msgSubtypeDelete" class="alert" role="alert"></div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="Utils.clearModal(['txtSubtype'], 'msgSubtypeModal')">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="btnDeleteSubtypeModal" onclick="onclick_deleteSubtype()">Eliminar</button>
             </div>
 
         </div>

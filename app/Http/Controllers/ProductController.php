@@ -914,7 +914,7 @@ class ProductController extends Controller
             'id' => 'required'
         ],
         [
-            'name.required' => 'La categoría es requerida.'
+            'id.required' => 'Debe seleccionar una categoría a eliminar.'
         ]);
 
         if($validated->fails()){
@@ -990,6 +990,41 @@ class ProductController extends Controller
         
         return $result;
     }
+    public function deleteType(Request $request){
+        $validated = Validator::make($request->all(), [
+            'id' => 'required'
+        ],
+        [
+            'id.required' => 'Debe seleccionar un tipo a eliminar.'
+        ]);
+
+        if($validated->fails()){
+            return [
+                "result" => false,
+                "message" => $validated->errors()->first()
+            ];
+        }
+
+        try {
+            $id = $request->input("id");
+            $id = DB::table("product_types")
+            ->where('id', $id)
+            ->update(["is_deleted" => 1]);
+
+            $result = [
+                "result" => true,
+                "message" => "Se elimino el tipo correctamente."
+            ];
+
+        } catch (\Throwable $th) {
+            $result = [
+                "result" => false,
+                "message" => "No se pudo eliminar el tipo, por favor intente nuevamente."
+            ];
+        }
+
+        return $result;
+    }
 
     public function addSubType(Request $request){
         try {
@@ -1014,6 +1049,41 @@ class ProductController extends Controller
             $result = [
                 "result" => false,
                 "message" => "No se pudo agregar el sub-tipo al sistema, por favor intente nuevamente."
+            ];
+        }
+
+        return $result;
+    }
+    public function deleteSubType(Request $request){
+        $validated = Validator::make($request->all(), [
+            'id' => 'required'
+        ],
+        [
+            'id.required' => 'Debe seleccionar un sub-tipo a eliminar.'
+        ]);
+
+        if($validated->fails()){
+            return [
+                "result" => false,
+                "message" => $validated->errors()->first()
+            ];
+        }
+
+        try {
+            $id = $request->input("id");
+            $id = DB::table("product_subtypes")
+            ->where('id', $id)
+            ->update(["is_deleted" => 1]);
+
+            $result = [
+                "result" => true,
+                "message" => "Se elimino el sub-tipo correctamente."
+            ];
+
+        } catch (\Throwable $th) {
+            $result = [
+                "result" => false,
+                "message" => "No se pudo eliminar el sub-tipo, por favor intente nuevamente."
             ];
         }
 

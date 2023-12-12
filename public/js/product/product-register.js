@@ -393,19 +393,23 @@ var onclick_addCategory = function(){
 }
 
 $('#CategoryDeleteModal').on('shown.bs.modal', function () {
-    $('#myInput').trigger('focus');
+    Utils.hideAlert("msgCategoryDelete");
+    // $('#myInput').trigger('focus');
+    
     var _catId = $("#category").val();
     if(_catId === ''){
         $('#msgCategory').html('Debe seleccionar la categoria de la lista a eliminar.')
+        $("#btnDelete").prop('disabled', true);
     }else{
         var _categoryName = $('select[name="category"] option:selected').text();
         $('#msgCategory').html('¿Desea eliminar la categoria <b>'+_categoryName+'</b> de la lista?')
-
+        $("#btnDelete").prop('disabled', false);
     }
-})
+});
 
 var onclick_deleteCategory = function(){
-    debugger
+
+
     var _catId = $("#category").val();
     var _url = $("#hRouteDeleteCategory").val();
     var _data = {
@@ -433,7 +437,8 @@ var onclick_deleteCategory = function(){
         }else{
             Utils.setAlert(result.message, 'warning', 'msgCategoryDelete');
         }
-
+        
+        $("#btnDelete").prop('disabled', true);
     });
 
 
@@ -460,6 +465,52 @@ var onclick_addType = function(){
             Utils.setAlert(result.message, 'warning', 'msgTypeModal');
         }
     });
+}
+
+$('#typeDeleteModal').on('shown.bs.modal', function () {
+    Utils.hideAlert("msgTypeDelete");
+    
+    var _typeId = $("#type").val();
+    if(_typeId === ''){
+        $('#msgType').html('Debe seleccionar un tipo de la lista a eliminar.')
+        $("#btnDeleteTypeModal").prop('disabled', true);
+    }else{
+        var _typeName = $('select[name="type"] option:selected').text();
+        $('#msgType').html('¿Desea eliminar el tipo <b>'+_typeName+'</b> de la lista?')
+        $("#btnDeleteTypeModal").prop('disabled', false);
+    }
+});
+
+var onclick_deleteType = function(){
+    var _typeId = $("#type").val();
+    var _url = $("#hRouteDeleteType").val();
+    var _data = {
+        id : _typeId
+    };
+    Utils.getData(_url, _token, _type, _data).then(function(result){
+        if(result.result == true){
+            Utils.deleteOptionToSelect("type", _typeId);
+            $('#type option:first').prop('selected', true);
+        
+            $("#subtype").html("");
+            $("#modal_subtype").html("");
+        
+            $("#div-subtype").hide("slow");
+        
+            $('#subtype').append($('<option>', {
+                value: "",
+                text: "-Seleccione-"
+            }));
+
+            $('#msgType').html('')
+            Utils.setAlert(result.message, 'success', 'msgTypeDelete');
+        }else{
+            Utils.setAlert(result.message, 'warning', 'msgTypeDelete');
+        }
+
+        $("#btnDeleteTypeModal").prop('disabled', true);
+    })
+
 }
 
 var onclick_addSubType = function(){
@@ -501,7 +552,50 @@ var onclick_addSubType = function(){
 
     }
 }
+$('#subtypeDeleteModal').on('shown.bs.modal', function () {
+    Utils.hideAlert("msgSubtypeDelete");
+    
+    var _subtypeId = $("#subtype").val();
+    if(_subtypeId === ''){
+        $('#msgSubtype').html('Debe seleccionar un sub-tipo de la lista a eliminar.')
+        $("#btnDeleteSubtypeModal").prop('disabled', true);
+    }else{
+        var _subtypeName = $('select[name="subtype"] option:selected').text();
+        $('#msgSubtype').html('¿Desea eliminar el sub-tipo <b>'+_subtypeName+'</b> de la lista?');
+        $("#btnDeleteSubtypeModal").prop('disabled', false);
+    }
+});
+var onclick_deleteSubtype = function(){
+    var _subtypeId = $("#subtype").val();
+    var _url = $("#hRouteDeleteSubtype").val();
+    var _data = {
+        id : _subtypeId
+    };
+    Utils.getData(_url, _token, _type, _data).then(function(result){
+        if(result.result == true){
+            Utils.deleteOptionToSelect("subtype", _subtypeId);
+            $('#subtype option:first').prop('selected', true);
+        
+            // $("#subtype").html("");
+            // $("#modal_subtype").html("");
+        
+            // $("#div-subtype").hide("slow");
+        
+            // $('#subtype').append($('<option>', {
+            //     value: "",
+            //     text: "-Seleccione-"
+            // }));
 
+            $('#msgSubtype').html('')
+            Utils.setAlert(result.message, 'success', 'msgSubtypeDelete');
+        }else{
+            Utils.setAlert(result.message, 'warning', 'msgSubtypeDelete');
+        }
+
+        $("#btnDeleteSubtypeModal").prop('disabled', true);
+    })
+
+}
 var onclick_addAcabado = function(){
 
     var _url = $("#hRouteAddAcabado").val();

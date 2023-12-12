@@ -218,6 +218,7 @@ Route::post("product/deleteimg", ["as" => "product.deleteimg", "uses" => "Produc
 // Productos
 Route::post("product/storeajax", ["as" => "product.storeajax", "uses" => "ProductController@storeajax"]);
 Route::post("product/addSubType", ["as" => "product.addSubType", "uses" => "ProductController@addSubType"]);
+Route::post("product/deleteSubtype", ["as" => "product.deleteSubtype", "uses" => "ProductController@deleteSubtype"]);
 Route::post("product/addAcabado", ["as" => "product.addAcabado", "uses" => "ProductController@addAcabado"]);
 Route::post("product/addSubacabado", ["as" => "product.addSubacabado", "uses" => "ProductController@addSubacabado"]);
 Route::post("product/addMaterial", ["as" => "product.addMaterial", "uses" => "ProductController@addMaterial"]);
@@ -226,6 +227,7 @@ Route::post("product/addColor", ["as" => "product.addColor", "uses" => "ProductC
 Route::post("product/addCategory", "ProductController@addCategory")->name("product.addCategory");
 Route::post("product/deleteCategory", "ProductController@deleteCategory")->name("product.deleteCategory");
 Route::post("product/addType", "ProductController@addType")->name("product.addType");
+Route::post("product/deleteType", "ProductController@deleteType")->name("product.deleteType");
 
 // Images-link
 Route::post("newsletter/uploadimage", ["as" => "newsletter.uploadimage", "uses" => "NewsletterController@uploadimage"]);
