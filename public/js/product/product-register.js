@@ -26,7 +26,6 @@ $("#category").on("change", function(){
             text: "-Seleccione-"
         }));
 
-        
         produc_types.forEach(function(item){
             if(category_id == parseInt(item.category_id)){
                 $('#type').append($('<option>', {
@@ -419,6 +418,7 @@ var onclick_deleteCategory = function(){
 
         if(result.result == true){
             Utils.deleteOptionToSelect("category", _catId);
+            Utils.deleteOptionToSelect("modal_category_modal", _catId);
             $('#category option:first').prop('selected', true);
         
             $("#type").html("");
@@ -487,8 +487,12 @@ var onclick_deleteType = function(){
         id : _typeId
     };
     Utils.getData(_url, _token, _type, _data).then(function(result){
+        
         if(result.result == true){
             Utils.deleteOptionToSelect("type", _typeId);
+            // eliminar del arreglo global
+            produc_types = produc_types.filter( i => i.id != _typeId)
+
             $('#type option:first').prop('selected', true);
         
             $("#subtype").html("");

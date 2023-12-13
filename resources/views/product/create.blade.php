@@ -681,7 +681,7 @@ Creacion de nuevos productos
 
                 <!-- Acabados -->
                 <div class="form-group">
-                    <label for="modal_type">Acabados</label>
+                    <label for="modal_acabado">Acabados</label>
                     <select class="form-control" id="modal_acabado" name="modal_acabado">
                         @foreach($product_acabados as $acabado)
                             <option value="{{ $acabado->id }}">{{ $acabado->name }}</option>

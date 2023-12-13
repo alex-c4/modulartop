@@ -51,8 +51,8 @@ class ProductController extends Controller
     public function create()
     {
         $product_categories = DB::table("product_categories")->where('is_deleted', 0)->get();
-        $product_types = DB::table("product_types")->get();
-        $product_subtypes = DB::table("product_subtypes")->get();
+        $product_types = DB::table("product_types")->where('is_deleted', 0)->get();
+        $product_subtypes = DB::table("product_subtypes")->where('is_deleted', 0)->get();
         $product_acabados = DB::table("product_acabados")->get();
         $product_subacabados = DB::table("product_subacabados")->get();
         $product_materials = DB::table("product_materials")->get();
@@ -89,8 +89,8 @@ class ProductController extends Controller
         $msgPost = $resultProduct[0]["msg"];
 
         $product_categories = DB::table("product_categories")->where('is_deleted', 0)->get();
-        $product_types = DB::table("product_types")->get();
-        $product_subtypes = DB::table("product_subtypes")->get();
+        $product_types = DB::table("product_types")->where('is_deleted', 0)->get();
+        $product_subtypes = DB::table("product_subtypes")->where('is_deleted', 0)->get();
         $product_acabados = DB::table("product_acabados")->get();
         $product_subacabados = DB::table("product_subacabados")->get();
         $product_materials = DB::table("product_materials")->get();
@@ -283,7 +283,7 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Product::find($id);
-        $product_categories = DB::table("product_categories")->where('is_deleted', 0)->get();
+        $product_categories = DB::table("product_categories")->get();
         $product_types = DB::table("product_types")->get();
         $product_subtypes = DB::table("product_subtypes")->get();
         $product_acabados = DB::table("product_acabados")->get();
@@ -320,8 +320,8 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $product_categories = DB::table("product_categories")->where('is_deleted', 0)->get();
-        $product_types = DB::table("product_types")->get();
-        $product_subtypes = DB::table("product_subtypes")->get();
+        $product_types = DB::table("product_types")->where('is_deleted', 0)->get();
+        $product_subtypes = DB::table("product_subtypes")->where('is_deleted', 0)->get();
         $product_acabados = DB::table("product_acabados")->get();
         $product_subacabados = DB::table("product_subacabados")->get();
         $product_materials = DB::table("product_materials")->get();
