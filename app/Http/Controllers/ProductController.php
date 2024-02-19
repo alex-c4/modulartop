@@ -142,19 +142,19 @@ class ProductController extends Controller
     public function addProduct($request){
         $type = $request->input("type");
         /* 
-            1 - tableros; 
+            1 - tableros y otros; 
             2 - tapacanto
         */ 
 
-        if($type == 1) {
-            $this->validateTablero(request()->all())->validate();
-        }else{
+        if($type == 2) {
             $this->validateTapacanto(request()->all())->validate();
+        }else{
+            $this->validateTablero(request()->all())->validate();
         }
         
         $result = DB::transaction(function() use($request, $type){
-            // Tableros
-            if($type == 1) {
+            // Tapacantos
+            if($type == 2) {
                 $product = Product::create([
                     "id_product_category" => $request->input("category"),
                     "id_product_type" => $request->input("type"),
@@ -166,11 +166,6 @@ class ProductController extends Controller
                     "id_product_subacabado" => $request->input("sub_acabado"),
                     "width" => $request->input("width"),
                     "thickness" => $request->input("thickness"),
-                    "length" => $request->input("length"),
-                    "id_product_material" => $request->input("material"),
-                    "id_product_sustrato" => $request->input("sustrato"),
-                    "id_product_color" => $request->input("color"),
-                    "description" => $request->input("description"),
                     "img_product" => "",
                     "img_alt" => $request->input("image_alt"),
                     "created_at" => Carbon::now(),
@@ -189,6 +184,11 @@ class ProductController extends Controller
                     "id_product_subacabado" => $request->input("sub_acabado"),
                     "width" => $request->input("width"),
                     "thickness" => $request->input("thickness"),
+                    "length" => $request->input("length"),
+                    "id_product_material" => $request->input("material"),
+                    "id_product_sustrato" => $request->input("sustrato"),
+                    "id_product_color" => $request->input("color"),
+                    "description" => $request->input("description"),
                     "img_product" => "",
                     "img_alt" => $request->input("image_alt"),
                     "created_at" => Carbon::now(),
@@ -358,7 +358,7 @@ class ProductController extends Controller
         // $this->validateProduct_update(request()->all())->validate();
         $type = $request->input("type");
         /* 
-            1 - tableros; 
+            1 - tableros y otros; 
             2 - tapacanto
         */ 
 

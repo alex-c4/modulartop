@@ -224,7 +224,7 @@ Creacion de nuevos productos
                         <div class="form-group row">
                             <label for="width" class="col-md-4 col-form-label text-md-right">Ancho<span>*</span></label>
                             <div class="col-md-6">
-                                <input maxlength="60" min="1" id="width" name="width" type="number" class="form-control @error('width') is-invalid @enderror" value="{{ old('width') }}" >
+                                <input maxlength="60" min="0" id="width" name="width" type="number" class="form-control @error('width') is-invalid @enderror" value="{{ old('width') }}" >
 
                                 @error('width')
                                     <span class="invalid-field" role="alert">
@@ -238,7 +238,7 @@ Creacion de nuevos productos
                         <div class="form-group row">
                             <label for="thickness" class="col-md-4 col-form-label text-md-right">Espesor<span>*</span></label>
                             <div class="col-md-6">
-                                <input maxlength="60" min="1" id="thickness" name="thickness" type="number" class="form-control @error('thickness') is-invalid @enderror" value="{{ old('thickness') }}" >
+                                <input maxlength="60" min="0" id="thickness" name="thickness" type="number" class="form-control @error('thickness') is-invalid @enderror" value="{{ old('thickness') }}" >
 
                                 @error('thickness')
                                     <span class="invalid-field" role="alert">
