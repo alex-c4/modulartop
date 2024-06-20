@@ -146,57 +146,80 @@ class ProductController extends Controller
             2 - tapacanto
         */ 
 
-        if($type == 2) {
-            $this->validateTapacanto(request()->all())->validate();
-        }else{
-            $this->validateTablero(request()->all())->validate();
-        }
+        // if($type == 2) {
+        //     $this->validateTapacanto(request()->all())->validate();
+        // }else{
+        //     $this->validateTablero(request()->all())->validate();
+        // }
+        $this->validateTablero(request()->all())->validate();
         
         $result = DB::transaction(function() use($request, $type){
             // Tapacantos
-            if($type == 2) {
-                $product = Product::create([
-                    "id_product_category" => $request->input("category"),
-                    "id_product_type" => $request->input("type"),
-                    "id_product_subtype" => $request->input("subtype"),
-                    "code" => $request->input("code"),
-                    "name" => $request->input("name"),
-                    "id_product_origen" => $request->input("origen"),
-                    "id_product_acabado" => $request->input("acabado"),
-                    "id_product_subacabado" => $request->input("sub_acabado"),
-                    "width" => $request->input("width"),
-                    "thickness" => $request->input("thickness"),
-                    "img_product" => "",
-                    "img_alt" => $request->input("image_alt"),
-                    "created_at" => Carbon::now(),
-                    "created_by" => auth()->user()->id,
-                    "updated_at" => Carbon::now()
-                ]);
-            }else{
-                $product = Product::create([
-                    "id_product_category" => $request->input("category"),
-                    "id_product_type" => $request->input("type"),
-                    "id_product_subtype" => $request->input("subtype"),
-                    "code" => $request->input("code"),
-                    "name" => $request->input("name"),
-                    "id_product_origen" => $request->input("origen"),
-                    "id_product_acabado" => $request->input("acabado"),
-                    "id_product_subacabado" => $request->input("sub_acabado"),
-                    "width" => $request->input("width"),
-                    "thickness" => $request->input("thickness"),
-                    "length" => $request->input("length"),
-                    "id_product_material" => $request->input("material"),
-                    "id_product_sustrato" => $request->input("sustrato"),
-                    "id_product_color" => $request->input("color"),
-                    "description" => $request->input("description"),
-                    "img_product" => "",
-                    "img_alt" => $request->input("image_alt"),
-                    "created_at" => Carbon::now(),
-                    "created_by" => auth()->user()->id,
-                    "updated_at" => Carbon::now()
-                ]);
-            }
-    
+            // if($type == 2) {
+            //     $product = Product::create([
+            //         "id_product_category" => $request->input("category"),
+            //         "id_product_type" => $request->input("type"),
+            //         "id_product_subtype" => $request->input("subtype"),
+            //         "code" => $request->input("code"),
+            //         "name" => $request->input("name"),
+            //         "id_product_origen" => $request->input("origen"),
+            //         "id_product_acabado" => $request->input("acabado"),
+            //         "id_product_subacabado" => $request->input("sub_acabado"),
+            //         "width" => $request->input("width"),
+            //         "thickness" => $request->input("thickness"),
+            //         "img_product" => "",
+            //         "img_alt" => $request->input("image_alt"),
+            //         "created_at" => Carbon::now(),
+            //         "created_by" => auth()->user()->id,
+            //         "updated_at" => Carbon::now()
+            //     ]);
+            // }else{
+            //     $product = Product::create([
+            //         "id_product_category" => $request->input("category"),
+            //         "id_product_type" => $request->input("type"),
+            //         "id_product_subtype" => $request->input("subtype"),
+            //         "code" => $request->input("code"),
+            //         "name" => $request->input("name"),
+            //         "id_product_origen" => $request->input("origen"),
+            //         "id_product_acabado" => $request->input("acabado"),
+            //         "id_product_subacabado" => $request->input("sub_acabado"),
+            //         "width" => $request->input("width"),
+            //         "thickness" => $request->input("thickness"),
+            //         "length" => $request->input("length"),
+            //         "id_product_material" => $request->input("material"),
+            //         "id_product_sustrato" => $request->input("sustrato"),
+            //         "id_product_color" => $request->input("color"),
+            //         "description" => $request->input("description"),
+            //         "img_product" => "",
+            //         "img_alt" => $request->input("image_alt"),
+            //         "created_at" => Carbon::now(),
+            //         "created_by" => auth()->user()->id,
+            //         "updated_at" => Carbon::now()
+            //     ]);
+            // }
+            $product = Product::create([
+                "id_product_category" => $request->input("category"),
+                "id_product_type" => $request->input("type"),
+                "id_product_subtype" => $request->input("subtype"),
+                "code" => $request->input("code"),
+                "name" => $request->input("name"),
+                "id_product_origen" => $request->input("origen"),
+                "id_product_acabado" => $request->input("acabado"),
+                "id_product_subacabado" => $request->input("sub_acabado"),
+                "width" => $request->input("width"),
+                "thickness" => $request->input("thickness"),
+                "length" => $request->input("length"),
+                "id_product_material" => $request->input("material"),
+                "id_product_sustrato" => $request->input("sustrato"),
+                "id_product_color" => $request->input("color"),
+                "description" => $request->input("description"),
+                "img_product" => "",
+                "img_alt" => $request->input("image_alt"),
+                "created_at" => Carbon::now(),
+                "created_by" => auth()->user()->id,
+                "updated_at" => Carbon::now()
+            ]);
+            
             // Registro de imagenes subidas
             $cycles = 50;
             
