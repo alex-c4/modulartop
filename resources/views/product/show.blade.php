@@ -360,7 +360,7 @@ Ver producto
 
         @if($product->id_product_type != 1)
             // Ocultar secciones cuando es Tapacanto
-            hideTableroSections();
+            // hideTableroSections();
         @endif
 
         //Llenarcombo de subtipo del modal

@@ -102,7 +102,7 @@ $("#type").on("change", function(){
         $("#subtitle-acabados").hide("slow");
 
         //length
-        $("#div-length").hide("slow");
+        // $("#div-length").hide("slow");
         $("#length").val("");
 
         showCaracteristicas(false);
@@ -149,27 +149,31 @@ $("#type").on("change", function(){
         $("#subtitle-acabados").show("slow");
         $("#div-subacabados").show("slow");
 
-        if(type_id == 1){
-            $("#div-length").show("slow");
+        // if(type_id == 1){
+        //     $("#div-length").show("slow");
 
-            showCaracteristicas(true);
+        //     showCaracteristicas(true);
 
-            //creacion de validator para elementos de tipo "Tableros"
-            validator_forTableros();
-        }else{
-            $("#div-subacabados").hide("slow");
+        //     //creacion de validator para elementos de tipo "Tableros"
+        //     validator_forTableros();
+        // }else{
+        //     $("#div-subacabados").hide("slow");
 
-            $("#div-length").hide("slow");
-            $("#length").val("");
+        //     $("#div-length").hide("slow");
+        //     $("#length").val("");
 
-            $("#acabado").val("").trigger("change");
-            $("#sub_acabado").val("").trigger("change");
+        //     $("#acabado").val("").trigger("change");
+        //     $("#sub_acabado").val("").trigger("change");
 
-            showCaracteristicas(false);
+        //     showCaracteristicas(false);
 
-            //creacion de validator para elementos de tipo "Tableros"
-            validator_forTapacanto();
-        }
+        //     //creacion de validator para elementos de tipo "Tableros"
+        //     validator_forTapacanto();
+        // }
+        $("#div-length").show("slow");
+        showCaracteristicas(false);
+        //creacion de validator para elementos de tipo "Tableros"
+        validator_forTableros();
     }
 
 })

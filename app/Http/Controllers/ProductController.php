@@ -385,52 +385,69 @@ class ProductController extends Controller
             2 - tapacanto
         */ 
 
-        if($type == 1) {
-            $this->validateTablero_update(request()->all())->validate();
-        }else{
-            $this->validateTapacanto_update(request()->all())->validate();
-        }
+        // if($type == 1) {
+        //     $this->validateTablero_update(request()->all())->validate();
+        // }else{
+        //     $this->validateTapacanto_update(request()->all())->validate();
+        // }
+        $this->validateTablero_update(request()->all())->validate();
         
         $result = DB::transaction(function() use($request, $type, $id){
             $product = Product::find($id);
-
             
-            if($type == 1) { // Tablero
-                $product->price = $request->input("cost");
-                $product->id_product_category = $request->input("category");
-                $product->id_product_type = $request->input("type");
-                $product->id_product_subtype = $request->input("subtype");
-                $product->code = $request->input("code");
-                $product->name = $request->input("name");
-                $product->id_product_origen = $request->input("origen");
-                $product->id_product_acabado = $request->input("acabado");
-                $product->id_product_subacabado = $request->input("sub_acabado");
-                $product->width = $request->input("width");
-                $product->thickness = $request->input("thickness");
-                $product->length = $request->input("length");
-                $product->id_product_material = $request->input("material");
-                $product->id_product_sustrato = $request->input("sustrato");
-                $product->id_product_color = $request->input("color");
-                $product->description = $request->input("description");
-                $product->img_alt = $request->input("image_alt");
-                $product->updated_at = Carbon::now();
+            // if($type == 1) { // Tablero
+            //     $product->price = $request->input("cost");
+            //     $product->id_product_category = $request->input("category");
+            //     $product->id_product_type = $request->input("type");
+            //     $product->id_product_subtype = $request->input("subtype");
+            //     $product->code = $request->input("code");
+            //     $product->name = $request->input("name");
+            //     $product->id_product_origen = $request->input("origen");
+            //     $product->id_product_acabado = $request->input("acabado");
+            //     $product->id_product_subacabado = $request->input("sub_acabado");
+            //     $product->width = $request->input("width");
+            //     $product->thickness = $request->input("thickness");
+            //     $product->length = $request->input("length");
+            //     $product->id_product_material = $request->input("material");
+            //     $product->id_product_sustrato = $request->input("sustrato");
+            //     $product->id_product_color = $request->input("color");
+            //     $product->description = $request->input("description");
+            //     $product->img_alt = $request->input("image_alt");
+            //     $product->updated_at = Carbon::now();
 
-            }else{ // cualquier otro tipo de producto
-                $product->price = $request->input("cost");
-                $product->id_product_category = $request->input("category");
-                $product->id_product_type = $request->input("type");
-                $product->id_product_subtype = $request->input("subtype");
-                $product->code = $request->input("code");
-                $product->name = $request->input("name");
-                $product->id_product_origen = $request->input("origen");
-                $product->id_product_acabado = $request->input("acabado");
-                $product->id_product_subacabado = $request->input("sub_acabado");
-                $product->width = $request->input("width");
-                $product->thickness = $request->input("thickness");
-                $product->img_alt = $request->input("image_alt");
-                $product->updated_at = Carbon::now();
-                
-            }
+            // }else{ // cualquier otro tipo de producto
+            //     $product->price = $request->input("cost");
+            //     $product->id_product_category = $request->input("category");
+            //     $product->id_product_type = $request->input("type");
+            //     $product->id_product_subtype = $request->input("subtype");
+            //     $product->code = $request->input("code");
+            //     $product->name = $request->input("name");
+            //     $product->id_product_origen = $request->input("origen");
+            //     $product->id_product_acabado = $request->input("acabado");
+            //     $product->id_product_subacabado = $request->input("sub_acabado");
+            //     $product->width = $request->input("width");
+            //     $product->thickness = $request->input("thickness");
+            //     $product->img_alt = $request->input("image_alt");
+            //     $product->updated_at = Carbon::now();
+            // }
+            $product->price = $request->input("cost");
+            $product->id_product_category = $request->input("category");
+            $product->id_product_type = $request->input("type");
+            $product->id_product_subtype = $request->input("subtype");
+            $product->code = $request->input("code");
+            $product->name = $request->input("name");
+            $product->id_product_origen = $request->input("origen");
+            $product->id_product_acabado = $request->input("acabado");
+            $product->id_product_subacabado = $request->input("sub_acabado");
+            $product->width = $request->input("width");
+            $product->thickness = $request->input("thickness");
+            $product->length = $request->input("length");
+            $product->id_product_material = $request->input("material");
+            $product->id_product_sustrato = $request->input("sustrato");
+            $product->id_product_color = $request->input("color");
+            $product->description = $request->input("description");
+            $product->img_alt = $request->input("image_alt");
+            $product->updated_at = Carbon::now();
 
             // Registro de imagenes subidas
             $cycles = 50;
