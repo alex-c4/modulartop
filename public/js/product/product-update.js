@@ -96,16 +96,16 @@ $("#type").on("change", function(){
     // fin del código comentado
 
     if(type_id == ""){
-        $("#div-subtypes").hide("slow");
-        $("#div-acabados").hide("slow");
-        $("#div-subacabados").hide("slow");
-        $("#subtitle-acabados").hide("slow");
+        // $("#div-subtypes").hide("slow");
+        // $("#div-acabados").hide("slow");
+        // $("#div-subacabados").hide("slow");
+        // $("#subtitle-acabados").hide("slow");
 
         //length
         // $("#div-length").hide("slow");
-        $("#length").val("");
+        // $("#length").val("");
 
-        showCaracteristicas(false);
+        // showCaracteristicas(false);
 
         validator_default();
     }else{
@@ -147,7 +147,6 @@ $("#type").on("change", function(){
 
         $("#div-acabados").show("slow");
         $("#subtitle-acabados").show("slow");
-        $("#div-subacabados").show("slow");
 
         // if(type_id == 1){
         //     $("#div-length").show("slow");
@@ -170,8 +169,8 @@ $("#type").on("change", function(){
         //     //creacion de validator para elementos de tipo "Tableros"
         //     validator_forTapacanto();
         // }
+        showCaracteristicas(true);
         $("#div-length").show("slow");
-        showCaracteristicas(false);
         //creacion de validator para elementos de tipo "Tableros"
         validator_forTableros();
     }
@@ -202,8 +201,6 @@ $("#subtype").on("change", function(){
 $("#acabado").on("change", function(){
     var acabado_id = (this.value != "") ? parseInt(this.value) : this.value;
 
-    $("#sub_acabado").html("");
-
     // if(acabado_id == ""){
     //     $("#div-subacabados").hide("slow");
     //     $('#sub_acabado').append($('<option>', {
@@ -213,19 +210,7 @@ $("#acabado").on("change", function(){
     // }else{
 
 
-    // }
-
-    produc_subacabados.forEach(item => {
-        if(item.id_acabado == acabado_id){
-            $('#sub_acabado').append($('<option>', {
-                value: item.id,
-                text: item.name
-            }));
-        }
-    });
-    
-    if(acabado_id != "") $("#div-subacabados").show("slow");
-    
+    // }    
 })
 
 
@@ -546,54 +531,6 @@ var onclick_addAcabado = function(){
 
 
     }
-}
-
-var onclick_addSubacabado = function(){
-    var _url = $("#hRouteAddSubacabado").val();
-    var _id_acabado = $("#modal_acabado").val();
-    var _name = $("#txtSubacabado").val();
-    var _crr_subacabado = parseInt($("#sub_acabado").val());
-    var _crr_acabado = parseInt($("#acabado").val());
-
-    var _data = {
-        id_acabado: _id_acabado,
-        name: _name
-    };
-
-    if(_name == ""){
-        $("#txtAcabado").addClass("is-invalid");
-    }else{
-        Utils.getData(_url, _token, _type, _data).then(function(result){
-            if(result.result == true){
-                $("#sub_acabado").html("");
-                produc_subacabados = result.data;
-                produc_subacabados.forEach( item => {
-                    if(item.id_acabado == _crr_acabado){
-                        if(item.id == _crr_subacabado){
-                            $('#sub_acabado').append($('<option>', {
-                                value: item.id,
-                                text: item.name,
-                                selected: "selected"
-                            }));
-                        }else{
-                            $('#sub_acabado').append($('<option>', {
-                                value: item.id,
-                                text: item.name
-                            }));
-                        }
-                    }
-
-                    // $("#acabado").val("0").trigger("change");
-                    $('#subacabadoModal').modal('hide');
-                    $("#txtSubacabado").val("");
-                    $("#txtSubacabado").removeClass("is-invalid")
-                })
-            }else{
-                console.log(result.message);
-            }
-        });
-    }
-
 }
 
 var onclick_addMaterial = function(){

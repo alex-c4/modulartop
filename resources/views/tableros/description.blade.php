@@ -98,14 +98,6 @@ content="Tablero melaminico hidrófugo y natural MDP importado y nacional, acaba
                                     </div>
                                 </div>
                                 
-                                <div class="form-group row mb-1">
-                                    <label  class="col-sm-5 col-form-label text-right"><strong>Sub-acabado:</strong></label>
-                                    <div class="col-sm-7 text-left">
-                                        <label  class="col-form-label">{{ $product->name_subcategory_efecto_v }}</label>
-                                        <!-- <input disabled type="email" class="form-control" id="inputEmail3"> -->
-                                    </div>
-                                </div>
-                                
                                 <!-- seccion para los tableros -->
                                 @if($product->id_product_type == 1)
                                 <div class="form-group row mb-1">

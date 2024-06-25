@@ -442,6 +442,13 @@
                         </a>
                       </li>
 
+                      <li>
+                        <a href="{{ route('product.import') }}">
+                            <span class="icon-upload"></span>
+                            Registro masivo
+                        </a>
+                      </li>
+
                     </ul>
                     
                 </li>

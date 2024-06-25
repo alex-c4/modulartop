@@ -6,9 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Product;
+use App\Imports\ProductsImport;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
-
+use Maatwebsite\Excel\Facades\Excel;
 use DB;
 
 class ProductController extends Controller
@@ -54,7 +55,6 @@ class ProductController extends Controller
         $product_types = DB::table("product_types")->where('is_deleted', 0)->get();
         $product_subtypes = DB::table("product_subtypes")->where('is_deleted', 0)->get();
         $product_acabados = DB::table("product_acabados")->get();
-        $product_subacabados = DB::table("product_subacabados")->get();
         $product_materials = DB::table("product_materials")->get();
         $product_sustrato = DB::table("product_sustratos")->get();
         $product_colors = DB::table("product_colors")->get();
@@ -69,7 +69,6 @@ class ProductController extends Controller
                 "product_types", 
                 "product_subtypes", 
                 "product_acabados",
-                "product_subacabados",
                 "product_materials",
                 "product_sustrato",
                 "product_colors",
@@ -92,7 +91,6 @@ class ProductController extends Controller
         $product_types = DB::table("product_types")->where('is_deleted', 0)->get();
         $product_subtypes = DB::table("product_subtypes")->where('is_deleted', 0)->get();
         $product_acabados = DB::table("product_acabados")->get();
-        $product_subacabados = DB::table("product_subacabados")->get();
         $product_materials = DB::table("product_materials")->get();
         $product_sustrato = DB::table("product_sustratos")->get();
         $product_colors = DB::table("product_colors")->get();
@@ -103,7 +101,6 @@ class ProductController extends Controller
             "product_types", 
             "product_subtypes", 
             "product_acabados",
-            "product_subacabados",
             "product_materials",
             "product_sustrato",
             "product_colors",
@@ -205,7 +202,6 @@ class ProductController extends Controller
                 "name" => $request->input("name"),
                 "id_product_origen" => $request->input("origen"),
                 "id_product_acabado" => $request->input("acabado"),
-                "id_product_subacabado" => $request->input("sub_acabado"),
                 "width" => $request->input("width"),
                 "thickness" => $request->input("thickness"),
                 "length" => $request->input("length"),
@@ -213,6 +209,7 @@ class ProductController extends Controller
                 "id_product_sustrato" => $request->input("sustrato"),
                 "id_product_color" => $request->input("color"),
                 "description" => $request->input("description"),
+                "price" => $request->input("cost"),
                 "img_product" => "",
                 "img_alt" => $request->input("image_alt"),
                 "created_at" => Carbon::now(),
@@ -310,7 +307,6 @@ class ProductController extends Controller
         $product_types = DB::table("product_types")->get();
         $product_subtypes = DB::table("product_subtypes")->get();
         $product_acabados = DB::table("product_acabados")->get();
-        $product_subacabados = DB::table("product_subacabados")->get();
         $product_materials = DB::table("product_materials")->get();
         $product_sustrato = DB::table("product_sustratos")->get();
         $product_colors = DB::table("product_colors")->get();
@@ -324,7 +320,6 @@ class ProductController extends Controller
             "product_types", 
             "product_subtypes", 
             "product_acabados",
-            "product_subacabados",
             "product_materials",
             "product_sustrato",
             "product_colors",
@@ -346,7 +341,6 @@ class ProductController extends Controller
         $product_types = DB::table("product_types")->where('is_deleted', 0)->get();
         $product_subtypes = DB::table("product_subtypes")->where('is_deleted', 0)->get();
         $product_acabados = DB::table("product_acabados")->get();
-        $product_subacabados = DB::table("product_subacabados")->get();
         $product_materials = DB::table("product_materials")->get();
         $product_sustrato = DB::table("product_sustratos")->get();
         $product_colors = DB::table("product_colors")->get();
@@ -360,7 +354,6 @@ class ProductController extends Controller
             "product_types", 
             "product_subtypes", 
             "product_acabados",
-            "product_subacabados",
             "product_materials",
             "product_sustrato",
             "product_colors",
@@ -438,7 +431,6 @@ class ProductController extends Controller
             $product->name = $request->input("name");
             $product->id_product_origen = $request->input("origen");
             $product->id_product_acabado = $request->input("acabado");
-            $product->id_product_subacabado = $request->input("sub_acabado");
             $product->width = $request->input("width");
             $product->thickness = $request->input("thickness");
             $product->length = $request->input("length");
@@ -1156,34 +1148,6 @@ class ProductController extends Controller
 
     }
 
-    public function addSubacabado(Request $request){
-        try {
-            $id_acabado = $request->input("id_acabado");
-            $name = $request->input("name");
-
-            DB::table("product_subacabados")->insert([
-                "id_acabado" => $id_acabado,
-                "name" => $name
-            ]);
-
-            $product_subacabados = DB::table("product_subacabados")->get();
-
-            $result = [
-                "result" => true,
-                "data" => $product_subacabados
-            ];
-
-        } catch (\Throwable $th) {
-            //throw $th;
-            $result = [
-                "result" => false,
-                "message" => "No se pudo agregar el Sub-acabado al sistema, por favor intente nuevamente."
-            ];
-        }
-
-        return $result;
-    }
-
     public function addMaterial(Request $request){
         try {
             $name = $request->input("name");
@@ -1257,6 +1221,18 @@ class ProductController extends Controller
         }
 
         return $result;
+    }
+
+    public function import(Request $request){
+        return view('product.import');
+    }
+    public function storeImport(Request $request){
+        $file = $request->file('import_file');
+        Excel::import(new ProductsImport, $file);
+
+        $msgPost = "¡Importación realiza satisfactoriamente!.";
+
+        return view('product.import', compact("msgPost"));
     }
 
     

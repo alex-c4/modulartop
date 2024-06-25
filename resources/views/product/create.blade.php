@@ -62,6 +62,19 @@ Creacion de nuevos productos
                             <label class="col-md-5 col-form-label text-md-right mt-4"><strong>General</strong></label>
                         </div>
 
+                        <!-- precio -->
+                        <div class="form-group row">
+                            <label for="cost" class="col-md-4 col-form-label text-md-right">P.V.P<span>*</span></label>
+                            <div class="col-md-6">
+                                <input type="number" class="form-control" id="cost" name="cost" min="0" value="{{ old('price') }}">
+                                @error('cost')
+                                    <span class="invalid-field" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
                         <!-- Categoria -->
                         <div class="form-group row">
                             <label for="category" class="col-md-4 col-form-label text-md-right">Categoria<span>*</span></label>
@@ -200,21 +213,6 @@ Creacion de nuevos productos
                             </div>
                         </div>
 
-                        <!-- Sub-acabados -->
-                        <div class="form-group row" id="div-subacabados" style="display: none">
-                            <label for="sub_acabado" class="col-md-4 col-form-label text-md-right">Sub-acabado</label>
-                            <div class="col-md-6">
-                                <div class="input-group" >
-                                    <select class="custom-select" id="sub_acabado" name="sub_acabado">
-                                        <option value="">-Seleccione-</option>
-                                    </select>
-                                    <div class="input-group-append">
-                                        <button style="height: 38px" id="btnAddSubAcabado" data-toggle="modal" data-target="#subacabadoModal" title="Agregar nuevo Sub-acabado" class="btn btn-primary" type="button"><span class="icon-add" style="color: white !important;"></span></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                         <!-- Dimensiones -->
                         <div class="form-group row">
                             <label for="subcategory" class="col-md-5 col-form-label text-md-right mt-4"><strong>Dimensiones</strong></label>
@@ -281,13 +279,13 @@ Creacion de nuevos productos
                                     <div class="input-group-append">
                                         <button style="height: 38px" id="btnAddMaterial" data-toggle="modal" data-target="#materialModal" title="Agregar nuevo Material" class="btn btn-primary" type="button"><span class="icon-add" style="color: white !important;"></span></button>
                                     </div>
-
-                                    @error('material')
-                                        <span class="invalid-field text-center" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
                                 </div>
+
+                                @error('material')
+                                    <span class="invalid-field text-center" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                                 <div id="errorDivMaterial"></div>
                             </div>
                         </div>
@@ -306,13 +304,13 @@ Creacion de nuevos productos
                                     <div class="input-group-append">
                                         <button style="height: 38px" id="btnAddSustrato" data-toggle="modal" data-target="#sustratoModal" title="Agregar nuevo Tipo de Sustrato" class="btn btn-primary" type="button"><span class="icon-add" style="color: white !important;"></span></button>
                                     </div>
-
-                                    @error('sustrato')
-                                        <span class="invalid-field text-center" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
                                 </div>
+
+                                @error('sustrato')
+                                    <span class="invalid-field text-center" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                                 <div id="errorDivSustrato"></div>
                             </div>
                         </div>
@@ -331,13 +329,13 @@ Creacion de nuevos productos
                                     <div class="input-group-append">
                                         <button style="height: 38px" id="btnAddColor" data-toggle="modal" data-target="#colorModal" title="Agregar nuevo Color" class="btn btn-primary" type="button"><span class="icon-add" style="color: white !important;"></span></button>
                                     </div>
-
-                                    @error('color')
-                                        <span class="invalid-field text-center" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
                                 </div>
+
+                                @error('color')
+                                    <span class="invalid-field text-center" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                                 <div id="errorDivColor"></div>
                             </div>
                         </div>
@@ -663,48 +661,6 @@ Creacion de nuevos productos
     </div>
 </div>
 
-<!-- Modal Sub-acabado -->
-<div class="modal fade" id="subacabadoModal" tabindex="-1" aria-labelledby="subacabadoModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-      
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Agregar Sub-acabado</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-
-            <div class="modal-body">
-            
-                <input type="hidden" id="hRouteAddSubacabado" value="{{ route('product.addSubacabado') }}">
-
-                <!-- Acabados -->
-                <div class="form-group">
-                    <label for="modal_acabado">Acabados</label>
-                    <select class="form-control" id="modal_acabado" name="modal_acabado">
-                        @foreach($product_acabados as $acabado)
-                            <option value="{{ $acabado->id }}">{{ $acabado->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="txtSubacabado">Nuevo Sub-acabado</label>
-                    <input type="text" class="form-control" id="txtSubacabado">
-                </div>
-
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" onclick="onclick_addSubacabado()">Guardar</button>
-            </div>
-
-        </div>
-    </div>
-</div>
-
 <!-- Modal Materiales -->
 <div class="modal fade" id="materialModal" tabindex="-1" aria-labelledby="materialModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -820,9 +776,7 @@ Creacion de nuevos productos
 
     <script>
         var produc_types = @json($product_types);
-        var produc_subtypes = @json($product_subtypes);
-        var produc_subacabados = @json($product_subacabados);
-        
+        var produc_subtypes = @json($product_subtypes);        
     </script>
 
     <script>

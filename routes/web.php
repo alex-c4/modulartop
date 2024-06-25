@@ -130,6 +130,8 @@ Route::get("product/delete/{id}", ["as" => "product.delete", "uses" => "ProductC
 Route::get("product/restore/{id}", ["as" => "product.restore", "uses" => "ProductController@restore"]);
 Route::get("product/show/{id}", ["as" => "product.show", "uses" => "ProductController@show"]);
 Route::post("product/searchProduct", ["as" => "product.searchProduct", "uses" => "ProductController@searchProduct"]);
+Route::get("product/import", ["as" => "product.import", "uses" => "ProductController@import"]);
+Route::post("product/import", ["as" => "product.storeImport", "uses" => "ProductController@storeImport"]);
 
 // Ficha tecnica
 Route::get("fichaTecnica/uploadFichaTecnica", ["as" => "fichaTecnica.uploadFichaTecnica", "uses" => "FichaTecnicaController@showFormFichaTecnica"]);
@@ -220,7 +222,6 @@ Route::post("product/storeajax", ["as" => "product.storeajax", "uses" => "Produc
 Route::post("product/addSubType", ["as" => "product.addSubType", "uses" => "ProductController@addSubType"]);
 Route::post("product/deleteSubtype", ["as" => "product.deleteSubtype", "uses" => "ProductController@deleteSubtype"]);
 Route::post("product/addAcabado", ["as" => "product.addAcabado", "uses" => "ProductController@addAcabado"]);
-Route::post("product/addSubacabado", ["as" => "product.addSubacabado", "uses" => "ProductController@addSubacabado"]);
 Route::post("product/addMaterial", ["as" => "product.addMaterial", "uses" => "ProductController@addMaterial"]);
 Route::post("product/addSustrato", ["as" => "product.addSustrato", "uses" => "ProductController@addSustrato"]);
 Route::post("product/addColor", ["as" => "product.addColor", "uses" => "ProductController@addColor"]);

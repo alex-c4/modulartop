@@ -44,6 +44,14 @@ Ver producto
                         <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
                         <input type="hidden" name="hUrlDeleteImage" id="hUrlDeleteImage" value="{{ route('product.deleteimg') }}">
 
+                        <!-- Precio -->
+                        <div class="form-group row">
+                            <label for="cost" class="col-md-4 col-form-label text-md-right">P.V.P<span>*</span></label>
+                            <div class="col-md-6">
+                                <input disabled maxlength="60" id="price" name="price" type="text" class="form-control @error('price') is-invalid @enderror" value="{{ $product->price }}" autofocus>
+                            </div>
+                        </div>
+
                         <!-- Categoria -->
                         <div class="form-group row">
                             <label for="category" class="col-md-4 col-form-label text-md-right">Categoria<span>*</span></label>
@@ -157,24 +165,6 @@ Ver producto
                                             <option selected value="{{ $acabado->id }}">{{ $acabado->name }}</option>
                                         @else
                                             <option value="{{ $acabado->id }}">{{ $acabado->name }}</option>
-                                        @endif
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-
-                        <!-- Sub-acabados -->
-                        <div class="form-group row" id="div-subacabados" >
-                            <label for="sub_acabado" class="col-md-4 col-form-label text-md-right">Sub-acabado</label>
-                            <div class="col-md-6">
-                                <select disabled class="form-control" id="sub_acabado" name="sub_acabado">
-                                    @foreach($product_subacabados as $subacabado)
-                                        @if($product->id_product_acabado == $subacabado->id_acabado)
-                                            @if($subacabado->id == $product->id_product_subacabado)
-                                                <option selected value="{{ $subacabado->id }}">{{ $subacabado->name }}</option>
-                                            @else
-                                                <option value="{{ $subacabado->id }}">{{ $subacabado->name }}</option>
-                                            @endif
                                         @endif
                                     @endforeach
                                 </select>
@@ -346,7 +336,6 @@ Ver producto
     <script>
         var produc_types = @json($product_types);
         var produc_subtypes = @json($product_subtypes);
-        var produc_subacabados = @json($product_subacabados);
         
     </script>
 

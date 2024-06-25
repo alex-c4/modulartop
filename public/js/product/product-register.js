@@ -59,7 +59,6 @@ $("#type").on("change", function(){
 
         $("#div-subtypes").hide("slow");
         $("#div-acabados").hide("slow");
-        $("#div-subacabados").hide("slow");
         $("#subtitle-acabados").hide("slow");
 
         //length
@@ -112,12 +111,10 @@ $("#type").on("change", function(){
         $("#subtitle-acabados").show("slow");
 
         // if(type_id == 2){
-        //     $("#div-subacabados").hide("slow");
         //     $("#div-length").hide("slow");
         //     $("#length").val("");
 
         //     $("#acabado").val("").trigger("change");
-        //     $("#sub_acabado").val("").trigger("change");
 
         //     showCaracteristicas(false);
 
@@ -157,33 +154,6 @@ $("#subtype").on("change", function(){
         $("#code").val("");
         $("#name").val("");
         $("#cantinit").val("0");
-    }
-})
-
-$("#acabado").on("change", function(){
-    var acabado_id = (this.value != "") ? parseInt(this.value) : this.value;
-
-    $("#sub_acabado").html("");
-
-    if(acabado_id == ""){
-        $("#div-subacabados").hide("slow");
-        $('#sub_acabado').append($('<option>', {
-            value: 0,
-            text: "-Seleccione-"
-        }));
-    }else{
-        produc_subacabados.forEach(item => {
-            if(item.id_acabado == acabado_id){
-                $('#sub_acabado').append($('<option>', {
-                    value: item.id,
-                    text: item.name
-                }));
-            }
-        });
-        
-        $("#div-subacabados").show("slow");
-
-
     }
 })
 
@@ -282,15 +252,15 @@ var validator_forTableros = function(){
             },
             width:{
                 required: true,
-                min: 1
+                min: Number.MIN_VALUE
             },
             thickness:{
                 required: true,
-                min: 1
+                min: Number.MIN_VALUE
             },
             length:{
                 required: true,
-                min: 1
+                min: Number.MIN_VALUE
             },
             material:{
                 required: true
@@ -635,7 +605,6 @@ var onclick_addAcabado = function(){
                     }));
                 })
                 $("#acabado").val("0").trigger("change");
-                $('#subacabado').modal('hide');
 
                 $('#acabadoModal').modal('hide');
                 $("#txtAcabado").val("");
@@ -647,42 +616,6 @@ var onclick_addAcabado = function(){
 
 
     }
-}
-
-var onclick_addSubacabado = function(){
-    var _url = $("#hRouteAddSubacabado").val();
-    var _id_acabado = $("#modal_acabado").val();
-    var _name = $("#txtSubacabado").val();
-
-    var _data = {
-        id_acabado: _id_acabado,
-        name: _name
-    };
-
-    if(_name == ""){
-        $("#txtAcabado").addClass("is-invalid");
-    }else{
-        Utils.getData(_url, _token, _type, _data).then(function(result){
-            if(result.result == true){
-                $("#sub_acabado").html("");
-                produc_subacabados = result.data;
-                produc_subacabados.forEach( item => {
-                    $('#sub_acabado').append($('<option>', {
-                        value: item.id,
-                        text: item.name
-                    }));
-
-                    $("#acabado").val("0").trigger("change");
-                    $('#subacabadoModal').modal('hide');
-                    $("#txtSubacabado").val("");
-                    $("#txtSubacabado").removeClass("is-invalid")
-                })
-            }else{
-                console.log(result.message);
-            }
-        });
-    }
-
 }
 
 var onclick_addMaterial = function(){
