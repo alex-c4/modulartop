@@ -71,7 +71,6 @@ class PurchaseController extends Controller
         $product_types = DB::table("product_types")->get();
         $product_subtypes = DB::table("product_subtypes")->get();
         $product_acabados = DB::table("product_acabados")->get();
-        $product_subacabados = DB::table("product_subacabados")->get();
         $product_materials = DB::table("product_materials")->get();
         $product_sustrato = DB::table("product_sustratos")->get();
         $product_colors = DB::table("product_colors")->get();
@@ -84,7 +83,6 @@ class PurchaseController extends Controller
             "product_types", 
             "product_subtypes", 
             "product_acabados",
-            "product_subacabados",
             "product_materials",
             "product_sustrato",
             "product_colors",
@@ -192,7 +190,6 @@ class PurchaseController extends Controller
         $product_types = DB::table("product_types")->get();
         $product_subtypes = DB::table("product_subtypes")->get();
         $product_acabados = DB::table("product_acabados")->get();
-        $product_subacabados = DB::table("product_subacabados")->get();
         $product_materials = DB::table("product_materials")->get();
         $product_sustrato = DB::table("product_sustratos")->get();
         $product_colors = DB::table("product_colors")->get();
@@ -212,7 +209,6 @@ class PurchaseController extends Controller
             "product_types", 
             "product_subtypes", 
             "product_acabados",
-            "product_subacabados",
             "product_materials",
             "product_sustrato",
             "product_colors",

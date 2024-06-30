@@ -64,3 +64,13 @@ input.error{
 select.error{
     border: 1px solid crimson !important;
 }
+.container-error{
+    text-align: center;
+}
+
+.borde-tab-content{
+    border-left: 1px solid #dee2e6;
+    border-right: 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
+    padding: 15px;
+}

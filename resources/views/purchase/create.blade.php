@@ -357,21 +357,6 @@ Creacion de una nueva compra
                 </div>
             </div>
 
-            <!-- Sub-acabados -->
-            <div class="form-group row" id="div-subacabados" style="display: none">
-                <label for="sub_acabado" class="col-md-4 col-form-label text-md-right">Sub-acabado</label>
-                <div class="col-md-6">
-                    <div class="input-group" >
-                        <select class="custom-select" id="sub_acabado" name="sub_acabado">
-                            <option value="">-Seleccione-</option>
-                        </select>
-                        <div class="input-group-append">
-                            <button style="height: 38px" id="btnAddSubAcabado" data-toggle="modal" data-target="#subacabadoModal" title="Agregar nuevo Sub-acabado" class="btn btn-primary" type="button"><span class="icon-add" style="color: white !important;"></span></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <!-- Dimensiones -->
             <div class="form-group row">
                 <label for="subcategory" class="col-md-5 col-form-label text-md-right mt-4"><strong>Dimensiones</strong></label>
@@ -642,48 +627,6 @@ Creacion de una nueva compra
     </div>
 </div>
 
-<!-- Modal Sub-acabado -->
-<div class="modal fade" id="subacabadoModal" tabindex="-1" aria-labelledby="subacabadoModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-      
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Agregar Sub-acabado</h5>
-                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button> -->
-            </div>
-
-            <div class="modal-body">
-            
-                <input type="hidden" id="hRouteAddSubacabado" value="{{ route('product.addSubacabado') }}">
-
-                <!-- Acabados -->
-                <div class="form-group">
-                    <label for="modal_type">Acabados</label>
-                    <select class="form-control" id="modal_acabado" name="modal_acabado">
-                        @foreach($product_acabados as $acabado)
-                            <option value="{{ $acabado->id }}">{{ $acabado->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="txtSubacabado">Nuevo Sub-acabado</label>
-                    <input type="text" class="form-control" id="txtSubacabado">
-                </div>
-
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" onclick="onclick_closeModal('subacabado', true)">Cerrar</button>
-                <button type="button" class="btn btn-primary" onclick="onclick_addSubacabado()">Guardar</button>
-            </div>
-
-        </div>
-    </div>
-</div>
-
 <!-- Modal Materiales -->
 <div class="modal fade" id="materialModal" tabindex="-1" aria-labelledby="materialModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -808,7 +751,6 @@ Creacion de una nueva compra
     <script>
         var produc_types = @json($product_types);
         var produc_subtypes = @json($product_subtypes);
-        var produc_subacabados = @json($product_subacabados);
     </script>
 
     <script>

@@ -5,10 +5,11 @@ namespace App\Imports;
 use App\Product;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithValidation;
 use Carbon\Carbon;
 
 
-class ProductsImport implements ToModel, WithHeadingRow
+class ProductsImport implements ToModel, WithHeadingRow, WithValidation
 {
     /**
     * @param array $row
@@ -38,4 +39,18 @@ class ProductsImport implements ToModel, WithHeadingRow
             "updated_at" => Carbon::now()
         ]);
     }
+
+    public function rules(): array{
+        return [
+            '*.categoria' => 'required|integer'
+        ];
+    }
+
+    // public function customValidationMessages()
+    // {
+    //     return [
+    //         'required' => 'El campo :attribute es requerido.',
+    //         'integer' => 'El campo :attribute debe ser entero.',
+    //     ];
+    // }
 }

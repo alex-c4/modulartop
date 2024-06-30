@@ -132,6 +132,8 @@ Route::get("product/show/{id}", ["as" => "product.show", "uses" => "ProductContr
 Route::post("product/searchProduct", ["as" => "product.searchProduct", "uses" => "ProductController@searchProduct"]);
 Route::get("product/import", ["as" => "product.import", "uses" => "ProductController@import"]);
 Route::post("product/import", ["as" => "product.storeImport", "uses" => "ProductController@storeImport"]);
+Route::post("product/importImages", ["as" => "product.storeImportImages", "uses" => "ProductController@storeImportImages"]);
+
 
 // Ficha tecnica
 Route::get("fichaTecnica/uploadFichaTecnica", ["as" => "fichaTecnica.uploadFichaTecnica", "uses" => "FichaTecnicaController@showFormFichaTecnica"]);

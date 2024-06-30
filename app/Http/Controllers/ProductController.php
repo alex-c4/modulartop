@@ -1227,10 +1227,32 @@ class ProductController extends Controller
         return view('product.import');
     }
     public function storeImport(Request $request){
-        $file = $request->file('import_file');
-        Excel::import(new ProductsImport, $file);
+        $request->validate([
+            'import_file' => 'required|mimes:xlsx,xls,csv'
+        ]);
 
-        $msgPost = "¡Importación realiza satisfactoriamente!.";
+        try {
+            $file = $request->file('import_file');
+            Excel::import(new ProductsImport, $file);
+            
+            $msgPost = "¡Importación realiza satisfactoriamente!.";
+        } catch (\Throwable $th) {
+            $msgPost = $th->getMessage();
+        }
+
+        return view('product.import', compact("msgPost"));
+    }
+
+    public function storeImportImages(Request $request){
+        $files = $request->file("import_images");
+        $count = count($files);
+        
+        for($i=0; $i < $count; $i++){
+            $file = $files[$i];
+            $fileName = $file->getClientOriginalName();
+            $file->storeAs('image_products', $fileName, 'local');
+        }
+        $msgPost = "¡Importación de imagenes srealiza satisfactoriamente!.";
 
         return view('product.import', compact("msgPost"));
     }
