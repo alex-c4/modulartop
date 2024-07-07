@@ -74,7 +74,7 @@ Import producto
                             <div class="row form-group">
                                 <label for="import_file" class="col-md-4 col-form-label text-md-right">Cargar archivo<span>*</span></label>
                                 <div class="col-md-6">
-                                    <input type="file" id="import_file" name="import_file[]" accept=".xlsx,.xls,.csv" class="form-control mt-2" placeholder="Archivo"> 
+                                    <input type="file" id="import_file" name="import_file" accept=".xlsx,.xls,.csv" class="form-control mt-2" placeholder="Archivo"> 
                                     <small id="sizeFile" class="form-text text-muted sizeFile">Archivos .xlsx .csv</small>
                                 </div>
                                 
@@ -93,7 +93,7 @@ Import producto
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary" id="btnSave">
-                                        Guardar
+                                        Importar productos
                                     </button>
                                 </div>
                             </div>
@@ -103,7 +103,7 @@ Import producto
                     <div class="tab-pane fade" id="import-images" role="tabpanel" aria-labelledby="import-images-tab">
 
                         <!-- Importar imagenes -->
-                        <form id="form_import" method="POST" action="{{ route('product.storeImportImages') }}" enctype="multipart/form-data">
+                        <form id="form_import_images" method="POST" action="{{ route('product.storeImportImages') }}" enctype="multipart/form-data">
                             <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
 
                             <!-- Imagenes a importar -->
@@ -111,7 +111,9 @@ Import producto
                                 <label for="import_images" class="col-md-4 col-form-label text-md-right">Seleccionar imagenes<span>*</span></label>
                                 <div class="col-md-6">
                                     <input type="file" id="import_images[]" name="import_images[]" accept=".png,.jpg" class="form-control mt-2" placeholder="Archivo" multiple> 
-                                    <small id="sizeFile" class="form-text text-muted sizeFile">Archivos .png .jpg</small>
+                                    <small id="sizeFile" class="form-text text-muted sizeFile">Archivos: .png .jpg</small>
+                                    <small id="sizeFile" class="form-text text-muted sizeFile">Cantidad máxima de archivo: <b>{{ $max_file_uploads }}</b></small>
+                                    <small id="sizeFile" class="form-text text-muted sizeFile">Tamaña máximo de carga: {{ $upload_max_filesize }}</small>
                                 </div>
                                 
                                 @error('import_images')
@@ -121,7 +123,7 @@ Import producto
                                 @enderror
                             </div>
                             <div class="container-error">
-                                <div id="errorDivImport"></div>
+                                <div id="errorDivImportImage"></div>
                             </div>
         
                             <br>
@@ -129,7 +131,7 @@ Import producto
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary" id="btnSave">
-                                        Guardar
+                                        Importar imágenes
                                     </button>
                                 </div>
                             </div>
@@ -154,9 +156,18 @@ Import producto
     <script src="{{ asset('js/product/product-import.js') }}?v={{ env('APP_VERSION', '1') }}"></script>
 
     <script>
-        $(function(){
+        $(document).ready(function(){
+            MAX_FILE_UPLOADS = {{ $max_file_uploads }}
             validator();
-        });
+
+            validator_images();
+
+        })
+        // $(function(){
+        //     validator();
+
+        //     validator_images();
+        // });
     </script>
 
 @endsection

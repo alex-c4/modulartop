@@ -1224,7 +1224,9 @@ class ProductController extends Controller
     }
 
     public function import(Request $request){
-        return view('product.import');
+        $max_file_uploads = ini_get("max_file_uploads");
+        $upload_max_filesize = ini_get("upload_max_filesize");
+        return view('product.import', compact('max_file_uploads', 'upload_max_filesize'));
     }
     public function storeImport(Request $request){
         $request->validate([
@@ -1239,7 +1241,6 @@ class ProductController extends Controller
         } catch (\Throwable $th) {
             $msgPost = $th->getMessage();
         }
-
         return view('product.import', compact("msgPost"));
     }
 
@@ -1254,7 +1255,10 @@ class ProductController extends Controller
         }
         $msgPost = "¡Importación de imagenes srealiza satisfactoriamente!.";
 
-        return view('product.import', compact("msgPost"));
+
+        $max_file_uploads = ini_get("max_file_uploads");
+        $upload_max_filesize = ini_get("upload_max_filesize");
+        return view('product.import', compact("msgPost", "max_file_uploads", "upload_max_filesize"));
     }
 
     
