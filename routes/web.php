@@ -216,6 +216,9 @@ Route::post('newsletter/other_post_eajax', ['as' => 'newsletter.otherpostajax', 
 //Llenar combos de subcategroria y tipo de clasificacion
 Route::post("product/subcategory", ["as" => "product.fillCombo", "uses" => "ProductController@fillCombo"]);
 
+// Exportar Excel con los IDs de Productos
+Route::get("product/exportProductFile", ["as" => "product.exportProductFile", "uses" => "ProductController@exportProductFile"]);
+
 // Borrado de imagenes de productos
 Route::post("product/deleteimg", ["as" => "product.deleteimg", "uses" => "ProductController@deleteimg"]);
 
@@ -258,14 +261,14 @@ Route::get('/view-clear', function() {
     return 'View cache cleared';
 });
 // genera una nueva key
-Route::get('/key-generate', function() {
-    $exitCode = Artisan::call('key:generate');
-    return 'View key generated';
-});
+// Route::get('/key-generate', function() {
+//     $exitCode = Artisan::call('key:generate');
+//     return 'View key generated';
+// });
 // Ejecuta cualquier comando de php artisan definido en la variable $comando
-Route::get('/artisan', function() {
-    $comando = 'storage:link';
-    $exitCode = Artisan::call($comando);
-    return 'Artisan comando ejecutado';
-});
+// Route::get('/artisan', function() {
+//     $comando = 'storage:link';
+//     $exitCode = Artisan::call($comando);
+//     return 'Artisan comando ejecutado';
+// });
 

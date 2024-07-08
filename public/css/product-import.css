@@ -74,3 +74,10 @@ select.error{
     border-bottom: 1px solid #dee2e6;
     padding: 15px;
 }
+.container-buttons{
+    display: flex;
+    gap: 20px;
+    min-height: 100px;
+    justify-content: center;
+    align-items: center;
+}

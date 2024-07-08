@@ -6,7 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Product;
+use App\Category;
+
 use App\Imports\ProductsImport;
+use App\Exports\ProductsTemplateExport;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
@@ -1259,6 +1262,11 @@ class ProductController extends Controller
         $max_file_uploads = ini_get("max_file_uploads");
         $upload_max_filesize = ini_get("upload_max_filesize");
         return view('product.import', compact("msgPost", "max_file_uploads", "upload_max_filesize"));
+    }
+
+    public function exportProductFile(){
+        
+        return Excel::download(new ProductsTemplateExport, 'ProductTemplate.xlsx');
     }
 
     

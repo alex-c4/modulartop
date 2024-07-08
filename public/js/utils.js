@@ -229,5 +229,37 @@ var Utils = {
             $('.selectpicker').selectpicker('refresh');
         }
     },
+    onclick_downloadIDs: function(){
+        var _url = $("#routeCurrent").val();
+        var _token = $("#token").val();
+
+        $.ajax({
+            xhrFields: {
+                responseType: 'blob',
+            },
+            url: _url,
+            headers: { 'X-CSRF-TOKEN': _token },
+            type: 'GET'
+        }).done(function(data, status, xhr){
+            debugger
+            var filename = xhr.getResponseHeader('content-disposition').split('filename=')[1].split(';')[0];
+
+            // The actual download
+            var blob = new Blob([data], {
+                type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+            });
+            var link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.download = filename;
+
+            document.body.appendChild(link);
+
+            link.click();
+            document.body.removeChild(link);
+        })
+        .fail(function(jqXHR, textStatus, errorThrown ){
+            debugger
+        });
+    }
     
 }
