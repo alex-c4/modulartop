@@ -9,6 +9,7 @@ use App\Product;
 use App\Category;
 
 use App\Imports\ProductsImport;
+use App\Exports\ProductsIDsExport;
 use App\Exports\ProductsTemplateExport;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
@@ -1232,19 +1233,42 @@ class ProductController extends Controller
         return view('product.import', compact('max_file_uploads', 'upload_max_filesize'));
     }
     public function storeImport(Request $request){
+        $max_file_uploads = ini_get("max_file_uploads");
+        $upload_max_filesize = ini_get("upload_max_filesize");
+        $errors_excel = [];
         $request->validate([
             'import_file' => 'required|mimes:xlsx,xls,csv'
         ]);
 
         try {
             $file = $request->file('import_file');
-            Excel::import(new ProductsImport, $file);
+            try {
+                Excel::import(new ProductsImport, $file);
+            } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
+                
+                $failures = $e->failures();
+                foreach ($failures as $failure) {
+                    // $failure->row(); // row that went wrong
+                    // $failure->attribute(); // either heading key (if using heading row concern) or column index
+                    // $failure->errors(); // Actual error messages from Laravel validator
+                    // $failure->values(); // The values of the row that has failed.
+                    // dd($failure->errors());
+                    foreach($failure->errors() as $error) {
+                        array_push($errors_excel, $error);
+                    }
+                }
+                return view('product.import', compact("failures", "max_file_uploads", "upload_max_filesize"));
+
+                return back()->withFailures($failure->errors());
+            }
+
+
             
             $msgPost = "¡Importación realiza satisfactoriamente!.";
         } catch (\Throwable $th) {
             $msgPost = $th->getMessage();
         }
-        return view('product.import', compact("msgPost"));
+        return view('product.import', compact("msgPost", "max_file_uploads", "upload_max_filesize"));
     }
 
     public function storeImportImages(Request $request){
@@ -1266,7 +1290,12 @@ class ProductController extends Controller
 
     public function exportProductFile(){
         
+        return Excel::download(new ProductsIDsExport, 'ProductIDs.xlsx');
+    }
+
+    public function exportTemplateFile() {
         return Excel::download(new ProductsTemplateExport, 'ProductTemplate.xlsx');
+
     }
 
     

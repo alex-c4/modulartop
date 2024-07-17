@@ -218,6 +218,8 @@ Route::post("product/subcategory", ["as" => "product.fillCombo", "uses" => "Prod
 
 // Exportar Excel con los IDs de Productos
 Route::get("product/exportProductFile", ["as" => "product.exportProductFile", "uses" => "ProductController@exportProductFile"]);
+// Descargar Plantilla Excel para importar Productos
+Route::get("product/exportTemplateFile", ["as" => "product.exportTemplateFile", "uses" => "ProductController@exportTemplateFile"]);
 
 // Borrado de imagenes de productos
 Route::post("product/deleteimg", ["as" => "product.deleteimg", "uses" => "ProductController@deleteimg"]);

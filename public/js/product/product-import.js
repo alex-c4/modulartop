@@ -43,7 +43,7 @@ var validator_images = function(){
             setErrorPlacement_import_images(error, element);
         },
         submitHandler: function(form) {
-            debugger
+            $("#btnSave").prop("disabled", true);
             form.submit();
         }
     });

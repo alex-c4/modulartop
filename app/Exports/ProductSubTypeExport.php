@@ -16,7 +16,7 @@ class ProductSubTypeExport implements FromCollection, WithHeadings, WithTitle, S
     public function collection()
     {
         return ProductSubType::where('is_deleted', false)
-            ->select('id', 'type_id', 'name')
+            ->select('id', 'name', 'type_id')
             ->orderBy('type_id', 'asc')
             ->get();
     }
@@ -25,8 +25,8 @@ class ProductSubTypeExport implements FromCollection, WithHeadings, WithTitle, S
     {
         return [
             'ID',
-            'ID tipo de producto',
             'Nombre',
+            'ID tipo de producto'
         ];
     }
 

@@ -34,6 +34,8 @@ class ProductsImport implements ToModel, WithHeadingRow, WithValidation
             "id_product_color" => $row['clasificacion_color'],
             "description" => $row['descripcion'],
             "price" => $row['precio'],
+            "img_product" => $row['img_producto'],
+            "img_alt" => $row['img_producto'],
             "created_at" => Carbon::now(),
             "created_by" => auth()->user()->id,
             "updated_at" => Carbon::now()
@@ -42,15 +44,31 @@ class ProductsImport implements ToModel, WithHeadingRow, WithValidation
 
     public function rules(): array{
         return [
-            '*.categoria' => 'required|integer'
+            'categoria' => ['required', 'integer'],
+            'tipo' => ['required', 'integer'],
+            'subtipo' => ['required', 'integer'],
+            'codigo' => ['required'],
+            'nombre' => ['required'],
+            'origen' => ['required', 'integer'],
+            'acabado' => ['required', 'integer'],
+            'ancho' => ['required', 'integer'],
+            'espesor' => ['required', 'integer'],
+            'largo' => ['required', 'integer'],
+            'material' => ['required', 'integer'],
+            'tipo_sustrato' => ['required', 'integer'],
+            'clasificacion_color' => ['required', 'integer'],
+            'descripcion' => ['required'],
+            'precio' => ['required'],
+            'img_producto' => ['required']
+
         ];
     }
 
-    // public function customValidationMessages()
-    // {
-    //     return [
-    //         'required' => 'El campo :attribute es requerido.',
-    //         'integer' => 'El campo :attribute debe ser entero.',
-    //     ];
-    // }
+    public function customValidationMessages()
+    {
+        return [
+            'required' => 'el campo <b>:attribute</b> es requerido.',
+            'integer' => 'el campo <b>:attribute</b> debe ser entero.',
+        ];
+    }
 }

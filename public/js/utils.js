@@ -210,6 +210,10 @@ var Utils = {
         $("#" + id).slideUp();
         $('#' + id).html('');
     },
+    showMessage: function(id, message){
+        $("#" + id).show('slow');
+        $('#' + id).html(message);
+    },
     clearModal: function(listInputs, alertId){
         Utils.hideAlert(alertId);
         // lista de inputs
@@ -232,6 +236,9 @@ var Utils = {
     onclick_downloadIDs: function(){
         var _url = $("#routeCurrent").val();
         var _token = $("#token").val();
+        Utils.showMessage("messageFile", "La descarga del archivo se llevará a cabo en un instante.")
+        // $("#messageFile").show("slow");
+        // $("#messageFile").html();
 
         $.ajax({
             xhrFields: {
@@ -241,7 +248,7 @@ var Utils = {
             headers: { 'X-CSRF-TOKEN': _token },
             type: 'GET'
         }).done(function(data, status, xhr){
-            debugger
+
             var filename = xhr.getResponseHeader('content-disposition').split('filename=')[1].split(';')[0];
 
             // The actual download
@@ -256,6 +263,46 @@ var Utils = {
 
             link.click();
             document.body.removeChild(link);
+
+            Utils.showMessage("messageFile", "Archivo descargado satisfactoriamente.")
+            // $("").html();
+
+        })
+        .fail(function(jqXHR, textStatus, errorThrown ){
+            debugger
+        });
+    },
+    onclick_downloadTemplate: function(){
+        debugger
+        var _url = $("#routeCurrent2").val();
+        var _token = $("#token").val();
+        Utils.showMessage("messageFile", "La descarga del archivo se llevará a cabo en un instante.")
+
+        $.ajax({
+            xhrFields: {
+                responseType: 'blob',
+            },
+            url: _url,
+            headers: { 'X-CSRF-TOKEN': _token },
+            type: 'GET'
+        }).done(function(data, status, xhr){
+
+            var filename = xhr.getResponseHeader('content-disposition').split('filename=')[1].split(';')[0];
+
+            // The actual download
+            var blob = new Blob([data], {
+                type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+            });
+            var link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.download = filename;
+
+            document.body.appendChild(link);
+
+            link.click();
+            document.body.removeChild(link);
+
+            Utils.showMessage("messageFile", "Archivo descargado satisfactoriamente.")
         })
         .fail(function(jqXHR, textStatus, errorThrown ){
             debugger

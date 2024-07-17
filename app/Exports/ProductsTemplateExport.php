@@ -2,47 +2,46 @@
 
 namespace App\Exports;
 
-use Maatwebsite\Excel\Concerns\FromCollection;
-use Maatwebsite\Excel\Concerns\WithMultipleSheets;
+// use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromArray;
 
-use App\Category;
+use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class ProductsTemplateExport implements FromCollection, WithMultipleSheets
+class ProductsTemplateExport implements FromArray, WithHeadings, ShouldAutoSize
 {
     /**
     * @return \Illuminate\Support\Collection
     */
-
-    protected $sheets;
-
-    // public function __construct(array $sheets)
+    // public function collection()
     // {
-    //     $this->sheets = $sheets;
+        
     // }
-
-    public function collection(){}
 
     public function array(): array
     {
-        return $this->sheets;
+        return [];
     }
-    
-    public function sheets(): array
+
+    public function headings(): array
     {
-        $sheets = [
-            new ProductCategoriesExport(),
-            new ProductTypeExport(),
-            new ProductSubTypeExport(),
-            new ProductOrigenExport(),
-            new ProductAcabadoExport(),
-            new ProductMaterialExport(),
-            new ProductSustratoExport(),
-            new ProductColorsExport()
+        return [
+            'categoria',
+            'tipo',
+            'subtipo',
+            'codigo',
+            'nombre',
+            'origen',
+            'acabado',
+            'ancho',
+            'espesor',
+            'largo',
+            'material',
+            'tipo sustrato',
+            'clasificacion_color',
+            'descripcion',
+            'precio',
+            'img_producto'
         ];
-
-        return $sheets;
     }
-
-    
 }

@@ -16,7 +16,7 @@ class ProductTypeExport implements FromCollection, WithHeadings, WithTitle, Shou
     public function collection()
     {
         return ProductType::where('is_deleted', false)
-            ->select('id', 'category_id', 'name')
+            ->select('id', 'name', 'category_id')
             ->orderBy('category_id', 'asc')
             ->get();
     }
@@ -24,8 +24,8 @@ class ProductTypeExport implements FromCollection, WithHeadings, WithTitle, Shou
     {
         return [
             'ID',
-            'ID de categoria',
             'Nombre',
+            'ID de categoria'
         ];
     }
 
