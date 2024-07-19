@@ -264,7 +264,7 @@ var makeValidation = function(){
         messages: {
             sale_date: "Por favor ingrese la fecha de venta",
             client: "Por favor ingrese el cliente",
-            invoice_sale: "Por favor ingrese el id de la factura"
+            invoice_sale: "Por favor ingrese el id del presupuesto"
         },
         errorPlacement: function(error, element) {
             $("#btnSave").prop("disabled", false);

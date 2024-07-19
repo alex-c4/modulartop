@@ -41,7 +41,7 @@ Lista de ventas
                 <th scope="col">Vendedor</th>
                 <th scope="col">Fecha de venta</th>
                 <th scope="col">Cliente</th>
-                <th scope="col">ID de factura</th>
+                <th scope="col">ID presupuesto</th>
                 <th scope="col"></th>
             </tr>
         </thead>

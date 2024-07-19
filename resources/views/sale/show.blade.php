@@ -63,7 +63,7 @@ Consultar venta
                         
                         <!-- Id de la factura de la venta -->
                         <div class="form-group row">
-                            <label for="invoice_sale" class="col-lg-4 col-form-label text-lg-right">Id factura</label>
+                            <label for="invoice_sale" class="col-lg-4 col-form-label text-lg-right">Id presupuesto</label>
                             <div class="col-lg-6">
                                 <input disabled disabled maxlength="30" id="invoice_sale" name="invoice_sale" autocomplete="off" type="text" class="form-control" value="{{ $sale->id_invoice_sale }}" required>
                             </div>
@@ -88,12 +88,12 @@ Consultar venta
 
                         <!-- Factura -->
                         <div class="row form-group">
-                            <label for="invoice_filepdf" class="col-md-4 col-form-label text-md-right">Factura</label>
+                            <label for="invoice_filepdf" class="col-md-4 col-form-label text-md-right">Presupuesto</label>
                             <div class="col-md-6">
                                 @if($sale->invoice_filepdf != "")
                                     <a href="{{ asset('invoice_client_bySale') }}/{{ $sale->invoice_filepdf }}" target="_blank">{{ $sale->invoice_filepdf }}</a>
                                 @else
-                                    <label class="col-form-label text-md-right">No posee factura.</label>
+                                    <label class="col-form-label text-md-right">No posee Presupuesto.</label>
                                 @endif
 
                             </div>

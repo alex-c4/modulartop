@@ -138,7 +138,7 @@ Creacion de venta
                         
                         <!-- Id de la factura de la venta -->
                         <div class="form-group row">
-                            <label for="invoice_sale" class="col-lg-4 col-form-label text-lg-right">Id factura<span class="asterisco">*</span></label>
+                            <label for="invoice_sale" class="col-lg-4 col-form-label text-lg-right">Id presupuesto<span class="asterisco">*</span></label>
                             <div class="col-lg-6">
                                 <input maxlength="30" id="invoice_sale" name="invoice_sale" autocomplete="off" type="text" class="form-control @error('invoice_sale') is-invalid @enderror" value="{{ old('invoice_sale') }}" required>
                                 @error('invoice_sale')
@@ -152,7 +152,7 @@ Creacion de venta
 
                         <!-- Id de orden de compra -->
                         <div class="form-group row">
-                            <label for="id_order_sale" class="col-md-4 col-form-label text-md-right">Id requerimiento</label>
+                            <label for="id_order_sale" class="col-md-4 col-form-label text-md-right">Solicitud de requerimiento</label>
                             <div class="col-md-6">
                                 <select class="form-control" id="id_order_sale" name="id_order_sale" >
                                     <option value="0">Seleccione...</option>
@@ -170,9 +170,9 @@ Creacion de venta
 
                         <!-- Factura -->
                         <div class="row form-group">
-                            <label for="invoice_filepdf" class="col-md-4 col-form-label text-md-right">Factura</label>
+                            <label for="invoice_filepdf" class="col-md-4 col-form-label text-md-right">Presupuesto</label>
                             <div class="col-md-6">
-                                <input type="file" id="invoice_filepdf" name="invoice_filepdf" accept="application/pdf" class="form-control mt-2" placeholder="Factura">
+                                <input type="file" id="invoice_filepdf" name="invoice_filepdf" accept="application/pdf" class="form-control mt-2" placeholder="Presupuesto">
                             </div>
                         </div>
 

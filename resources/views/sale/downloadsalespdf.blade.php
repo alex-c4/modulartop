@@ -19,7 +19,7 @@
                     <th scope="col">Vendedor</th>
                     <th scope="col">Fecha de venta</th>
                     <th scope="col">Cliente</th>
-                    <th scope="col">ID de factura</th>
+                    <th scope="col">ID de presupuesto</th>
                 </tr>
             </thead>
             <tbody>
