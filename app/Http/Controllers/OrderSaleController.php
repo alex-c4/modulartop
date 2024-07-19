@@ -79,7 +79,7 @@ class OrderSaleController extends Controller
             );
             $userEmail = auth()->user()->email;
 
-            $subject = "Registro de orden de compra";
+            $subject = "Registro de requerimiento";
 
             $req = array(
                 "correo" => env('EMAIL_ADMIN')
@@ -96,7 +96,7 @@ class OrderSaleController extends Controller
                 $message->to($userEmail)->subject($subject);
             });
 
-            $msgPost = "Su Orden de compra fue registrada correctamente, la misma será atendida lo más pronto posible. Puede hacer seguimiento de su orden desde <a href='" . route('ordersale.index') . "'>aqui</a>";
+            $msgPost = "Su Orden de requerimiento fue registrada correctamente, la misma será atendida lo más pronto posible. Puede hacer seguimiento de su orden desde <a href='" . route('ordersale.index') . "'>aqui</a>";
 
         } catch (\Throwable $th) {
             $msgPost = "Hubo un error creando la order.".$th->getmessage();
@@ -201,7 +201,7 @@ class OrderSaleController extends Controller
         } catch (\Throwable $th) {
             $result = array(
                 "result" => false,
-                "message" => "Ocurrio un error durante la actualización de la orden de compra."
+                "message" => "Ocurrio un error durante la actualización del requerimiento."
             );
         }
      
@@ -256,9 +256,9 @@ class OrderSaleController extends Controller
         
                 
                 
-                    return "Orden de compra fue asociada a la venta correctamente";
+                    return "El requerimiento fue asociada a la venta correctamente";
             } catch (\Throwable $th) {
-                return "Hubo un error en el proceso de asociación de la orden de compra con la venta.".$th->getmessage();
+                return "Hubo un error en el proceso de asociación del requerimiento con la venta.".$th->getmessage();
             }
         });
 
@@ -389,7 +389,7 @@ class OrderSaleController extends Controller
         } catch (\Throwable $th) {
             $result = array(
                 "result" => false,
-                "message" => "Ocurrio un error durante la actualización de la orden de compra."
+                "message" => "Ocurrio un error durante la actualización del requerimiento."
             );
         }
 

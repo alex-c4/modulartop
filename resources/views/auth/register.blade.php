@@ -43,7 +43,7 @@
                                         <li>Acceso y descarga de características, descripción y ficha técnica de productos.</li>
                                         <li>Acceso a precios e inventario actualizado de productos.</li>
                                         <li>Consultar galería de imágenes de los productos.</li>
-                                        <li>Generar orden de compra y seguimiento online de mi compra.</li>
+                                        <li>Generar requerimiento y seguimiento online de mi compra.</li>
                                     </ul>
                                 </div>
                             </div>

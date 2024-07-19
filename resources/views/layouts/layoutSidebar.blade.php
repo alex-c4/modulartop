@@ -512,7 +512,8 @@
                 <li {{ Utils::getActiveRouteClass(Route::currentRouteName(), 'order_sale') }}>
                     <a href="#order_sale"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <span class="icon-file"></span>
-                        Orden de compra
+                        <!-- Orden de compra -->
+                         Requerimiento
                     </a>
                     <ul class="collapse list-unstyled" id="order_sale">
                       <li>
@@ -533,14 +534,14 @@
                       <li>
                         <a href="{{ route('ordersale.create') }}">
                             <span class="icon-plus"></span>
-                            Crear orden de compra
+                            Solicitud
                         </a>
                       </li>
                       @if(Auth::user()->roll_id == 1 || Auth::user()->roll_id == 4 || Auth::user()->roll_id == 5)
                       <li>
                         <a href="{{ route('ordersale.index') }}">
                             <span class="icon-search"></span>
-                            Consultar orden de compra
+                            Consultar requerimiento
                         </a>
                       </li>
                       @endif
@@ -814,7 +815,7 @@
                 <div id="message_alert" class="alert" role="alert"></div>
 
                 <div class="form-group">
-                    <label for="txtSubType">Nueva planilla de orden de compra</label>
+                    <label for="txtSubType">Nueva planilla de requerimiento</label>
                     <input type="file" class="form-control" id="planilla" name="planilla">
                 </div>
 

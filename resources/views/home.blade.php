@@ -272,7 +272,7 @@ home
                             <div class="nodo">
                                 <div class="nodo-title">
                                     <span class="icon-file"></span>
-                                    Ordenes de compra @if($totalOrders > 0)<span class="cantNews" id="cantOrders">{{ $totalOrders }}</span> @endif
+                                    Requerimientos @if($totalOrders > 0)<span class="cantNews" id="cantOrders">{{ $totalOrders }}</span> @endif
                                 </div>
                                 <div class="nodo-content">
 
@@ -291,7 +291,8 @@ home
                                                 <tr>
                                                     <th scope="row">{{ $order->id }}</th>
                                                     <td>{{ $order->userName }} {{ $order->userLastName }}</td>
-                                                    <td>{{ $order->created_at }}</td>
+                                                    <!-- <td>{{ $order->created_at }}</td> -->
+                                                    <td>{{ Utils::getLocalTime($order->created_at, 'America/Caracas') }}</td>
                                                     <th class="icons-orders">
                                                         @if($order->status == 2)
                                                             <a href="#" title="Atender" onclick="attend_order(event, {{ $order->id }})"><span class="icon-square-o"></span></a>

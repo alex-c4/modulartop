@@ -4,6 +4,7 @@ namespace App\Helper;
 use DB;
 use App\User;
 use App\Inventory;
+use Carbon\Carbon;
 
 class Utils
 {
@@ -347,5 +348,12 @@ class Utils
         return $banner;
     }
 
+    static public function getLocalTime($UTCTime, $timezone)
+    {
+        $dt = new Carbon($UTCTime, 'UTC'); // Se crea la hora con el timezone al que pertenece, el proveniente de la base de datos
+        $dt->tz($timezone); // Se setea al timezone que se desea mostrar
+
+        return $dt->format('d-m-Y h:i a');
+    }
 
 }

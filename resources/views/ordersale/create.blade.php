@@ -12,11 +12,11 @@
 @endsection
 
 @section('title')
-Orden de compra
+Requerimiento
 @endsection
 
 @section('subtitle')
-Creación orden de compra
+Creación de requerimiento
 @endsection
 
 
@@ -60,7 +60,7 @@ Creación orden de compra
                         <div class="row form-group">
                             <div class="col-12 text-center">
                                 <label for="">
-                                    Enviar planilla de solicitud de compra para crear una orden
+                                    Enviar planilla de solicitud de requerimiento para crear una orden
                                 </label>
                             </div>
                         </div>
@@ -68,7 +68,7 @@ Creación orden de compra
 
                         <!-- Factura -->
                         <div class="row form-group">
-                            <label for="filepdf" class="col-md-4 col-form-label text-md-right">Planilla de compra</label>
+                            <label for="filepdf" class="col-md-4 col-form-label text-md-right">Planilla de requerimiento</label>
                             <div class="col-md-6">
                                 <input type="file" id="filepdf" name="filepdf" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" class="form-control @error('filepdf') is-invalid @enderror" value="{{ old('filepdf') }}" placeholder="Planilla de compra" >
                                 @error('filepdf')
@@ -83,7 +83,7 @@ Creación orden de compra
                         <div class="form-group row mb-1 mt-3">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary" id="btnSave" name="btnSave">
-                                    Crear orden
+                                    Crear requerimiento
                                 </button>
                             </div>
                         </div>

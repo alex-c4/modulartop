@@ -11,11 +11,11 @@
 @endsection
 
 @section('title')
-Orden de compra
+requerimiento
 @endsection
 
 @section('subtitle')
-Listado ordenes de compra
+Listado de requerimientos
 @endsection
 
 
@@ -66,7 +66,8 @@ Listado ordenes de compra
                 @if(Auth::user()->roll_id == 1)
                     <td>{{ $order->userName }} {{ $order->userLastName }}</td>
                 @endif
-                <td>{{ $order->created_at }}</td>
+                <!-- <td>{{ $order->created_at }}</td> -->
+                <td>{{ Utils::getLocalTime($order->created_at, 'America/Caracas') }}</td>
                 <td style="display: flex; justify-content: space-around;" >
 
                     

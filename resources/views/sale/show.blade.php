@@ -71,7 +71,7 @@ Consultar venta
 
                         <!-- Id de orden de venta -->
                         <div class="form-group row">
-                            <label for="id_order_sale" class="col-md-4 col-form-label text-md-right">Id orden de compra</label>
+                            <label for="id_order_sale" class="col-md-4 col-form-label text-md-right">Id requerimiento</label>
                             <div class="col-md-6">
                                 <input disabled maxlength="30" id="id_order_sale" name="id_order_sale" autocomplete="off" type="text" class="form-control" value="{{ $sale->id_order_sale }}" required>
 

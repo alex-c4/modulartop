@@ -152,7 +152,7 @@ Creacion de venta
 
                         <!-- Id de orden de compra -->
                         <div class="form-group row">
-                            <label for="id_order_sale" class="col-md-4 col-form-label text-md-right">Id orden de compra</label>
+                            <label for="id_order_sale" class="col-md-4 col-form-label text-md-right">Id requerimiento</label>
                             <div class="col-md-6">
                                 <select class="form-control" id="id_order_sale" name="id_order_sale" >
                                     <option value="0">Seleccione...</option>

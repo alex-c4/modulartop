@@ -839,7 +839,7 @@ class ProductController extends Controller
             $content .= "<li>Acceso y descarga de características, descripción y ficha técnica de productos.</li>";
             $content .= "<li>Acceso a precios e inventario actualizado de productos.</li>";
             $content .= "<li>Consultar galería de imágenes de los productos.</li>";
-            $content .= "<li>Generar orden de compra y seguimiento online de mi compra.</li>";
+            $content .= "<li>Generar requerimiento y seguimiento online de mi compra.</li>";
             $content .= "</ul>";
             $content .= "<br>";
             $content .= "Haga click <a href='" . asset("login") . "'><strong>aqui</strong></a> para ingresar con su cuenta de usuario, de lo contrario créela en pocos segundos a través del siguiente enlace <a href='" . asset("register") . "'><strong>registrarse</strong></a>.";
