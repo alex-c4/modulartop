@@ -32,6 +32,6 @@ class ProductSubTypeExport implements FromCollection, WithHeadings, WithTitle, S
 
     public function title(): string
     {
-        return 'Sub Categorias';
+        return 'Sub Tipo';
     }
 }
