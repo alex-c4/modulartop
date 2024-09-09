@@ -223,27 +223,14 @@ Creacion de nuevos productos
                             <label for="width" class="col-md-4 col-form-label text-md-right">Ancho<span>*</span></label>
                             <div class="col-md-6">
                                 <input maxlength="60" min="0" id="width" name="width" type="number" class="form-control @error('width') is-invalid @enderror" value="{{ old('width') }}" >
-
-                                @error('width')
-                                    <span class="invalid-field" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <small id="sizeImage" class="form-text text-muted sizeImage">cantidad expresa en milímetros (mm)</small>
                             </div>
-                        </div>
 
-                        <!-- Espesor -->
-                        <div class="form-group row">
-                            <label for="thickness" class="col-md-4 col-form-label text-md-right">Espesor<span>*</span></label>
-                            <div class="col-md-6">
-                                <input maxlength="60" min="0" id="thickness" name="thickness" type="number" class="form-control @error('thickness') is-invalid @enderror" value="{{ old('thickness') }}" >
-
-                                @error('thickness')
-                                    <span class="invalid-field" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                            @error('width')
+                                <span class="invalid-field" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
 
                         <!-- Largo -->
@@ -251,13 +238,27 @@ Creacion de nuevos productos
                             <label for="length" class="col-md-4 col-form-label text-md-right">Largo<span>*</span></label>
                             <div class="col-md-6">
                                 <input maxlength="60" min="1" id="length" name="length" type="number" class="form-control @error('length') is-invalid @enderror" value="{{ old('length') }}">
-
-                                @error('length')
-                                    <span class="invalid-field" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <small id="sizeImage" class="form-text text-muted sizeImage">cantidad expresa en milímetros (mm)</small>
                             </div>
+                            @error('length')
+                                <span class="invalid-field" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <!-- Espesor -->
+                        <div class="form-group row">
+                            <label for="thickness" class="col-md-4 col-form-label text-md-right">Espesor<span>*</span></label>
+                            <div class="col-md-6">
+                                <input maxlength="60" min="0" id="thickness" name="thickness" type="number" class="form-control @error('thickness') is-invalid @enderror" value="{{ old('thickness') }}" >
+                                <small id="sizeImage" class="form-text text-muted sizeImage">cantidad expresa en milímetros (mm)</small>
+                            </div>
+                            @error('thickness')
+                                <span class="invalid-field" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
 
                         <!-- Caracteristicas -->

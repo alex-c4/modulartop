@@ -35,3 +35,7 @@ END
 
 ALTER TABLE `products` CHANGE `img_product` `img_product` VARCHAR(120) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL;
 ALTER TABLE `products` CHANGE `img_alt` `img_alt` VARCHAR(60) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL;
+
+
+
+ALTER TABLE `products` CHANGE `width` `width` DECIMAL(6,2) NULL DEFAULT '0', CHANGE `thickness` `thickness` DECIMAL(6,2) NULL DEFAULT '0', CHANGE `length` `length` DECIMAL(6,2) NULL DEFAULT '0';

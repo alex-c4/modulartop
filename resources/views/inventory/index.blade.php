@@ -42,7 +42,7 @@ Lista de inventario
                 <th scope="col">Producto</th>
                 <th scope="col">Tipo</th>
                 <th scope="col">Acabado</th>
-                <th scope="col">Ancho/Espesor/Largo</th>
+                <th scope="col">Ancho/Largo/Espesor</th>
                 <th scope="col">Material</th>
                 <th scope="col">Sustrato</th>
                 <th scope="col">P.V.P</th>
@@ -56,7 +56,7 @@ Lista de inventario
                 <td>{{ $item->productName }}</td>
                 <td>{{ $item->productType }}</td>
                 <td>{{ $item->productAcabado }}</td>
-                <td>{{ $item->width }}/{{ $item->thickness }}/{{ $item->length }}</td>
+                <td>{{ $item->width }}/{{ $item->length }}/{{ $item->thickness }}</td>
                 <td>{{ $item->productMaterial }}</td>
                 <td>{{ $item->productSustrato }}</td>
                 <td>{{ $item->price }}</td>

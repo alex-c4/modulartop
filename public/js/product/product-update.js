@@ -217,8 +217,11 @@ $("#acabado").on("change", function(){
 var validator_forTapacanto = function(){
     var validator = $("#form_product").validate({
         rules:{
+            cost:{
+                required: true
+            },
             category:{
-                min: 1
+                required: true
             },
             type:{
                 required: true
@@ -238,14 +241,6 @@ var validator_forTapacanto = function(){
             acabado:{
                 required: true
             },
-            width:{
-                required: true,
-                min: 1
-            },
-            thickness:{
-                required: true,
-                min: 1
-            },
             description:{
                 required: true
             },
@@ -254,6 +249,7 @@ var validator_forTapacanto = function(){
             }
         },
         messages: {
+            cost: "Por favor ingrese el costo",
             category: "Por favor seleccione la Categoria",
             type: "Por favor seleccione el Tipo",
             subtype: "Por favor seleccione el Sub-tipo",
@@ -261,8 +257,6 @@ var validator_forTapacanto = function(){
             name: "Por favor ingrese el Nombre",
             origen: "Por favor seleccione el Origen",
             acabado:"Por favor seleccione el Acabado",
-            width: "Por favor ingrese el Ancho",
-            thickness: "Por favor ingrese el Espesor",
             description: "Por favor ingrese la Descripción",
             image_alt: "Por favor ingrese el Texto Alternativo"
         },
@@ -282,6 +276,9 @@ var validator_forTapacanto = function(){
 var validator_forTableros = function(){
     var validator = $("#form_product").validate({
         rules: {
+            cost:{
+                required: true
+            },
             category:{
                 required: true
             },
@@ -303,18 +300,6 @@ var validator_forTableros = function(){
             acabado:{
                 required: true
             },
-            width:{
-                required: true,
-                min: 1
-            },
-            thickness:{
-                required: true,
-                min: 1
-            },
-            length:{
-                required: true,
-                min: 1
-            },
             material:{
                 required: true
             },
@@ -332,6 +317,7 @@ var validator_forTableros = function(){
             }
         },
         messages: {
+            cost: "Por favor ingrese el costo",
             category: "Por favor seleccione la Categoria",
             type: "Por favor seleccione el Tipo",
             subtype: "Por favor seleccione el Sub-tipo",
@@ -339,9 +325,6 @@ var validator_forTableros = function(){
             name:"Por favor ingrese el Nombre",
             origen:"Por favor seleccione el Origen",
             acabado:"Por favor seleccione el Acabado",
-            width:"Por favor ingrese el Ancho",
-            thickness:"Por favor ingrese el Espesor",
-            length:"Por favor ingrese el Largo",
             material: "Por favor seleccione el Material",
             sustrato: "Por favor seleccione el Sustrato",
             color: "Por favor seleccione el Color",

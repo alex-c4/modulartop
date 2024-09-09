@@ -20,7 +20,7 @@
                     <th>Producto</th>
                     <th>Tipo</th>
                     <th>Acabado</th>
-                    <th>Ancho/Espesor/Largo</th>
+                    <th>Ancho/Largo/Espesor</th>
                     <th>Material</th>
                     <th>Sustrato</th>
                     <th>P.V.P</th>
@@ -35,7 +35,7 @@
                     <td>{{ $item->productName }}</td>
                     <td>{{ $item->productType }}</td>
                     <td>{{ $item->productAcabado }}</td>
-                    <td>{{ $item->width }}/{{ $item->thickness }}/{{ $item->length }}</td>
+                    <td>{{ $item->width }}/{{ $item->length }}/{{ $item->thickness }}</td>
                     <td>{{ $item->productMaterial }}</td>
                     <td>{{ $item->productSustrato }}</td>
                     <td>{{ $item->price }}</td>

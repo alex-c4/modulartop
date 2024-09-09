@@ -356,4 +356,18 @@ class Utils
         return $dt->format('d-m-Y h:i a');
     }
 
+    static function eliminarCerosDecimales($numero) {
+        // Convertimos el número a un float para asegurar precisión
+        $numero = floatval($numero);
+    
+        // Verificamos si el número tiene más de un decimal y si los dos últimos son cero
+        if (strpos($numero, '.') !== false && substr($numero, -2) === '00') {
+            // Eliminamos los dos últimos caracteres (los ceros) y convertimos a float nuevamente
+            return floatval(substr($numero, 0, -2));
+        } else {
+            // Si no cumple las condiciones, devolvemos el número original
+            return $numero;
+        }
+    }
+
 }

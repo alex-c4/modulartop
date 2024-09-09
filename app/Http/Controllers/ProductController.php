@@ -633,9 +633,6 @@ class ProductController extends Controller
             'name' => 'required',
             'origen' => 'required',
             'acabado' => 'required',
-            "width" => 'required',
-            "thickness" => 'required',
-            "length" => 'required',
             'material' => 'required',
             'sustrato' => 'required',
             'color' => 'required',
@@ -658,9 +655,6 @@ class ProductController extends Controller
             'name' => 'required',
             'origen' => 'required',
             'acabado' => 'required',
-            "width" => 'required',
-            "thickness" => 'required',
-            "length" => 'required',
             'material' => 'required',
             'sustrato' => 'required',
             'color' => 'required',
@@ -682,8 +676,6 @@ class ProductController extends Controller
             'name' => 'required',
             'origen' => 'required',
             'acabado' => 'required',
-            "width" => 'required',
-            "thickness" => 'required',
             'image_0' => 'required',
             'image_alt' => 'required'
         ], $messages);
@@ -703,8 +695,6 @@ class ProductController extends Controller
             'acabado' => 'required',
             'origen' => 'required',
             'acabado' => 'required',
-            "width" => 'required',
-            "thickness" => 'required',
             'image_alt' => 'required'
         ], $messages);
     }

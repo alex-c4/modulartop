@@ -75,7 +75,7 @@ Lista de productos registrados
                 <th class="header" scope="col">Nombre</th>
                 <th class="header" scope="col">Tipo</th>
                 <th class="header" scope="col">Acabados</th>
-                <th class="header" scope="col">Ancho/Espesor/Largo</th>
+                <th class="header" scope="col">Ancho/Largo/Espesor</th>
                 <th class="header" scope="col">Material</th>
                 <th class="header" scope="col">Sustrato</th>
                 <th class="header" scope="col">P.V.P</th>
@@ -91,7 +91,7 @@ Lista de productos registrados
                 <td>{{ $product->product_name }}</td>
                 <td>{{ $product->product_type_name }}</td>
                 <td>{{ $product->acabado }}</td>
-                <td>{{ $product->width }}/{{ $product->thickness }}/{{ $product->length }}</td>
+                <td>{{ Utils::eliminarCerosDecimales($product->width) }}/{{ Utils::eliminarCerosDecimales($product->length) }}/{{ Utils::eliminarCerosDecimales($product->thickness) }}</td>
                 <td>{{ $product->material }}</td>
                 <td>{{ $product->sustrato }}</td>
                 <td>{{ $product->price }}</td>

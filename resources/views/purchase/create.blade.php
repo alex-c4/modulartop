@@ -128,14 +128,14 @@ Creacion de una nueva compra
                                     <select id="productList" name="productList" class="selectpicker form-control custom-select" data-live-search="true" onchange="onchage_product(this)">
                                         <option value="0" selected>Seleccione...</option>
                                         @foreach($products as $product)
-                                            <option value="{{ $product->id }}">({{ $product->code }}) {{ $product->name}} - {{ $product->width }}/{{ $product->thickness }}/@if($product->length != "") {{ $product->length }} @else 0 @endif</option>
+                                            <option value="{{ $product->id }}">({{ $product->code }}) {{ $product->name}} - {{ Utils::eliminarCerosDecimales($product->width) }}/{{ Utils::eliminarCerosDecimales($product->length) }}/{{ Utils::eliminarCerosDecimales($product->thickness) }}</option>
                                         @endforeach
                                     </select>
                                     <div class="input-group-append">
                                         <button style="height: 38px" data-toggle="modal" data-target="#productModal" title="Nuevo producto" class="btn btn-primary" type="button"><span class="icon-add" style="color: white !important;"></span></button>
                                     </div>
                                 </div>
-                                <small class="form-text text-muted">(Código) Nombre - Ancho/Espesor/Largo</small>
+                                <small class="form-text text-muted">(Código) Nombre - Ancho/Largo/Espesor</small>
                             </div>
 
                             <div class="form-group col-md-2">
