@@ -76,7 +76,7 @@ Import producto
                                     <label for="import_file" class="col-md-4 col-form-label text-md-right">Cargar archivo<span>*</span></label>
                                     <div class="col-md-6">
                                         <input type="file" id="import_file" name="import_file" accept=".xlsx,.xls,.csv" class="form-control mt-2" placeholder="Archivo"> 
-                                        <small id="sizeFile" class="form-text text-muted sizeFile">Archivos .xlsx .csv</small>
+                                        <small id="sizeFile" class="form-text text-muted sizeFile">Archivos .xlsx .xls .csv</small>
                                     </div>
                                     
                                     @error('import_file')

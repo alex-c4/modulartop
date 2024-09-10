@@ -1223,13 +1223,17 @@ class ProductController extends Controller
         return view('product.import', compact('max_file_uploads', 'upload_max_filesize'));
     }
     public function storeImport(Request $request){
+        // dd($request);
         $max_file_uploads = ini_get("max_file_uploads");
         $upload_max_filesize = ini_get("upload_max_filesize");
         $errors_excel = [];
         $request->validate([
-            'import_file' => 'required|mimes:xlsx,xls,csv'
+            'import_file' => 'required|mimes:xls,xlsx,csv'
+        ], [
+            'required' => 'El archivo es requerido.',
+            'mimes' => 'La extensión del archivo no es permitida.'
         ]);
-
+        
         try {
             $file = $request->file('import_file');
             try {
