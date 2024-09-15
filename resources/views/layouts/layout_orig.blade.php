@@ -317,7 +317,7 @@
           </div>
         </div>
       
-        <div class="col-md-4">
+        <!-- <div class="col-md-4">
           <div class="mb-4">
             <h2 class="footer-heading mb-4">Subscribirme a Novedades</h2>
             <form action="{{ route('contact.contact') }}" method="post" class="footer-subscribe" id="form_send_contact">
@@ -336,7 +336,7 @@
                 </div>
               
             </form>
-          </div>
+          </div> -->
           
           <div class="">
             <h2 class="footer-heading mb-4">Siguenos</h2>

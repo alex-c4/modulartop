@@ -11,6 +11,11 @@
     font-style: normal;
   }
 */
+
+:root{
+  --background-gray: #f5f5ee;
+  --vinotinto: #8A181B
+}
 html {
   overflow-x: hidden; }
 
@@ -56,6 +61,9 @@ a {
 
 .bg-pri{
   background:#810f17;
+}
+.bg-vinotinto{
+  background:var(--vinotinto);
 }
 
 .bg-black{
@@ -632,7 +640,7 @@ h1, h2, h3, h4, h5,
   .sticky-wrapper.is-sticky .site-menu-toggle .icon-menu {
     color: #000 !important; }
   .sticky-wrapper.is-sticky .site-navbar {
-    background: #fff;
+    background: var(--background-gray);
     border-bottom: 1px solid transparent;
     -webkit-box-shadow: 4px 0 20px -5px rgba(0, 0, 0, 0.2);
     box-shadow: 4px 0 20px -5px rgba(0, 0, 0, 0.2); }
@@ -2716,4 +2724,41 @@ select.error{
 
 .invalid-field{
   color: crimson;
+}
+
+/* Seccion de catalagos */
+.tabla-catag{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.title-catag{
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  font-size: 30px;
+  font-weight: 900;
+  color: var(--vinotinto);
+  width: 700px;
+  height: 50px;
+  align-items: center;
+}
+.title-catag2{
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--vinotinto);
+  width: 500px;
+  height: 50px;
+  align-items: center;
+}
+.logos{
+  display: flex;
+  padding: 40px 0;
+  gap: 60px
+}
+.logos img{
+  height: 76px;
 }

@@ -17,43 +17,41 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
     <div class="site-block-wrap">
       <div class="owl-carousel with-dots">
 
-        <div class="site-blocks-cover overlay overlay-2" style="background-image: url(images/banner/fabricacion.jpg);" data-aos="fade" id="home-section">  
+        <div class="site-blocks-cover overlay overlay-2" style="background-image: url(images/banner/banner_1.png);" data-aos="fade" id="home-section">  
           <div class="container">
             <div class="row align-items-center justify-content-center">
-              <div class="col-md-6 mt-lg-5 text-center">
-                <h1 class="text-shadow">¡Fabricamos tus sueños!</h1>
-                <p class="mb-5 text-shadow">Hacemos realidad el mobiliario que tienes en mente. 
-                Muebles ideales para hoteles, cocinas, oficina, dormitorios, baños y más.</p>
-                <p><a href="{{ route('welcome') }}#contact-section" class="btn btn-primary px-5 py-3">Cuéntanos</a></p>
+              <div class="col-md-12 mt-lg-5 text-center">
+                <h1 class="text-shadow">TABLEROS MELAMÍNICOS DE CALIDAD</h1>
+                <p class="mb-5 text-shadow">Nos comprometemos a trabajar con <span style="font-weight: 700;">nuestros aliados y clientes</span> para crear espacios únicos y funcionalidades 
+                  que satisfagan las expectativas de diseño, construcción y necesidades funcionales de los consumidores.</p>
+                <!-- <p><a href="{{ route('welcome') }}#contact-section" class="btn btn-primary px-5 py-3">Cuéntanos</a></p> -->
                 
               </div>
             </div>
           </div>        
         </div>  
         
-        <div class="site-blocks-cover overlay overlay-2" style="background-image: url(images/banner/tableros.jpg);" data-aos="fade" id="home-section">
+        <div class="site-blocks-cover overlay overlay-2" style="background-image: url(images/banner/banner_2.png);" data-aos="fade" id="home-section">
           <div class="container">
             <div class="row align-items-center justify-content-center">
-              <div class="col-md-6 mt-lg-5 text-center">
-                <h1 class="text-shadow">Tableros melaminicos de calidad</h1>
-                <p class="mb-5 text-shadow">Garantizamos excelentes acabados en cuanto a innovación, textura y  
-                colores, dando soluciones en la fabricación de muebles y diseños arquitectónicos. </p>
-                <p><a href="#howitworks-section" class="btn btn-primary px-5 py-3">Visitanos</a></p>
+              <div class="col-md-12 mt-lg-5 text-center">
+                <h1 class="text-shadow">RESPALDADOS POR MARCAS LÍDERES</h1>
+                <p class="mb-5 text-shadow">Representamos marcas de prestigio mundial que ofrecen soluciones innovadoras, 
+                  inspirando la transformación de espacios con estilo, creatividad y excelencia.</p>
+                <!-- <p><a href="#howitworks-section" class="btn btn-primary px-5 py-3">Visitanos</a></p> -->
               </div>
             </div>
           </div>        
         </div>  
 
-        <div class="site-blocks-cover overlay overlay-2" style="background-image: url(images/banner/servicios.jpg);" data-aos="fade" id="home-section">  
+        <div class="site-blocks-cover overlay overlay-2" style="background-image: url(images/banner/banner_3.png);" data-aos="fade" id="home-section">  
           <div class="container">
             <div class="row align-items-center justify-content-center">
-              <div class="col-md-8 mt-lg-5 text-center">
-                <h1 class="text-shadow">CORTE, MECANIZADO, Y PEGADO DE TAPACANTO EN TABLEROS </h1>
-                  <p class="mb-5 text-shadow">Si necesitas transformar tu materia prima, estás en la Web correcta. 
-                  Modificamos tus tableros de madera en partes y piezas, convirtiendo tus proyectos en 
-                   productos  que sueñas. 
-                  </p>
-                <p><a href="{{ url('/servicios') }}" class="btn btn-primary px-5 py-3">Servicios</a></p>
+              <div class="col-md-12 mt-lg-5 text-center">
+                <h1 class="text-shadow">DISTRIBUYENDO LO MEJOR PARA TUS PROYECTOS</h1>
+                  <p class="mb-5 text-shadow">Como distribuidores de herrajes, paneles y accesorios, brindamos las mejores alternativas en cada detalle, 
+                    asegurando que tus proyectos se destaquen por su funcionalidad y estilo.</p>
+                <!-- <p><a href="{{ url('/servicios') }}" class="btn btn-primary px-5 py-3">Servicios</a></p> -->
               </div> 
             </div>
           </div>
@@ -65,103 +63,25 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
   <!-- Fin seccion head-->  
 
   <!-- Seccion Materia Prima-->
-  <section class="py-5 bg-black site-section how-it-works" id="howitworks-section">
-      <div class="container">
+  <section class="py-5 bg-vinotinto site-section how-it-works" id="howitworks-section">
+      <div class="tabla-catag">
+        <div class=title-catag>TABLEROS MELAMÍNICOS</div>
+        <div class="logos">
+          <img src="images/aliados/oneskin-logo.png" alt="oneskin">
+          <img src="images/aliados/losan-logo.png" alt="losan">
+          <img src="images/aliados/arkopa.png" alt="arkopa">
+        </div>
 
-        <div class="contenedor">
+        <div class=title-catag>REVESTIMIENTO</div>
+        <div class="logos">
+          <img src="images/aliados/panespol.png" alt="panespol">
+          <img src="images/aliados/kobert-in.png" alt="kobert-in">
+        </div>
 
-            <div class="titulotm">
-              <h2 class="section-title2">TABLEROS MELAMÍNICOS Y SUS TAPACANTOS</h2>
-              <p class="lead">Diversidad en colores y diseños que se ajustan a la necesidad de tu proyecto de construcción o decoración. </p>
-              
-            </div>
-            
-            <div class="itemchildtm">
-              <!-- cuadro 1 -->
-              <div class="hijostm">
-                <div class="ftco-media-1">
-                  <div class="ftco-media-1-inner">
-                    <a href="{{ route('tablero.byVisualEfect', 1) }}" class=""><img src="images/tableros/tablero-altobrillo.jpg" alt="Tablero melaminico alto brillo MDF importado, acabado premium oneskin" class="img-tm"></a>
-                    <div class="ftco-media-details">
-                      <h3><BR><a href="{{ route('tablero.byVisualEfect', 1) }}" class="">ACABADOS PREMIUM</a></h3>
-                      <p>MDF-ALTO BRILLO-IMPORTADO</p>
-                     
-                    </div>
-                  </div> 
-                </div>
-              </div>
-              
-              <!-- cuadro 2 -->
-              <div class="hijostm">
-                <div class="ftco-media-1">
-                  <div class="ftco-media-1-inner">
-                    <a href="{{ route('tablero.byVisualEfect', 2) }}" class=""><img src="images/tableros/tablero-supermate.jpg" alt="Tablero melaminico super mate MDF importado, acabado premium oneskin" class="img-tm"></a>
-                    <div class="ftco-media-details">
-                        <h3><BR><a href="{{ route('tablero.byVisualEfect', 2) }}">ACABADOS PREMIUM</a> </h3>
-                        <p>MDF-SUPER MATE-IMPORTADO</p>
-                     
-                    </div>
-                  </div> 
-                </div>
-              </div>
-              
-              <!-- cuadro 3 -->
-              <div class="hijostm">
-                <div class="ftco-media-1">
-                  <div class="ftco-media-1-inner">
-                    <a href="{{ route('tablero.byVisualEfect', 3) }}" class=""><img src="images/tableros/tablero-cuerpo.jpg" alt="Tablero melaminico hidrófugo y natural MDP importado y nacional, acabado tradicional masisa/losan" class="img-tm"></a>
-                    <div class="ftco-media-details">
-                        <h3><BR><a href="{{ route('tablero.byVisualEfect', 3) }}">Acabados Tradicionales</a></h3>
-                        <p>MDP HR (HIDRÓFUGOS) Y ESTÁNDAR, IMPORTADOS Y NACIONALES</p>
-                     
-                    </div>
-                  </div> 
-                </div>
-              </div>
-              
-              <!-- cuadro 4 -->
-              <div class="hijostm">
-                <div class="ftco-media-1">
-                  <div class="ftco-media-1-inner">
-                    <a href="{{ route('tablero.byVisualEfect', 1) }}" class=""><img src="images/tableros/cocina-altobrillo.jpg" alt="Fabricacion de muebles alto brillo MDF importado, acabado premium oneskin" class="img-tm"></a>
-                    <br>
-                    <div class="ftco-media-details">
-                    <h3><BR></h3>    
-                      
-                    </div>
-                  </div> 
-                </div>
-              </div>
-              
-              <!-- cuadro 5 -->
-              <div class="hijostm">
-                <div class="ftco-media-1">
-                  <div class="ftco-media-1-inner">
-                    <a href="{{ route('tablero.byVisualEfect', 2) }}" class=""><img src="images/tableros/cocina-supermate.jpg" alt="Fabricacion de muebles super mate MDF importado, acabado premium oneskin" class="img-tm"></a>
-                    <div class="ftco-media-details">
-                    <h3><BR></h3>        
-                     
-                    </div>
-                  </div> 
-                </div>
-              </div>
-              
-              <!-- cuadro 6 -->
-              <div class="hijostm">
-                <div class="ftco-media-1">
-                  <div class="ftco-media-1-inner">
-                    <a href="{{ route('tablero.byVisualEfect', 3) }}" class=""><img src="images/tableros/brillo_doblecara.jpg" alt="Fabricacion de muebles hidrófugo y natural MDP importado y nacional, acabado tradicional masisa/losan" class="img-tm"></a>
-                    <div class="ftco-media-details">
-                    <h3><BR></h3>       
-                      
-                    </div>
-                  </div> 
-                </div>
-              </div>
-
-            </div>
-
-          </div>
+        <div class=title-catag2>HERRAJES Y ACCESORIOS</div>
+        <div class="logos">
+          <img src="images/aliados/grass.png" alt="grass">
+          <img src="images/aliados/dbgroup.png" alt="dbgroup">
         </div>
 
       </div>
