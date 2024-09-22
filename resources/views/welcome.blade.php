@@ -31,14 +31,13 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
           </div>        
         </div>  
         
-        <div class="site-blocks-cover overlay overlay-2" style="background-image: url(images/banner/banner_2.png);" data-aos="fade" id="home-section">
+        <!-- <div class="site-blocks-cover overlay overlay-2" style="background-image: url(images/banner/banner_2.png);" data-aos="fade" id="home-section">
           <div class="container">
             <div class="row align-items-center justify-content-center">
               <div class="col-md-12 mt-lg-5 text-center">
                 <h1 class="text-shadow">RESPALDADOS POR MARCAS LÍDERES</h1>
                 <p class="mb-5 text-shadow">Representamos marcas de prestigio mundial que ofrecen soluciones innovadoras, 
                   inspirando la transformación de espacios con estilo, creatividad y excelencia.</p>
-                <!-- <p><a href="#howitworks-section" class="btn btn-primary px-5 py-3">Visitanos</a></p> -->
               </div>
             </div>
           </div>        
@@ -51,11 +50,10 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
                 <h1 class="text-shadow">DISTRIBUYENDO LO MEJOR PARA TUS PROYECTOS</h1>
                   <p class="mb-5 text-shadow">Como distribuidores de herrajes, paneles y accesorios, brindamos las mejores alternativas en cada detalle, 
                     asegurando que tus proyectos se destaquen por su funcionalidad y estilo.</p>
-                <!-- <p><a href="{{ url('/servicios') }}" class="btn btn-primary px-5 py-3">Servicios</a></p> -->
               </div> 
             </div>
           </div>
-        </div>
+        </div> -->
 
         
       </div>    
@@ -86,50 +84,21 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
 
       </div>
   </section>
+  <!-- Fin Seccion Materia Prima-->
   
 
-    <!-- Apartado Distribuidores Exclusivos-->
-    <section class="py-5 bg-pri site-section how-it-works" id="howitworks-section">
-      <div class="container">
-        <div class="row mb-5 justify-content-center">
-          <div class="col-md-7 text-center">
-            <h2 class="section-title mb-3 text-white">SOMOS REPRESENTANTES EXCLUSIVOS PARA VENEZUELA DE LAS MARCAS</h2>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6 text-center">
-            <div class="pr-5">
-              <div class="img-contenedor">
-                <a href="http://www.losan.es" target="_blank"><img src="images/aliados/losan-logo.png" alt="Losan diseño y tendencias en melaminas - madera - tablero."><p class="site-aliados">Ver más<br></p><br><br></a>
-                
-              </div>  
-
-
-              <!-- <a href="http://www.losan.es" target="_blank"><img src="images/aliados/losan-logo.png" alt="Losan diseño y tendencias en melaminas - madera - tablero." class="img-fluid"></a>
-              <h3><BR><BR><BR></h3>
-                <p class="site-aliados"><a href="http://www.losan.es" target="_blank">Ver más</a></p> -->
-                        
+  <!-- Apartado Map -->
+  <section class="py-5 bg-map site-section how-it-works" id="howitworks-section">
+    <div class="site-section container-btn-showroom">
+          <div class="btn-showroom">
+            <div class="circle-gps">
+              <svg xmlns="http://www.w3.org/2000/svg" height="50" viewBox="0 0 384 512"><path fill="#ffffff" d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/></svg>
             </div>
+            <div class="link-gps font-family-2"><a href="https://maps.google.com/maps?ll=10.480269,-66.96455&z=18&t=h&hl=es&gl=ES&mapclient=embed&cid=1515507514007777584" target="_blank">Visita nuestro showroom</a></div>
           </div>
-
-          <div class="col-md-6 text-center">
-            <div class="pr-5">
-
-              <div class="img-contenedor">
-                <a href="http://www.oneskin.pt" target="_blank"><img src="images/aliados/oneskin-logo.png" alt="Oneskin nace con el propósito de suministrar al mercado internacional con tableros lacados de alta calidad e innovación que abran nuevas oportunidades en la industria del mueble, decoración de interiores, panelación y otros trabajos arquitectónicos."><p class="site-aliados"><br>Ver más</p></a>
-                
-              </div>
-              
-              <!-- <a href="http://www.oneskin.pt" target="_blank"><img src="images/aliados/oneskin-logo.png" alt="Oneskin nace con el propósito de suministrar al mercado internacional con tableros lacados de alta calidad e innovación que abran nuevas oportunidades en la industria del mueble, decoración de interiores, panelación y otros trabajos arquitectónicos." class="img-fluid"></a>
-              <h3><BR></h3>
-              <p class="site-aliados"><a href="http://www.oneskin.pt" target="_blank">Ver más</a></p> -->
-            </div>
-          </div>
-          
-        </div>
-      </div>  
-    </section>
-     <!-- Fin Seccion Metodologia-->
+    </div>  
+  </section>
+  <!-- Fin Seccion Map -->
 
     <!-- Seccion Fabricacion-->
     <section class="site-section-fabricacion" id="about-section">
@@ -145,231 +114,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
       <!-- End Elastislide Carousel -->
 
       
-
-      <!-- Projects Start -->
-      <section class="section" id="projects">
-
-            <div class="container">
-
-                <div class="row justify-content-center mt-4 pt-2">
-                    <div class="col-12 text-center">
-                        <ul class="col container-filter portfolioFilter list-unstyled mb-0 text-center" id="filter">
-                            <!-- <li class="list-inline-item"><a class="categories rounded pl-3 pr-3 mb-2 active" data-filter="*">Todos</a></li> -->
-                          @foreach($proyectistas as $proyectista)
-                            <li class="list-inline-item"><a class="categories rounded pl-3 pr-3 mb-2 active" data-filter=".{{ $proyectista->prefix }}">{{ $proyectista->name }}</a></li>
-                          @endforeach
-                            <!-- <li class="list-inline-item"><a class="categories rounded pl-3 pr-3 mb-2" data-filter=".web">Aliados Comerciales</a></li>
-                            <li class="list-inline-item"><a class="categories rounded pl-3 pr-3 mb-2" data-filter=".brand">Proveedores</a></li> -->
-                            
-                        </ul>
-                    </div><!--end col-->
-                </div><!--end row-->
-            </div><!--end container-->
-
-            <div class="container">
-                <div class="portfolioContainer row pt-2 mt-4" style="visibility: hidden">
-                    @foreach($allProjects as $items)
-                      @foreach($items as $project)
-                        <div class="col-lg-4 col-md-6 p-2 {{ $project->prefix }}">
-                            <div class="portfolio-box position-relative ml-0 mr-0">
-                                <div class="work-img position-relative overflow-hidden">
-                                    <img src="{{ asset('images/proyectos/') }}/{{ $project->cover_photo }}" class="img-fluid" alt="{{ $project->cover_photo_alt_text }}">
-                                    <div class="overlay-work">
-                                        <div class="icon text-center">
-                                            <a class="mfp-image" href="{{ asset('images/proyectos/') }}/{{ $project->cover_photo }}" title="{{ $project->project_name }}"><i class="pe-7s-expand1 text-white"></i></a>
-                                        </div>
-                                        <div class="work-content">
-                                            <h6 class="title mb-0"><a href="{{ route('project.showphotos', $project->projectId) }}" class="text-light text-uppercase">{{ $project->project_name }}</a></h6>
-                                            <small class="text-white-50"><a href="{{ route('project.showphotos', $project->projectId) }}" style="color: white !important">Ver más</a></small>
-                                        </div>
-                                    </div>
-                                </div>                                
-                            </div>
-                        </div><!--end col-->
-                      @endforeach
-                  @endforeach
-                    
-                </div><!--end row-->
-                   
-                <div class="row justify-content-center mt-4 pt-2">
-                  <div class="col-12 text-center">
-                    <a href="{{ route('project.showphotosbyproyectista') }}" >Ver más proyectos <i class="mdi mdi-chevron-right"></i></a>
-                  </div><!--end col-->
-                </div><!--end row-->
-
-                <!-- <div class="row justify-content-center mt-4 pt-2">
-                    <div class="col-12 text-center">
-                        <a href="javascript:void(0)">Ver más</a>
-                    </div>
-                </div> -->
-                <!--end row-->
-
-            </div><!--end container-->
-
-        </section><!--end section-->
-        <!-- Projects End -->
-
-
-        <div class="container">
-        <h2 class="section-title mb-3 text-black"><br> Fabricamos Mobiliarios <br> a la medida de tus sueños</h2>
-        
-        <div class="row large-gutters">
-          <div class="col-lg-4 mb-5">
-            <p>
-              La fabricación de mobiliarios más la creatividad de nuestro equipo, nos ha
-              caracterizado durante años en el mercado por ofrecer soluciones oportunas. 
-            </p>
-            <p>
-              Nos adaptamos a las exigencias de carpinteros, arquitectos, ingenieros, 
-              diseñadores de interiores y comerciantes que desean mobiliarios funcionales.
-            </p>
-          </div>
-            
-          <div class="col-lg-4 mb-5">
-            <p>
-            Ofrecemos mobiliarios de tendencia mundial para diferentes sectores comerciales, 
-            en especial, hoteles, posadas, oficinas, restaurantes y tiendas...
-            <a href="{{ url('/fabricacion') }}">Leer más</a>
-            </p>
-            <p>
-              ¡Cuéntanos tu proyecto y lo fabricamos!
-             <br> <br><a href="{{ route('welcome') }}#contact-section" class="btn btn-primary mr-2 mb-2">Cuéntanos</a>
-            </p>
-            
-             
-          </div>
-         
-         
-        </div>
-      </div>
-
-
-      
-    </section>
-    <!--Fin  Seccion Fabricacion-->
   
-    <!--Seccion Cliente-->
-    <section class="site-section bg-black testimonial-wrap" id="testimonials-section">
-      <div class="container">
-        <div class="row mb-5">
-          <div class="col-12 text-center">
-            <h2 class="section-title mb-3 text-white">Clientes Satisfechos<h2>
-          </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-4 mb-4">
-                <div class="ftco-testimonial-1">
-                  <div class="ftco-testimonial-vcard d-flex align-items-center mb-4">
-                    <img src="images/yanira.jpg" alt="Image" class="img-fluid mr-3">
-                    <div>
-                      <h3>YANIRA SALAZA</h3>
-                      <span>Fabricación de cocina</span>
-                    </div>
-                  </div>
-                  <div>
-                    <p>Realmente me sentí muy contenta con el resultado final, desde el primer momento la arquitecta comprendió perfectamente lo que se deseaba hacer en la cocina, nos dio sus recomendaciones para mejorar el aprovechamiento del espacio. Además, Modular Top me apoyó de principio a fin, los recomiendo por su compromiso, seriedad y la calidad de su producto.</p>
-                  </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 mb-4">
-                <div class="ftco-testimonial-1">
-                  <div class="ftco-testimonial-vcard d-flex align-items-center mb-4">
-                    <img src="images/match21.jpg" alt="Image" class="img-fluid mr-3">
-                    <div>
-                      <h3>PROYECTO MATCH 21</h3>
-                      <span>Servicio de Maquilado</span>
-                    </div>
-                  </div>
-                  <div>
-                    <p>Como fabricantes de cocinas de alto target, hemos encontrado en Modular Top un equipo de personas solidarias y colaboradoras en su gestión de prestar soporte a empresas como la nuestra con su servicio de maquilado. Nos complace referirlos por su empatía, su capacidad de respuesta, su disposición a ofrecer soluciones y la calidad y precisión en los servicios de maquilado. </p>
-                  </div>
-                </div>
-            </div> 
-
-            <div class="col-md-4 mb-4">
-              <div class="ftco-testimonial-1">
-                <div class="ftco-testimonial-vcard d-flex align-items-center mb-4">
-                  <img src="images/estilos_mendez.png" alt="Image" class="img-fluid mr-3">
-                  <div>
-                    <h3>ESTILO MENDEZ</h3>
-                    <span>Adquisición de Materia Prima</span>
-                  </div>
-                </div>
-                <div>
-                  <p>Como fabricantes de muebles del hogar, recomendamos los melamínicos que ofrece Modular Top, quienes se han esforzado por tener alternativas de materia prima. Igualmente cuentan con marcas de reconocida trayectoria internacional: ONESKIN y LOSAN, quienes logran tableros de colores y texturas vanguardistas. </p>
-                </div>
-              </div>
-            </div>
-                
-        </div>
-      </div>
-    </section>
-     <!--Fin Seccion Cliente-->
-
-    <!-- Seccion Servicios-->
-    <section class="site-section bg-light" id="services-section">
-      <div class="container">
-        <div class="row mb-5">
-          <div class="col-12 text-center">
-            <h2 class="section-title mb-3 text-black">Servicios de alta tecnología para el fabricante</h2>
-          </div>
-        </div>
-        <div class="row align-items-stretch">
-          <div class="col-mb-6 col-lg-6 mb-6 mb-lg-6" data-aos="fade-up">
-            <div class="unit-4 d-flex">
-              <div class="mr-4"><img src="images/iconos/corte.png" alt="Seccionado preciso de tableros para ahorro de material" class="img-fluid mr-3"></div>
-              <div>
-                <h3>Corte o seccionado</h3>
-                <p>Contamos con máquinas que trabajan bajo un software que elabora cortes 
-                 precisos en tableros.</p>
-                <p><a href="{{ url('/servicios') }}#corte">Leer más</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-6 mb-6 mb-lg-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="unit-4 d-flex">
-              <div class="mr-4"><img src="{{ asset('images/iconos/ruteado.png') }}" alt="Mecanizados de los tableros para optimizar la calidad del producto final" class="img-fluid mr-3"></span></div>
-              <div>
-                <h3>MECANIZADO DE TABLEROS</h3>
-                <p>Maquinaria que cumplen con las exigencias del mercado actual. 
-                Cortes, pantografiado, ruteado, fresado, ranurado y perforado.</p>
-                <p><a href="{{ url('/servicios') }}#routeado">Leer más</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-6 mb-6 mb-lg-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="unit-4 d-flex">
-              <div class="mr-4"><img src="images/iconos/enchapado.png" alt="Pegadora de tapa canto termoadherido para mejor recistencia en el acabado de los bordes." class="img-fluid mr-3"></div>
-              <div>
-                <h3>PEGADO DE TAPA CANTO</h3>
-                <p>Enchapadoras rectas y curvas automáticas de pegado termoadherido.  
-                Aprovecha una infraestructura con tecnología CNC.</p>
-                <p><a href="{{ url('/servicios') }}#enchapado">Leer más</a></p>
-              </div>
-            </div>
-          </div>
-
-
-          <div class="col-md-6 col-lg-6 mb-6 mb-lg-6" data-aos="fade-up" data-aos-delay="300">
-            <div class="unit-4 d-flex">
-              <div class="mr-4"><img src="images/iconos/prensado.png" alt="Prensado de láminas de alta presión (hlp) como opción a tu proyecto." class="img-fluid mr-3"></div>
-              <div>
-                <h3>Prensado de láminas de alta presión (HLP)</h3>
-                <p>
-                  Aprovecha una mano de obra calificada y máquinas de última generación 
-                  que optimizan el proceso del prensado.
-                </p>
-                <p><a href="{{ url('/servicios') }}#prensado">Leer más</a></p>
-              </div>
-            </div>
-          </div>
-          
-        </div>
-      </div>
-    </section>
-     <!--Fin  Seccion Servicio-->
 
       <!-- Seccion Aliados-->
     <section class="py-5 bg-pri site-section how-it-works" id="howitworks-section">

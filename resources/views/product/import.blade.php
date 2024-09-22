@@ -16,7 +16,7 @@ Producto
 @endsection
 
 @section('subtitle')
-Import producto
+Importar producto
 @endsection
 
 

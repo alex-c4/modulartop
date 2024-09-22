@@ -39,3 +39,6 @@ ALTER TABLE `products` CHANGE `img_alt` `img_alt` VARCHAR(60) CHARACTER SET lati
 
 
 ALTER TABLE `products` CHANGE `width` `width` DECIMAL(6,2) NULL DEFAULT '0', CHANGE `thickness` `thickness` DECIMAL(6,2) NULL DEFAULT '0', CHANGE `length` `length` DECIMAL(6,2) NULL DEFAULT '0';
+
+
+CREATE TABLE `mt_database`.`catalogs` ( `id` INT NOT NULL AUTO_INCREMENT , `id_product_type` INT NOT NULL , `id_proyectista` INT NOT NULL ,`file_name` VARCHAR(50) NOT NULL , `is_deleted` BOOLEAN NOT NULL DEFAULT FALSE , `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , `created_by` INT NOT NULL , `updated_at` DATETIME NULL , `updated_by` INT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;

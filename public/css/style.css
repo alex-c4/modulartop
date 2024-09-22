@@ -69,6 +69,9 @@ a {
 .bg-black{
   background:#000;
 }
+.bg-map{
+  background-image: url('../images/modulartop/map.png');
+}
 
 h1, h2, h3, h4, h5,
 .h1, .h2, .h3, .h4, .h5 {
@@ -164,6 +167,7 @@ h1, h2, h3, h4, h5,
     box-shadow: none !important; }
 
 .site-section {
+  min-height: 600px;
   padding: 2.5em 0; }
   @media (min-width: 768px) {
     .site-section {
@@ -1969,14 +1973,15 @@ h1, h2, h3, h4, h5,
   line-height: 50px;
   -webkit-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
   box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
-  bottom: -100px; }
-  .gototop.active {
-    bottom: 80px; }
-  .gototop span {
-    font-size: 20px;
-    color: #fff; }
-
-
+  bottom: -100px; 
+}
+.gototop.active {
+  bottom: 80px; 
+}
+.gototop span {
+  font-size: 20px;
+  color: #fff; 
+}
 
 .first-step, .second-step {
   position: relative; }
@@ -2757,8 +2762,57 @@ select.error{
 .logos{
   display: flex;
   padding: 40px 0;
-  gap: 60px
+  gap: 60px;
 }
+
+
 .logos img{
   height: 76px;
+}
+
+/* Estilo para boton showtime */
+.container-btn-showroom{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: 29vw;
+}
+.btn-showroom{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  width: 468px;
+  border-radius: 65px;
+  font-size: 26px;
+  height: 100px;
+}
+.circle-gps{
+  background-color: var(--vinotinto);
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  padding: 10px;
+}
+.link-gps a{
+  margin: 0 30px 0 0;
+  color: #c3c3c3;
+  font-weight: 600;
+  font-style: oblique;
+}
+
+@media(max-width: 768px){
+  .logos{
+    flex-direction: column;
+  }
+  .container-btn-showroom{
+    margin-right: 0; 
+  }
+  .btn-showroom{
+    font-size: 21px;
+  }
 }

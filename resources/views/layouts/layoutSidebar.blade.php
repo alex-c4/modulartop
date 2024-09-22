@@ -397,7 +397,6 @@
    
                @endif
                
-               @if(Auth::user()->roll_id == 1 || Auth::user()->roll_id == 2 || Auth::user()->roll_id == 4 || Auth::user()->roll_id == 5)  
                <li {{ Utils::getActiveRouteClass(Route::currentRouteName(), 'product') }}>
                     <a href="#product"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <span class="icon-square"></span>
@@ -405,7 +404,7 @@
                     </a>
                     <ul class="collapse list-unstyled" id="product">
                       @if(Auth::user()->roll_id == 1 || Auth::user()->roll_id == 5)  
-
+                        <!-- Solo Administradores y Clientes -->
                         <li>
                           <a href="{{ route('product.create') }}">
                               <span class="icon-plus"></span>
@@ -428,6 +427,8 @@
                         </li>
                       @endif
 
+                      @if(Auth::user()->roll_id == 1 || Auth::user()->roll_id == 2 || Auth::user()->roll_id == 4 || Auth::user()->roll_id == 5) 
+                      <!-- Todos excepto Marketing -->
                       <li>
                         <a href="{{ route('welcome') }}/#howitworks-section">
                           <span class="icon-square"></span>
@@ -448,11 +449,21 @@
                             Registro masivo
                         </a>
                       </li>
+                      @endif
+                      
+                      @if(Auth::user()->roll_id == 1 || Auth::user()->roll_id == 3) 
+                      <!-- Solo Administradores y Marketing -->
+                        <li>
+                          <a href="{{ route('catalog.import') }}">
+                              <span class="icon-upload"></span>
+                              Cargar catalogo de productos
+                          </a>
+                        </li>
+                      @endif
 
                     </ul>
                     
                 </li>
-                @endif
 
                 @if(Auth::user()->roll_id == 1 || Auth::user()->roll_id == 5)  
 

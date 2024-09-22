@@ -57,7 +57,8 @@ class Utils
             "product.storeFichaTecnica",
             "product.store",
             "product.show",
-            "fichaTecnica.showFichaTecnica"
+            "fichaTecnica.showFichaTecnica",
+            "catalog.import"
         );
 
         $_compra_routes = array(
