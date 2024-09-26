@@ -116,292 +116,114 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
       
   
 
-      <!-- Seccion Aliados-->
-    <section class="py-5 bg-pri site-section how-it-works" id="howitworks-section">
-      <div class="container">
-        <div class="row mb-5 justify-content-center">
-          <div class="col-md-7 text-center">
-            <h2 class="section-title mb-3 text-white">Nuestros aliados comerciales</h2>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-4 text-center">
-            <div class="pr-5">
-              <a href="https://www.instagram.com/adcgroupvzla" target="_blank"><img src="images/aliados/adcgroup_venezuela.png" alt="Arquitectura, Diseño, Construcción, Todas las soluciones para el hogar o negocio" class="img-fluid"></a>
-              <p class="site-aliados"><a href="https://www.instagram.com/adcgroupvzla" target="_blank">@adcgroupvzla</a></p>
-            </div>
-            
-            <br>
-          </div>
-
-          <div class="col-md-4 text-center">
-            <div class="pr-5">
-              
-              <a href="https://www.instagram.com/dbgroup.bqto" target="_blank"><img src="images/aliados/dbgroup-bqto.png" alt="Soluciones y herrajes técnicos para mobiliario modernos" class="img-fluid"></a>
-              <p class="site-aliados"><a href="https://www.instagram.com/dbgroup.bqto" target="_blank">@dbgroup.bqto</a></p>
-              
-            </div>
-            <br>
-          </div> 
-          
-          <div class="col-md-4 text-center">
-            <div class="pr-5">
-              
-              <a href="https://tuherraje.com.ve" target="_blank"><img src="images/aliados/tuherraje-logo.png" alt="Mejores marcas del mercado Con gran Variedad de Herrajes y Accesorios para Cocinas y Closet, Condimentero, Bisagras, Correderas, iluminacion, Sistemas de alzamientos. Brindando a nuestros Clientes la Asesoria requerida y Atencion calificada" class="img-fluid"></a>
-              <p class="site-aliados"><a href="https://www.instagram.com/tuherraje_accesorios" target="_blank">@tuherraje_accesorios</a></p>
-              
-            </div>
-          </div>         
-        
-        </div>
-        <div class="row mb-5 align-items-center">
-        </div>  
-       
-
-         <!-- Carrusel Aliados-->
-        <div class="owl-carousel nonloop-block-13 mb-5">
-
-            
-              <div class="ftco-media-1 text-center">
-                <div>
-                  <a href="https://dbgroupvenezuela.com/" target="_blank" class="d-inline-block mb-4"><img src="images/aliados/dbgroup-venezuela.png" alt="Herrajes técnicos para mobiliario moderno" class="img-fluid"></a>
-                  
-                  <div class="site-aliados">
-                    <a href="https://www.instagram.com/dbgroupvenezuela" target="_blank">@dbgroupvenezuela</a>  
-                  </div>
-                      
-                </div> 
-              </div>
-              
-
-              <div class="ftco-media-1 text-center">
-                <div>
-                  <a href="https://habitatvenezuela.com/" target="_blank" class="d-inline-block mb-4"><img src="images/aliados/habitat-logo.png" alt="Porcelanato Español de primera calidad" class="img-fluid"></a>
-                  <div class="site-aliados">
-                    <a href="https://www.instagram.com/habitatvenezuela" target="_blank">@habitatvenezuela</a>  
-                  </div>
-    
-                </div> 
-              </div>
-              
-              <div class="ftco-media-1 text-center">
-                <div>
-                  <a href="https://grupoaxdesign.com/" target="_blank" class="d-inline-block mb-4"><img src="images/aliados/arredo-logo.png" alt="Piezas sanitarias, griferias, grifos, espejos, muebles de baños modernos, alta calidad y diseño" class="img-fluid"></a>
-                  <div class="site-aliados">
-                    <a href="https://www.instagram.com/arredoxpress" target="_blank">@arredoxpress</a>  
-                  </div>
-    
-                </div> 
-              </div>
-
-              <div class="ftco-media-1 text-center">
-                <div>
-                  <a href="https://www.cisa.com/" target="_blank" class="d-inline-block mb-4"><img src="images/aliados/cisa-logo.png" alt="Herrajes, cerraduras electrónicas, evolucionados sistemas de control de accesos" class="img-fluid"></a>
-                  <div class="site-aliados">
-                    <a href="https://www.instagram.com/cisalatam" target="_blank">@cisalatam</a>  
-                  </div>
-    
-                </div> 
-              </div>
-
-              <div class="ftco-media-1 text-center">
-                <div>
-                  <a href="http://rpccontroltest.com/" target="_blank" class="d-inline-block mb-4"><img src="images/aliados/rpc-logo.png" alt="diseño, asesoría y comercialización de sistemas de control de iluminación, automatización de espacios y seguridad para el mercado residencial, comercial y corporativo" class="img-fluid"></a>
-                  <div class="site-aliados">
-                    <a href="https://www.instagram.com/rpccontrol" target="_blank">@rpccontrol</a>  
-                  </div>
-    
-                </div> 
-
-        </div>
-
-       
-      </div>  
-    </section>
-     <!-- Fin Seccion Aliados-->
+      
 
     <!--Seccion contactanos-->
-    <section class="site-section bg-light bg-image" id="contact-section" name="contact-section-bk">
-      <div class="container">
-        <div class="row mb-5">
-          <div class="col-12 text-center">
-            <h2 class="section-title mb-3 text-black">Contáctanos</h2>
-          </div>
+  <section class="py-5 bg-contact site-section how-it-works" id="howitworks-section">
+    <div class="container-contact-info">
+      <!-- Contact info section -->
+      <div class="contact-info">
+        <div class="contact-header">
+          Contáctenos
         </div>
-        <div class="row">
-          <div class="col-md-7 mb-5">
+        <div class="contact-phones">
 
-            <form action="{{ route('contact.messageContact') }}" method="post" class="p-5 bg-white" id="form_send_contact_info" name="form_send_contact_info" onsubmit="gtag('event', 'enviar_form_contacto', { 'event_category': 'formularios', 'event_label': 'form_contacto', 'value': '0'})">
-              
-              {{csrf_field()}}
-              <input type="hidden" name="hform" id="hform" value="1">
-              
-              <h2 class="h4 text-black mb-5">Contáctanos</h2> 
-
-              <div class="row form-group">
-                <div class="col-md-12 mb-6 mb-md-0">
-                  <label class="text-black" for="fname">Nombre</label>
-                  <input maxlength="50" type="text" id="fname" name="fname" class="form-control" value="{{ old('fname') }}">
-                  @if ($errors->has('fname'))
-                    <div class="invalid-field">
-                      {{ $errors->first('fname') }}
-                    </div>
-                  @endif
-                </div>
-              </div>
-
-              <div class="row form-group">
-                
-                <div class="col">
-                  <label class="text-black" for="email">Email</label> 
-                  <input type="email" id="email" name="email" class="form-control" value="{{ old('email') }}">
-                  @if ($errors->has('email'))
-                    <div class="invalid-field">
-                      {{ $errors->first('email') }}
-                    </div>
-                  @endif
-                </div>
-
-                <!-- WhapsApp -->
-                <div class="col">
-                  <label for="whatsapp" class="text-black">Teléfono(WhatsApp)</label>
-                  <input maxlength="11" type="text" name="whatsapp" id="whatsapp" class="form-control" value="{{ old('whatsapp') }}">
-                </div>
-                
-              </div>
-
-              <!-- LinkedIn -->
-              <div class="row form-group">
-                <div class="col">
-                  <label for="linkedin" class="text-black">LinkedIn</label>
-                  <input maxlength="60" type="text" name="linkedin" id="linkedin" class="form-control" value="{{ old('linkedin') }}">
-                </div>
-
-                <!-- Instagram -->
-                <div class="col">
-                  <label for="instagram" class="text-black">Instagram</label>
-                  <input maxlength="60" type="text" name="instagram" id="instagram" class="form-control" value="{{ old('instagram') }}">
-                </div>
-              </div>
-
-              <!-- Facebook -->
-              <div class="row form-group">
-                <div class="col">
-                  <label for="facebook" class="text-black">Facebook</label>
-                  <input maxlength="60" type="text" name="facebook" id="facebook" class="form-control" value="{{ old('facebook') }}">
-                </div>
-
-                <!-- Pinterest -->
-                <div class="col">
-                  <label for="pinterest" class="text-black">pinterest</label>
-                  <input maxlength="60" type="text" name="pinterest" id="pinterest" class="form-control" value="{{ old('pinterest') }}">
-                </div>
-              </div>
-              
-
-              <!-- <div class="row form-group">
-                
-                <div class="col-md-12">
-                  <label class="text-black" for="subject">Asunto</label> 
-                  <input type="subject" id="subject" name="subject" class="form-control">
-                </div>
-              </div> -->
-
-              <div class="row form-group">
-                <div class="col-md-12">
-                  <label class="text-black" for="message">Mensaje</label> 
-                  <textarea name="message" id="message" name="message" cols="30" rows="7" class="form-control" placeholder="Escriba su nota aqui...">{{ old('message') }}</textarea>
-                </div>
-              </div>
-
-              <!-- <div class="alert alert-warning text-center" role="alert" id="alertregister">
-                  Por favor marque la casilla de verificación.
-              </div> -->
-
-              @if ($errors->has('g-recaptcha-response'))
-                <div class="row form-group">
-                  <div class="col-md-12">
-                      <div class="invalid-field">
-                        {{ $errors->first('g-recaptcha-response') }}
-                      </div>
-                  </div>
-                </div>
-              @endif
-
-              <div class="row form-group">
-                <div class="col-md-12">
-                  {!! NoCaptcha::display() !!}
-                </div>
-
-              </div>
-
-              <div class="row form-group">
-                <div class="col-md-12">
-
-                  <div class="alert alert-success" role="alert" id="alertContact">
-                    <label id="divMessage" class="text-black"></label> 
-                    
-                  </div>
-
-                </div>
-              </div>
-              
-              <div class="row form-group">
-                <div class="col-md-12">
-                  <input type="submit" id="btnSendContactInfo" name="btnSendContactInfo" value="Enviar" class="btn btn-primary btn-md text-white">
-                </div>
-              </div>
-
-  
-            </form>
-
-          </div>
-
-          <div class="col-md-5">
-            <div class="p-4 mb-3 bg-white">
-              <div class="google-maps">
-              
-                  <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1062.5492037967952!2d-66.96455!3d10.480269!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x15082a0df2de7130!2sMODULAR%20TOP%2C%20C.A.!5e1!3m2!1ses!2ses!4v1592443811908!5m2!1ses!2ses" width="400" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-                
-                
-              </div>
-              <p class="mb-0 font-weight-bold">Dirección</p>
-              <p class="mb-4">Calle 2 con calle 1, Galpon 3, La Yaguara, Caracas. Diagonal a la antigua inspectoría de Tránsito, Caracas, Venezuela</p>
-
-              <p class="mb-0 font-weight-bold">Email</p>
-                <p class="mb-0"><a href="mailto:info@modulartop.com">info@modulartop.com</a></p>
-                <br>
-              <div>
-                <button type="button" class="btn btn-primary btn-sm" id="btnShowContact" onclick="gtag('event', 'click_ver_telefonos', { 'event_category': 'botones', 'event_label': 'boton_verTelefonos', 'value': '0'})">Ver teléfono</button>
-                
-              </div>
-              <div id="msgcontact">
-             
-                <p class="mb-0 font-weight-bold">Teléfonos</p>
-                <p class="mb-4"><a href="tel:+58 212 4433391">+58 (0212)-4433391 </a>/
-                <a href="tel:+58 212 4725527">4725527 </a>/
-                <a href="tel:+58 212 4720462">4720462</a>
-                </p>
-               
-
-                <a href="https://api.whatsapp.com/send?phone=+58 04241854168" onclick="gtag('event', 'click_wsapp', { 'event_category': 'botones', 'event_label': 'boton_wsapp_contact', 'value': '0'})">
-                <img src="images/boton-watsapp.webp" alt="Contacto via whatsapp" class="img-fluid"></a>
-                
-              </div>
-              <br>
-              
-
-              
+          <div class="contact-row">
+            <div class="contact-col-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 512 512"><path fill="#8a181b" d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"/></svg>
+            </div>
+            <div class="contact-col-phones">
+              <div>+58 (0424) - 1854168</div>
+              <div>+58 (0212) - 4433391</div>
             </div>
           </div>
-
+          
+          <div class="contact-row">
+            <div class="contact-col-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 512 512"><path fill="#8a181b" d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48L48 64zM0 176L0 384c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-208L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></svg>
+            </div>
+            <div class="contact-col-phones">
+              <div>info@modulartop.com</div>
+            </div>
+          </div>
+        </div>
+          
+        <div class="contact-row">
+          <div class="contact-col-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 384 512"><path fill="#8a181b" d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/></svg>
+          </div>
+          <div class="contact-col-phones">
+            <div>Calle 2 con calle 1, Galpón 3, La Yaguara, Caracas. Diagonal a la antigua inspectoría de Tránsito, Caracas, Venezuela</div>
+          </div>
         </div>
       </div>
-    </section>
+            
+    </div>
+    <!-- End contact info section -->
 
-    <!--Fin Seccion seccion Contactanos-->
+      <!-- WhatsApp section -->
+       <div class="whatsapp-container">
 
+        <a href="javascript:void(0);">
+          <img src="{{ asset('images/WhatsApp3.png') }}" class="img-whatsapp" alt="" srcset="" onclick="showWhatsAppContent()">
+        </a>
+       </div>
+      <!-- End WhatsApp section -->
+
+      <!-- Email section -->
+      <div class="email-container" id=contact-section>
+        <div class="icon-email">
+          <svg xmlns="http://www.w3.org/2000/svg" height="100" viewBox="0 0 512 512"><path fill="#787878" d="M64 112c-8.8 0-16 7.2-16 16l0 22.1L220.5 291.7c20.7 17 50.4 17 71.1 0L464 150.1l0-22.1c0-8.8-7.2-16-16-16L64 112zM48 212.2L48 384c0 8.8 7.2 16 16 16l384 0c8.8 0 16-7.2 16-16l0-171.8L322 328.8c-38.4 31.5-93.7 31.5-132 0L48 212.2zM0 128C0 92.7 28.7 64 64 64l384 0c35.3 0 64 28.7 64 64l0 256c0 35.3-28.7 64-64 64L64 448c-35.3 0-64-28.7-64-64L0 128z"/></svg>
+        </div>
+        <div class="email-container-form">
+          <div class="email-title">Suscríbete a nuestro&nbsp;<span>boletín de noticias</span></div>
+          <form action="{{ route('contact.messageContact') }}" method="post" class="p-5 bg-white" id="form_send_contact_info" name="form_send_contact_info" onsubmit="gtag('event', 'enviar_form_contacto', { 'event_category': 'formularios', 'event_label': 'form_contacto', 'value': '0'})">
+            <div class="email-form">
+                {{csrf_field()}}
+                <input type="hidden" name="hform" id="hform" value="1">
+
+                <div class="email-row-field">
+                  <div class="field-name">
+                    <input maxlength="50" type="text" id="fname" name="fname" class="shadow-field" value="{{ old('fname') }}" placeholder="Tu nombre">
+                    @if ($errors->has('fname'))
+                      <div class="invalid-field">
+                        {{ $errors->first('fname') }}
+                      </div>
+                    @endif
+                  </div>
+                  
+                  <div class="field-email">
+                    <input type="email" id="email" name="email" class="shadow-field" value="{{ old('email') }}" placeholder="Tu correo">
+                    @if ($errors->has('email'))
+                      <div class="invalid-field">
+                        {{ $errors->first('email') }}
+                      </div>
+                    @endif
+                  </div>
+                </div>
+
+                <div class="email-row-btn">
+                  <div class="container-btn-send">
+                    <div class="btn-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" height="24" width="21" viewBox="0 0 448 512"><path fill="#ffffff" d="M224 0c-17.7 0-32 14.3-32 32l0 19.2C119 66 64 130.6 64 208l0 18.8c0 47-17.3 92.4-48.5 127.6l-7.4 8.3c-8.4 9.4-10.4 22.9-5.3 34.4S19.4 416 32 416l384 0c12.6 0 24-7.4 29.2-18.9s3.1-25-5.3-34.4l-7.4-8.3C401.3 319.2 384 273.9 384 226.8l0-18.8c0-77.4-55-142-128-156.8L256 32c0-17.7-14.3-32-32-32zm45.3 493.3c12-12 18.7-28.3 18.7-45.3l-64 0-64 0c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7z"/></svg>
+                    </div>
+    
+                    <div class="btn-input">
+                      <input type="submit" id="btnSendContactInfo" name="btnSendContactInfo" value="Suscribir">
+                    </div>
+    
+                  </div>
+                </div>
+
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- End Email section -->
+
+    </div>
+  </section>
+  <!--Fin Seccion seccion Contactanos-->
 
 @endsection
 

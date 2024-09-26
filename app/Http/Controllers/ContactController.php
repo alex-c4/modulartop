@@ -63,7 +63,7 @@ class ContactController extends Controller
     public function store(Request $request)
     {
         try {
-            // proceso llamdao desde formulario de contacto
+            // proceso llamado desde formulario de contacto
             $file = $request->file('name_file');
             $fileName = "";
             if($file != null){
@@ -283,7 +283,7 @@ class ContactController extends Controller
         return view('tellus2');
     }
 
-    public function validation($data){
+    public function validation_bk($data){
         $messages = [
             'required' => 'El campo es requerido',
             'g-recaptcha-response.required' => 'Debe realizar la selección del captcha',
@@ -291,6 +291,16 @@ class ContactController extends Controller
         ];
         return Validator::make($data, [
             'g-recaptcha-response' => 'required|captcha',
+            'fname' => 'required',
+            'email' => 'required',
+        ], $messages);
+
+    }
+    public function validation($data){
+        $messages = [
+            'required' => 'El campo es requerido'
+        ];
+        return Validator::make($data, [
             'fname' => 'required',
             'email' => 'required',
         ], $messages);
