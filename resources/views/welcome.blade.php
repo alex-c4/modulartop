@@ -61,11 +61,13 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
   <!-- Fin seccion head-->  
 
   <!-- Seccion Materia Prima-->
+  <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+
   <section class="py-5 bg-vinotinto site-section how-it-works" id="howitworks-section">
       <div class="tabla-catag">
         <div class=title-catag>TABLEROS MELAMÍNICOS</div>
         <div class="logos">
-          <img src="images/aliados/oneskin-logo.png" alt="oneskin">
+          <img src="images/aliados/oneskin-logo.png" alt="oneskin" data-toggle="modal" data-target="#catalogLeadModal" style="cursor: pointer;">
           <img src="images/aliados/losan-logo.png" alt="losan">
           <img src="images/aliados/arkopa.png" alt="arkopa">
         </div>
@@ -225,10 +227,48 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
   </section>
   <!--Fin Seccion seccion Contactanos-->
 
+
+<!-- Catalog Lead Modal -->
+<!-- modal Agregar proyectista -->
+<div class="modal fade" id="catalogLeadModal" tabindex="-1" aria-labelledby="catalogLeadModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+      
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Envío de Catálogo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <input type="hidden" id="hRouteAddEmail" value="{{ route('catalog.addEmail') }}">
+
+                <div class="form-group">
+                    <label for="txtEmail">Correo electrónico</label>
+                    <input type="text" class="form-control" id="txtEmail" name="txtEmail">
+                </div>
+
+                <div id="msgEmailModal" name="msgEmailModal" class="alert" role="alert"></div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" id="btnCancelSendEmail" class="btn btn-secondary" data-dismiss="modal" onclick="Utils.clearModal(['txtEmail'], 'msgEmailModal')">Cerrar</button>
+                <button type="button" id="btnSendEmail" class="btn btn-primary" onclick="onclick_sendEmail()">Enviar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
 @endsection
 
 @section("script")
+<script src="{{ asset('js/utils.js') }}?v={{ env('APP_VERSION', '1') }}"></script>
+
 <script>
+  var _token = $("#token").val();
+  var _type = "POST";
+
   // $(function () {
     
   // });
@@ -256,7 +296,33 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
       // }
 
       return true;
-
   });
+
+  var onclick_sendEmail = function(){
+    debugger
+    $("#btnSendEmail").prop("disabled", true);
+    $("#btnCancelSendEmail").prop("disabled", true);
+
+    var _email = $("#txtEmail").val();
+    var _url = $("#hRouteAddEmail").val();
+    var _data = {
+      txtEmail : _email
+    };
+    Utils.getData(_url, _token, _type, _data).then(function(result){
+      if(result.result == true){
+        $("#txtEmail").val("");
+        Utils.setAlert(result.message, 'success', 'msgEmailModal');
+      }else{
+        Utils.setAlert(result.message, 'warning', 'msgEmailModal');
+      }
+      
+      $("#btnSendEmail").prop("disabled", false);
+      $("#btnCancelSendEmail").prop("disabled", false);
+    }).catch(e => {
+      $("#btnSendEmail").prop("disabled", false);
+      $("#btnCancelSendEmail").prop("disabled", false);
+    });
+  }
+
 </script>
 @endsection

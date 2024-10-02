@@ -61,7 +61,7 @@ Importar catálogo
                                         @endforeach
                                     </select>
                                     <div class="input-group-append">
-                                        <button style="height: 38px" id="btnAddType" data-toggle="modal" data-target="#typeModal" title="Agregar nuevo tipo" class="btn btn-primary" type="button"><span class="icon-add" style="color: white !important;"></span></button>
+                                        <button style="height: 38px" id="btnAddProyectista" data-toggle="modal" data-target="#proyectistaModal" title="Agregar nuevo tipo" class="btn btn-primary" type="button"><span class="icon-add" style="color: white !important;"></span></button>
                                     </div>
                                 </div>
                                 <div id="errorDivType"></div>
@@ -129,7 +129,81 @@ Importar catálogo
     </div>
 
 
+<!-- modal Agregar tipo -->
+<div class="modal fade" id="typeModal" tabindex="-1" aria-labelledby="typeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+      
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar Tipo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
 
+            <div class="modal-body">
+                <input type="hidden" id="hRouteAddType" value="{{ route('product.addType') }}">
+                <input type="hidden" id="hRouteAddProyectista" value="{{ route('catalog.addProyectista') }}">
+
+                <!-- categorias -->
+                <div class="form-group">
+                    <label for="modal_category_modal">Categorías</label>
+                    <select class="form-control" id="modal_category_modal" name="modal_category_modal">
+                        @foreach($product_categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="txtCategory">Nuevo Tipo</label>
+                    <input type="text" class="form-control" id="txtType" name="txtType">
+                </div>
+
+                <div id="msgTypeModal" name="msgTypeModal" class="alert" role="alert"></div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="Utils.clearModal(['txtType'], 'msgTypeModal')">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="onclick_addType()">Guardar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- modal Agregar proyectista -->
+<div class="modal fade" id="proyectistaModal" tabindex="-1" aria-labelledby="ProyectistaModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+      
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar Aliado</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <input type="hidden" id="hRouteAddType" value="{{ route('product.addType') }}">
+                <input type="hidden" id="hRouteAddProyectista" value="{{ route('catalog.addProyectista') }}">
+
+                <div class="form-group">
+                    <label for="txtProyectista">Nuevo Aliado</label>
+                    <input type="text" class="form-control" id="txtProyectista" name="txtProyectista">
+                </div>
+
+                <div id="msgProyectistaModal" name="msgProyectistaModal" class="alert" role="alert"></div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="Utils.clearModal(['txtProyectista'], 'msgProyectistaModal')">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="onclick_addProyectista()">Guardar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
 
 
 </div>
@@ -143,8 +217,11 @@ Importar catálogo
 
 <script src="{{ asset('js/jquery-validate-1_19.js') }}"></script>
 <script src="{{ asset('js/catalog/catalog.js') }}?v={{ env('APP_VERSION', '1') }}"></script>
+<script src="{{ asset('js/utils.js') }}?v={{ env('APP_VERSION', '1') }}"></script>
 
 <script>
+    var produc_types = @json($product_types);
+
     $(function(){
         validator();
     });

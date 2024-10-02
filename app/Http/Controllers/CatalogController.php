@@ -9,8 +9,10 @@ use Illuminate\Support\Facades\Storage;
 
 use App\Product;
 use App\Catalog;
+use App\Contact;
 use DB;
 use Carbon\Carbon;
+use Mail;
 
 class CatalogController extends Controller
 {
@@ -40,7 +42,12 @@ class CatalogController extends Controller
             ->orderby('name', 'asc')
             ->get();
         
-        return view('catalog.import', compact("product_types", "proyectistas"));
+        $product_categories = DB::table("product_categories")
+            ->orderby('name', 'asc')
+            ->where('is_deleted', 0)
+            ->get();
+
+        return view('catalog.import', compact("product_types", "proyectistas", "product_categories"));
     }
 
     /**
@@ -101,10 +108,16 @@ class CatalogController extends Controller
             ->orderby('name', 'asc')
             ->get();
 
+        $product_categories = DB::table("product_categories")
+        ->orderby('name', 'asc')
+        ->where('is_deleted', 0)
+        ->get();
+
         return view('catalog.import', compact(
             "msgCatalog",
             "product_types",
-            "proyectistas"
+            "proyectistas",
+            "product_categories"
         ));
 
     }
@@ -183,4 +196,102 @@ class CatalogController extends Controller
             ->delete();
         }
     }
+
+    public function addProyectista(Request $request){
+        $validated = Validator::make($request->all(), [
+            'name' => 'required|unique:proyectistas'
+        ],
+        [
+            'name.required' => 'El campo nombre es requerido.',
+            'name.unique' => 'Ya existe un tipo con este nombre.'
+        ]);
+        if($validated->fails()){
+            return [
+                "result" => false,
+                "message" => $validated->errors()->first()
+            ];
+        }
+        try {
+            $name = $request->input("name");
+            $id = DB::table("proyectistas")->insertGetId([
+                'name' => $name
+            ]);
+            $data = array(
+                'id' => $id,
+                'name' => $name
+            );
+            $result = [
+                "result" => true,
+                "data" => $data,
+                "message" => "Se agregó el aliado correctamente."
+            ];
+        } catch (\Throwable $th) {
+            $result = [
+                "result" => false,
+                "message" => "No se pudo agregar el aliado al sistema, por favor intente nuevamente."
+            ];
+        }
+
+        return $result;
+    }
+
+    public function addEmail(Request $request){
+        $validated = Validator::make($request->all(), [
+            'txtEmail' => 'required|email'
+        ],
+        [
+            'txtEmail.required' => 'El campo email es requerido.',
+            'txtEmail.email' => 'Por favor colocar un email válido.'
+        ]);
+        if($validated->fails()){
+            return [
+                "result" => false,
+                "message" => $validated->errors()->first()
+            ];
+        }
+        try {
+            $userEmail = $request->input("txtEmail");
+            //Validacion que no exista ya resgitrado el correo electrónico
+            $contact = Contact::where('emailContact', $userEmail)->first();
+
+            if($contact == null){
+                // Envío de correo electrónico
+                $subject = "Solicitud de catálogo";
+                $req = array(
+                    "correo" => env('EMAIL_ADMIN')
+                );
+                $catalogInfo = array(
+                    'aliado' => 'Nombre del aliado comercial'
+                );
+                $file = public_path('catalogs/RIF-2023-10-25.pdf');
+                Mail::send('emails.downloadcatalog', $catalogInfo, function($message) use($req, $subject, $userEmail, $file){
+                    $message->from($req["correo"], 'Web Modular Top');
+                    $message->to($userEmail)->subject($subject);
+                    $message->attach($file);
+                });
+                
+                // Registro de nuevo contacto
+                Contact::create([
+                    'emailContact' => $userEmail,
+                    'form' => 3
+                ]);
+            }
+
+            $result = [
+                "result" => true,
+                "message" => "El catálogo fue enviado al correo suministrado."
+            ];
+            
+        } catch (\Throwable $th) {
+            // "error" => $th->getMessage()
+            $result = [
+                "error" => $th->getMessage(),
+                "result" => false,
+                "message" => "No se pudo enviar el catálogo, por favor intente nuevamente."
+            ];
+        }
+
+        return $result;
+    }
+
 }

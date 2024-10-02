@@ -979,7 +979,7 @@ class ProductController extends Controller
         ],
         [
             'name.required' => 'El campo nombre es requerido.',
-            'name.unique' => 'Ya existe una categoría con este nombre.',
+            'name.unique' => 'Ya existe un tipo con este nombre.',
             'category.required' => 'Debe seleccionar una categoría.'
         ]);
         if($validated->fails()){
@@ -1005,7 +1005,7 @@ class ProductController extends Controller
             $result = [
                 "result" => true,
                 "data" => $data,
-                "message" => "Se agregó la categoría correctamente."
+                "message" => "Se agregó el tipo correctamente."
             ];
         } catch (\Throwable $th) {
             $result = [

@@ -137,6 +137,8 @@ Route::post("product/importImages", ["as" => "product.storeImportImages", "uses"
 // Catalogo
 Route::get("catalog/import", ["as" => "catalog.import", "uses" => "CatalogController@import"]);
 Route::post("catalog/store", ["as" => "catalog.store", "uses" => "CatalogController@store"]);
+Route::post("catalog/addProyectista", "CatalogController@addProyectista")->name("catalog.addProyectista");
+Route::post("catalog/addEmail", "CatalogController@addEmail")->name("catalog.addEmail");
 
 
 // Ficha tecnica
