@@ -67,21 +67,21 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
       <div class="tabla-catag">
         <div class=title-catag>TABLEROS MELAMÍNICOS</div>
         <div class="logos">
-          <img src="images/aliados/oneskin-logo.png" alt="oneskin" data-toggle="modal" data-target="#catalogLeadModal" style="cursor: pointer;">
-          <img src="images/aliados/losan-logo.png" alt="losan">
-          <img src="images/aliados/arkopa.png" alt="arkopa">
+          <img src="images/aliados/oneskin-logo.png" alt="oneskin" data-toggle="modal" data-target="#catalogLeadModal" style="cursor: pointer;" onclick="onclick_img('oneskin')">
+          <img src="images/aliados/losan-logo.png" alt="losan" data-toggle="modal" data-target="#catalogLeadModal" style="cursor: pointer;" onclick="onclick_img('losan')">
+          <img src="images/aliados/arkopa.png" alt="arkopa"data-toggle="modal" data-target="#catalogLeadModal" style="cursor: pointer;" onclick="onclick_img('arkopa')">
         </div>
 
         <div class=title-catag>REVESTIMIENTO</div>
         <div class="logos">
-          <img src="images/aliados/panespol.png" alt="panespol">
-          <img src="images/aliados/kobert-in.png" alt="kobert-in">
+          <img src="images/aliados/panespol.png" alt="panespol" data-toggle="modal" data-target="#catalogLeadModal" style="cursor: pointer;" onclick="onclick_img('panespol')">
+          <img src="images/aliados/kobert-in.png" alt="kobert-in" data-toggle="modal" data-target="#catalogLeadModal" style="cursor: pointer;" onclick="onclick_img('kobert-in')">
         </div>
 
         <div class=title-catag2>HERRAJES Y ACCESORIOS</div>
         <div class="logos">
-          <img src="images/aliados/grass.png" alt="grass">
-          <img src="images/aliados/dbgroup.png" alt="dbgroup">
+          <img src="images/aliados/grass.png" alt="grass" data-toggle="modal" data-target="#catalogLeadModal" style="cursor: pointer;" onclick="onclick_img('grass')">
+          <img src="images/aliados/dbgroup.png" alt="dbgroup" data-toggle="modal" data-target="#catalogLeadModal" style="cursor: pointer;" onclick="onclick_img('dbgroup')">
         </div>
 
       </div>
@@ -230,7 +230,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
 
 <!-- Catalog Lead Modal -->
 <!-- modal Agregar proyectista -->
-<div class="modal fade" id="catalogLeadModal" tabindex="-1" aria-labelledby="catalogLeadModalLabel" aria-hidden="true">
+<div class="modal fade" id="catalogLeadModal" name="catalogLeadModal" tabindex="-1" aria-labelledby="catalogLeadModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
       
@@ -247,6 +247,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
                 <div class="form-group">
                     <label for="txtEmail">Correo electrónico</label>
                     <input type="text" class="form-control" id="txtEmail" name="txtEmail">
+                    <input type="hidden" class="form-control" id="hAliado" name="hAliado">
                 </div>
 
                 <div id="msgEmailModal" name="msgEmailModal" class="alert" role="alert"></div>
@@ -269,44 +270,15 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
   var _token = $("#token").val();
   var _type = "POST";
 
-  // $(function () {
-    
-  // });
-
-  // $("#g-recaptcha-response").on("click", function(){
-  //     $('#alertregister').slideUp()
-  // });
-
-  // var recaptchaCallback = function(){
-  //     $('#alertregister').slideUp()
-  // };
-
-  $('#form_send_contact_info').submit(function() {
-      // var _valrecaptcha = $("#g-recaptcha-response").val();
-      $('#btnSendContactInfo').val("Enviando...");
-      $('#btnSendContactInfo').attr("disabled", true);
-
-      // if((_valrecaptcha == "") || (_valrecaptcha == undefined)){
-      //     $('#alertregister').slideDown();
-      //     $('#btnSendContactInfo').attr("disabled", false);
-      //     $('#btnSendContactInfo').val("Enviar");
-      //     return false;
-      // }else{
-      //     return true;
-      // }
-
-      return true;
-  });
-
   var onclick_sendEmail = function(){
-    debugger
     $("#btnSendEmail").prop("disabled", true);
     $("#btnCancelSendEmail").prop("disabled", true);
 
     var _email = $("#txtEmail").val();
     var _url = $("#hRouteAddEmail").val();
     var _data = {
-      txtEmail : _email
+      txtEmail : _email,
+      hAliado: $('#hAliado').val()
     };
     Utils.getData(_url, _token, _type, _data).then(function(result){
       if(result.result == true){
@@ -318,11 +290,59 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
       
       $("#btnSendEmail").prop("disabled", false);
       $("#btnCancelSendEmail").prop("disabled", false);
-    }).catch(e => {
+    }).fail(e => {
       $("#btnSendEmail").prop("disabled", false);
       $("#btnCancelSendEmail").prop("disabled", false);
     });
-  }
+  } 
 
+  $('#form_send_contact_info').submit(function() {
+    // var _valrecaptcha = $("#g-recaptcha-response").val();
+    $('#btnSendContactInfo').val("Enviando...");
+    $('#btnSendContactInfo').attr("disabled", true);
+
+    // if((_valrecaptcha == "") || (_valrecaptcha == undefined)){
+    //     $('#alertregister').slideDown();
+    //     $('#btnSendContactInfo').attr("disabled", false);
+    //     $('#btnSendContactInfo').val("Enviar");
+    //     return false;
+    // }else{
+    //     return true;
+    // }
+
+    return true;
+  });
+  
+  // $(function () {
+    
+  // });
+
+  // $("#g-recaptcha-response").on("click", function(){
+  //     $('#alertregister').slideUp()
+  // });
+
+  // var recaptchaCallback = function(){
+  //     $('#alertregister').slideUp()
+  // };
+  
+  onclick_img = function(proyectistaId){
+    if(proyectistaId == null){
+      Utils.setAlert("El aliado comercial seleccionado no posee aún un catálogo cargado en el sistema.", 'warning', 'msgEmailModal');
+    }else{
+      $('#hAliado').val(proyectistaId)
+    }
+  }
+  
+        
+      
+  $("#catalogLeadModal").on('show.bs.modal', function (event) {
+    var image = $(event.relatedTarget) // image that triggered the modal
+    var recipient = image.data('aliado') // Extract info from data-* attributes
+    var modal = $(this);
+    
+    modal.find('#hAliado').val(recipient)
+    // modal.find('.modal-title').text('New message to ' + recipient)
+  });
+  
 </script>
 @endsection

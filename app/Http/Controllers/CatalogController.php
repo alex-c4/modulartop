@@ -237,11 +237,13 @@ class CatalogController extends Controller
 
     public function addEmail(Request $request){
         $validated = Validator::make($request->all(), [
-            'txtEmail' => 'required|email'
+            'txtEmail' => 'required|email',
+            'hAliado' => 'required'
         ],
         [
             'txtEmail.required' => 'El campo email es requerido.',
-            'txtEmail.email' => 'Por favor colocar un email válido.'
+            'txtEmail.email' => 'Por favor colocar un email válido.',
+            'hAliado.required' => 'Hay datos incompletos en la solicitud. Por favor, cierre la ventana y vuelva a seleccionar el aliado comercial.'
         ]);
         if($validated->fails()){
             return [
@@ -251,36 +253,23 @@ class CatalogController extends Controller
         }
         try {
             $userEmail = $request->input("txtEmail");
+            $aliado = $request->input("hAliado");
             //Validacion que no exista ya resgitrado el correo electrónico
             $contact = Contact::where('emailContact', $userEmail)->first();
 
             if($contact == null){
                 // Envío de correo electrónico
-                $subject = "Solicitud de catálogo";
-                $req = array(
-                    "correo" => env('EMAIL_ADMIN')
-                );
-                $catalogInfo = array(
-                    'aliado' => 'Nombre del aliado comercial'
-                );
-                $file = public_path('catalogs/RIF-2023-10-25.pdf');
-                Mail::send('emails.downloadcatalog', $catalogInfo, function($message) use($req, $subject, $userEmail, $file){
-                    $message->from($req["correo"], 'Web Modular Top');
-                    $message->to($userEmail)->subject($subject);
-                    $message->attach($file);
-                });
+                $result = $this->sendEmail($userEmail, $aliado);
                 
                 // Registro de nuevo contacto
                 Contact::create([
                     'emailContact' => $userEmail,
                     'form' => 3
                 ]);
+            }else{
+                // Envío de correo electrónico
+                $result = $this->sendEmail($userEmail, $aliado);
             }
-
-            $result = [
-                "result" => true,
-                "message" => "El catálogo fue enviado al correo suministrado."
-            ];
             
         } catch (\Throwable $th) {
             // "error" => $th->getMessage()
@@ -292,6 +281,52 @@ class CatalogController extends Controller
         }
 
         return $result;
+    }
+
+    public function sendEmail($userEmail, $aliado){
+        $subject = "Solicitud de catálogo";
+        $req = array(
+            "correo" => env('EMAIL_ADMIN')
+        );
+        $file = $this->getFile($aliado);
+        if($file == null){
+            $result = [
+                "result" => false,
+                "message" => "El aliado comercial seleccionado no posee aún un catálogo cargado en el sistema."
+            ];
+        }else{
+            //Obtener nombre del Aliado (proyectista)
+            $proyectista = DB::table('proyectistas')->where('prefix', $aliado)->first();
+            $catalogInfo = array(
+                'aliado' => $proyectista->name
+            );
+            Mail::send('emails.downloadcatalog', $catalogInfo, function($message) use($req, $subject, $userEmail, $file){
+                $message->from($req["correo"], 'Web Modular Top');
+                $message->to($userEmail)->subject($subject);
+                $message->attach($file);
+            });
+
+            $result = [
+                "result" => true,
+                "message" => "El catálogo fue enviado al correo suministrado."
+            ];
+        }
+        return $result;
+    }
+
+    public function getFile($aliado){
+        $proyectista = DB::table('proyectistas')->where('prefix', $aliado)->first();
+        
+        if($proyectista == null){
+            return null;
+        }else{
+            $file = Catalog::where('id_proyectista', $proyectista->id)->first();
+            if($file == null){
+                return null;
+            }else{
+                return public_path('catalogs/') . $file->file_name;
+            }
+        }
     }
 
 }
