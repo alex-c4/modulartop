@@ -15,6 +15,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 use DB;
+use Utils;
 
 class ProductController extends Controller
 {
@@ -262,7 +263,8 @@ class ProductController extends Controller
              * Si existe cantidad inicial, se debe sumar al inventario
              */
             $cantinit = intval($request->input("cantinit"));
-            $this->aumentarInventario($cantinit, $product->id);
+            // $this->aumentarInventario($cantinit, $product->id);
+            Utils::aumentarInventario($cantinit, $product->id);
             
             $result = array([
                 "msg" => "¡Registro realizado satisfactoriamente!.",
@@ -279,24 +281,7 @@ class ProductController extends Controller
         return $result;
     }
 
-    public function aumentarInventario($cantinit, $id_product){
-        if($cantinit >= 0 || $cantinit != ""){
-            $inventory = DB::table("inventory")->where("id_product", $id_product)->first();
-            if($inventory == null){
-                DB::table("inventory")->insert([
-                    "id_product" => $id_product,
-                    "quantity" => $cantinit
-                ]);
-            }
-
-            if($inventory != null){
-                $crr_quantity = $inventory->quantity;
-                $crr_quantity += $cantinit;
-                DB::table("inventory")->where("id_product", $id_product)->update(["quantity" => $crr_quantity]);
-            }
-        }
-
-    }
+    
 
     /**
      * Display the specified resource.

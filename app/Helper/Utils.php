@@ -371,4 +371,22 @@ class Utils
         }
     }
 
+    static public function aumentarInventario($cantinit, $id_product){
+        if($cantinit >= 0 || $cantinit != ""){
+            $inventory = DB::table("inventory")->where("id_product", $id_product)->first();
+            if($inventory == null){
+                DB::table("inventory")->insert([
+                    "id_product" => $id_product,
+                    "quantity" => $cantinit
+                ]);
+            }
+
+            if($inventory != null){
+                $crr_quantity = $inventory->quantity;
+                $crr_quantity += $cantinit;
+                DB::table("inventory")->where("id_product", $id_product)->update(["quantity" => $crr_quantity]);
+            }
+        }
+
+    }
 }

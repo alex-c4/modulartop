@@ -14,7 +14,7 @@
 
 :root{
   --background-gray: #f5f5ee;
-  --vinotinto: #8A181B
+  --vinotinto: #8A181B;
 }
 html {
   overflow-x: hidden; }
@@ -350,11 +350,13 @@ h1, h2, h3, h4, h5,
   margin-bottom: 0px;
   z-index: 1999;
   position: absolute;
-  width: 100%; }
-  .site-navbar ul {
-    font-family: "Oswald", sans-serif;
-    text-transform: uppercase;
-    font-weight: 300; }
+  width: 100%; 
+}
+.site-navbar ul {
+  font-family: "Oswald", sans-serif;
+  text-transform: uppercase;
+  font-weight: 300; 
+}
   .site-navbar .site-logo {
     position: relative;
     left: 0;
@@ -619,48 +621,56 @@ h1, h2, h3, h4, h5,
   z-index: 100;
   width: 100%;
   right: 0;
-  left: 0; }
-  .sticky-wrapper .site-navbar {
-    -webkit-transition: .3s all ease;
-    -o-transition: .3s all ease;
-    transition: .3s all ease; }
-  .sticky-wrapper .site-navbar {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2); }
-
-  .sticky-wrapper .site-navbar .site-logo a {
-    color:transparent; 
-    /* background-image: url("../images/modulartop_blanco.png"); */
-    /* background-repeat: no-repeat; */
-  }
-  .sticky-wrapper.is-sticky .site-navbar .site-logo a {
-    /*color: #000;*/ 
-    color:transparent;
-    /* background-image: url("../images/modulartop.png"); */
-    /* background-repeat: no-repeat; */
-
-  }
-
-    .sticky-wrapper .site-navbar ul li a {
-      color: rgba(255, 255, 255, 0.7); }
-      .sticky-wrapper .site-navbar ul li a:hover {
-        color: #fff; }
-      .sticky-wrapper .site-navbar ul li a.active {
-        color: #fff; }
-  .sticky-wrapper.is-sticky .site-menu-toggle .icon-menu {
-    color: #000 !important; }
-  .sticky-wrapper.is-sticky .site-navbar {
-    background: var(--background-gray);
-    border-bottom: 1px solid transparent;
-    -webkit-box-shadow: 4px 0 20px -5px rgba(0, 0, 0, 0.2);
-    box-shadow: 4px 0 20px -5px rgba(0, 0, 0, 0.2); }
-    .sticky-wrapper.is-sticky .site-navbar ul li a {
-      color: #000 !important; }
-      .sticky-wrapper.is-sticky .site-navbar ul li a.active {
-        /*color: #37cfa2 !important; }*/
-        color: #8B171A !important; }
-  .sticky-wrapper .shrink {
-    padding-top: 10px !important;
-    padding-bottom: 10px !important; }
+  left: 0; 
+}
+.sticky-wrapper .site-navbar {
+  -webkit-transition: .3s all ease;
+  -o-transition: .3s all ease;
+  transition: .3s all ease; 
+}
+.sticky-wrapper .site-navbar {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2); 
+}
+.sticky-wrapper .site-navbar .site-logo a {
+  color:transparent; 
+  /* background-image: url("../images/modulartop_blanco.png"); */
+  /* background-repeat: no-repeat; */
+}
+.sticky-wrapper.is-sticky .site-navbar .site-logo a {
+  /*color: #000;*/ 
+  color:transparent;
+  /* background-image: url("../images/modulartop.png"); */
+  /* background-repeat: no-repeat; */
+}
+.sticky-wrapper .site-navbar ul li a {
+  color: rgba(255, 255, 255, 0.7); 
+}
+.sticky-wrapper .site-navbar ul li a:hover {
+  color: #fff; 
+}
+.sticky-wrapper .site-navbar ul li a.active {
+  color: #fff; 
+}
+.sticky-wrapper.is-sticky .site-menu-toggle .icon-menu {
+  color: #000 !important; 
+}
+.sticky-wrapper.is-sticky .site-navbar {
+  background: var(--background-gray);
+  border-bottom: 1px solid transparent;
+  -webkit-box-shadow: 4px 0 20px -5px rgba(0, 0, 0, 0.2);
+  box-shadow: 4px 0 20px -5px rgba(0, 0, 0, 0.2); 
+}
+.sticky-wrapper.is-sticky .site-navbar ul li a {
+  color: #000 !important; 
+}
+.sticky-wrapper.is-sticky .site-navbar ul li a.active {
+  /*color: #37cfa2 !important; }*/
+  color: #8B171A !important; 
+}
+.sticky-wrapper .shrink {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important; 
+}
 
 /* Blocks */
 .site-block-wrap {

@@ -260,7 +260,7 @@
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                 <li><a href="{{ route('welcome') }}" class="nav-link">Inicio</a></li>
                 <li><a href="{{ route('welcome')}}#howitworks-section" class="nav-link" >Catálogo</a></li>
-                <li><a href="{{ route('welcome')}}#about-section" class="nav-link {{ (Request::is('contact/tellus')) ? 'active' : ''}}" >Proyectos</a></li>
+                <li><a href="{{ url('project/showphotosbyproyectista') }}#spanheader" class="nav-link {{ (Request::is('contact/tellus')) ? 'active' : ''}}" >Proyectos</a></li>
                 <!-- <li><a href="{{ route('welcome')}}#services-section" class="nav-link" >Servicios</a></li> -->
                 <li><a href="{{ url('/servicios') }}" class="nav-link" >Servicios</a></li>
                 <li><a href="{{ url('/modulartop') }}" class="nav-link">Marca</a></li>
@@ -320,7 +320,7 @@
               <ul class="list-unstyled">
                 <li><a href="{{ route('welcome') }}">INICIO</a></li>
                 <li><a href="{{ route('welcome')}}#howitworks-section">CATÁLOGO</a></li>
-                <li><a href="{{ route('welcome')}}#about-section">PROYECTOS</a></li>
+                <li><a href="{{ url('project/showphotosbyproyectista')}}">PROYECTOS</a></li>
                 <li><a href="{{ route('welcome')}}#services-section">SERVICIOS</a></li>
                 <li><a href="{{ url('/modulartop') }}">MARCA</a></li>
                 <li><a href="{{ url('/novedades') }}">NOVEDADES</a></li>

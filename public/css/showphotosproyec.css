@@ -1,0 +1,203 @@
+:root{
+    --background-gray: #f5f5ee;
+    /* --vinotinto: #8A181B */
+    --beige: #EDDDCD;
+    --font-black: #323232;
+    --vinotintoDisabled: #8a181b4f;
+}
+.site-navbar {
+    background: var(--background-gray) !important;
+    border-bottom: 1px solid transparent !important;
+    -webkit-box-shadow: 4px 0 20px -5px rgba(0, 0, 0, 0.2) !important;
+    box-shadow: 4px 0 20px -5px rgba(0, 0, 0, 0.2) !important;
+    color: #000 !important;
+}
+.site-navbar ul li a {
+    color: #000 !important; 
+}
+.carousel-control-next, .carousel-control-prev {
+    background-color: transparent;
+    border: none;
+}
+.contenedor-grid{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
+.contendor-grid2{
+    display: grid;
+    grid-template-rows: 33.3% 33.3% 33.3%;
+}
+.contendor-grid2 img{
+    height: 100%;
+}
+.franja-roja{
+    display: flex;
+    align-items: center;
+    position: absolute;
+    background-color: #8a181bc9;
+    z-index: 10;
+    height: 100px;
+    width: 100%;
+    bottom: 10%;
+}
+.franja-roja span{
+    color: white;
+    text-transform: uppercase;
+    margin-left: 50px;
+    font-size: x-large;
+}
+.container-oneskin{
+    background-color: var(--beige);
+    color: var(--font-black);
+    padding: 0 100px 0 100px;
+}
+.title-oneskin{
+    font-size: xx-large;
+    font-weight: 500;
+    margin: 120px 0 30px 0;
+}
+.content-oneskin{
+    font-size: large;
+}
+.content-oneskin p{
+    margin-bottom: 0.3rem;
+}
+.footer-oneskin{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 80px 0 40px;
+}
+
+.title-project-gallery{
+    margin: 100px 0 10px 0;
+    border-bottom: 1px solid var(--font-black);
+    padding: 0;
+    font-size: medium;
+    font-weight: 500;
+}
+
+.gallery{
+    display: grid;
+    gap: 1rem;
+    /* grid-auto-rows: 22rem; */
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 30rem), 1fr));
+    grid-auto-flow: dense;
+}
+.gallery img{
+    height: 17rem;
+    object-fit: cover;
+}
+.card-gallery-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.card-gallery-title{
+    color: #000;
+    font-size: 2rem;
+    font-weight: 500;
+}
+.card-gallery-subtitle{
+    color: #000;
+    font-size: .9rem;
+    font-weight: 500;
+}
+.arroy-gallery{
+    display: flex;
+    justify-content: space-around;
+    /* color: var(--vinotinto); */
+}
+.arrow{
+    border: solid 2px var(--vinotinto);
+    border-radius: 50%;
+    width: 30px;
+    text-align: center;
+    cursor: pointer;
+}
+.bg-footer-contact{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('../images/modulartop/home_contacto_footer.png');
+    background-repeat: no-repeat;
+    background-color: #a09a93;
+    /* background-size: cover; */
+    background-position: center;
+    height: 400px;
+}
+.arrow span{
+    color: var(--vinotinto);
+}
+.arrowDisabled span{
+    color: var(--vinotintoDisabled);
+}
+.arrowDisabled{
+    border: solid 2px #8a181b4f;
+    border-radius: 50%;
+    width: 30px;
+    text-align: center;
+    cursor: no-drop;
+    color: var(--vinotintoDisabled);
+}
+
+/* Seccion de contacto */
+.container-contact-info-project{
+    display: flex;
+    /* justify-content: center; */
+    /* margin-top: 250px; */
+    font-size: .7rem;
+}
+.contact-info-project{
+    background-color: white;
+    width: 270px;
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+.contact-header-project{
+    display: flex;
+    justify-content: flex-start;
+    height: 36px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    border-bottom: 3px solid;
+    border-bottom-color: var(--vinotinto);
+    color: black;
+}
+.contact-phones-project{
+    display: flex;
+    flex-direction: column;
+}
+.contact-row-project{
+    display: flex;
+    /* margin: 5px 0; */
+}
+.contact-col-icon-project{
+    display: flex;
+    align-items: center;
+    margin: 0 20px;
+}
+.contact-col-phones-project{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3px;
+}
+@media (max-width: 992px) {
+    .franja-roja{
+        height: 65px;
+    }
+    .franja-roja span{
+        font-size: smaller;
+    }
+    .title-oneskin{
+        margin: 50px 0 20px 0;
+    }
+    .container-oneskin{
+        padding: 20px;
+    }
+    .title-project-gallery{
+        margin: 30px 0 10px 0;
+        padding: .2rem;
+    }
+}

@@ -5,6 +5,7 @@
 /public/images/customers_logos
 /public/images/image_products
 /public/images/proyectos
+/public/images/fabricacion
 /storage/*.key
 .env
 .env.backup

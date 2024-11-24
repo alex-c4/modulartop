@@ -41,6 +41,7 @@ class ProductsTemplateExport implements FromArray, WithHeadings, ShouldAutoSize
             'clasificacion_color',
             'descripcion',
             'precio',
+            'cantidad_inicial',
             'img_producto'
         ];
     }

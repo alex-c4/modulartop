@@ -675,29 +675,67 @@ class ProjectController extends Controller
         $proyectistas = DB::table("proyectistas")->get();
         $allProjects = array();
 
-        foreach($proyectistas as $proyectista){
-            $projects = DB::table("projects as pr")
-                ->select(
-                    "pr.id as projectId",
-                    "pr.name as project_name",
-                    "pr.cover_photo",
-                    "pr.cover_photo_alt_text",
-                    "pr.proyectista_id",
-                    "pr.project_date",
-                    "p.prefix",
-                    "p.name as proyectista_name",
-                    "p.id"
-                    )
-                ->join("proyectistas as p", "p.id", "=", "pr.proyectista_id", "inner", false)
-                ->where("pr.proyectista_id", "=", $proyectista->id)
-                ->where("pr.is_deleted", "=", 0)
-                ->orderby("pr.project_date", "DESC")
-                ->get();
-            
-                array_push($allProjects, $projects);
-        }
+        // foreach($proyectistas as $proyectista){
+        //     $projects = DB::table("projects as pr")
+        //         ->select(
+        //             "pr.id as projectId",
+        //             "pr.name as project_name",
+        //             "pr.cover_photo",
+        //             "pr.cover_photo_alt_text",
+        //             "pr.proyectista_id",
+        //             "pr.project_date",
+        //             "p.prefix",
+        //             "p.name as proyectista_name",
+        //             "p.id"
+        //             )
+        //         ->join("proyectistas as p", "p.id", "=", "pr.proyectista_id", "inner", false)
+        //         ->where("pr.proyectista_id", "=", $proyectista->id)
+        //         ->where("pr.is_deleted", "=", 0)
+        //         ->orderby("pr.project_date", "DESC")
+        //         ->get();
+                    
+        //         array_push($allProjects, $projects);
+        // }
 
-        return view("project.showphotosbyproyectista", compact("proyectistas", "allProjects"));
+        $allProjects = DB::table("projects as pr")
+            ->select(
+                "pr.id as projectId",
+                "pr.name as project_name",
+                "pr.description as project_description",
+                "pr.cover_photo",
+                "pr.cover_photo_alt_text",
+                "pr.proyectista_id",
+                "pr.project_date",
+                "p.prefix",
+                "p.name as proyectista_name",
+                "p.id"
+                )
+            ->join("proyectistas as p", "p.id", "=", "pr.proyectista_id", "inner", false)
+            ->where("pr.is_deleted", "=", 0)
+            ->orderby("pr.project_date", "DESC")
+            ->get();
+
+        $lastProjectId = Project::select("id")
+            ->where("is_deleted", "=", 0)
+            ->orderby("created_at", "DESC")
+            ->first();
+        
+        $lastProject = DB::table("projects as pr")
+            ->select(
+                "pr.id",
+                "pr.name",
+                "pr.cover_photo",
+                "pr.cover_photo_alt_text",
+                "pr.created_at",
+                "prp.name as photo_name"
+                )
+            ->join("project_photos as prp", "pr.id", "=", "prp.project_id", "inner", false)
+            ->where("pr.id", $lastProjectId->id)
+            ->where("pr.is_deleted", "=", 0)
+            ->orderby("pr.created_at", "DESC")
+            ->get();
+        
+        return view("project.showphotosbyproyectista", compact("proyectistas", "allProjects", "lastProject"));
     }
     
     public function delete($id){

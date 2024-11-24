@@ -44,3 +44,5 @@ ALTER TABLE `products` CHANGE `width` `width` DECIMAL(6,2) NULL DEFAULT '0', CHA
 CREATE TABLE `catalogs` ( `id` INT NOT NULL AUTO_INCREMENT , `id_product_type` INT NOT NULL , `id_proyectista` INT NOT NULL ,`file_name` VARCHAR(50) NOT NULL , `is_deleted` BOOLEAN NOT NULL DEFAULT FALSE , `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , `created_by` INT NOT NULL , `updated_at` DATETIME NULL , `updated_by` INT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 
 ALTER TABLE `proyectistas` CHANGE `prefix` `prefix` VARCHAR(15) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL;
+
+ALTER TABLE `products` CHANGE `name` `name` VARCHAR(300) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;

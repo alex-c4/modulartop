@@ -7,6 +7,7 @@ use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
 use Carbon\Carbon;
+use Utils;
 
 
 class ProductsImport implements ToModel, WithHeadingRow, WithValidation
@@ -16,9 +17,36 @@ class ProductsImport implements ToModel, WithHeadingRow, WithValidation
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
+    // public function model(array $row)
+    // {
+
+    //     return new Product([
+    //         "id_product_category" => $row['categoria'],
+    //         "id_product_type" => $row['tipo'],
+    //         "id_product_subtype" => $row['subtipo'],
+    //         "code" => $row['codigo'],
+    //         "name" => $row['nombre'],
+    //         "id_product_origen" => $row['origen'],
+    //         "id_product_acabado" => $row['acabado'],
+    //         "width" => $row['ancho'],
+    //         "length" => $row['largo'],
+    //         "thickness" => $row['espesor'],
+    //         "id_product_material" => $row['material'],
+    //         "id_product_sustrato" => $row['tipo_sustrato'],
+    //         "id_product_color" => $row['clasificacion_color'],
+    //         "description" => $row['descripcion'],
+    //         "price" => $row['precio'],
+    //         "img_product" => $row['img_producto'],
+    //         "img_alt" => $row['img_producto'],
+    //         "created_at" => Carbon::now(),
+    //         "created_by" => auth()->user()->id,
+    //         "updated_at" => Carbon::now()
+    //     ]);
+    // }
     public function model(array $row)
     {
-        return new Product([
+        // dd($row);
+        $product = Product::create([
             "id_product_category" => $row['categoria'],
             "id_product_type" => $row['tipo'],
             "id_product_subtype" => $row['subtipo'],
@@ -40,6 +68,8 @@ class ProductsImport implements ToModel, WithHeadingRow, WithValidation
             "created_by" => auth()->user()->id,
             "updated_at" => Carbon::now()
         ]);
+        Utils::aumentarInventario($row['cantidad_inicial'], $product->id);
+        
     }
 
     public function rules(): array{
@@ -71,4 +101,5 @@ class ProductsImport implements ToModel, WithHeadingRow, WithValidation
             'integer' => 'el campo <b>:attribute</b> debe ser entero.',
         ];
     }
+    
 }

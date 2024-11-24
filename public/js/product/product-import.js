@@ -20,7 +20,9 @@ var validator = function(){
             setErrorPlacement_import(error, element);
         },
         submitHandler: function(form) {
-            debugger
+            var disabled = true;
+            var msg = 'Cargando...';
+            disabledButton('btnSave', disabled, msg);
             form.submit();
         }
     });
@@ -43,7 +45,10 @@ var validator_images = function(){
             setErrorPlacement_import_images(error, element);
         },
         submitHandler: function(form) {
-            $("#btnSave").prop("disabled", true);
+            // $("#btnSaveImg").prop("disabled", true);
+            var disabled = true;
+            var msg = 'Cargando...';
+            disabledButton('btnSaveImg', disabled, msg);
             form.submit();
         }
     });
@@ -62,4 +67,10 @@ var setErrorPlacement_import_images = function(error, element){
     }else{
         error.insertAfter(element);
     }
+}
+
+var disabledButton = function(btnId, isDisabled, btnText){
+    document.querySelector(`#${btnId}`).innerText = btnText
+    document.querySelector(`#${btnId}`).disabled = isDisabled;
+    
 }

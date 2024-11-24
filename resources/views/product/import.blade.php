@@ -142,7 +142,7 @@ Importar producto
             
                                 <div class="form-group row mb-0">
                                     <div class="col-md-6 offset-md-4">
-                                        <button type="submit" class="btn btn-primary" id="btnSave">
+                                        <button type="submit" class="btn btn-primary" id="btnSaveImg">
                                             Importar imágenes
                                         </button>
                                     </div>
