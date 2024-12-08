@@ -1,0 +1,108 @@
+.borderBottomSection{
+    border-bottom: 3px solid black;
+}
+.bg-container-seccionado{
+    background-image: url('../images/servicios/seccionado.png');
+    background-size: cover;
+}
+.bg-container-revestimiento{
+    background-image: url('../images/servicios/revestimiento.png');
+    background-size: cover;
+}
+.bg-container-mecanizado{
+    background-image: url('../images/servicios/mecanizados.png');
+    background-size: cover;
+}
+.bg-container-pegadocanto{
+    background-image: url('../images/servicios/pegadotapacanto.png');
+    background-size: cover;
+}
+.column-right{
+    display: flex;
+    flex-direction: column;
+}
+.title-service{
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 20px;
+    line-height: normal;
+}
+.content-service{
+    font-style: oblique;
+    color: white;
+    font-size: 1rem;
+}
+.btn-contactenos{
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 20px;
+}
+.col-hidden{
+    display: inline-block
+}
+
+@media (max-width: 992px) {
+    .btn-contactenos{
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .col-hidden{
+        display: none;
+    }
+}
+
+.bg-footer-contact{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('../images/modulartop/home_contacto_footer.png');
+    background-repeat: no-repeat;
+    background-color: #a09a93;
+    /* background-size: cover; */
+    background-position: center;
+    height: 400px;
+}
+/* Seccion de contacto */
+.container-contact-info-project{
+    display: flex;
+    /* justify-content: center; */
+    /* margin-top: 250px; */
+    font-size: .7rem;
+}
+.contact-info-project{
+    background-color: white;
+    width: 270px;
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+.contact-header-project{
+    display: flex;
+    justify-content: flex-start;
+    height: 36px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    border-bottom: 3px solid;
+    border-bottom-color: var(--vinotinto);
+    color: black;
+}
+.contact-phones-project{
+    display: flex;
+    flex-direction: column;
+}
+.contact-row-project{
+    display: flex;
+    /* margin: 5px 0; */
+}
+.contact-col-icon-project{
+    display: flex;
+    align-items: center;
+    margin: 0 15px;
+}
+.contact-col-phones-project{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3px;
+}
