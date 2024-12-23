@@ -52,26 +52,16 @@ var Utils = {
                 var _urlPost = $("#hRoutePost").val();
                 var _html = "";
                 data.forEach(function(item){
-                    _html += '<div class="single-blog-post">' +
-                                '<div class="blog-pic">' +
-                                '    <img src="' + _url + '/' + item.name_img + '" alt="">' +
-                                '</div>' +
-                                '<div class="blog-text">' +
-                                '    <h4>' + item.title +'</h4>' +
-                                '    <div class="blog-widget">' +
-                                '        <div class="blog-info">' +
-                                '        <img src="images/clock.png" alt="">' +
-                                '            <span>' + item.created_at.split(" ")[0] +'</span><span class="mx-2">&bullet;' +
-                                '        </div>' +
-                                '       ' +
-                                '    </div>' +
-                                '    ' +
-                                '    <p>' +
-                                '        ' + item.summary + '...' +
-                                '    </p>' +
-                                '    <a href="' + _urlPost + '/' + item.id + '/' + item.url.replaceAll(" ", "-") + '" class="btn btn-primary btn-sm">Leer más</a>' +
-                                '</div>' +
-                                '</div>';
+                    _html += '<div class="container-newsletter box-shadow-mt" style="background-image: url(' + _url + '/' + item.name_img + ');">' +
+                    '<div class="container-title">' + item.title +'</div>' +
+                    '<div class="container-summary">' +
+                    '<div class="border-top-title">&nbsp;</div>' +
+                    '<span>' + item.summary +'</span>' +
+                    '</div>' +
+                    '<div class="container-boton">' +
+                    '<input type="button" id="btnLeerMas" value="Leer más" class="btn btn-dark btn-leer-mas" onclick="displayInformation('+ item.id +', false)"/>' +
+                    '</div>' +
+                    '</div>';
                 });
                 $("#contentOtherPost").html(_html);
                 $("#btnShowOtherPost").addClass("disabled");

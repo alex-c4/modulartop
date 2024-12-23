@@ -17,7 +17,7 @@ use App\Tag;
 class NewsletterController extends Controller
 {
     public function __construct(){
-        $this->middleware(['auth', 'marketing'], ['except' => ['novedades', 'show', 'other_post_ajax', 'tags'] ]);
+        $this->middleware(['auth', 'marketing'], ['except' => ['novedades', 'show', 'other_post_ajax', 'tags', 'showNewsletterById'] ]);
 
     }
 
@@ -137,12 +137,7 @@ class NewsletterController extends Controller
     public function show($id, $name)
     {
         // #post1
-        $newsletter = DB::table('newsletters')
-                        ->join('categories', 'newsletters.category_id', '=', 'categories.id','inner', false)
-                        ->join('users', 'users.id', '=', 'newsletters.user_id','inner', false)
-                        ->select('newsletters.id', 'newsletters.title', 'newsletters.content', 'newsletters.tags', 'newsletters.name_img', 'newsletters.created_at', 'users.name as author', 'users.name as userName', 'users.lastName as userLastName', 'categories.id as category_id', 'categories.name as category', 'newsletters.summary', 'newsletters.published_at')
-                        ->where('newsletters.id', $id)
-                        ->first();
+        $newsletter = $this->getById($id);
 
         $newsletter_top3 = DB::table('newsletters')
                         ->join('users', 'users.id', '=', 'newsletters.user_id','inner', false)
@@ -168,6 +163,25 @@ class NewsletterController extends Controller
         return view('post', compact('newsletter', 'newsletter_top3', 'tags_array', 'categoryList', 'tags'));
     }
 
+    public function showNewsletterById(Request $request){
+        $id = $request->input("id");
+        
+        $newsletter = $this->getById($id);
+
+        return [
+            "result" => true,
+            'data' => $newsletter
+        ];
+    }
+
+    private function getById($id){
+        return DB::table('newsletters')
+        ->join('categories', 'newsletters.category_id', '=', 'categories.id','inner', false)
+        ->join('users', 'users.id', '=', 'newsletters.user_id','inner', false)
+        ->select('newsletters.id', 'newsletters.title', 'newsletters.content', 'newsletters.tags', 'newsletters.name_img', 'newsletters.created_at', 'users.name as author', 'users.name as userName', 'users.lastName as userLastName', 'categories.id as category_id', 'categories.name as category', 'newsletters.summary', 'newsletters.published_at')
+        ->where('newsletters.id', $id)
+        ->first();
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -423,7 +437,7 @@ class NewsletterController extends Controller
         $tags = $this->getTags();
 
         $hOptNewsletter = "NEWSLETTER";
-
+        
         return view('novedades', compact('newsletters', 'categoryList', 'total_newsletters', 'tags', 'hOptNewsletter'));
     }
 

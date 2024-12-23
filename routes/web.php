@@ -218,6 +218,9 @@ Route::post('provider/storeajax', ['as' => 'provider.storeajax', 'uses' => 'Prov
 
 //Ver mas post
 Route::post('newsletter/other_post_eajax', ['as' => 'newsletter.otherpostajax', 'uses' => 'NewsletterController@other_post_ajax']);
+//Ontener novedad por ID
+Route::post("newsletter/show_newsletter_by_id", ["as" => "newsletter.showNewsletterById", "uses" => "NewsletterController@showNewsletterById"]);
+
 
 //Llenar combos de subcategroria y tipo de clasificacion
 Route::post("product/subcategory", ["as" => "product.fillCombo", "uses" => "ProductController@fillCombo"]);

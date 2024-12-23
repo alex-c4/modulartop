@@ -46,3 +46,26 @@ CREATE TABLE `catalogs` ( `id` INT NOT NULL AUTO_INCREMENT , `id_product_type` I
 ALTER TABLE `proyectistas` CHANGE `prefix` `prefix` VARCHAR(15) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL;
 
 ALTER TABLE `products` CHANGE `name` `name` VARCHAR(300) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;
+
+
+DROP PROCEDURE `sp_getNewsletterFilterByCategory`;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_getNewsletterFilterByCategory`(IN `cat_id` INT) NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER SELECT 
+	ne.id,
+    ne.title,
+    ne.created_at,
+    ne.published_at,
+    ne.name_img,
+    ne.content,
+    ne.summary,
+    cat.name,
+    ne.title AS url,
+    u.name AS userName,
+    u.lastName AS userLastName
+FROM newsletters AS ne 
+	INNER JOIN categories AS cat ON ne.category_id=cat.id
+    INNER JOIN users as u ON u.id=ne.user_id
+WHERE 
+	ne.isDeleted = 0 AND
+	ne.category_id = cat_id
+ORDER BY ne.created_at DESC
+LIMIT 8
