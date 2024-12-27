@@ -284,6 +284,14 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
       if(result.result == true){
         $("#txtEmail").val("");
         Utils.setAlert(result.message, 'success', 'msgEmailModal');
+        let aLink = document.createElement('a');
+        aLink.href = `${result.file_url}/${result.file_name}`;
+        aLink.target = '_blank';
+        aLink.download = result.file_name;
+        document.body.appendChild(aLink);
+        aLink.click();
+        document.body.removeChild(aLink)
+
       }else{
         Utils.setAlert(result.message, 'warning', 'msgEmailModal');
       }

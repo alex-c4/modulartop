@@ -254,7 +254,7 @@ class CatalogController extends Controller
         try {
             $userEmail = $request->input("txtEmail");
             $aliado = $request->input("hAliado");
-            //Validacion que no exista ya resgitrado el correo electrónico
+            //Validacion que no exista ya resgistrado el correo electrónico
             $contact = Contact::where('emailContact', $userEmail)->first();
 
             if($contact == null){
@@ -300,15 +300,17 @@ class CatalogController extends Controller
             $catalogInfo = array(
                 'aliado' => $proyectista->name
             );
-            Mail::send('emails.downloadcatalog', $catalogInfo, function($message) use($req, $subject, $userEmail, $file){
-                $message->from($req["correo"], 'Web Modular Top');
-                $message->to($userEmail)->subject($subject);
-                $message->attach($file);
-            });
+            // Mail::send('emails.downloadcatalog', $catalogInfo, function($message) use($req, $subject, $userEmail, $file){
+            //     $message->from($req["correo"], 'Web Modular Top');
+            //     $message->to($userEmail)->subject($subject);
+            //     $message->attach($file);
+            // });
 
             $result = [
                 "result" => true,
-                "message" => "El catálogo fue enviado al correo suministrado."
+                "file_name" => $file,
+                "file_url" => asset('catalogs'),
+                "message" => "El catálogo se descargará automaticamente."
             ];
         }
         return $result;
@@ -324,7 +326,7 @@ class CatalogController extends Controller
             if($file == null){
                 return null;
             }else{
-                return public_path('catalogs/') . $file->file_name;
+                return $file->file_name;
             }
         }
     }
