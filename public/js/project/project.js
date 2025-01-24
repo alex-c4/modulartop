@@ -4,6 +4,9 @@ var allProjects;
 const itemsPerPage = 4;
 let currentPage = 1;
 
+var _token = $("#token").val();
+var _type = "POST";
+
 // var fillProjects = function(projects){
 //     var _html = '';
 //     for (let i = 0; i < projects.length; i++) {
@@ -59,7 +62,7 @@ var updateUI = function(page) {
                                 '</div>' +
                                 '<p class="card-text">' + item.project_description + '</p>' +
                                 '<div>' +
-                                    '<a class="btn btn-dark" href="' + GLOBAL_ROUTE_URL + '/' + item.projectId + '" role="button">ver más</a>' +
+                                    '<a class="btn btn-dark" onclick="displayInformation(' + item.projectId + ')" role="button">ver más</a>' +
                                 '</div>' +
                             '</div>' +
                         '</div>' +
@@ -98,4 +101,49 @@ $("#btnArrowRight").on("click", function(){
     }
 
 })
+
+var displayInformation = function(id){
+    var _url = $("#hShowProyectistaById").val();
+    var _data = {
+        id
+    };
+    Utils.getData(_url, _token, _type, _data).then(function(result){
+        var _path = window.location.origin;
+        if(result.result == true){
+            console.log(result);
+            $('#projectName').html(result.project[0].name);
+
+            let _html = '';
+            let index = 0;
+            result.photos.forEach(e => { 
+                if(index == 0){
+                    _html += '<div class="carousel-item active">' +
+                        '<img src="' + _path +'/images/proyectos/' + e.name +'" class="d-block w-100" alt="' + e.alt_text + '">' +
+                    '</div>';
+                }else{
+                    _html += '<div class="carousel-item">' +
+                        '<img src="' + _path +'/images/proyectos/' + e.name +'" class="d-block w-100" alt="' + e.alt_text + '">' +
+                    '</div>';
+                }
+                index++;
+            });
+            
+            let _html2 = '';
+            for (let index = 0; index < 3; index++) {
+                _html2 += '<div>' +
+                            '<img src="' + _path + '/images/proyectos/' + result.photos[index].name + '" alt="' + result.photos[index].alt_text + '">'
+                        '</div>';
+            }
+
+            $('#carouselImages').html(_html);
+            $('#bordeImages').html(_html2);
+
+            $('html, body').animate({
+                scrollTop: $("#spanheader").offset().top
+            }, 1500);
+        }else{
+            console.error(result)
+        }
+    });
+}
 

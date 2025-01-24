@@ -14,10 +14,14 @@
 .mensaje{
     color: white;
     border: 2px solid;
-    padding: 25px;
-    font-size: large;
+    padding: 45px;
+    font-size: 1.5rem;
     font-weight: 500;
-    margin: 5%;
+    margin: min(7%, 200px);
+}
+.mensaje p{
+    margin-bottom: 2rem;
+    line-height: 1.8rem;
 }
 
 .contenedor-mision{
@@ -33,15 +37,19 @@
 .marco{
     display: flex;
     flex-direction: column;
-    margin: 5%;
+    margin: 5% 9%;
     font-size: large;
     font-weight: 500;
 }
 .mision-title{
     margin-top: 20%;
+    font-size: 4.5rem;
+    font-weight: bold;
+    letter-spacing: .5rem;
 }
 .mision-text{
     text-align: justify;
+    font-size: 2rem;
 }
 
 .contenedor-vision{
@@ -56,10 +64,14 @@
 }
 .vision-text{
     text-align: justify;
+    font-size: 2rem;
     margin-bottom: 20%;
 }
 .vision-title{
     margin-top: 20%;
+    font-size: 4.6rem;
+    font-weight: bold;
+    letter-spacing: .5rem;
 }
 
 .contenedor-valores{
@@ -77,10 +89,14 @@
     margin-bottom: 15px;
 }
 .valores-title{
-    margin: 5% 0 5% 0;
+    margin: 5% 0 1% 0;
+    font-size: 4.5rem;
+    font-weight: bold;
+    letter-spacing: .5rem;
 }
 .valores-text{
     text-align: justify;
+    font-size: 1.5rem;
 }
 
 .contenedor-nota{
@@ -95,4 +111,5 @@
 }
 .nota-text{
     text-align: justify;
+    font-size: 1.5rem;
 }

@@ -16,7 +16,7 @@ class ProjectController extends Controller
     public function __construct()
     {
         // $this->middleware('verified');
-        $this->middleware(['auth', 'marketing'], ['except' => ['showphotos', 'showphotosbyproyectista']]);
+        $this->middleware(['auth', 'marketing'], ['except' => ['showphotos', 'showphotosbyproyectista', 'showProyectistaById']]);
     }
 
     /**
@@ -799,5 +799,30 @@ class ProjectController extends Controller
                 ->join("proyectistas as pr", "pr.id", "p.proyectista_id", "=", "inner", false)
                 ->orderby("p.project_date", "DESC")
                 ->get();
+    }
+
+    public function showProyectistaById(Request $request){
+        $id = intval($request->input("id"));
+
+        $project_photos = DB::table("project_photos")
+            ->where("project_id", $id)
+            ->get();
+
+        $project = DB::table("projects")
+            ->select(
+                "id", 
+                "cover_photo",
+                "name",
+                "description",
+                "is_deleted"
+                )
+            ->where("id", $id)
+            ->get();
+
+        return [
+            "result" => true,
+            'photos' => $project_photos,
+            'project' => $project
+        ];
     }
 }

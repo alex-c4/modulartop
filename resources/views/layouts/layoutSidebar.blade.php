@@ -686,7 +686,7 @@
                 <li><a href="{{ route('welcome') }}">INICIO</a></li>
                 <li><a href="{{ route('welcome')}}#howitworks-section">MATERIA PRIMA</a></li>
                 <li><a href="{{ route('welcome')}}#about-section">FABRICACION</a></li>
-                <li><a href="{{ route('welcome')}}#services-section">SERVICIOS</a></li>
+                <li><a href="{{ url('/servicios') }}">SERVICIOS</a></li>
                 <li><a href="{{ url('/modulartop') }}">MODULAR TOP</a></li>
                 <li><a href="{{ url('/novedades') }}">NOVEDADES</a></li>
                 <li><a href="{{ route('welcome')}}#contact-section">CONTACTANOS</a></li>

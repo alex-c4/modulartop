@@ -106,3 +106,7 @@
     align-items: center;
     padding: 3px;
 }
+.textBold{
+    font-weight: bold;
+    font-style: oblique;
+}

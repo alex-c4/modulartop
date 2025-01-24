@@ -5,6 +5,8 @@
 @endsection
 
 @section('content')
+<input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+<input type="hidden" id="hShowProyectistaById" value="{{ route('project.showProyectistaById') }}">
 
 
     <!-- <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url({{ asset('images/tableros/banner-premium.jpg') }}" data-aos="fade">
@@ -31,10 +33,10 @@
                             <!-- Carousel -->
                             <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
                                 <div class="franja-roja">
-                                    <span>{{ $lastProject[0]->name }}</span>
+                                    <span id="projectName">{{ $lastProject[0]->name }}</span>
                                 </div>
                                 
-                                <div class="carousel-inner">
+                                <div id="carouselImages" class="carousel-inner">
                                     @foreach($lastProject as $key => $imgProject)
                                         <div class="carousel-item @if($key == 0) active @endif">
                                             <img src="{{ asset('images/proyectos/'.$imgProject->photo_name) }}" class="d-block w-100" alt="...">
@@ -65,7 +67,7 @@
                             <!-- Fin Carousel -->
 
 
-                            <div class='pl-1 contendor-grid2'>
+                            <div id="bordeImages" class='pl-1 contendor-grid2'>
                                 @for($i = 0; $i < 3; $i++)
                                     <div>
                                         <img src="{{asset('images/proyectos/'.$lastProject[$i]->photo_name) }}" alt="" srcset="">
@@ -192,6 +194,7 @@
 @endsection
 
 @section('script')
+<script src="{{ asset('js/utils.js') }}?v={{ env('APP_VERSION', '1') }}"></script>
 <script src="{{ asset('js/project/project.js') }}?v={{ env('APP_VERSION', '1') }}"></script>
 
 <script>

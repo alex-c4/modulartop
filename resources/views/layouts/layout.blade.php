@@ -321,7 +321,7 @@
                 <li><a href="{{ route('welcome') }}">INICIO</a></li>
                 <li><a href="{{ route('welcome')}}#howitworks-section">CATÁLOGO</a></li>
                 <li><a href="{{ url('project/showphotosbyproyectista')}}">PROYECTOS</a></li>
-                <li><a href="{{ route('welcome')}}#services-section">SERVICIOS</a></li>
+                <li><a href="{{ url('/servicios') }}">SERVICIOS</a></li>
                 <li><a href="{{ url('/modulartop') }}">MARCA</a></li>
                 <li><a href="{{ url('/novedades') }}">NOVEDADES</a></li>
                 <li><a href="{{ route('welcome')}}#contact-section">CONTACTO</a></li>

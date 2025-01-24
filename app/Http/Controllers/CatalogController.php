@@ -183,16 +183,16 @@ class CatalogController extends Controller
     public function deletedIfExist($request){
         $id_product_type = $request->input('type');
         $id_proyectista = $request->input('proyectista');
-        $catalog = Catalog::where('id_product_type', $id_product_type)
-            ->where('id_proyectista', $id_proyectista)
+        // $catalog = Catalog::where('id_product_type', $id_product_type)
+        $catalog = Catalog::where('id_proyectista', $id_proyectista)
             ->first();
         if($catalog != null){
             // Borrar PDF
             Storage::disk('global')->delete('catalogs/' . $catalog->file_name);
 
             //Borrar registro de la BD
-            Catalog::where('id_product_type', $id_product_type)
-            ->where('id_proyectista', $id_proyectista)
+            // Catalog::where('id_product_type', $id_product_type)
+            Catalog::where('id_proyectista', $id_proyectista)
             ->delete();
         }
     }
@@ -214,7 +214,8 @@ class CatalogController extends Controller
         try {
             $name = $request->input("name");
             $id = DB::table("proyectistas")->insertGetId([
-                'name' => $name
+                'name' => $name,
+                'prefix' => strtolower(str_replace(" ", "", $name))
             ]);
             $data = array(
                 'id' => $id,

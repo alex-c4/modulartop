@@ -18,11 +18,11 @@ de madera, prensado MDP, enchapado de tapa de cantos y más. Fabricamos tus sue�
 
     <div class="row align-items-center justify-content-center">
       <div class="col-md-8 mx-auto mt-lg-5 text-center" style="display: flex; flex-direction: column; justify-content: center; align-items: center">
-        <div style="font-size: 3rem; font-family: &quot;Montserrat&quot;, sans-serif; font-weight: 390 !important; text-transform: uppercase; color: white; font-family: &quot;Montserrat&quot;, sans-serif; max-width: 565px; display: flex; justify-content: center;">
+        <div style="max-width: 800px; font-size: 3.9rem; font-family: &quot;Montserrat&quot;, sans-serif; font-weight: 390 !important; text-transform: uppercase; color: white; font-family: &quot;Montserrat&quot;, sans-serif; display: flex; justify-content: center;">
           Nuestros servicios
         </div>
-        <div style="max-width: 565px; text-align: justify; color: white;">
-          Somos los mejores aliados de fabricantes, carpinterías, mueblerías y arquitectos por contar con maquinaria tecnológica CNC que maximiza la productividad.
+        <div style="max-width: 800px; font-size: 1.4rem; text-align: justify; color: white;">
+          Somos los <span class="textBold">mejores aliados </span>de fabricantes, carpinterías, mueblerías y arquitectos por contar con maquinaria tecnológica CNC que <span class="textBold">maximiza la productividad</span>.
         </div>
       </div>
     </div>

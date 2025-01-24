@@ -49,7 +49,7 @@ Tendencias, servicio personalizado y tableros melaminicos importados." />
     <div class="contenedor-mision">
       <div class="marco">
         <div class="mision-title">
-          <h1>Nuestra misión</h1>
+          Nuestra misión
         </div>
         <div class="mision-text">
           Ser el proveedor líder en Venezuela de tableros melamínicos, materiales afines y revestimientos de interiores y exteriores de alta calidad, así como el prestador de servicios de seccionado, mecanizado, prensado y pegado de canto con garantía comprobable; ofreciendo innovación, sostenibilidad y atención personalizada a clientes en las áreas de arquitectura, diseño y desarrollo de interiorismo y exteriorismo.
@@ -60,7 +60,7 @@ Tendencias, servicio personalizado y tableros melaminicos importados." />
     <div class="contenedor-vision">
       <div class="marco">
         <div class="vision-title">
-          <h1>Nuestra visión</h1>
+          Nuestra visión
         </div>
         <div class="vision-text">
         Consolidarnos como la marca de referencia para los profesionales de las áreas de arquitectura, diseño y desarrollo de interiorismo y exteriorismo. Llegando a ser una marca reconocida por la excelencia en el servicio prestado, en la calidad de los materiales que ofrecemos, a la vez que fomentamos el compromiso ético empresarial, generamos empleo, crecimiento y desarrollo sostenible a nivel nacional.
@@ -71,7 +71,7 @@ Tendencias, servicio personalizado y tableros melaminicos importados." />
     <div class="contenedor-valores">
       <div class="marco">
         <div class="valores-title">
-          <h1>Nuestros valores</h1>
+          Nuestros valores
         </div>
         <div class="valores-text">
           <ul>
