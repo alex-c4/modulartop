@@ -33,15 +33,13 @@
                             <!-- Carousel -->
                             <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
                                 <div class="franja-roja">
-                                    <span id="projectName">{{ $lastProject[0]->name }}</span>
+                                    <span id="projectName">{{ $allProjects[0]->project_name }}</span>
                                 </div>
                                 
                                 <div id="carouselImages" class="carousel-inner">
-                                    @foreach($lastProject as $key => $imgProject)
-                                        <div class="carousel-item @if($key == 0) active @endif">
-                                            <img src="{{ asset('images/proyectos/'.$imgProject->photo_name) }}" class="d-block w-100" alt="...">
-                                        </div>
-                                    @endforeach
+                                    <div class="carousel-item active">
+                                        <img src="{{ asset('images/proyectos/'.$allProjects[0]->cover_photo) }}" class="d-block w-100" alt="{{ $allProjects[0]->cover_photo_alt_text }}">
+                                    </div>
                                     <!-- 
                                     <div class="carousel-item active">
                                         <img src="{{asset('images/fabricacion/fabricacion-cocina-1.jpg')}}" class="d-block w-100" alt="...">
@@ -69,9 +67,15 @@
 
                             <div id="bordeImages" class='pl-1 contendor-grid2'>
                                 @for($i = 0; $i < 3; $i++)
-                                    <div>
-                                        <img src="{{asset('images/proyectos/'.$lastProject[$i]->photo_name) }}" alt="" srcset="">
-                                    </div>
+                                    @if(isset($lastProject[$i]))
+                                        <div>
+                                            <img src="{{asset('images/proyectos/'.$lastProject[$i]->photo_name) }}" alt="" srcset="">
+                                        </div>
+                                    @else
+                                        <div>
+                                            <img src="{{ asset('images/no_image.png') }}">
+                                        </div>
+                                    @endif
                                 @endfor
                                 <!-- <div>
                                     <img src="{{asset('images/fabricacion/fabricacion-cocina-1.jpg')}}" alt="" srcset="">
@@ -85,7 +89,6 @@
                             </div>
 
                         </div>
-
                     </div>
 
                     <div class="col-12 container-oneskin">

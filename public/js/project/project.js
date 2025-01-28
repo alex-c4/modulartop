@@ -109,30 +109,35 @@ var displayInformation = function(id){
     };
     Utils.getData(_url, _token, _type, _data).then(function(result){
         var _path = window.location.origin;
-        if(result.result == true){
+        if(result.result === true){
             console.log(result);
             $('#projectName').html(result.project[0].name);
 
             let _html = '';
-            let index = 0;
-            result.photos.forEach(e => { 
-                if(index == 0){
-                    _html += '<div class="carousel-item active">' +
-                        '<img src="' + _path +'/images/proyectos/' + e.name +'" class="d-block w-100" alt="' + e.alt_text + '">' +
-                    '</div>';
-                }else{
-                    _html += '<div class="carousel-item">' +
-                        '<img src="' + _path +'/images/proyectos/' + e.name +'" class="d-block w-100" alt="' + e.alt_text + '">' +
-                    '</div>';
-                }
-                index++;
-            });
             
+            _html += '<div class="carousel-item active">' +
+                        '<img src="' + _path +'/images/proyectos/' + result.project[0].cover_photo +'" class="d-block w-100" alt="' + result.project[0].cover_photo_alt_text + '">' +
+                    '</div>';
+            
+            if(result.photos[0] !== undefined){
+                result.photos.forEach(e => { 
+                    _html += '<div class="carousel-item">' +
+                            '<img src="' + _path +'/images/proyectos/' + e.name +'" class="d-block w-100" alt="' + e.alt_text + '">' +
+                        '</div>';
+                });
+            }            
+
             let _html2 = '';
             for (let index = 0; index < 3; index++) {
-                _html2 += '<div>' +
-                            '<img src="' + _path + '/images/proyectos/' + result.photos[index].name + '" alt="' + result.photos[index].alt_text + '">'
-                        '</div>';
+                if(result.photos[index] !== undefined){
+                    _html2 += '<div>' +
+                                '<img src="' + _path + '/images/proyectos/' + result.photos[index].name + '" alt="' + result.photos[index].alt_text + '">' +
+                            '</div>';
+                }else{
+                    _html2 += '<div>' +
+                                '<img src="' + _path + '/images/no_image.png" alt="">' +
+                            '</div>';
+                }
             }
 
             $('#carouselImages').html(_html);

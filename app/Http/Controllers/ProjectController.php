@@ -812,6 +812,7 @@ class ProjectController extends Controller
             ->select(
                 "id", 
                 "cover_photo",
+                "cover_photo_alt_text",
                 "name",
                 "description",
                 "is_deleted"
