@@ -137,6 +137,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
             <div class="contact-col-phones">
               <div>{{env('CONTACT_001')}}</div>
               <div>{{env('CONTACT_002')}}</div>
+              <div>{{env('CONTACT_003')}}</div>
             </div>
           </div>
           
@@ -146,6 +147,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
             </div>
             <div class="contact-col-phones">
               <div>{{env('CONTACT_EMAIL')}}</div>
+              <div>{{env('CONTACT_EMAIL_2')}}</div>
             </div>
           </div>
         </div>
@@ -167,7 +169,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
        <div class="whatsapp-container">
 
         <a href="javascript:void(0);">
-          <img src="{{ asset('images/WhatsApp3.png') }}" class="img-whatsapp" alt="" srcset="" onclick="showWhatsAppContent()">
+          <img src="{{ asset('images/WhatsApp4.png') }}" class="img-whatsapp" alt="" srcset="" onclick="showWhatsAppContent()">
         </a>
        </div>
       <!-- End WhatsApp section -->

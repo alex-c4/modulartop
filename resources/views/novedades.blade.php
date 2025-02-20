@@ -17,7 +17,7 @@ muebles, historia, servicios de madera y fabricación de mueblería." />
 
 
 
-<div class="site-blocks-cover inner-page-cover overlay backgroundHeader"  style="background-image: url({{ asset('images/novedades/novedades-2.png') }});" data-aos="fade">
+<div class="site-blocks-cover inner-page-cover overlay backgroundHeader"  style="background-image: url({{ asset('images/novedades/novedades-2.gif') }});" data-aos="fade">
     <div class="container">
     <div class="row align-items-center justify-content-center">
         <!-- <div class="col-md-5 mx-auto mt-lg-5 text-center">
