@@ -51,15 +51,15 @@
     color: var(--font-black);
     padding: 0 100px 0 100px;
 }
-.title-oneskin{
+.title-project{
     font-size: xx-large;
     font-weight: 500;
     margin: 120px 0 30px 0;
 }
-.content-oneskin{
+.content-project{
     font-size: large;
 }
-.content-oneskin p{
+.content-project p{
     margin-bottom: 0.3rem;
 }
 .footer-oneskin{
@@ -190,7 +190,7 @@
     .franja-roja span{
         font-size: smaller;
     }
-    .title-oneskin{
+    .title-project{
         margin: 50px 0 20px 0;
     }
     .container-oneskin{

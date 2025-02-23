@@ -180,7 +180,7 @@ de madera, prensado MDP, enchapado de tapa de cantos y m√°s. Fabricamos tus sue√
       <div class="col-lg-5 order-md-2">
         <div class="scaling-image">
           <div class="frame">
-            <img src="images/servicios/pegadotapacanto21.png" class="img-fluid">
+            <img src="images/servicios/pegadotapacanto2.png" class="img-fluid">
           </div>
         </div>
       </div>

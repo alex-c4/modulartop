@@ -92,17 +92,18 @@
                     </div>
 
                     <div class="col-12 container-oneskin">
-                        <div class="title-oneskin">
-                            Cocina con ONESKIN: Un oasis de elegancia y funcionalidad
+                        <div class="title-project">
+                        {{ $allProjects[0]->project_name }}
                         </div>
-                        <div class="content-oneskin">
-                            <p>Imagina una cocina que no solo sea un espacio para cocinar, sino un oasis de elegancia y funcionalidad. Una cocina donde cada elemento está cuidadosamente diseñado para crear un ambiente armonioso y eficiente. Esta es la cocina con ONESKIN.</p>
+                        <div class="content-project">
+                            {{ $allProjects[0]->project_description }}
+                            <!-- <p>Imagina una cocina que no solo sea un espacio para cocinar, sino un oasis de elegancia y funcionalidad. Una cocina donde cada elemento está cuidadosamente diseñado para crear un ambiente armonioso y eficiente. Esta es la cocina con ONESKIN.</p>
                             <p>Superficies impecables y duraderas:</p>
                             <p>Los tableros lacados de alta calidad de ONESKIN son la base de esta cocina. Con una amplia gama de colores y texturas disponibles, puedes crear un espacio que refleje tu estilo único. Las superficies son impecables, fáciles de limpiar y altamente resistentes al desgaste, lo que las hace perfectas para el uso diario.</p>
                             <p>Diseno a medida:</p>
                             <p>ONESKIN ofrece soluciones personalizadas para cada cocina. Desde diseños minimalistas hasta cocinas clásicas con un toque moderno, nuestros expertos trabajan contigo para crear un espacio que se adapte a tus necesidades y presupuesto.</p>
                             <p>Funcionalidad inteligente</p>
-                            <p>La cocina con ONESKIN no solo es hermosa, sino también inteligente. Los electrodomésticos integrados y los sistemas de almacenamiento inteligentes te ayudan a aprovechar al máximo el espacio y a cocinar con mayor eficiencia.</p>
+                            <p>La cocina con ONESKIN no solo es hermosa, sino también inteligente. Los electrodomésticos integrados y los sistemas de almacenamiento inteligentes te ayudan a aprovechar al máximo el espacio y a cocinar con mayor eficiencia.</p> -->
                         </div>
                         <div class="footer-oneskin">
                             <div>

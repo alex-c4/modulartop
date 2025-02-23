@@ -112,6 +112,8 @@ var displayInformation = function(id){
         if(result.result === true){
             console.log(result);
             $('#projectName').html(result.project[0].name);
+            $('.title-project').html(result.project[0].name);
+            $('.content-project').html(result.project[0].description);
 
             let _html = '';
             
