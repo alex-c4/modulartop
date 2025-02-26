@@ -60,7 +60,7 @@ var updateUI = function(page) {
                                     '<div class="card-gallery-title">' + item.project_name + '</div>' +
                                     '<div class="card-gallery-subtitle">Un proyecto con estilo</div>' +
                                 '</div>' +
-                                '<p class="card-text">' + item.project_description + '</p>' +
+                                '<p class="card-text">' + Utils.truncarOracion(item.project_description, 100) + '</p>' +
                                 '<div>' +
                                     '<a class="btn btn-dark" onclick="displayInformation(' + item.projectId + ')" role="button">ver más</a>' +
                                 '</div>' +

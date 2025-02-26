@@ -297,6 +297,13 @@ var Utils = {
         .fail(function(jqXHR, textStatus, errorThrown ){
             debugger
         });
-    }
+    },
+    truncarOracion(oracion, maxCaracteres) {
+        if (oracion.length > maxCaracteres) {
+          return oracion.substring(0, maxCaracteres) + "...";
+        } else {
+          return oracion;
+        }
+      }
     
 }

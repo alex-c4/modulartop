@@ -256,13 +256,13 @@
             
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                 <li><a href="{{ route('welcome') }}" class="nav-link">Inicio</a></li>
-                <li><a href="{{ route('welcome')}}#howitworks-section" class="nav-link" >Materia Prima</a></li>
-                <li><a href="{{ route('welcome')}}#about-section" class="nav-link {{ (Request::is('contact/tellus')) ? 'active' : ''}}" >Fabricacion</a></li>
+                <li><a href="{{ route('welcome')}}#howitworks-section" class="nav-link" >Catálogo</a></li>
+                <li><a href="{{ url('project/showphotosbyproyectista')}}" class="nav-link {{ (Request::is('contact/tellus')) ? 'active' : ''}}" >Proyectos</a></li>
                 <!-- <li><a href="{{ route('welcome')}}#services-section" class="nav-link" >Servicios</a></li> -->
                 <li><a href="{{ url('/servicios') }}" class="nav-link" >Servicios</a></li>
-                <li><a href="{{ url('/modulartop') }}" class="nav-link">Modular Top</a></li>
+                <li><a href="{{ url('/modulartop') }}" class="nav-link">Marca</a></li>
                 <li><a href="{{ url('/novedades') }}" class="nav-link">Novedades @if(Utils::getCountNews() > 0)<span class="cantNews">{{ Utils::getCountNews() }}</span>@endif</a></li>
-                <li><a href="{{ route('welcome')}}#contact-section" class="nav-link">Contactanos</a></li>
+                <li><a href="{{ route('welcome')}}#contact-section" class="nav-link">Contacto</a></li>
                 @if(Auth::check())
                   <li><a href="{{ route('logout')}}" class="nav-link">Salir</a></li>
                   <!-- <li><a href="{{ route('home')}}" class="nav-link"><span class="icon-home"></span> Mi Sesión</a></li> -->
