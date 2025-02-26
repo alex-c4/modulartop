@@ -40,6 +40,13 @@
                                     <div class="carousel-item active">
                                         <img src="{{ asset('images/proyectos/'.$allProjects[0]->cover_photo) }}" class="d-block w-100" alt="{{ $allProjects[0]->cover_photo_alt_text }}">
                                     </div>
+                                    @for($i = 0; $i < 10; $i++)
+                                        @if(isset($lastProject[$i]))
+                                            <div class="carousel-item">
+                                                <img src="{{asset('images/proyectos/'.$lastProject[$i]->photo_name) }}" class="d-block w-100" alt="{{$lastProject[$i]->alt_text }}" >
+                                            </div>
+                                        @endif
+                                    @endfor
                                     <!-- 
                                     <div class="carousel-item active">
                                         <img src="{{asset('images/fabricacion/fabricacion-cocina-1.jpg')}}" class="d-block w-100" alt="...">
@@ -69,11 +76,11 @@
                                 @for($i = 0; $i < 3; $i++)
                                     @if(isset($lastProject[$i]))
                                         <div>
-                                            <img src="{{asset('images/proyectos/'.$lastProject[$i]->photo_name) }}" alt="" srcset="">
+                                            <img src="{{asset('images/proyectos/'.$lastProject[$i]->photo_name) }}" alt="{{$lastProject[$i]->alt_text }}" >
                                         </div>
                                     @else
                                         <div>
-                                            <img src="{{ asset('images/no_image.png') }}">
+                                            <img src="{{ asset('images/no_image.png') }}" alt="" srcset="">
                                         </div>
                                     @endif
                                 @endfor

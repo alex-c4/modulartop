@@ -727,7 +727,8 @@ class ProjectController extends Controller
                 "pr.cover_photo",
                 "pr.cover_photo_alt_text",
                 "pr.created_at",
-                "prp.name as photo_name"
+                "prp.name as photo_name",
+                "prp.alt_text as alt_text"
                 )
             ->join("project_photos as prp", "pr.id", "=", "prp.project_id", "inner", false)
             ->where("pr.id", $lastProjectId->id)
