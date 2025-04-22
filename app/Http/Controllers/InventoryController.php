@@ -16,8 +16,17 @@ class InventoryController extends Controller
      */
     public function index()
     {
-        $inventory = DB::select("CALL sp_getInventory()");
+        $empty = '';
+        $inventory = DB::select("CALL sp_getInventory(?)", array($empty));
         return view("inventory.index", compact("inventory"));
+    }
+
+    public function searchProduct(Request $request){
+        $productName = request()->productName;
+        $inventory = DB::select("CALL sp_getInventory(?)", array($productName));
+            
+        return view('inventory.index', compact("inventory", "productName"));
+
     }
 
     /**
@@ -89,8 +98,9 @@ class InventoryController extends Controller
     /**
      * Descarga el inventario a PDF
      */
-    public function download(){
-        $inventory = DB::select("CALL sp_getInventory()");
+    public function download(Request $request){
+        $productName = request()->hProductName;
+        $inventory = DB::select("CALL sp_getInventory(?)", array($productName));
 
         $pdf = PDF::loadView('inventory.downloadinventorypdf', ["inventory" => $inventory])
             ->setPaper('A4', 'landscape');

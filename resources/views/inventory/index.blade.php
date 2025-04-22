@@ -29,45 +29,90 @@ Lista de inventario
         </div>
     </nav>
 
-    <div>
+    <!-- <div>
         <a href="{{ route('inventory.download') }}" class="btn btn-primary m-3" target="_blank">
             <span class="icon-file-pdf-o"></span>
             Descargar a PDF</a>
+    </div> -->
+    <div style="display: flex">
+        <form class="form-inline" method="POST" action="{{ route('inventory.searchProduct') }}">
+            @csrf
+            <div class="form-group mx-sm-3 mb-2">
+                <input type="text" class="form-control" id="productName" name="productName" placeholder="Nombre" value="@if (isset($productName)){{ $productName }}@endif">
+            </div>
+            
+            <button type="submit" class="btn btn-primary mb-2">Buscar</button>
+        </form>
+        
+        <form class="form-inline" method="POST" action="{{ route('inventory.download') }}">
+            @csrf
+            <input type="hidden" id="hProductName" name="hProductName" value="@if (isset($productName)){{ $productName }}@endif">
+            <button type="submit" class="btn btn-primary mb-2 ml-3">Descargar a PDF</button>
+            <!-- <a href="{{ route('inventory.download') }}" class="btn btn-primary mb-2 ml-3" target="_blank">
+                <span class="icon-file-pdf-o"></span>
+                Descargar a PDF</a> -->
+        </form>
+
     </div>
 
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th scope="col">Código</th>
-                <th scope="col">Producto</th>
-                <th scope="col">Tipo</th>
-                <th scope="col">Acabado</th>
-                <th scope="col">Ancho/Largo/Espesor</th>
-                <th scope="col">Material</th>
-                <th scope="col">Sustrato</th>
-                <th scope="col">P.V.P</th>
-                <th scope="col">Cantidad</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($inventory as $key => $item)
-            <tr @if($item->invQuantity <= 10) class="table-danger" @endif>
-                <td>{{ $item->code }}</td>
-                <td>{{ $item->productName }}</td>
-                <td>{{ $item->productType }}</td>
-                <td>{{ $item->productAcabado }}</td>
-                <td>{{ $item->width }}/{{ $item->length }}/{{ $item->thickness }}</td>
-                <td>{{ $item->productMaterial }}</td>
-                <td>{{ $item->productSustrato }}</td>
-                <td>{{ $item->price }}</td>
-                <th>{{ $item->invQuantity }}</th>
-            </tr>
-            @endforeach
-        </tbody>
 
-    </table>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th class="header" scope="col">Código</th>
+                    <th class="header" scope="col">Nombre</th>
+                    <th class="header" scope="col">Tipo</th>
+                    <th class="header" scope="col">Acabado</th>
+                    <th class="header" scope="col">Ancho/Largo/Espesor</th>
+                    <th class="header" scope="col">Material</th>
+                    <th class="header" scope="col">Sustrato</th>
+                    <th class="header" scope="col">P.V.P</th>
+                    <th class="header" scope="col">Cantidad</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($inventory as $key => $item)
+                <tr @if($item->invQuantity <= 10) class="table-danger" @endif>
+                    <td>{{ $item->code }}</td>
+                    <td>{{ $item->productName }}</td>
+                    <td>{{ $item->productType }}</td>
+                    <td>{{ $item->productAcabado }}</td>
+                    <td>{{ $item->width }}/{{ $item->length }}/{{ $item->thickness }}</td>
+                    <td>{{ $item->productMaterial }}</td>
+                    <td>{{ $item->productSustrato }}</td>
+                    <td>{{ $item->price }}</td>
+                    <th>{{ $item->invQuantity }}</th>
+                </tr>
+                @endforeach
+            </tbody>
+    
+        </table>
+    </div>
 
 </div>
 
+<style type="text/css">
+    .table-responsive thead tr th{
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background-color: #e6e4e4;
+        
+    }
+    .table-responsive{
+        height: 80vh;
+        overflow:scroll;
+    }
+    .table{
+            font-size: smaller;
+    }
+    
+    @media (max-width: 768px) {
+        .table{
+            font-size: xx-small;
+        }
+    }
+</style>
 
 @endsection

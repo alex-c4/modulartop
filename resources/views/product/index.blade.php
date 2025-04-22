@@ -67,47 +67,47 @@ Lista de productos registrados
     </form>
 
     <div class="table-responsive">
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th class="header" scope="col">#</th>
-                <th class="header" scope="col">Código</th>
-                <th class="header" scope="col">Nombre</th>
-                <th class="header" scope="col">Tipo</th>
-                <th class="header" scope="col">Acabados</th>
-                <th class="header" scope="col">Ancho/Largo/Espesor</th>
-                <th class="header" scope="col">Material</th>
-                <th class="header" scope="col">Sustrato</th>
-                <th class="header" scope="col">P.V.P</th>
-                <th class="header" scope="col"></th>
-            </tr>
-        </thead>
-        
-        <tbody>
-            @foreach($products as $key => $product)
-            <tr @if($product->product_isdeleted == 1) class="table-danger" @endif>
-                <th>{{ $key += 1 }}</th>
-                <td>{{ $product->code }}</td>
-                <td>{{ $product->product_name }}</td>
-                <td>{{ $product->product_type_name }}</td>
-                <td>{{ $product->acabado }}</td>
-                <td>{{ Utils::eliminarCerosDecimales($product->width) }}/{{ Utils::eliminarCerosDecimales($product->length) }}/{{ Utils::eliminarCerosDecimales($product->thickness) }}</td>
-                <td>{{ $product->material }}</td>
-                <td>{{ $product->sustrato }}</td>
-                <td>{{ $product->price }}</td>
-                <td>
-                    <a href="{{ route('product.edit', $product->id) }}" title="Editar" ><span class="icon-pencil p-1 icon-gray"></span></a>
-                    @if($product->product_isdeleted == 1)
-                        <a href="{{ route('product.restore', $product->id) }}" title="Restaurar" ><span class="icon-check p-1 icon-green"></span></a>
-                    @else
-                        <a href="{{ route('product.delete', $product->id) }}" title="Inactivar" ><span class="icon-close p-1 icon-red"></span></a>
-                    @endif
-                    <a href="{{ route('product.show', $product->id) }}" title="Ver" ><span class="icon-pencil p-1 icon-eye"></span></a>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th class="header" scope="col">#</th>
+                    <th class="header" scope="col">Código</th>
+                    <th class="header" scope="col">Nombre</th>
+                    <th class="header" scope="col">Tipo</th>
+                    <th class="header" scope="col">Acabados</th>
+                    <th class="header" scope="col">Ancho/Largo/Espesor</th>
+                    <th class="header" scope="col">Material</th>
+                    <th class="header" scope="col">Sustrato</th>
+                    <th class="header" scope="col">P.V.P</th>
+                    <th class="header" scope="col"></th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                @foreach($products as $key => $product)
+                <tr @if($product->product_isdeleted == 1) class="table-danger" @endif>
+                    <th>{{ $key += 1 }}</th>
+                    <td>{{ $product->code }}</td>
+                    <td>{{ $product->product_name }}</td>
+                    <td>{{ $product->product_type_name }}</td>
+                    <td>{{ $product->acabado }}</td>
+                    <td>{{ Utils::eliminarCerosDecimales($product->width) }}/{{ Utils::eliminarCerosDecimales($product->length) }}/{{ Utils::eliminarCerosDecimales($product->thickness) }}</td>
+                    <td>{{ $product->material }}</td>
+                    <td>{{ $product->sustrato }}</td>
+                    <td>{{ $product->price }}</td>
+                    <td>
+                        <a href="{{ route('product.edit', $product->id) }}" title="Editar" ><span class="icon-pencil p-1 icon-gray"></span></a>
+                        @if($product->product_isdeleted == 1)
+                            <a href="{{ route('product.restore', $product->id) }}" title="Restaurar" ><span class="icon-check p-1 icon-green"></span></a>
+                        @else
+                            <a href="{{ route('product.delete', $product->id) }}" title="Inactivar" ><span class="icon-close p-1 icon-red"></span></a>
+                        @endif
+                        <a href="{{ route('product.show', $product->id) }}" title="Ver" ><span class="icon-pencil p-1 icon-eye"></span></a>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 
 </div>

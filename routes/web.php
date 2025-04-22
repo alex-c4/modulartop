@@ -208,7 +208,8 @@ Route::post("project/showProyectistaById", ["as" => "project.showProyectistaById
 
 // Inventario - Inventory
 Route::get("inventory/index", ["as" => "inventory.index", "uses" => "InventoryController@index"]);
-Route::get("inventory/download", ["as" => "inventory.download", "uses" => "InventoryController@download"]);
+Route::post("inventory/download", ["as" => "inventory.download", "uses" => "InventoryController@download"]);
+Route::post("inventory/searchProduct", ["as" => "inventory.searchProduct", "uses" => "InventoryController@searchProduct"]);
 
 // AJAX
 //Category

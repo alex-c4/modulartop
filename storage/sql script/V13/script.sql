@@ -69,3 +69,68 @@ WHERE
 	ne.category_id = cat_id
 ORDER BY ne.created_at DESC
 LIMIT 8
+
+
+
+
+DROP PROCEDURE `sp_getInventory`;
+CREATE PROCEDURE `sp_getInventory`(IN `productName` VARCHAR(300)) NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER BEGIN
+	IF productName != '' THEN
+        SELECT 
+            i.quantity AS invQuantity,
+            p.name AS productName,
+            p.code,
+            p.width,
+            p.thickness,
+            p.length,
+            p.price,
+            pc.name AS productColor,
+            pt.name AS productType,
+            pa.name AS productAcabado,
+            pm.name AS productMaterial,
+            ps.name AS productSustrato
+        FROM 
+            inventory AS i 
+            INNER JOIN products as p ON i.id_product = p.id 
+            LEFT JOIN product_colors AS pc ON pc.id = p.id_product_color
+            INNER JOIN product_types AS pt ON pt.id = p.id_product_type
+            LEFT JOIN product_acabados AS pa ON pa.id = p.id_product_acabado
+            LEFT JOIN product_materials AS pm ON pm.id = p.id_product_material
+            LEFT JOIN product_sustratos AS ps ON ps.id = p.id_product_sustrato
+        WHERE
+            p.is_deleted = 0 AND
+            i.quantity > 0 AND
+            p.name like CONCAT('%', productName, '%')
+        ORDER BY
+            pc.name ASC;
+    ELSE
+    	SELECT 
+            i.quantity AS invQuantity,
+            p.name AS productName,
+            p.code,
+            p.width,
+            p.thickness,
+            p.length,
+            p.price,
+            pc.name AS productColor,
+            pt.name AS productType,
+            pa.name AS productAcabado,
+            pm.name AS productMaterial,
+            ps.name AS productSustrato
+        FROM 
+            inventory AS i 
+            INNER JOIN products as p ON i.id_product = p.id 
+            LEFT JOIN product_colors AS pc ON pc.id = p.id_product_color
+            INNER JOIN product_types AS pt ON pt.id = p.id_product_type
+            LEFT JOIN product_acabados AS pa ON pa.id = p.id_product_acabado
+            LEFT JOIN product_materials AS pm ON pm.id = p.id_product_material
+            LEFT JOIN product_sustratos AS ps ON ps.id = p.id_product_sustrato
+        WHERE
+            p.is_deleted = 0 AND
+            i.quantity > 0
+        ORDER BY
+            pc.name ASC;
+    END IF;
+	
+
+END
