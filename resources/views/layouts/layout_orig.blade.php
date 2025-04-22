@@ -399,7 +399,7 @@
       </div>
       <div class="containerSendWhartsApp">
         <div class="sendWhatsApp">
-          <a href="https://api.whatsapp.com/send?phone=+58 04241854168" target="_blank">
+          <a href="https://api.whatsapp.com/send?phone={{env('WHATSAPP')}}" target="_blank">
             Abrir chat <span style="vertical-align: middle;" class="icon-telegram"></span>
           </a>
         </div>

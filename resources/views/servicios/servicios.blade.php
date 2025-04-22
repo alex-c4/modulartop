@@ -111,21 +111,21 @@ de madera, prensado MDP, enchapado de tapa de cantos y más. Fabricamos tus sue�
   </div>
 </section>
 
-<section class="section element-animate bg-container-revestimiento borderBottomSection" id="routeado">
+<section class="section element-animate bg-container-pegadocanto borderBottomSection" id="routeado">
   <div class="container" style="min-height: 400px; display: flex; padding: 30px">
     <div class="row align-items-center "><!-- mb-5 -->
 
       <div class="col-lg-5 order-md-2">
         <div class="scaling-image">
           <div class="frame">
-            <img src="images/servicios/revestimiento2.png" class="img-fluid">
+            <img src="images/servicios/pegadotapacanto2.png" class="img-fluid">
           </div>
         </div>
       </div>
 
       <div class="col-lg-7 pl-md-5 mb-3 order-md-1 column-right">
-        <div class='title-service'>REVESTIMIENTO DE LÁMINAS DE ALTA PRESIÓN (HLP) COMO OPCIÓN A TU PROYECTO</div>
-        <div class="content-service">Encolado de Láminas Decorativas de Alta Presión (conocido popularmente como Fórmica) sobre sustratos MDP o MDF mediante prensado térmico.</div>
+        <div class='title-service'>PEGADORA DE TAPA CANTO TERMOADHERIDO PARA MEJOR RESISTENCIA EN EL ACABADO DE LOS BORDES</div>
+        <div class="content-service">Acabados perfectos con un centro numérico computarizado (CNC) que realiza Pantografiado, Fresado, Ranurado y Perforado.</div>
       </div>
     </div>
   </div>
@@ -173,21 +173,21 @@ de madera, prensado MDP, enchapado de tapa de cantos y más. Fabricamos tus sue�
   </div>
 </section>
 
-<section class="section element-animate bg-container-pegadocanto borderBottomSection" id="routeado">
+<section class="section element-animate bg-container-revestimiento borderBottomSection" id="routeado">
   <div class="container" style="min-height: 400px; display: flex; padding: 30px">
     <div class="row align-items-center "><!-- mb-5 -->
 
       <div class="col-lg-5 order-md-2">
         <div class="scaling-image">
           <div class="frame">
-            <img src="images/servicios/pegadotapacanto2.png" class="img-fluid">
+            <img src="images/servicios/revestimiento2.png" class="img-fluid">
           </div>
         </div>
       </div>
 
       <div class="col-lg-7 pl-md-5 mb-3 order-md-1 column-right">
-        <div class='title-service'>PEGADORA DE TAPA CANTO TERMOADHERIDO PARA MEJOR RESISTENCIA EN EL ACABADO DE LOS BORDES</div>
-        <div class="content-service">Acabados perfectos con un centro numérico computarizado (CNC) que realiza Pantografiado, Fresado, Ranurado y Perforado.</div>
+        <div class='title-service'>REVESTIMIENTO DE LÁMINAS DE ALTA PRESIÓN (HLP) COMO OPCIÓN A TU PROYECTO</div>
+        <div class="content-service">Encolado de Láminas Decorativas de Alta Presión (conocido popularmente como Fórmica) sobre sustratos MDP o MDF mediante prensado térmico.</div>
       </div>
     </div>
   </div>

@@ -52,7 +52,7 @@ Tendencias, servicio personalizado y tableros melaminicos importados." />
           Nuestra misión
         </div>
         <div class="mision-text">
-          Ser el proveedor líder en Venezuela de tableros melamínicos, materiales afines y revestimientos de interiores y exteriores de alta calidad, así como el prestador de servicios de seccionado, mecanizado, prensado y pegado de canto con garantía comprobable; ofreciendo innovación, sostenibilidad y atención personalizada a clientes en las áreas de arquitectura, diseño y desarrollo de interiorismo y exteriorismo.
+          Ser el proveedor líder en Venezuela de tableros melamínicos, materiales afines y revestimientos de interiores y exteriores de alta calidad, así como el prestador de servicios de seccionado, mecanizado, prensado y pegado de tapacanto con garantía comprobable; ofreciendo innovación, sostenibilidad y atención personalizada a clientes en las áreas de arquitectura, diseño y desarrollo de interiorismo y exteriorismo.
         </div>
       </div>
     </div>
