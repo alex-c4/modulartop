@@ -717,7 +717,7 @@ class ProjectController extends Controller
 
         $lastProjectId = Project::select("id")
             ->where("is_deleted", "=", 0)
-            ->orderby("created_at", "DESC")
+            ->orderby("project_date", "DESC")
             ->first();
         
         $lastProject = DB::table("projects as pr")
@@ -733,7 +733,7 @@ class ProjectController extends Controller
             ->join("project_photos as prp", "pr.id", "=", "prp.project_id", "inner", false)
             ->where("pr.id", $lastProjectId->id)
             ->where("pr.is_deleted", "=", 0)
-            ->orderby("pr.created_at", "DESC")
+            ->orderby("pr.project_date", "DESC")
             ->get();
         
         return view("project.showphotosbyproyectista", compact("proyectistas", "allProjects", "lastProject"));
