@@ -706,7 +706,6 @@ class ProjectController extends Controller
                 "pr.cover_photo_alt_text",
                 "pr.proyectista_id",
                 "pr.project_date",
-                "p.prefix",
                 "p.name as proyectista_name",
                 "p.id"
                 )

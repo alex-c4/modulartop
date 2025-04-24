@@ -38,7 +38,7 @@ class CatalogController extends Controller
             ->orderby('name', 'asc')
             ->get();
         
-        $proyectistas = DB::table("proyectistas")
+        $aliados = DB::table("aliados")
             ->orderby('name', 'asc')
             ->get();
         
@@ -47,7 +47,7 @@ class CatalogController extends Controller
             ->where('is_deleted', 0)
             ->get();
 
-        return view('catalog.import', compact("product_types", "proyectistas", "product_categories"));
+        return view('catalog.import', compact("product_types", "aliados", "product_categories"));
     }
 
     /**
@@ -82,7 +82,7 @@ class CatalogController extends Controller
 
             $catalog = Catalog::create([
                 "id_product_type" => $request->input('type'),
-                "id_proyectista" => $request->input('proyectista'),
+                "id_aliado" => $request->input('aliado'),
                 "file_name" => $fileName,
                 "created_at" => Carbon::now(),
                 "created_by" => auth()->user()->id
@@ -104,7 +104,7 @@ class CatalogController extends Controller
             ->orderby('name', 'asc')
             ->get();
         
-        $proyectistas = DB::table("proyectistas")
+        $aliados = DB::table("aliados")
             ->orderby('name', 'asc')
             ->get();
 
@@ -116,7 +116,7 @@ class CatalogController extends Controller
         return view('catalog.import', compact(
             "msgCatalog",
             "product_types",
-            "proyectistas",
+            "aliados",
             "product_categories"
         ));
 
@@ -175,16 +175,16 @@ class CatalogController extends Controller
 
         return Validator::make($data, [
             'type' => 'required',
-            'proyectista' => 'required',
+            'aliado' => 'required',
             'catalog' => 'required|mimes:pdf',
         ], $messages);
     }
 
     public function deletedIfExist($request){
         $id_product_type = $request->input('type');
-        $id_proyectista = $request->input('proyectista');
+        $id_aliado = $request->input('aliado');
         // $catalog = Catalog::where('id_product_type', $id_product_type)
-        $catalog = Catalog::where('id_proyectista', $id_proyectista)
+        $catalog = Catalog::where('id_aliado', $id_aliado)
             ->first();
         if($catalog != null){
             // Borrar PDF
@@ -192,14 +192,14 @@ class CatalogController extends Controller
 
             //Borrar registro de la BD
             // Catalog::where('id_product_type', $id_product_type)
-            Catalog::where('id_proyectista', $id_proyectista)
+            Catalog::where('id_aliado', $id_aliado)
             ->delete();
         }
     }
 
-    public function addProyectista(Request $request){
+    public function addAliado(Request $request){
         $validated = Validator::make($request->all(), [
-            'name' => 'required|unique:proyectistas'
+            'name' => 'required|unique:aliados'
         ],
         [
             'name.required' => 'El campo nombre es requerido.',
@@ -213,7 +213,7 @@ class CatalogController extends Controller
         }
         try {
             $name = $request->input("name");
-            $id = DB::table("proyectistas")->insertGetId([
+            $id = DB::table("aliados")->insertGetId([
                 'name' => $name,
                 'prefix' => strtolower(str_replace(" ", "", $name))
             ]);
@@ -296,10 +296,10 @@ class CatalogController extends Controller
                 "message" => "El aliado comercial seleccionado no posee aún un catálogo cargado en el sistema."
             ];
         }else{
-            //Obtener nombre del Aliado (proyectista)
-            $proyectista = DB::table('proyectistas')->where('prefix', $aliado)->first();
+            //Obtener nombre del Aliado (antiguamente proyectista)
+            $aliado = DB::table('aliados')->where('prefix', $aliado)->first();
             $catalogInfo = array(
-                'aliado' => $proyectista->name
+                'aliado' => $aliado->name
             );
             // Mail::send('emails.downloadcatalog', $catalogInfo, function($message) use($req, $subject, $userEmail, $file){
             //     $message->from($req["correo"], 'Web Modular Top');
@@ -318,12 +318,12 @@ class CatalogController extends Controller
     }
 
     public function getFile($aliado){
-        $proyectista = DB::table('proyectistas')->where('prefix', $aliado)->first();
+        $aliado = DB::table('aliados')->where('prefix', $aliado)->first();
         
-        if($proyectista == null){
+        if($aliado == null){
             return null;
         }else{
-            $file = Catalog::where('id_proyectista', $proyectista->id)->first();
+            $file = Catalog::where('id_aliado', $aliado->id)->first();
             if($file == null){
                 return null;
             }else{

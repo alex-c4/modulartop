@@ -4,8 +4,8 @@ var _type = "POST";
 var setErrorPlacement = function(error, element){
     if(element.attr("id") == "type"){
         error.insertBefore($('#errorDivType'));
-    }else if(element.attr("id") == "proyectista"){
-        error.insertBefore($('#errorDivProyectista'));
+    }else if(element.attr("id") == "aliado"){
+        error.insertBefore($('#errorDivAliado'));
     }else if(element.attr("id") == "catalog"){
         error.insertBefore($('#errorDivCatalog'));
     }else{
@@ -19,7 +19,7 @@ var validator = function(){
             type:{
                 required: true
             },
-            proyectista:{
+            aliado:{
                 required: true
             },
             catalog:{
@@ -28,7 +28,7 @@ var validator = function(){
         },
         messages: {
             type: "El campo es requerido.",
-            proyectista: "El campo es requerido.",
+            aliado: "El campo es requerido.",
             catalog: "El campo es requerido."
         },
         errorPlacement: function(error, element) {
@@ -66,22 +66,22 @@ var onclick_addType = function(){
     });
 }
 
-var onclick_addProyectista = function(){
-    var _proyectista = $("#txtProyectista").val();
-    var _url = $("#hRouteAddProyectista").val();
+var onclick_addAliado = function(){
+    var _aliado = $("#txtAliado").val();
+    var _url = $("#hRouteAddAliado").val();
     var _data = {
-        name : _proyectista
+        name : _aliado
     };
     
     Utils.getData(_url, _token, _type, _data).then(function(result){
         if(result.result == true){
-            var proyectista = result.data;
-            Utils.addOptionToSelect("proyectista", proyectista.id, proyectista.name, false);
+            var aliado = result.data;
+            Utils.addOptionToSelect("aliado", aliado.id, aliado.name, false);
             // $('#typeModal').modal('hide');
-            Utils.clearModal(['txtProyectista'], 'msgProyectistaModal')
-            Utils.setAlert(result.message, 'success', 'msgProyectistaModal');
+            Utils.clearModal(['txtAliado'], 'msgAliadoModal')
+            Utils.setAlert(result.message, 'success', 'msgAliadoModal');
         }else{
-            Utils.setAlert(result.message, 'warning', 'msgProyectistaModal');
+            Utils.setAlert(result.message, 'warning', 'msgAliadoModal');
         }
     });
 }

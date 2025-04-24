@@ -12,7 +12,7 @@ class Catalog extends Model
 
     protected $fillable = [
         'id_product_type',
-        'id_proyectista',
+        'id_aliado',
         'is_deleted',
         'file_name',
         'created_at',

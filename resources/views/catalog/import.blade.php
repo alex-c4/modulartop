@@ -61,7 +61,7 @@ Importar catálogo
                                         @endforeach
                                     </select>
                                     <div class="input-group-append">
-                                        <button style="height: 38px" id="btnAddProyectista" data-toggle="modal" data-target="#proyectistaModal" title="Agregar nuevo tipo" class="btn btn-primary" type="button"><span class="icon-add" style="color: white !important;"></span></button>
+                                        <button style="height: 38px" id="btnAddAliado" data-toggle="modal" data-target="#aliadoModal" title="Agregar nuevo tipo" class="btn btn-primary" type="button"><span class="icon-add" style="color: white !important;"></span></button>
                                     </div>
                                 </div>
                                 <div id="errorDivType"></div>
@@ -74,21 +74,21 @@ Importar catálogo
                         </div>
 
                         <!-- Aliado comercial (proyectistas) -->
-                        <div class="form-group row" id="div-proyectistas">
-                            <label for="proyectistas" class="col-md-4 col-form-label text-md-right">Aliado comercial<span>*</span></label>
+                        <div class="form-group row" id="div-aliados">
+                            <label for="aliados" class="col-md-4 col-form-label text-md-right">Aliado comercial<span>*</span></label>
                             <div class="col-md-6">
                                 <div class="input-group" >
-                                    <select class="custom-select" id="proyectista" name="proyectista" autofocus >
+                                    <select class="custom-select" id="aliado" name="aliado" autofocus >
                                         <option value="">-Seleccione-</option>
-                                        @foreach($proyectistas as $proyectista)
-                                            <option value="{{ $proyectista->id }}">{{ $proyectista->name }}</option>
+                                        @foreach($aliados as $aliado)
+                                            <option value="{{ $aliado->id }}">{{ $aliado->name }}</option>
                                         @endforeach
                                     </select>
                                     <div class="input-group-append">
-                                        <button style="height: 38px" id="btnAddProyectista" data-toggle="modal" data-target="#proyectistaModal" title="Agregar nuevo proyectista" class="btn btn-primary" type="button"><span class="icon-add" style="color: white !important;"></span></button>
+                                        <button style="height: 38px" id="btnAddAliado" data-toggle="modal" data-target="#aliadoModal" title="Agregar nuevo aliado" class="btn btn-primary" type="button"><span class="icon-add" style="color: white !important;"></span></button>
                                     </div>
                                 </div>
-                                <div id="errorDivProyectista"></div>
+                                <div id="errorDivAliado"></div>
                                 @error('type')
                                     <span class="invalid-field text-center" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -143,7 +143,7 @@ Importar catálogo
 
             <div class="modal-body">
                 <input type="hidden" id="hRouteAddType" value="{{ route('product.addType') }}">
-                <input type="hidden" id="hRouteAddProyectista" value="{{ route('catalog.addProyectista') }}">
+                <input type="hidden" id="hRouteAddAliado" value="{{ route('catalog.addAliado') }}">
 
                 <!-- categorias -->
                 <div class="form-group">
@@ -172,8 +172,8 @@ Importar catálogo
     </div>
 </div>
 
-<!-- modal Agregar proyectista -->
-<div class="modal fade" id="proyectistaModal" tabindex="-1" aria-labelledby="ProyectistaModalLabel" aria-hidden="true">
+<!-- modal Agregar aliado -->
+<div class="modal fade" id="aliadoModal" tabindex="-1" aria-labelledby="AliadoModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
       
@@ -186,19 +186,19 @@ Importar catálogo
 
             <div class="modal-body">
                 <input type="hidden" id="hRouteAddType" value="{{ route('product.addType') }}">
-                <input type="hidden" id="hRouteAddProyectista" value="{{ route('catalog.addProyectista') }}">
+                <input type="hidden" id="hRouteAddAliado" value="{{ route('catalog.addAliado') }}">
 
                 <div class="form-group">
-                    <label for="txtProyectista">Nuevo Aliado</label>
-                    <input type="text" class="form-control" id="txtProyectista" name="txtProyectista">
+                    <label for="txtAliado">Nuevo Aliado</label>
+                    <input type="text" class="form-control" id="txtAliado" name="txtAliado">
                 </div>
 
-                <div id="msgProyectistaModal" name="msgProyectistaModal" class="alert" role="alert"></div>
+                <div id="msgAliadoModal" name="msgAliadoModal" class="alert" role="alert"></div>
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="Utils.clearModal(['txtProyectista'], 'msgProyectistaModal')">Cerrar</button>
-                <button type="button" class="btn btn-primary" onclick="onclick_addProyectista()">Guardar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="Utils.clearModal(['txtAliado'], 'msgAliadoModal')">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="onclick_addAliado()">Guardar</button>
             </div>
 
         </div>

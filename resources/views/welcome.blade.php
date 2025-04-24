@@ -231,7 +231,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
 
 
 <!-- Catalog Lead Modal -->
-<!-- modal Agregar proyectista -->
+<!-- modal Agregar Aliado -->
 <div class="modal fade" id="catalogLeadModal" name="catalogLeadModal" tabindex="-1" aria-labelledby="catalogLeadModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -335,11 +335,11 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
   //     $('#alertregister').slideUp()
   // };
   
-  onclick_img = function(proyectistaId){
-    if(proyectistaId == null){
+  onclick_img = function(aliadoId){
+    if(aliadoId == null){
       Utils.setAlert("El aliado comercial seleccionado no posee aún un catálogo cargado en el sistema.", 'warning', 'msgEmailModal');
     }else{
-      $('#hAliado').val(proyectistaId)
+      $('#hAliado').val(aliadoId)
     }
   }
   
