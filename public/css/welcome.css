@@ -1,0 +1,16 @@
+.contenido-subcribe{
+    display: flex;
+}
+.imagen-content{
+    width: 400px;
+    background-image: url('../images/popup.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 500px;
+}
+.formulario-content{
+    width: 400px;
+    /* background-color: blueviolet; */
+    display: flex;
+    align-items: center;
+}

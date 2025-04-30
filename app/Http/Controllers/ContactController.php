@@ -224,8 +224,9 @@ class ContactController extends Controller
         } catch (\Throwable $th) {
             $result = array(
                 "success" => false,
-                "message" => "Hubo un error en la operación, por favor intente de nuevo. Muchas gracias!->".$th
+                "message" => "Hubo un error en la operación, por favor intente de nuevo. Muchas gracias!->"
             );
+            // "message" => "Hubo un error en la operación, por favor intente de nuevo. Muchas gracias!->".$th
         }
 
         return $result;

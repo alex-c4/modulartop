@@ -205,7 +205,7 @@ var Utils = {
         $('#' + id).html(message);
     },
     clearModal: function(listInputs, alertId){
-        Utils.hideAlert(alertId);
+        if(alertId) Utils.hideAlert(alertId);
         // lista de inputs
         listInputs.forEach( item => {
             $("#"+item).val("");

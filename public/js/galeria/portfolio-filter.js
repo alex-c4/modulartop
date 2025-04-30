@@ -3,15 +3,20 @@
         var $container = $('.portfolioContainer');
         var _filter = ".mtop";
 
-        $container.isotope({
-            filter: _filter,
-            animationOptions: {
-                duration: 750,
-                easing: 'linear',
-                queue: false
-            }
-        });
-        $(".portfolioContainer").css("visibility", "visible");
+        try {
+            $container.isotope({
+                filter: _filter,
+                animationOptions: {
+                    duration: 750,
+                    easing: 'linear',
+                    queue: false
+                }
+            });
+            $(".portfolioContainer").css("visibility", "visible");
+            
+        } catch (error) {
+            
+        }
 
 
         $('.portfolioFilter a').on("click", function () {

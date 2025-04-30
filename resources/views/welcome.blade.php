@@ -8,6 +8,19 @@ servicios de madera con maquinarias de última generación en Caracas, Venezuela
 
 <meta name="keywords" content="Modular Top, tableros melaminicos, fabricacion de mobiliario, maquinaria cnc, 
 seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
+
+<!-- <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css')}}"> -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+<link rel="stylesheet" href="{{ asset('css/welcome.css')}}">
+<!-- <link rel="stylesheet" href="{{ asset('css/jquery.fancybox.min.css')}}"> -->
+<!-- <link href="{{ asset('css/proyectos/magnific-popup.css')}}" rel="stylesheet" type="text/css" /> -->
+
+<link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css')}}">
+<link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css')}}">
+<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css')}}">
+
+
+
 @endsection
 
 @section('content')
@@ -263,96 +276,118 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
         </div>
     </div>
 </div>
+
+<!-- suscripcion newletter content bonton flotante -->
+<div id="subcripcionContent">
+  <form action="{{ route('contact.contact') }}" method="post" class="" id="form_send_contact4">
+    {{csrf_field()}}
+    <input type="hidden" name="hform" id="hform" value="3">
+    <div id="subcripcionHeader">
+      <div style="margin-right: auto; margin-left: 7px;">Suscribirme a novedades</div>
+      <span class="icon-close2 closeSubcripcion" onclick="closeSubcripcion()"></span>
+    </div>
+
+    <div style="padding: 0px 20px 0px 20px;">
+      <div class="input-group mb-3">
+        <input id="emailnews4" name="emailnews4" type="text" class="form-control border-secondary text-white bg-transparent" placeholder="Ingrese su Email" aria-label="Enter Email" aria-describedby="button-addon2">
+        <div class="input-group-append" style="height: 43px !important;">
+          <button class="btn btn-primary" id="button-addon4" name="button-addon4">Enviar</button>
+        </div>
+      </div>
+      <small id="messageSuscripcion" class="form-text text-muted">&nbsp;</small>
+    </div>
+  </form>
+</div>
+
+<!-- Modal autoload -->
+<div class="modal fade" id="newsletterModal" tabindex="-1" aria-labelledby="newsletterModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content" style="width: 800px;">
+      <div class="modal-header p-1 pr-3" style="width: 800px;">
+        <h5 class="modal-title" id="newsletterModalLabel"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body p-1">
+        <div class="contenido-subcribe">
+          <div class="imagen-content">&nbsp;</div>
+          <div class="formulario-content">
+            
+          <form method="post" class="p-3 bg-white" id="form_send_contact_info" name="form_send_contact_info" onsubmit="gtag('event', 'enviar_form_contacto', { 'event_category': 'formularios', 'event_label': 'form_contacto', 'value': '0'})" style="width: 100%">
+            <input type="hidden" id="hRouteAddContact" value="{{ route('contact.contact') }}">
+
+            <div class="email-form">
+                {{csrf_field()}}
+                <input type="hidden" name="hform" id="hformM" value="3">
+
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Nombre</label>
+                  <input maxlength="50" type="text" id="fnameM" name="fnameM" class="form-control" value="{{ old('fname') }}" aria-describedby="emailHelp" placeholder="Tu nombre">
+                  @if ($errors->has('fname'))
+                    <div class="invalid-field">
+                      {{ $errors->first('fname') }}
+                    </div>
+                  @endif
+                </div>
+
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Correo electrónico</label>
+                  <input type="email" class="form-control" id="emailM" name="emailM" value="{{ old('email') }}" placeholder="Tu correo">
+                  @if ($errors->has('email'))
+                    <div class="invalid-field">
+                      {{ $errors->first('email') }}
+                    </div>
+                  @endif
+                </div>
+
+                <div class="email-row-btn">
+                  <div class="container-btn-send">
+                    <div class="btn-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" height="24" width="21" viewBox="0 0 448 512"><path fill="#ffffff" d="M224 0c-17.7 0-32 14.3-32 32l0 19.2C119 66 64 130.6 64 208l0 18.8c0 47-17.3 92.4-48.5 127.6l-7.4 8.3c-8.4 9.4-10.4 22.9-5.3 34.4S19.4 416 32 416l384 0c12.6 0 24-7.4 29.2-18.9s3.1-25-5.3-34.4l-7.4-8.3C401.3 319.2 384 273.9 384 226.8l0-18.8c0-77.4-55-142-128-156.8L256 32c0-17.7-14.3-32-32-32zm45.3 493.3c12-12 18.7-28.3 18.7-45.3l-64 0-64 0c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7z"/></svg>
+                    </div>
+    
+                    <div class="btn-input">
+                      <input type="button" id="btnSendContactInfo" name="btnSendContactInfo" value="Suscribir" onclick="sendContact()">
+                    </div>
+    
+                  </div>
+                </div>
+
+                <div id="msgNewsletterModal" name="msgNewsletterModal" class="alert" role="alert"></div>
+
+
+            </div>
+          </form>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+
 @endsection
 
 @section("script")
+<!-- <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script> -->
+  
+<script src="{{ asset('js/jquery-3.3.1.min.js')}}"></script>
+<script src="{{ asset('js/jquery-ui.js')}}"></script>
+<script src="{{ asset('js/popper.min.js')}}"></script>
+<script src="{{ asset('js/bootstrap.min.js')}}"></script>
+
+<script src="{{ asset('js/welcome2.js') }}?v={{ env('APP_VERSION', '1') }}"></script>
 <script src="{{ asset('js/utils.js') }}?v={{ env('APP_VERSION', '1') }}"></script>
 
-<script>
-  var _token = $("#token").val();
-  var _type = "POST";
-
-  var onclick_sendEmail = function(){
-    $("#btnSendEmail").prop("disabled", true);
-    $("#btnCancelSendEmail").prop("disabled", true);
-
-    var _email = $("#txtEmail").val();
-    var _url = $("#hRouteAddEmail").val();
-    var _data = {
-      txtEmail : _email,
-      hAliado: $('#hAliado').val()
-    };
-    Utils.getData(_url, _token, _type, _data).then(function(result){
-      if(result.result == true){
-        $("#txtEmail").val("");
-        Utils.setAlert(result.message, 'success', 'msgEmailModal');
-        let aLink = document.createElement('a');
-        aLink.href = `${result.file_url}/${result.file_name}`;
-        aLink.target = '_blank';
-        aLink.download = result.file_name;
-        document.body.appendChild(aLink);
-        aLink.click();
-        document.body.removeChild(aLink)
-
-      }else{
-        Utils.setAlert(result.message, 'warning', 'msgEmailModal');
-      }
-      
-      $("#btnSendEmail").prop("disabled", false);
-      $("#btnCancelSendEmail").prop("disabled", false);
-    }).fail(e => {
-      $("#btnSendEmail").prop("disabled", false);
-      $("#btnCancelSendEmail").prop("disabled", false);
-    });
-  } 
-
-  $('#form_send_contact_info').submit(function() {
-    // var _valrecaptcha = $("#g-recaptcha-response").val();
-    $('#btnSendContactInfo').val("Enviando...");
-    $('#btnSendContactInfo').attr("disabled", true);
-
-    // if((_valrecaptcha == "") || (_valrecaptcha == undefined)){
-    //     $('#alertregister').slideDown();
-    //     $('#btnSendContactInfo').attr("disabled", false);
-    //     $('#btnSendContactInfo').val("Enviar");
-    //     return false;
-    // }else{
-    //     return true;
-    // }
-
-    return true;
-  });
-  
-  // $(function () {
-    
-  // });
-
-  // $("#g-recaptcha-response").on("click", function(){
-  //     $('#alertregister').slideUp()
-  // });
-
-  // var recaptchaCallback = function(){
-  //     $('#alertregister').slideUp()
-  // };
-  
-  onclick_img = function(aliadoId){
-    if(aliadoId == null){
-      Utils.setAlert("El aliado comercial seleccionado no posee aún un catálogo cargado en el sistema.", 'warning', 'msgEmailModal');
-    }else{
-      $('#hAliado').val(aliadoId)
-    }
-  }
-  
-        
-      
-  $("#catalogLeadModal").on('show.bs.modal', function (event) {
-    var image = $(event.relatedTarget) // image that triggered the modal
-    var recipient = image.data('aliado') // Extract info from data-* attributes
-    var modal = $(this);
-    
-    modal.find('#hAliado').val(recipient)
-    // modal.find('.modal-title').text('New message to ' + recipient)
-  });
-  
-</script>
 @endsection

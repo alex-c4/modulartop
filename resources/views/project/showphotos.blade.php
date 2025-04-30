@@ -143,16 +143,21 @@ var onclick_image = function(_image, _title, _info){
 }
 
 $(window).on('load', function () {
-    var $container = $('.portfolioContainer');
-    
-    $container.isotope({
-        filter: '*',
-        animationOptions: {
-            duration: 750,
-            easing: 'linear',
-            queue: false
-        }
-    });
+    try {
+        var $container = $('.portfolioContainer');
+        
+        $container.isotope({
+            filter: '*',
+            animationOptions: {
+                duration: 750,
+                easing: 'linear',
+                queue: false
+            }
+        });
+        
+    } catch (error) {
+        
+    }
 
     $('#imageModal').on('show.bs.modal', function (event) {
         debugger
