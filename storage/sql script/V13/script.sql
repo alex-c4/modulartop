@@ -49,7 +49,8 @@ ALTER TABLE `products` CHANGE `name` `name` VARCHAR(300) CHARACTER SET latin1 CO
 
 
 DROP PROCEDURE `sp_getNewsletterFilterByCategory`;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_getNewsletterFilterByCategory`(IN `cat_id` INT) NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER SELECT 
+CREATE PROCEDURE `sp_getNewsletterFilterByCategory`(IN `cat_id` INT) NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER 
+SELECT 
 	ne.id,
     ne.title,
     ne.created_at,
@@ -73,8 +74,10 @@ LIMIT 8
 
 
 
-DROP PROCEDURE `sp_getInventory`;
-CREATE PROCEDURE `sp_getInventory`(IN `productName` VARCHAR(300)) NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER BEGIN
+DELIMITER $$
+CREATE PROCEDURE `sp_getInventory`(IN `productName` VARCHAR(300))
+    NO SQL
+BEGIN
 	IF productName != '' THEN
         SELECT 
             i.quantity AS invQuantity,
@@ -133,7 +136,10 @@ CREATE PROCEDURE `sp_getInventory`(IN `productName` VARCHAR(300)) NOT DETERMINIS
     END IF;
 	
 
-END
+END$$
+DELIMITER ;
 
 
 CREATE TABLE `aliados` ( `id` INT NOT NULL AUTO_INCREMENT , `name`, VARCHAR(30) NOT NULL, `prefix` VARCHAR(30) NOT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+ALTER TABLE `catalogs` CHANGE `id_proyectista` `id_aliado` INT(11) NOT NULL;

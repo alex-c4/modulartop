@@ -72,14 +72,14 @@ var _token = $("#token").val();
     }
   }
       
-  $("#catalogLeadModal").on('show.bs.modal', function (event) {
-    var image = $(event.relatedTarget) // image that triggered the modal
-    var recipient = image.data('aliado') // Extract info from data-* attributes
-    var modal = $(this);
+  // $("#catalogLeadModal").on('show.bs.modal', function (event) {
+  //   var image = $(event.relatedTarget) // image that triggered the modal
+  //   var recipient = image.data('aliado') // Extract info from data-* attributes
+  //   var modal = $(this);
     
-    modal.find('#hAliado').val(recipient)
-    // modal.find('.modal-title').text('New message to ' + recipient)
-  });
+  //   modal.find('#hAliado').val(recipient)
+  //   // modal.find('.modal-title').text('New message to ' + recipient)
+  // });
 
     // toogleModal = function(){
     //     $("#newsletterModal").modal('toggle');
