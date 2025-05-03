@@ -125,7 +125,7 @@ de madera, prensado MDP, enchapado de tapa de cantos y más. Fabricamos tus sue�
 
       <div class="col-lg-7 pl-md-5 mb-3 order-md-1 column-right">
         <div class='title-service'>PEGADORA DE TAPA CANTO TERMOADHERIDO PARA MEJOR RESISTENCIA EN EL ACABADO DE LOS BORDES</div>
-        <div class="content-service">Acabados perfectos con un centro numérico computarizado (CNC) que realiza Pantografiado, Fresado, Ranurado y Perforado.</div>
+        <div class="content-service">Pegado de tapa cantos ABS en piezas rectas y curvas, mediante la adhesión con pega granulada que se funde a alta temperatura, dejando una pieza completamente impermeable y resistente a la humedad por sus cantos.</div>
       </div>
     </div>
   </div>
