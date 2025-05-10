@@ -302,8 +302,8 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
 <!-- Modal autoload -->
 <div class="modal fade" id="newsletterModal" tabindex="-1" aria-labelledby="newsletterModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content" style="width: 800px;">
-      <div class="modal-header p-1 pr-3" style="width: 800px;">
+    <div class="modal-content">
+      <div class="modal-header p-1 pr-3">
         <h5 class="modal-title" id="newsletterModalLabel"></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
