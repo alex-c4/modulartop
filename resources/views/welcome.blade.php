@@ -302,10 +302,10 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
 <!-- Modal autoload -->
 <div class="modal fade" id="newsletterModal" tabindex="-1" aria-labelledby="newsletterModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content">
+    <div class="modal-content" id="modal-content-newsletter">
       <div class="modal-header p-1 pr-3">
         <h5 class="modal-title" id="newsletterModalLabel"></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="close-newsletter">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -313,9 +313,9 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
       <div class="modal-body p-1">
         <div class="contenido-subcribe">
           <div class="imagen-content">&nbsp;</div>
-          <div class="formulario-content">
+          <div class="formulario-content p-md-2 pt-sm-1">
             
-          <form method="post" class="p-3 bg-white" id="form_send_contact_info" name="form_send_contact_info" onsubmit="gtag('event', 'enviar_form_contacto', { 'event_category': 'formularios', 'event_label': 'form_contacto', 'value': '0'})" style="width: 100%">
+          <form method="post" class="p-3 bg-dark" id="form_send_contact_info" name="form_send_contact_info" onsubmit="gtag('event', 'enviar_form_contacto', { 'event_category': 'formularios', 'event_label': 'form_contacto', 'value': '0'})" style="width: 100%; border-radius: 3px">
             <input type="hidden" id="hRouteAddContact" value="{{ route('contact.contact') }}">
 
             <div class="email-form">
