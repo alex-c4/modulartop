@@ -97,7 +97,7 @@ Importar catálogo
                             </div>
                         </div>
                         
-                        <!-- Imagen -->
+                        <!-- PDF -->
                         <div class="row form-group">
                             <label for="catalog" class="col-md-4 col-form-label text-md-right">Catálogo<span>*</span></label>
                             <div class="col-md-6">

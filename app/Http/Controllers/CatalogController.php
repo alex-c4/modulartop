@@ -176,7 +176,7 @@ class CatalogController extends Controller
         return Validator::make($data, [
             'type' => 'required',
             'aliado' => 'required',
-            'catalog' => 'required|mimes:pdf',
+            'catalog' => 'required|file|mimes:pdf',
         ], $messages);
     }
 
@@ -284,12 +284,12 @@ class CatalogController extends Controller
         return $result;
     }
 
-    public function sendEmail($userEmail, $aliado){
+    public function sendEmail($userEmail, $prefix_aliado){
         $subject = "Solicitud de catálogo";
         $req = array(
             "correo" => env('EMAIL_ADMIN')
         );
-        $file = $this->getFile($aliado);
+        $file = $this->getFile($prefix_aliado);
         if($file == null){
             $result = [
                 "result" => false,
@@ -297,7 +297,7 @@ class CatalogController extends Controller
             ];
         }else{
             //Obtener nombre del Aliado (antiguamente proyectista)
-            $aliado = DB::table('aliados')->where('prefix', $aliado)->first();
+            $aliado = DB::table('aliados')->where('prefix', $prefix_aliado)->first();
             $catalogInfo = array(
                 'aliado' => $aliado->name
             );
@@ -317,8 +317,8 @@ class CatalogController extends Controller
         return $result;
     }
 
-    public function getFile($aliado){
-        $aliado = DB::table('aliados')->where('prefix', $aliado)->first();
+    public function getFile($prefix_aliado){
+        $aliado = DB::table('aliados')->where('prefix', $prefix_aliado)->first();
         
         if($aliado == null){
             return null;
