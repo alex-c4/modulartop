@@ -26,6 +26,20 @@
 .modal-header{
     border: none !important;
 }
+.contenedor-title{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 5px
+}
+.form-title{
+  color: white;
+  font-size: medium;
+}
+.form-subtitle{
+  font-size: smaller;
+  color: #6f6d69;
+}
 
 @media (max-width: 765px) {
   .contenido-subcribe{

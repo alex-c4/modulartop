@@ -322,6 +322,15 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
                 {{csrf_field()}}
                 <input type="hidden" name="hform" id="hformM" value="3">
 
+                <div class="contenedor-title">
+                  <span class="form-title">
+                    ¡Mantente al Día con Novedades Exclusivas!
+                  </span>
+                  <span class="form-subtitle">
+                    Suscríbete a nuestro newsletter y sé el primero en recibir ofertas especiales, consejos útiles y las últimas noticias de nuestra marca. ¡Únete a nuestra comunidad!
+                  </span>
+                </div>
+
                 <div class="form-group">
                   <label for="exampleInputEmail1">Nombre</label>
                   <input maxlength="50" type="text" id="fnameM" name="fnameM" class="form-control" value="{{ old('fname') }}" aria-describedby="emailHelp" placeholder="Tu nombre">
