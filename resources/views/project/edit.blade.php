@@ -209,7 +209,7 @@ Edición proyecto
                         </div>
 
                         <!-- Fecha -->
-                        <div class="form-group row" style="display: none" id="div_project_date">
+                        <div class="form-group row" id="div_project_date">
                             <label for="project_date" class="col-lg-4 col-form-label text-lg-right">Fecha<span>*</span></label>
                             <div class="col-lg-6">
                                 <input id="project_date" name="project_date" autocomplete="off" type="text" class="form-control @error('project_date') is-invalid @enderror" value="{{ $project->project_date }}" >

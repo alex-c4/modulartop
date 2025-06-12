@@ -26,8 +26,6 @@ $("#proyectista").on("change", function(){
             // Modular Top
             // DIV
             listToHidden = [
-                "div_client_name", 
-                "div_project_date",
                 "div_partner_company",
                 "div_provider"
             ];
@@ -57,12 +55,12 @@ $("#proyectista").on("change", function(){
             //DIV
             listToHidden = [
                 "div_client_name",
-                "div_project_date",
                 "div_provider"
             ];
             hideFields(listToHidden);
 
             listToShow = [
+                "div_project_date",
                 "div_partner_company"
             ];
             showFields(listToShow);
@@ -82,13 +80,13 @@ $("#proyectista").on("change", function(){
             //DIV
             listToHidden = [
                 "div_partner_company",
-                "div_client_name",
-                "div_project_date"
+                "div_client_name"
             ];
             hideFields(listToHidden);
 
             listToShow = [
-                "div_provider"
+                "div_provider",
+                "div_project_date"
             ];
             showFields(listToShow);
 

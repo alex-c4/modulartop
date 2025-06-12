@@ -61,7 +61,7 @@ Importar catálogo
                                         @endforeach
                                     </select>
                                     <div class="input-group-append">
-                                        <button style="height: 38px" id="btnAddAliado" data-toggle="modal" data-target="#aliadoModal" title="Agregar nuevo tipo" class="btn btn-primary" type="button"><span class="icon-add" style="color: white !important;"></span></button>
+                                        <button style="height: 38px" id="btnAddAliado" data-toggle="modal" data-target="#typeModal" title="Agregar nuevo tipo" class="btn btn-primary" type="button"><span class="icon-add" style="color: white !important;"></span></button>
                                     </div>
                                 </div>
                                 <div id="errorDivType"></div>

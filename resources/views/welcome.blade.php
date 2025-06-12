@@ -44,7 +44,7 @@ seccionado, mecanizado de madera, prensado mdp, enchapado de tapa cantos" />
           </div>        
         </div>  
         
-        <div class="site-blocks-cover overlay overlay-2" style="background-image: url(images/banner/banner_2.jpg);" data-aos="fade" id="home-section">
+        <div class="site-blocks-cover overlay overlay-2" style="background-image: url(images/banner/banner_2.png);" data-aos="fade" id="home-section">
           <div class="container">
             <div class="row align-items-center justify-content-center">
               <div class="col-md-12 mt-lg-5 text-center">
