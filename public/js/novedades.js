@@ -8,6 +8,9 @@ var displayInformation = function(id, isHeader){
     };
     Utils.getData(_url, _token, _type, _data).then(function(result){
         var _path = window.location.origin;
+        if(window.location.href.includes('public')){
+            _path = _path +  + '/public';
+        }
 
         if(result.result == true){
             if(!isHeader){
